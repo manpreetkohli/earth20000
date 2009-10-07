@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>750</width>
+    <height>725</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>750</width>
+    <height>725</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>750</width>
+    <height>725</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Earth: 20000</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QGraphicsView" name="view">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>750</width>
+     <height>725</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>750</width>
+     <height>725</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>750</width>
+     <height>725</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/spacebattle.jpg);</string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="cacheMode">
+    <set>QGraphicsView::CacheBackground</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="title">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>30</y>
+     <width>500</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>50</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;font color= RED&gt; Earth: 20000 &lt;/font&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="newGame">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>275</y>
+     <width>400</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string>background-color: rgba(255, 255, 255, 100);</string>
+   </property>
+   <property name="text">
+    <string>NEW GAME</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="levelEditor">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>350</y>
+     <width>400</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string>background-color: rgba(255, 255, 255, 100);</string>
+   </property>
+   <property name="text">
+    <string>LEVEL EDITOR</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="controls">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>425</y>
+     <width>400</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string>background-color: rgba(255, 255, 255, 100);</string>
+   </property>
+   <property name="text">
+    <string>CONTROLS</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="highScores">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>500</y>
+     <width>400</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string>background-color: rgba(255, 255, 255, 100);</string>
+   </property>
+   <property name="text">
+    <string>HIGH SCORES</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="credits">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>575</y>
+     <width>400</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string>background-color: rgba(255, 255, 255, 100);</string>
+   </property>
+   <property name="text">
+    <string>CREDITS</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exit">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>650</y>
+     <width>400</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string>background-color: rgba(255, 255, 255, 100);</string>
+   </property>
+   <property name="text">
+    <string>EXIT</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
