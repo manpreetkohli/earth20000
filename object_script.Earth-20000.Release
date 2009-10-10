@@ -1,0 +1,12 @@
+INPUT(
+./release\board.o
+./release\ball.o
+./release\Main.o
+./release\form.o
+./release\block.o
+./release\levelOne.o
+./release\levelTwo.o
+./release\levelFive.o
+./release\moc_form.o
+./release\qrc_Images.o
+);

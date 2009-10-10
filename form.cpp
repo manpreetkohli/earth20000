@@ -2,6 +2,10 @@
 #include "ui_form.h"
 #include "board.h"
 #include "ball.h"
+#include "levelOne.h"
+#include "levelTwo.h"
+#include "levelFive.h"
+
 
 Form::Form(QWidget *parent) :
     QWidget(parent),

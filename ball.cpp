@@ -1,6 +1,10 @@
-#include "ball.h"
-
 #include <QPainter>
+#include <QGraphicsItem>
+#include <iostream>
+
+#include "ball.h"
+#include "levelOne.h"
+#include "levelTwo.h"
 
 Ball::Ball()
 {
@@ -18,8 +22,6 @@ Ball::Ball()
 
 void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-
-
     painter->drawEllipse(375, 625, 15, 15);
     painter->drawPixmap(375, 625, 20, 20, ballImage);
 
@@ -40,7 +42,16 @@ void Ball::setBounceBounds(qreal x, qreal y)
 
 void Ball::advance(int phase)
 {
-        if(!phase) return;
+        if(!phase) return;        
+
+        // Experiment code for collision detection
+        /*
+         if(!(listOfCollidingItems.isEmpty()))
+        {
+            directionX = -directionY;
+            directionY = -directionX;
+            setPos(positionX,positionY);
+        }*/
 
         // make ball bounce around in the screen
         positionX+=directionX;
