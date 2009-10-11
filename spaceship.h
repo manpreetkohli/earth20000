@@ -4,17 +4,17 @@
 //#include "ShotBehavior.h"
 #include <QGraphicsItem>
 
-using namespace std;
+//using namespace std;
 
-class SpaceShip : QGraphicsItem
+class SpaceShip : public QGraphicsItem
 {
     private:
 
         // variables for the position and dimension of ship
-        int left;
-        int top;
-        int width;
-        int height;
+        qreal left;
+        qreal top;
+        qreal width;
+        qreal height;
 
         // Color of the character,
         QColor color;
@@ -31,13 +31,16 @@ class SpaceShip : QGraphicsItem
         SpaceShip();
 
         // destructor
-        //~SpaceShip();
+        ~SpaceShip();
 
         // the bounding rectangle of the object for collision detection
         QRectF boundingRect () const;
 
         // called whenever the spaceShip needs to be drawn
         void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+        void setBounceBounds (qreal x, qreal y);
+
       //  void performShipMovement();
       //  void performShootingMovement();
 

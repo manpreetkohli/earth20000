@@ -5,7 +5,9 @@
 #include "levelOne.h"
 #include "levelTwo.h"
 #include "levelFive.h"
+#include "spaceship.h"
 
+using namespace std;
 
 Form::Form(QWidget *parent) :
     QWidget(parent),
@@ -59,5 +61,9 @@ void Form::on_newGame_clicked()
 
     Ball *ball = new Ball();
 
+    SpaceShip *playersShip = new SpaceShip ();
+
     board->scene->addItem(ball);
+
+    board->scene->addItem(playersShip);
 }
