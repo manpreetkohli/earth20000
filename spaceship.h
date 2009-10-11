@@ -6,33 +6,40 @@
 
 using namespace std;
 
-class spaceShip : QGraphicsItem
+class SpaceShip : QGraphicsItem
 {
-    public:
+    private:
 
+        // variables for the position and dimension of ship
+        int left;
+        int top;
+        int width;
+        int height;
+
+        // Color of the character,
+        QColor color;
+
+        // for image of th ship that will be place on the object.
+        QPixmap shipsImage;
+
+    public:
         // declare two reference var for behavior interface types
        // MoveBehavior shipMoving;
       //  ShotBehavior shipShooting;
 
         // constructor
-        spaceShip();
-        virtual ~spaceShip();
+        SpaceShip();
+
+        // destructor
+        //~SpaceShip();
 
         // the bounding rectangle of the object for collision detection
-        virtual QRectF boundingRect ();
+        QRectF boundingRect () const;
 
         // called whenever the spaceShip needs to be drawn
-        void paint (QPainter *painter, const QStyleOPtionGraphicItem *option, QWidget *widget);
-
+        void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
       //  void performShipMovement();
       //  void performShootingMovement();
-
-    private:
-
-        // Color of the spaceShip
-        QColor color;
-
-        qreal left, top, width, height;
 
 };
 
