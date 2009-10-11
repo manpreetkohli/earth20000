@@ -17,6 +17,7 @@ using namespace std;
 // constructor
 SpaceShip::SpaceShip()
 {
+    shipsImage.load(":playerShip.jpg");
     width = 0; //100
     height = 0; //60
     left = 0;  //325
@@ -24,9 +25,7 @@ SpaceShip::SpaceShip()
     color = (Qt::red);
     qDebug() << "Constructor" ;
     setPos(left, top);
-
    // setFlag(QGraphicsItem::boundingRect());
-
 }
 
 // destructor
@@ -48,14 +47,17 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
         if (listOfCollidingItems.isEmpty()) painter->setBrush(Qt::black);
         else painter->setBrush(Qt::blue);
     painter->setBrush(color);
-    painter->drawRect(325, 640, 80, 30);
+    painter->drawRect(335, 640, 80, 30);
+    painter->drawPixmap(335, 640, 90, 35, shipsImage);
 }
 
 // the bounding rectangle of the object for collision detection
 QRectF SpaceShip::boundingRect() const
 {
-    return QRectF(left, top, width, height);
+    return QRectF(335, 640, 90, 35);
 }
+
+
 
 
 //void SpaceShip::performShipMovement()
