@@ -1,5 +1,5 @@
 #include "spaceship.h"
-//#include "MoveBehavior.h"
+#include "MoveBehavior.h"
 //#include "ShotBehavior.h"
 
 #include <QPainter>
@@ -8,8 +8,9 @@
 #include <QGraphicsItem>
 #include <iostream>
 #include <QDebug>
+#include <QKeyEvent>
 
-//MoveBehavior shipMoving;
+MoveBehavior shipMoving;
 //ShotBehavior shipShooting;
 
 using namespace std;
@@ -46,6 +47,7 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
         // If nothing collided then draw the character in black, otherwise red.
         if (listOfCollidingItems.isEmpty()) painter->setBrush(Qt::black);
         else painter->setBrush(Qt::blue);
+
     painter->setBrush(color);
     painter->drawRect(335, 640, 80, 30);
     painter->drawPixmap(335, 640, 90, 35, shipsImage);
@@ -57,14 +59,10 @@ QRectF SpaceShip::boundingRect() const
     return QRectF(335, 640, 90, 35);
 }
 
-
-
-
-//void SpaceShip::performShipMovement()
-//{
-//    shipMoving.move();
-
-//}
+    void SpaceShip::performShipMovement()
+    {
+        //shipMoving.move(QKeyEvent *event);
+    }
 
 //void SpaceShip::performShootingMovement()
 //{
