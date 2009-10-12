@@ -5,9 +5,13 @@
 #include "levelOne.h"
 #include "levelTwo.h"
 #include "levelFive.h"
-#include "spaceship.h"
+#include "spaceship.h"  // Ivan Collazo
+#include <QDebug>       // Ivan Collazo
+#include <QKeyEvent>    // Ivan Collazo
 
-using namespace std;
+//using namespace std;
+
+SpaceShip *playersShip; // Ivan Collazo
 
 Form::Form(QWidget *parent) :
     QWidget(parent),
@@ -18,6 +22,7 @@ Form::Form(QWidget *parent) :
 
 Form::~Form()
 {
+
     delete m_ui;
 }
 
@@ -34,7 +39,6 @@ void Form::changeEvent(QEvent *e)
 }
 
 
-
 void Form::on_exit_clicked()
 {
     exit(1);
@@ -44,7 +48,6 @@ void Form::on_exit_clicked()
 
 void Form::on_newGame_clicked()
 {
-
     // TODO:: make separate fn for the next 7 statements as they'll be reused a lot
     m_ui->title->hide();
     m_ui->newGame->hide();
@@ -61,9 +64,34 @@ void Form::on_newGame_clicked()
 
     Ball *ball = new Ball();
 
-    SpaceShip *playersShip = new SpaceShip ();
+    playersShip = new SpaceShip (); // Ivan Collazo
 
     board->scene->addItem(ball);
 
-    board->scene->addItem(playersShip);
+   // playersShip->performShipMovement(); // Ivan Collazo
+
+    board->scene->addItem(playersShip); // Ivan Collazo
 }
+
+void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
+{
+    switch(event->key())
+    {
+            case Qt::Key_A: //Key_A  _Left
+            qDebug() << "key pressed Left";
+            playersShip->moveBy(-10,0);
+            break;
+
+            case Qt::Key_S: //Key_S _Right
+            qDebug() << "key pressed Right";
+            playersShip->moveBy(10,0);
+            break;
+
+            case Qt::Key_Space:
+            qDebug() << "key pressed Space now";
+            break;
+            default:
+            qDebug() << "key pressed " << event->text().data();
+    }
+}
+

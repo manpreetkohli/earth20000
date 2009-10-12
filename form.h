@@ -2,14 +2,17 @@
 #define FORM_H
 
 #include <QtGui/QWidget>
+#include <QKeyEvent> // Ivan Collazo
 
 namespace Ui {
     class Form;
 }
 
-class Form : public QWidget {
+class Form : public QWidget
+{
     Q_OBJECT
 public:
+
     Form(QWidget *parent = 0);
     ~Form();
 
@@ -17,6 +20,7 @@ public:
 
 protected:
     void changeEvent(QEvent *e);
+    void keyPressEvent(QKeyEvent *); // Ivan Collazo
 
 private:
     Ui::Form *m_ui;
