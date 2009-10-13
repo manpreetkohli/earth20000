@@ -9,8 +9,8 @@
 Board::Board(QGraphicsView *view)
 {
     scene = new QGraphicsScene();
-    int width = view->geometry().width();
-    int height = view->geometry().height();
+    int width = view->geometry().width()-5;
+    int height = view->geometry().height()-5;
     scene->setSceneRect(0, 0, width, height);
 
     //levelOne *theFirstLevel = new levelOne(scene);
