@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'form.ui'
 **
-** Created: Tue Oct 6 22:51:51 2009
+** Created: Mon Oct 12 20:55:45 2009
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -50,6 +50,7 @@ public:
         view->setStyleSheet(QString::fromUtf8("background-image: url(:/spacebattle.jpg);"));
         view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        view->setInteractive(true);
         view->setCacheMode(QGraphicsView::CacheBackground);
         title = new QLabel(Form);
         title->setObjectName(QString::fromUtf8("title"));
