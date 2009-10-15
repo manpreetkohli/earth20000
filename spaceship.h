@@ -1,6 +1,6 @@
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
-#include "MoveBehavior.h"
+//#include "MoveBehavior.h"
 //#include "ShotBehavior.h"
 #include <QGraphicsItem>
 
