@@ -1,8 +1,25 @@
+/**
+ * Manpreet Kohli
+ * CS 340, Fall 2009
+ *
+ * Form.h: the header file for the class that draws the main graphics item window
+ *
+ */
+
 #ifndef FORM_H
 #define FORM_H
 
+// include necessary files
+#include "ui_form.h"
+#include "board.h"
+#include "ball.h"
+#include "levelOne.h"
+#include "levelTwo.h"
+#include "levelFive.h"
+#include "spaceship.h"  // Ivan Collazo
+#include <QDebug>       // Ivan Collazo
+#include <QKeyEvent>    // Ivan Collazo
 #include <QtGui/QWidget>
-#include <QKeyEvent> // Ivan Collazo
 
 namespace Ui {
     class Form;
@@ -11,11 +28,10 @@ namespace Ui {
 class Form : public QWidget
 {
     Q_OBJECT
-public:
 
+public:
     Form(QWidget *parent = 0);
     ~Form();
-
     void setupSplashScreen();
 
 protected:
