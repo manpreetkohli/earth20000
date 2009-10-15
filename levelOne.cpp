@@ -1,3 +1,14 @@
+/**
+ levelOne.cpp
+
+Creates the design for the first level. Uses the polymorphism feature
+of the block.cpp class and randomly generates blocks of different colors
+and places them in a pre-defined layout.
+
+Author: Natraj Subramanian
+
+  **/
+
 #include <QtGui>
 #include <cctype>
 #include <cstdlib>

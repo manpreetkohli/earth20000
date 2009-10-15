@@ -1,3 +1,15 @@
+/**
+ levelFive.cpp
+
+Creates the design for the fifth level. Uses the polymorphism feature
+of the block.cpp class and randomly generates blocks of different colors
+and places them in a pre-defined layout. Also places the mothership
+in the layout as part of the boss battle
+
+Author: Natraj Subramanian
+
+  **/
+
 #include <QtGui>
 #include <cctype>
 #include <cstdlib>
@@ -27,7 +39,7 @@ levelFive::levelFive(QGraphicsScene *theScene)
     {
         for(int j = 0; j < 25; j++)
         {
-            if( (i > 1 && i < 8) && ( j > 3 && j < 20) )
+            if( (i > 1 && i < 8) && ( j > 3 && j < 21) )
             {
                  xPos += BLOCKW + SPACE;
              }

@@ -1,3 +1,12 @@
+/**
+ levelOne.h
+
+Contains prototypes for the levelOne.cpp class.
+
+Author: Natraj Subramanian
+
+  **/
+
 #ifndef LEVELONE_H
 #define LEVELONE_H
 
