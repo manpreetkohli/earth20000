@@ -1,3 +1,13 @@
+/**
+/ Author: Ivan Collazo
+/ File: spaceship.h
+/ Date: 10/05/2009
+/ This is the hearder file for the class super class spaceship in earth:20000
+/
+/
+*/
+
+
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
 //#include "MoveBehavior.h"
@@ -41,7 +51,7 @@ class SpaceShip : public QGraphicsItem
 
         void setBounceBounds (qreal x, qreal y);
 
-        void performShipMovement();
+      void performShipMovement();
       //  void performShootingMovement();
 
 };
