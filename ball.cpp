@@ -1,30 +1,30 @@
-#include <QPainter>
-#include <QGraphicsItem>
-#include <iostream>
+/**
+ * Manpreet Kohli
+ * CS 340, Fall 2009
+ *
+ * Ball.cpp: creates the ball that bounces around inside the level
+ *
+ */
 
+// include the header file for this class
 #include "ball.h"
-#include "levelOne.h"
-#include "levelTwo.h"
 
+// constructor
 Ball::Ball()
 {
-
-    ballImage.load(":soccer.png");
-    directionX = 1;
-    directionY = -1;
-
-    positionX = 0;
-    positionY = 0;
-    setPos(positionX, positionY);
-
+    ballImage.load(":cricketball.jpg");     // load an image for the ball
+    directionX = 1;                         // set the X-axis increment for the movement
+    directionY = -1;                        // set the Y-axis increment for the movement
+    positionX = 0;                          // initial X coordinate of the ball
+    positionY = 0;                          // initial Y coordinate of the ball
+    setPos(positionX, positionY);           // set initial position of the ball
 }
 
-
+// function that paints the ball below the loaded image
 void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->drawEllipse(375, 625, 15, 15);
     painter->drawPixmap(375, 625, 20, 20, ballImage);
-
 }
 
 // Define the bounding rectangle of the object for collision detection
@@ -33,25 +33,10 @@ QRectF Ball::boundingRect() const
      return QRectF(375, 625, 20, 20);
 }
 
-
-void Ball::setBounceBounds(qreal x, qreal y)
-{
-    bounceBoundsX = x;
-    bounceBoundsY = y;
-}
-
+// function to add motion to the ball inside the board
 void Ball::advance(int phase)
 {
         if(!phase) return;        
-
-        // Experiment code for collision detection
-        /*
-         if(!(listOfCollidingItems.isEmpty()))
-        {
-            directionX = -directionY;
-            directionY = -directionX;
-            setPos(positionX,positionY);
-        }*/
 
         // make ball bounce around in the screen
         positionX+=directionX;
@@ -64,5 +49,6 @@ void Ball::advance(int phase)
         if ((positionY >= 85) || (positionY <= -630))
             directionY = -directionY;
 
+        // set the new position of the ball
         setPos(positionX,positionY);
 }
