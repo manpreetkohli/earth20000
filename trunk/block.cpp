@@ -1,3 +1,13 @@
+/**
+ block.cpp
+
+Creates an instance of a single block. Involves polymorphism for creating blocks
+of different colors.
+
+Author: Natraj Subramanian
+
+  **/
+
 #include <QtGui>
 
 #include <iostream>

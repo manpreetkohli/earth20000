@@ -1,3 +1,12 @@
+/**
+ levelTwo.h
+
+Contains prototypes for the levelTwo.cpp class.
+
+Author: Natraj Subramanian
+
+  **/
+
 #ifndef LEVELTWO_H
 #define LEVELTWO_H
 

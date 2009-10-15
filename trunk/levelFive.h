@@ -1,3 +1,12 @@
+/**
+ levelFive.h
+
+Contains prototypes for the levelFive.cpp class.
+
+Author: Natraj Subramanian
+
+  **/
+
 #ifndef LEVELFIVE_H
 #define LEVELFIVE_H
 
