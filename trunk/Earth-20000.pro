@@ -4,7 +4,8 @@ HEADERS += board.h \
     block.h \
     levelOne.h \
     levelTwo.h \
-    levelFive.h
+    levelFive.h \
+    spaceship.h
 SOURCES += board.cpp \
     ball.cpp \
     Main.cpp \
@@ -12,8 +13,8 @@ SOURCES += board.cpp \
     block.cpp \
     levelOne.cpp \
     levelTwo.cpp \
-    levelFive.cpp
-FORMS += form.ui \
-    mainwindow.ui
+    levelFive.cpp \
+    spaceship.cpp
+FORMS += form.ui
 RESOURCES += Images.qrc
-OTHER_FILES += universe4.jpg
+OTHER_FILES += 
