@@ -58,6 +58,9 @@
    <property name="horizontalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
+   <property name="interactive">
+    <bool>true</bool>
+   </property>
    <property name="cacheMode">
     <set>QGraphicsView::CacheBackground</set>
    </property>
