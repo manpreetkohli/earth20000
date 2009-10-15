@@ -1,3 +1,12 @@
+/**
+/ Author: Ivan Collazo
+/ File: spaceship.cpp
+/ Date: 10/05/2009
+/   This class is a super class for space ships in earth20000
+/
+/
+*/
+
 #include "spaceship.h"
 //#include "MoveBehavior.h"
 //#include "ShotBehavior.h"
