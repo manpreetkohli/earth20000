@@ -67,10 +67,10 @@ QRectF SpaceShip::boundingRect() const
     return QRectF(335, 640, 90, 35);
 }
 
-void SpaceShip::performShipMovement()
-{
+//void SpaceShip::performShipMovement()
+//{
     //shipMoving.move(QKeyEvent *event);
-}
+//}
 
 //void SpaceShip::performShootingMovement()
 //{
