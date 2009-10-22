@@ -32,7 +32,7 @@ class Form : public QWidget
 public:
     Form(QWidget *parent = 0);
     ~Form();
-    void setupSplashScreen();
+
 
 protected:
     void changeEvent(QEvent *e);
@@ -40,6 +40,7 @@ protected:
 
 private:
     Ui::Form *m_ui;
+    void setupSplashScreen();
 
 private slots:
     void on_newGame_clicked();
