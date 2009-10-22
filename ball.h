@@ -23,13 +23,13 @@ class Ball : public QGraphicsItem
         QPixmap ballImage;
         qreal directionX, directionY, positionX, positionY;
         qreal viewWidth, viewHeight, width, height;
-
-    public:
-        Ball();
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
         QRectF boundingRect() const;
         void setBounceBounds(qreal x, qreal y);
         void Ball::advance(int phase);
+
+    public:
+        Ball();        
 };
 
 #endif // BALL_H

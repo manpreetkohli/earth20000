@@ -34,8 +34,8 @@ class SpaceShip : public QGraphicsItem
 
     public:
         // declare two reference var for behavior interface types
-       // MoveBehavior shipMoving;
-      //  ShotBehavior shipShooting;
+        // MoveBehavior shipMoving;
+        //  ShotBehavior shipShooting;
 
         // constructor
         SpaceShip();
@@ -52,7 +52,7 @@ class SpaceShip : public QGraphicsItem
         void setBounceBounds (qreal x, qreal y);
 
       void performShipMovement();
-      //  void performShootingMovement();
+        //  void performShootingMovement();
 
 };
 
