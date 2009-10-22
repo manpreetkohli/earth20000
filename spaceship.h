@@ -51,7 +51,7 @@ class SpaceShip : public QGraphicsItem
 
         void setBounceBounds (qreal x, qreal y);
 
-      void performShipMovement();
+      //void performShipMovement();
         //  void performShootingMovement();
 
 };
