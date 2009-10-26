@@ -30,7 +30,7 @@ SingleBlock::SingleBlock(QGraphicsItem *parent = 0)
 
 QRectF SingleBlock::boundingRect() const
 {
-    return QRectF(0, 0, OUTLINEW, OUTLINEH);
+    return QRectF(OUTLINEX, OUTLINEY, OUTLINEW, OUTLINEH);
 }
 
 void SingleBlock::paint(QPainter *painter,

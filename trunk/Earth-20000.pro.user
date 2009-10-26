@@ -46,6 +46,7 @@
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
    <value key="QtVersionId" type="int" >0</value>
    <value key="addQDumper" type="" ></value>
+   <value key="buildDirectory" type="QString" >C:\Users\Natraj\CS 340\Arkanoid</value>
   </valuemap>
  </data>
  <data>

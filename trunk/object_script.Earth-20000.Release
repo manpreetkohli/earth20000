@@ -7,6 +7,8 @@ INPUT(
 ./release\levelOne.o
 ./release\levelTwo.o
 ./release\levelFive.o
+./release\spaceship.o
+./release\enemyShip.o
 ./release\moc_form.o
 ./release\qrc_Images.o
 );
