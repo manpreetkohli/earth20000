@@ -7,6 +7,8 @@ INPUT(
 ./debug\levelOne.o
 ./debug\levelTwo.o
 ./debug\levelFive.o
+./debug\spaceship.o
+./debug\enemyShip.o
 ./debug\moc_form.o
 ./debug\qrc_Images.o
 );
