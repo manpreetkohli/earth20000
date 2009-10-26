@@ -12,7 +12,7 @@
 // constructor
 Ball::Ball()
 {
-    ballImage.load(":cricketball.jpg");     // load an image for the ball
+    ballImage.load(":soccer.png");     // load an image for the ball
     directionX = 1;                         // set the X-axis increment for the movement
     directionY = -1;                        // set the Y-axis increment for the movement
     positionX = 0;                          // initial X coordinate of the ball

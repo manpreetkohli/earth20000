@@ -74,7 +74,7 @@ void Form::on_newGame_clicked()
 
     board->scene->addItem(ball);        // add the ball to the board
 
-    playersShip->performShipMovement(); // Ivan Collazo
+//    playersShip->performShipMovement(); // Ivan Collazo
 
     // add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
