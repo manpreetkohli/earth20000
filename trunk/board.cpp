@@ -9,6 +9,8 @@
 
 // include the header file for this class
 #include "board.h"
+#include "constants.h"
+
 
 // constructor
 Board::Board(QGraphicsView *view)
@@ -18,8 +20,20 @@ Board::Board(QGraphicsView *view)
     int height = view->geometry().height() - 5;
     scene->setSceneRect(0, 0, width, height);       // set dimensions of the scene
 
-    levelOne *theFirstLevel = new levelOne(scene);
-    // levelTwo *theSecondLevel = new levelTwo(scene);
+//    levelOne *theFirstLevel = new levelOne(scene);
+//    levelTwo *theSecondLevel = new levelTwo(scene);
+
+
+    if (Constants::levelNumber == 0)
+        LevelEditor *theLevelEditor = new LevelEditor(scene);
+    else if (Constants::levelNumber == 1)
+        levelOne *theFirstLevel = new levelOne(scene);
+    else if (Constants::levelNumber == 2)
+        levelTwo *theSecondLevel = new levelTwo(scene);
+    else if (Constants::levelNumber == 5)
+        levelFive *theFifthLevel = new levelFive(scene);
+
+
     // levelFive *theFifthLevel = new levelFive(scene);
 
     view->setRenderHint(QPainter::Antialiasing);

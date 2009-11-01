@@ -1,8 +1,12 @@
 <RCC>
     <qresource prefix="/" >
         <file>spacebattle.jpg</file>
-        <file>universe4.jpg</file>
         <file>soccer.png</file>
         <file>playerShip.jpg</file>
+        <file>cricketball.png</file>
+        <file>bg4.jpg</file>
+        <file>bg2.jpg</file>
+        <file>bg3.jpg</file>
+        <file>universe4.jpg</file>
     </qresource>
 </RCC>

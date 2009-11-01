@@ -16,6 +16,7 @@
 #include "levelOne.h"
 #include "levelTwo.h"
 #include "levelFive.h"
+#include "leveleditor.h"
 #include <QTimer>
 #include <QGraphicsView>
 #include <QGraphicsScene>
