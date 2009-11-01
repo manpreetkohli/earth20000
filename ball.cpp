@@ -12,7 +12,7 @@
 // constructor
 Ball::Ball()
 {
-    ballImage.load(":soccer.png");     // load an image for the ball
+    ballImage.load(":cricketball.png");     // load an image for the ball
     directionX = 1;                         // set the X-axis increment for the movement
     directionY = -1;                        // set the Y-axis increment for the movement
     positionX = 0;                          // initial X coordinate of the ball
@@ -23,7 +23,7 @@ Ball::Ball()
 // function that paints the ball below the loaded image
 void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawEllipse(375, 625, 15, 15);
+//    painter->drawEllipse(375, 625, 15, 15);
     painter->drawPixmap(375, 625, 20, 20, ballImage);
 }
 
@@ -62,3 +62,5 @@ void Ball::advance(int phase)
         // set the new position of the ball
         setPos(positionX,positionY);
 }
+
+

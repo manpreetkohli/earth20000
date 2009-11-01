@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'form.ui'
 **
-** Created: Mon Oct 12 20:55:45 2009
+** Created: Sun Nov 1 07:12:58 2009
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -45,8 +45,6 @@ public:
         view = new QGraphicsView(Form);
         view->setObjectName(QString::fromUtf8("view"));
         view->setGeometry(QRect(0, 0, 750, 725));
-        view->setMinimumSize(QSize(750, 725));
-        view->setMaximumSize(QSize(750, 725));
         view->setStyleSheet(QString::fromUtf8("background-image: url(:/spacebattle.jpg);"));
         view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

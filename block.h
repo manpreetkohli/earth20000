@@ -15,6 +15,8 @@
 #include <QGraphicsItem>
 #include <QtGui>
 
+
+
 #define BOUNDWIDTH 800
 #define BOUNDHEIGHT 725
 
@@ -30,19 +32,29 @@
 #define OUTLINEH 28
 #define SPACE 4
 
+
+
 class SingleBlock : public QGraphicsItem
 {
+
+
+private:
+    static int colorSelected;
+
+
 public:
     int color1;
     int color2;
     SingleBlock(QGraphicsItem *parent);
-
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
     virtual void setColor1(int theColor);
     virtual void setColor2(int theColor);
     int getColor1();
     int getColor2();
+
+    // change to virtual
+    void mousePressEvent(QGraphicsSceneMouseEvent* event);
 
     enum { Type = UserType + 1 };
     int generateRandomNumber(int min, int max);
@@ -53,20 +65,27 @@ class Block : public SingleBlock
 {
 public:
     Block();
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
+};
 
+
+class EmptyBlock : public Block
+{
+public:
+    EmptyBlock();
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
 
 };
 
+
 class RedBlock : public Block
 {
 public:
     RedBlock();
-
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-
 };
 
 
@@ -113,4 +132,3 @@ public:
 };
 
 #endif
-

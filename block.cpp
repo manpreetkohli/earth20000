@@ -9,13 +9,12 @@ Author: Natraj Subramanian
   **/
 
 #include <QtGui>
-
 #include <iostream>
-
 #include "block.h"
+#include "constants.h"
 
-QColor colors[7] = {QColor(Qt::white), QColor(Qt::black), QColor(Qt::red), QColor(Qt::green),
-                    QColor(Qt::blue), QColor(Qt::magenta), QColor(Qt::yellow)};
+QColor colors[8] = {QColor(Qt::white), QColor(Qt::black), QColor(Qt::red), QColor(Qt::green),
+                    QColor(Qt::blue), QColor(Qt::magenta), QColor(Qt::yellow), QColor(Qt::transparent)};
 int color1, color2;
 
 SingleBlock::SingleBlock(QGraphicsItem *parent = 0)
@@ -38,7 +37,7 @@ void SingleBlock::paint(QPainter *painter,
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    
+
     painter->setPen(QPen(Qt::black, 0));
     painter->setBrush(Qt::white);
     painter->drawRoundedRect(OUTLINEX, OUTLINEY, OUTLINEW, OUTLINEH, XRADIUS, YRADIUS, Qt::RelativeSize);
@@ -48,7 +47,7 @@ void SingleBlock::paint(QPainter *painter,
 
     gradient.setColorAt(0, colors[color1]);
     gradient.setColorAt(1, colors[color2]);
-    
+
     /**
       If we decided to change it up later on:
       if(generateRandomNumber(0, 1) == 0)
@@ -70,7 +69,7 @@ void SingleBlock::paint(QPainter *painter,
     }
 
       **/
-    
+
 
     painter->setBrush(gradient);
     painter->setPen(QPen(Qt::black, 0));
@@ -87,6 +86,90 @@ int SingleBlock::type() const
     return Type;
 }
 
+
+// Added by Manpreet Kohli
+QVector<QPointF> Constants::positions;
+int SingleBlock::colorSelected = 7;
+
+// Added by Manpreet Kohli
+void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
+{
+    qDebug() << "selected " << colorSelected;
+    if (Constants::inLevelEditorMode == true)
+    {
+        if (this->scene()->width() < Constants::itemsWindowViewWidth)
+        {
+            colorSelected = this->color2;
+            qDebug() << "ole ole" << this->color2;
+
+
+            this->scene()->removeItem(Constants::currentBlock);
+
+            delete Constants::currentBlock;
+
+            switch(colorSelected)
+            {
+                case 0:
+                    qDebug() << "color set to 0";
+                    Constants::currentBlock = new Block();
+                    break;
+
+                case 2:
+                    qDebug() << "color set to 2";
+                    Constants::currentBlock = new RedBlock();
+                    break;
+
+                case 3:
+                    qDebug() << "color set to 3";
+                    Constants::currentBlock = new GreenBlock();
+                    break;
+
+                case 4:
+                    qDebug() << "color set to 4";
+                    Constants::currentBlock = new BlueBlock();
+                    break;
+
+                case 5:
+                    qDebug() << "color set to 5";
+                    Constants::currentBlock = new MagentaBlock();
+                    break;
+
+                case 6:
+                    qDebug() << "color set to 6";
+                    Constants::currentBlock = new YellowBlock();
+                    break;
+
+                case 7:
+                    qDebug() << "color set to 7";
+                    Constants::currentBlock = new EmptyBlock();
+                    break;
+            }
+
+            qDebug() << "geez " << Constants::currentBlock->color1 << "  " << Constants::currentBlock->color2;
+
+            this->scene()->addItem(Constants::currentBlock);
+
+            Constants::currentBlock->setPos(-120, 80);
+        }
+
+        else //if (this->scene()->width() > Constants::itemsWindowViewWidth)
+        {
+            if (colorSelected == 7)
+                this->setColor1(7);
+            else
+                this->setColor1(1);
+            this->setColor2(colorSelected);
+
+            qDebug() << "this is me yo " << this->scenePos();
+
+            Constants::positions.push_back(this->scenePos());
+
+            update(this->boundingRect());
+        }
+    }
+//    Constants::currentBlock->update(Constants::currentBlock->boundingRect());
+}
+
 void SingleBlock::setColor1(int theColor)
 {
     int *colorPtr;
@@ -99,7 +182,6 @@ void SingleBlock::setColor2(int theColor)
     int *colorPtr;
     colorPtr = &color2;
     *colorPtr= theColor;
-
 }
 
 int SingleBlock::getColor1()
@@ -115,11 +197,10 @@ int SingleBlock::getColor2()
 Block::Block()
 {
     //set default color
-    setColor1(0);
-    setColor2(1);
+    setColor1(1);
+    setColor2(0);
 
     QGraphicsItem *oneBlock = new SingleBlock(this);
-
 }
 
 QRectF Block::boundingRect() const
@@ -135,6 +216,30 @@ void Block::paint(QPainter *painter,
     Q_UNUSED(widget);
 }
 
+// Added by Manpreet Kohli
+EmptyBlock::EmptyBlock()
+{
+    //Set color to red
+    setColor1(7);
+    setColor2(7);
+
+    QGraphicsItem *oneBlock = new SingleBlock(this);
+}
+
+// Added by Manpreet Kohli
+QRectF EmptyBlock::boundingRect() const
+{
+    return QRectF();
+}
+
+// Added by Manpreet Kohli
+void EmptyBlock::paint(QPainter *painter,
+                     const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    Q_UNUSED(painter);
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
+}
 
 RedBlock::RedBlock()
 {
@@ -198,6 +303,7 @@ QRectF BlueBlock::boundingRect() const
 {
     return QRectF();
 }
+
 
 void BlueBlock::paint(QPainter *painter,
                      const QStyleOptionGraphicsItem *option, QWidget *widget)

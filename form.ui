@@ -37,18 +37,6 @@
      <height>725</height>
     </rect>
    </property>
-   <property name="minimumSize">
-    <size>
-     <width>750</width>
-     <height>725</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>750</width>
-     <height>725</height>
-    </size>
-   </property>
    <property name="styleSheet">
     <string notr="true">background-image: url(:/spacebattle.jpg);</string>
    </property>

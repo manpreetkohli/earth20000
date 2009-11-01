@@ -26,7 +26,7 @@ class Ball : public QGraphicsItem
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
         QRectF boundingRect() const;
         void setBounceBounds(qreal x, qreal y);
-        void Ball::advance(int phase);
+        void advance(int phase);
 
     public:
         Ball();        
