@@ -7,14 +7,11 @@
 /
 */
 
-
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
 //#include "MoveBehavior.h"
 //#include "ShotBehavior.h"
 #include <QGraphicsItem>
-
-//using namespace std;
 
 class SpaceShip : public QGraphicsItem
 {
@@ -25,6 +22,7 @@ class SpaceShip : public QGraphicsItem
         qreal top;
         qreal width;
         qreal height;
+        qreal shipDirection;
 
         // Color of the character,
         QColor color;
@@ -49,11 +47,18 @@ class SpaceShip : public QGraphicsItem
         // called whenever the spaceShip needs to be drawn
         void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-        void setBounceBounds (qreal x, qreal y);
+       // void setBounceBounds (qreal x, qreal y);
 
-      //void performShipMovement();
+        int getShipPosX();
+
+        int getShipDirection();
+
+        void setShipPosX(int xPos);
+
+        void setShipDirection(int direction);
+
+        //void performShipMovement();
         //  void performShootingMovement();
-
 };
 
 #endif // SPACESHIP_H

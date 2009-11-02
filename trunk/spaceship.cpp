@@ -24,6 +24,10 @@
 
 using namespace std;
 
+int static leftDirection = 1;
+int static rightDirection = 2;
+
+
 // constructor
 SpaceShip::SpaceShip()
 {
@@ -34,7 +38,7 @@ SpaceShip::SpaceShip()
     top = 0;   //620
     color = (Qt::red);
     qDebug() << "Constructor" ;
-    setPos(left, top);
+    setPos(0, 0);
 }
 
 // destructor
@@ -46,15 +50,8 @@ SpaceShip::~SpaceShip()
 // called whenever the spaceShip needs to be drawn
 void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    // For the fun of it, I am going to make the character turn
-    // Red when it detects it has collided with something else.
-    // listOfCollidingItems returns a QList of items that you
     // can later traverse to examine what collided with the character.
     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
-
-    // If nothing collided then draw the character in black, otherwise red.
-    if (listOfCollidingItems.isEmpty()) painter->setBrush(Qt::black);
-    else painter->setBrush(Qt::blue);
 
     painter->setBrush(color);
     painter->drawRect(335, 640, 80, 30);
@@ -66,6 +63,41 @@ QRectF SpaceShip::boundingRect() const
 {
     return QRectF(335, 640, 90, 35);
 }
+
+// gets Ships horizontal position
+int SpaceShip::getShipPosX()
+{
+    return left;
+}
+
+// sets Ships horizontal position
+void SpaceShip::setShipPosX (int xPos)
+{
+    left += xPos;
+}
+
+// gets the Ship directions
+int SpaceShip::getShipDirection()
+{
+    return shipDirection;
+}
+
+// sets Ship Direction
+void SpaceShip::setShipDirection(int direction)
+{
+    // moving left = 1
+    if (direction == leftDirection)
+    {
+        shipDirection = leftDirection;
+    }
+
+    //moving right = 2
+    else if (direction == rightDirection)
+    {
+        shipDirection = rightDirection;
+    }
+}
+
 
 //void SpaceShip::performShipMovement()
 //{

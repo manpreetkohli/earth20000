@@ -21,7 +21,7 @@ class Ball : public QGraphicsItem
 {
     private:
         QPixmap ballImage;
-        qreal directionX, directionY, positionX, positionY;
+        qreal directionX, directionY, positionX, positionY, ballDirection;
         qreal viewWidth, viewHeight, width, height;
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
         QRectF boundingRect() const;
@@ -29,7 +29,10 @@ class Ball : public QGraphicsItem
         void advance(int phase);
 
     public:
-        Ball();        
+        Ball();
+
+        ~Ball();
+
 };
 
 #endif // BALL_H
