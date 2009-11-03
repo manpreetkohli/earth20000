@@ -10,6 +10,15 @@
 // include the header file for this class
 #include "board.h"
 #include "constants.h"
+#include "block.h"
+#include "levelOne.h"
+#include "levelTwo.h"
+#include "levelFive.h"
+#include "leveleditor.h"
+#include <QTimer>
+#include <QGraphicsView>
+
+
 
 
 // constructor

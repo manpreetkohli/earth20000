@@ -2,7 +2,6 @@
  levelEditor.cpp
 
 
-
   **/
 
 #include <QtGui>
@@ -23,6 +22,7 @@ LevelEditor::LevelEditor(QGraphicsScene *theScene)
             Constants::blocks[i][j] = new EmptyBlock();
             theScene->addItem(Constants::blocks[i][j]);
             Constants::blocks[i][j]->setPos(xPos, yPos);
+            Constants::blocks[i][j]->setOpacity(0.4);
             Constants::blocks[i][j]->show();
             xPos+=OUTLINEW;
         }

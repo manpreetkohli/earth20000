@@ -10,8 +10,7 @@ Author: Natraj Subramanian
 #ifndef LEVELONE_H
 #define LEVELONE_H
 
-#include <QGraphicsItem>
-#include <QtGui>
+
 
 #define LEVELW 600
 #define LEVELH 300

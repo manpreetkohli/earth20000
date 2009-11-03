@@ -11,6 +11,8 @@
 #define SPACESHIP_H
 //#include "MoveBehavior.h"
 //#include "ShotBehavior.h"
+
+
 #include <QGraphicsItem>
 
 class SpaceShip : public QGraphicsItem

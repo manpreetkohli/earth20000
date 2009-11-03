@@ -12,9 +12,9 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-#include <QGraphicsItem>
-#include <QtGui>
 
+
+#include <QGraphicsItem>
 
 
 #define BOUNDWIDTH 800
