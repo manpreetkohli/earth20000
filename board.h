@@ -11,14 +11,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-// include necessary files
-#include "block.h"
-#include "levelOne.h"
-#include "levelTwo.h"
-#include "levelFive.h"
-#include "leveleditor.h"
-#include <QTimer>
-#include <QGraphicsView>
+
 #include <QGraphicsScene>
 
 class Board

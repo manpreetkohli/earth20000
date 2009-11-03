@@ -9,12 +9,7 @@
 #ifndef BALL_H
 #define BALL_H
 
-// include necessary files
-#include <QPainter>
 #include <QGraphicsItem>
-#include <iostream>
-#include "levelOne.h"
-#include "levelTwo.h"
 
 
 class Ball : public QGraphicsItem

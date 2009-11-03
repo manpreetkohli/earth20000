@@ -6,22 +6,22 @@
  *
  */
 
-// include the header file for this class
+// include necessary files
 #include "ball.h"
+#include <QPainter>
 #include <QDebug>
 
-//#include "form.h"
-
-
+#include <iostream>
+#include "levelOne.h"
+#include "levelTwo.h"
 
 // constructor
 Ball::Ball()
 {
-<<<<<<< .mine
+
     ballImage.load(":soccer.png");       // load an image for the ball
-=======
     ballImage.load(":cricketball.png");     // load an image for the ball
->>>>>>> .r68
+
     directionX = 1;                         // set the X-axis increment for the movement
     directionY = -1;                        // set the Y-axis increment for the movement
     positionX = 0;                          // initial X coordinate of the ball
@@ -136,9 +136,6 @@ void Ball::advance(int phase)
         }
 
 
-
-
-////////////////////////////////////////////////
 /**
 
     ball_tempX = ball_x;
@@ -213,7 +210,6 @@ void Ball::advance(int phase)
     }
 
 */
-/////////////////////////////////////////////
 
 
         // Ivan

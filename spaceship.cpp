@@ -14,8 +14,7 @@
 #include <QPainter>
 //#include <QGraphicsScene>
 #include <QStyleOption>
-#include <QGraphicsItem>
-#include <iostream>
+
 #include <QDebug>
 #include <QKeyEvent>
 

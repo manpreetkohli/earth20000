@@ -8,8 +8,8 @@ Author: Natraj Subramanian
 
   **/
 
+
 #include <QtGui>
-#include <iostream>
 #include "block.h"
 #include "constants.h"
 
@@ -154,17 +154,28 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
         else //if (this->scene()->width() > Constants::itemsWindowViewWidth)
         {
-            if (colorSelected == 7)
-                this->setColor1(7);
-            else
-                this->setColor1(1);
             this->setColor2(colorSelected);
+
+            if (colorSelected == 7)
+            {
+//                this->setOpacity(0.4);
+                this->setColor1(7);
+            }
+            else
+            {
+                this->setColor1(1);
+
+                Constants::positions.push_back(this->scenePos());
+
+            }
+
 
             qDebug() << "this is me yo " << this->scenePos();
 
-            Constants::positions.push_back(this->scenePos());
+
 
             update(this->boundingRect());
+            this->setOpacity(5.0);
         }
     }
 //    Constants::currentBlock->update(Constants::currentBlock->boundingRect());

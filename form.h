@@ -9,19 +9,9 @@
 #ifndef FORM_H
 #define FORM_H
 
-// include necessary files
-#include "ui_form.h"
+
+#include <QtGui>
 #include "board.h"
-#include "ball.h"
-#include "levelOne.h"
-#include "levelTwo.h"
-#include "levelFive.h"
-#include "spaceship.h"  // Ivan Collazo
-#include <QDebug>       // Ivan Collazo
-#include <QKeyEvent>    // Ivan Collazo
-#include <QtGui/QWidget>
-#include "block.h"
-#include "constants.h"
 
 
 namespace Ui {

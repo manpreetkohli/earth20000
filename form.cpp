@@ -9,7 +9,7 @@
 
 // include necessary files
 #include "ui_form.h"
-#include "board.h"
+
 #include "ball.h"
 #include "levelOne.h"
 #include "levelTwo.h"
@@ -322,6 +322,9 @@ void Form::done_clicked()
 
             if (!Constants::positions.contains(Constants::blocks[i][j]->pos()))
                 m_ui->view->scene()->removeItem(Constants::blocks[i][j]);
+
+            else
+                Constants::blocks[i][j]->setOpacity(2.0);
         }
     }
 

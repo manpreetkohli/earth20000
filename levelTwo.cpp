@@ -13,7 +13,7 @@ Author: Natraj Subramanian
 #include <cctype>
 #include <cstdlib>
 #include <time.h>
-
+#include <QGraphicsItem>
 #include "levelTwo.h"
 #include "block.h"
 
