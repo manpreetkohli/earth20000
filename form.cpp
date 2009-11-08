@@ -1,4 +1,4 @@
-/**
+/*!
  * Manpreet Kohli
  * CS 340, Fall 2009
  *
@@ -17,6 +17,7 @@
 #include "spaceship.h"  // Ivan Collazo
 #include <QDebug>       // Ivan Collazo
 #include <QKeyEvent>    // Ivan Collazo
+#include <QSound>      // Ivan Collazo
 #include <QtGui/QWidget>
 #include "block.h"
 #include "constants.h"
@@ -27,6 +28,8 @@
 
 // create an instance of the player's space ship
 SpaceShip *playersShip; // Ivan Collazo
+
+Ball *ball;        // create an instance of the ball
 
 bool Constants::inLevelEditorMode;
 int Constants::levelNumber;
@@ -64,7 +67,6 @@ void Form::on_exit_clicked()
     exit(1);
 }
 
-
 // hide all the elements (QButtons and QLabels) of the splash screen
 void Form::hideElements(Ui::Form *m_ui)
 {
@@ -95,7 +97,6 @@ void Form::hideElements(Ui::Form *m_ui)
     delete m_ui->exit;
 }
 
-
 // function called when the "New Game" button is clicked on the splash screen
 void Form::on_newGame_clicked()
 {
@@ -108,13 +109,13 @@ void Form::on_newGame_clicked()
     m_ui->view->setRenderHint(QPainter::Antialiasing);
     //m_ui->view->setCacheMode(QGraphicsView::CacheBackground);
 
-
     Constants::levelNumber = 1;
-
 
     board = new Board(m_ui->view);       // add the board to the view
     board->connectTimerToBall();         // connect the timer to the ball
-    Ball *ball = new Ball();        // create an instance of the ball
+    //Ball *ball = new Ball();        // create an instance of the ball
+
+    ball = new Ball();        // create an instance of the ball
 
     // create an instance of the player's spaceship
     playersShip = new SpaceShip (); // Ivan Collazo
@@ -124,9 +125,6 @@ void Form::on_newGame_clicked()
     EnemyShip *ship = new EnemyShip();
 
     board->scene->addItem(ship);
-
-
-    // playersShip->performShipMovement(); // Ivan Collazo
 
     // add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
@@ -334,7 +332,10 @@ void Form::done_clicked()
     move(250, 10);          // relocate the window after it's dimensions change
 
 
-    Ball *ball = new Ball();
+    //Ball *ball = new Ball();
+
+    ball = new Ball(); // create ball in the level editor
+
     m_ui->view->scene()->addItem(ball);
 
     playersShip = new SpaceShip();
@@ -352,7 +353,6 @@ void Form::done_clicked()
 
 }
 
-
 // if the reset button gets clicked
 void Form::reset_clicked()
 {
@@ -364,78 +364,45 @@ void Form::reset_clicked()
     board = new Board(m_ui->view);
 }
 
-
-
-
-
 // function that gets called when a key is pressed during the game
 void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
 {
     switch(event->key())
     {
-        case Qt::Key_A:
-            qDebug() << "key pressed Left";
-
-            if (playersShip != NULL)
-            {
-//            playersShip->translate(-380, -655);
-                qDebug() << playersShip->pos();
-
-            // could change to == as it would never be less than -340
-                if (playersShip->x() <= -340)
-                    playersShip->moveBy(0, 0);
-                else
-                    playersShip->moveBy(-10,0);
-            }
-
-
-//            playersShip->rotate(-20);
-//
-//            playersShip->translate(30, 40);
-//            playersShip->translate(15, 0);
-//            playersShip->rotate(-5);
-//                        playersShip->translate(-30, 0);
-
-//            playersShip->translate(335, 640);
+        case Qt::Key_A: //Key_Left
+            playersShip->moveBy(-20,0);
+            playersShip->setShipPosX(-20);
+            //qDebug() << playersShip->getShipPosX();
+            ball->setShipPositon(playersShip->getShipPosX());
+            //playersShip->setShipDirection(1);
+            //qDebug() << playersShip->getShipDirection();
+            //qDebug() << "if 1 works";
             break;
 
-        case Qt::Key_S:
-            qDebug() << "key pressed Right";
-
-            if (playersShip != NULL)
-            {
-
-//            playersShip->moveBy(10,0);
-                qDebug() << playersShip->pos();
-
-
-                if (playersShip->x() >= 330)
-                    playersShip->moveBy(0, 0);
-                else
-                    playersShip->moveBy(10,0);
-            }
-
-
-
-//            if (playersShip->pos
-
-//            playersShip->rotate(-1);
+        case Qt::Key_D: //Key_Right
+            playersShip->moveBy(20,0); 
+            playersShip->setShipPosX(20);
+            //qDebug() << playersShip->getShipPosX();
+            ball->setShipPositon(playersShip->getShipPosX());
+            //playersShip->setShipDirection(2);
+            //qDebug() << playersShip->getShipDirection();
+            //qDebug() << "if 2 works";           
             break;
 
-            // reset - take out later
-            case Qt::Key_R:
-            qDebug() << "key pressed Right";
-//            playersShip->moveBy(10,0);
-//            playersShip->setPos(335, 640);
+        case Qt::Key_Space:
+            qDebug() << "FIRE";
             break;
-
-            case Qt::Key_Space:
-            qDebug() << "key pressed Space now";
-            break;
-            default:
-            qDebug() << "key pressed " << event->text().data();
     }
 }
+
+void Form::soundEffect()
+{
+      QSound *soundEffect = new QSound("/Users/SkyNet/Desktop//barebear.wav",0);
+      soundEffect->setLoops(-1);
+      soundEffect->play();
+  }
+
+
 
 
 

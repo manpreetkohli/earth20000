@@ -17,7 +17,7 @@ class Ball : public QGraphicsItem
     private:
         QPixmap ballImage;
         qreal directionX, directionY, positionX, positionY, ballDirection;
-        qreal viewWidth, viewHeight, width, height;
+        qreal viewWidth, viewHeight, width, height, shipXPosition;
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
         QRectF boundingRect() const;
         void setBounceBounds(qreal x, qreal y);
@@ -28,6 +28,7 @@ class Ball : public QGraphicsItem
 
         ~Ball();
 
+        int setShipPositon (int pos);
 };
 
 #endif // BALL_H

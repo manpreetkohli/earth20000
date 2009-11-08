@@ -24,11 +24,12 @@ class Form : public QWidget
 
     public:
         Form(QWidget *parent = 0);
-        ~Form();
+        ~Form();     
 
     protected:
         void changeEvent(QEvent *e);
         void keyPressEvent(QKeyEvent *); // Ivan Collazo
+        void soundEffect(); // Ivan Collazo
 
     private:
         Ui::Form *m_ui;
@@ -37,6 +38,7 @@ class Form : public QWidget
         static int windowWidth;
         static int windowHeight;
         static int mainViewWidth;
+        static int shipPos;
 
     private slots:
         void on_levelEditor_clicked();
