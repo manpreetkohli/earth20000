@@ -15,6 +15,7 @@
 #include "levelTwo.h"
 #include "levelFive.h"
 #include "leveleditor.h"
+#include "loadGame.h"
 #include <QTimer>
 #include <QGraphicsView>
 
@@ -41,6 +42,8 @@ Board::Board(QGraphicsView *view)
         levelTwo *theSecondLevel = new levelTwo(scene);
     else if (Constants::levelNumber == 5)
         levelFive *theFifthLevel = new levelFive(scene);
+    else if (Constants::levelNumber == 6)
+        LoadGame *theSavedGame = new LoadGame(scene);
 
 
     // levelFive *theFifthLevel = new levelFive(scene);

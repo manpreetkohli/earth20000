@@ -41,9 +41,11 @@ class Form : public QWidget
         static int shipPos;
 
     private slots:
+        void on_load_clicked();
         void on_levelEditor_clicked();
         void on_newGame_clicked();
         void on_exit_clicked();
+        void save_clicked();
         void done_clicked();
         void reset_clicked();
         void backgroundOne_clicked();

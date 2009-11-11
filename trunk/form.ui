@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
+    <width>762</width>
     <height>725</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>750</width>
+    <width>762</width>
     <height>725</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>750</width>
+    <width>762</width>
     <height>725</height>
    </size>
   </property>
@@ -33,7 +33,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>750</width>
+     <width>762</width>
      <height>725</height>
     </rect>
    </property>
@@ -122,7 +122,7 @@
     <string>LEVEL EDITOR</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="controls">
+  <widget class="QPushButton" name="load">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -142,7 +142,7 @@
     <string>background-color: rgba(255, 255, 255, 100);</string>
    </property>
    <property name="text">
-    <string>CONTROLS</string>
+    <string>SAVED GAMES</string>
    </property>
   </widget>
   <widget class="QPushButton" name="highScores">
