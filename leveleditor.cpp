@@ -1,8 +1,11 @@
 /**
- levelEditor.cpp
-
-
-  **/
+ * Manpreet Kohli
+ * CS 340, Fall 2009
+ *
+ * leveleditor.cpp: creates the design for the level editor
+ * by creating 21 * 27 semi-transparent blocks
+ *
+ */
 
 #include <QtGui>
 #include "leveleditor.h"

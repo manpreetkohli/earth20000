@@ -8,7 +8,8 @@ HEADERS += board.h \
     spaceship.h \
     enemyShip.h \
     constants.h \
-    leveleditor.h
+    leveleditor.h \
+    loadGame.h
 SOURCES += board.cpp \
     ball.cpp \
     Main.cpp \
@@ -19,7 +20,8 @@ SOURCES += board.cpp \
     levelFive.cpp \
     spaceship.cpp \
     enemyShip.cpp \
-    leveleditor.cpp
+    leveleditor.cpp \
+    loadGame.cpp
 FORMS += form.ui
 RESOURCES += Images.qrc
 OTHER_FILES += 

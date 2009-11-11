@@ -48,29 +48,6 @@ void SingleBlock::paint(QPainter *painter,
     gradient.setColorAt(0, colors[color1]);
     gradient.setColorAt(1, colors[color2]);
 
-    /**
-      If we decided to change it up later on:
-      if(generateRandomNumber(0, 1) == 0)
-    {
-        gradient.setColorAt(0, colors[generateRandomNumber(0,16)].light(generateRandomNumber(0, 100)));
-    }
-    else
-    {
-        gradient.setColorAt(0, colors[generateRandomNumber(0,16)].dark(generateRandomNumber(0, 100)));
-    }
-
-    if(generateRandomNumber(0, 1) == 0)
-    {
-        gradient.setColorAt(1, colors[generateRandomNumber(0,16)].light(generateRandomNumber(0, 100)));
-    }
-    else
-    {
-        gradient.setColorAt(1, colors[generateRandomNumber(0,16)].dark(generateRandomNumber(0, 100)));
-    }
-
-      **/
-
-
     painter->setBrush(gradient);
     painter->setPen(QPen(Qt::black, 0));
     painter->drawRoundedRect(BLOCKX, BLOCKY, BLOCKW, BLOCKH, XRADIUS, YRADIUS, Qt::RelativeSize);
@@ -89,6 +66,7 @@ int SingleBlock::type() const
 
 // Added by Manpreet Kohli
 QVector<QPointF> Constants::positions;
+QVector<int> Constants::colors;
 int SingleBlock::colorSelected = 7;
 
 // Added by Manpreet Kohli
@@ -149,7 +127,7 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
             this->scene()->addItem(Constants::currentBlock);
 
-            Constants::currentBlock->setPos(-120, 80);
+            Constants::currentBlock->setPos(-105, 100);
         }
 
         else //if (this->scene()->width() > Constants::itemsWindowViewWidth)
@@ -165,17 +143,21 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
             {
                 this->setColor1(1);
 
+                this->setOpacity(2.0);
+
+                qDebug() << "wha " << this->getColor2();
+
                 Constants::positions.push_back(this->scenePos());
+                Constants::colors.push_back(this->getColor2());
 
             }
 
-
+            qDebug() << "okgat " << this->pos();
             qDebug() << "this is me yo " << this->scenePos();
 
-
-
             update(this->boundingRect());
-            this->setOpacity(5.0);
+            update(this->sceneBoundingRect());
+
         }
     }
 //    Constants::currentBlock->update(Constants::currentBlock->boundingRect());
