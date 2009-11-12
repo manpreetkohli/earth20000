@@ -18,9 +18,19 @@
 #include "loadGame.h"
 #include <QTimer>
 #include <QGraphicsView>
+#include <QtGui>
+
+#include "spaceship.h"
 
 
 
+void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
+{
+    QGraphicsTextItem *levelInfo = scene->addText(levelNumber, *font);
+    levelInfo->setDefaultTextColor(Qt::cyan);
+    levelInfo->setOpacity(0.6);
+    levelInfo->setPos(15, 0);
+}
 
 // constructor
 Board::Board(QGraphicsView *view)
@@ -30,23 +40,63 @@ Board::Board(QGraphicsView *view)
     int height = view->geometry().height() - 5;
     scene->setSceneRect(0, 0, width, height);       // set dimensions of the scene
 
-//    levelOne *theFirstLevel = new levelOne(scene);
-//    levelTwo *theSecondLevel = new levelTwo(scene);
+    QFont *font = new QFont();
 
+    font->setBold(true);
+    font->setPointSize(15);
 
     if (Constants::levelNumber == 0)
+    {
         LevelEditor *theLevelEditor = new LevelEditor(scene);
+        QGraphicsTextItem *levelNumber = scene->addText(QString("LEVEL EDITOR MODE"), *font);
+        levelNumber->setDefaultTextColor(Qt::cyan);
+        levelNumber->setOpacity(0.6);
+        levelNumber->setPos(15, 0);
+    }
     else if (Constants::levelNumber == 1)
+    {
         levelOne *theFirstLevel = new levelOne(scene);
+        displayHUDLevel(scene, "LEVEL 1", font);
+    }
+
     else if (Constants::levelNumber == 2)
+    {
         levelTwo *theSecondLevel = new levelTwo(scene);
+        displayHUDLevel(scene, "LEVEL 2", font);
+   }
     else if (Constants::levelNumber == 5)
+    {
         levelFive *theFifthLevel = new levelFive(scene);
+        displayHUDLevel(scene, "LEVEL 5", font);
+    }
     else if (Constants::levelNumber == 6)
+    {
         LoadGame *theSavedGame = new LoadGame(scene);
+        displayHUDLevel(scene, "SAVED GAME", font);
+    }
 
+    QGraphicsTextItem *lives = scene->addText(QString("SPAWNS: "), *font);
+    lives->setDefaultTextColor(Qt::cyan);
+    lives->setOpacity(0.6);
+    lives->setPos(485, 0);
 
-    // levelFive *theFifthLevel = new levelFive(scene);
+    SpaceShip *life1 = new SpaceShip();
+    scene->addItem(life1);
+    life1->setPos(435, -310);
+    life1->scale(0.5, 0.5);
+    life1->setOpacity(0.5);
+
+    SpaceShip *life2 = new SpaceShip();
+    scene->addItem(life2);
+    life2->setPos(485, -310);
+    life2->scale(0.5, 0.5);
+    life2->setOpacity(0.5);
+
+    SpaceShip *life3 = new SpaceShip();
+    scene->addItem(life3);
+    life3->setPos(535, -310);
+    life3->scale(0.5, 0.5);
+    life3->setOpacity(0.5);
 
     view->setRenderHint(QPainter::Antialiasing);
     view->setCacheMode(QGraphicsView::CacheBackground);
@@ -63,5 +113,4 @@ void Board::connectTimerToBall()
      // Set the timer to trigger every 3 ms.
     timer->start(3);
 }
-
 

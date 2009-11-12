@@ -9,12 +9,7 @@
 
 class Constants
 {
-
-
-
     public:
-
-
 
         static int itemsWindowViewWidth;
         static int windowWidth;
