@@ -23,12 +23,17 @@ class Ball : public QGraphicsItem
         void setBounceBounds(qreal x, qreal y);
         void advance(int phase);
 
+
+        int count;
     public:
         Ball();
 
         ~Ball();
+        void setShipPositon (int pos);
 
-        int setShipPositon (int pos);
+
+
+
 };
 
 #endif // BALL_H

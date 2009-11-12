@@ -32,6 +32,11 @@ void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *f
     levelInfo->setPos(15, 0);
 }
 
+
+SpaceShip *Constants::life1;
+SpaceShip *Constants::life2;
+SpaceShip *Constants::life3;
+
 // constructor
 Board::Board(QGraphicsView *view)
 {
@@ -80,23 +85,23 @@ Board::Board(QGraphicsView *view)
     lives->setOpacity(0.6);
     lives->setPos(485, 0);
 
-    SpaceShip *life1 = new SpaceShip();
-    scene->addItem(life1);
-    life1->setPos(435, -310);
-    life1->scale(0.5, 0.5);
-    life1->setOpacity(0.5);
+    Constants::life1 = new SpaceShip();
+    scene->addItem(Constants::life1);
+    Constants::life1->setPos(435, -310);
+    Constants::life1->scale(0.5, 0.5);
+    Constants::life1->setOpacity(0.5);
 
-    SpaceShip *life2 = new SpaceShip();
-    scene->addItem(life2);
-    life2->setPos(485, -310);
-    life2->scale(0.5, 0.5);
-    life2->setOpacity(0.5);
+    Constants::life2 = new SpaceShip();
+    scene->addItem(Constants::life2);
+    Constants::life2->setPos(485, -310);
+    Constants::life2->scale(0.5, 0.5);
+    Constants::life2->setOpacity(0.5);
 
-    SpaceShip *life3 = new SpaceShip();
-    scene->addItem(life3);
-    life3->setPos(535, -310);
-    life3->scale(0.5, 0.5);
-    life3->setOpacity(0.5);
+    Constants::life3 = new SpaceShip();
+    scene->addItem(Constants::life3);
+    Constants::life3->setPos(535, -310);
+    Constants::life3->scale(0.5, 0.5);
+    Constants::life3->setOpacity(0.5);
 
     view->setRenderHint(QPainter::Antialiasing);
     view->setCacheMode(QGraphicsView::CacheBackground);
