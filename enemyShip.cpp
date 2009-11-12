@@ -24,18 +24,18 @@ void EnemyShipBody::paint(QPainter *painter,
     Q_UNUSED(option);
     Q_UNUSED(widget);
     QPointF vertices[13] = {QPointF(0.0, 2.0),
-                                     QPointF(1.0, 1.0),
-                                     QPointF(2.0, 0.0),
-                                     QPointF(22.0, 0.0),
-                                     QPointF(23.0, 1.0),
-                                     QPointF(24.0, 2.0),
-                                     QPointF(24.0, 40.0),
-                                     QPointF(14.0, 48.0),
-                                     QPointF(13.0, 49.0),
-                                     QPointF(12.0, 50.0),
-                                     QPointF(11.0, 49.0),
-                                     QPointF(10.0, 48.0),
-                                     QPointF(0.0, 40.0)};
+                            QPointF(1.0, 1.0),
+                            QPointF(2.0, 0.0),
+                            QPointF(22.0, 0.0),
+                            QPointF(23.0, 1.0),
+                            QPointF(24.0, 2.0),
+                            QPointF(24.0, 40.0),
+                            QPointF(14.0, 48.0),
+                            QPointF(13.0, 49.0),
+                            QPointF(12.0, 50.0),
+                            QPointF(11.0, 49.0),
+                            QPointF(10.0, 48.0),
+                            QPointF(0.0, 40.0)};
     
     painter->setPen(QPen(Qt::black, 0));
 

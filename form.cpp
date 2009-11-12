@@ -113,19 +113,36 @@ void Form::on_newGame_clicked()
     board->connectTimerToBall();         // connect the timer to the ball
     //Ball *ball = new Ball();        // create an instance of the ball
 
-    ball = new Ball();        // create an instance of the ball
+
 
     // create an instance of the player's spaceship
     playersShip = new SpaceShip (); // Ivan Collazo
 
-    board->scene->addItem(ball);        // add the ball to the board
+
 
     EnemyShip *ship = new EnemyShip();
 
     board->scene->addItem(ship);
 
-    // add the player's spaceship to the board
+//     add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
+
+    QSound *intro = new QSound("intro.wav", 0);
+    intro->setLoops(1);
+    intro->play();
+
+//    QTimer timer(0);
+    //timer.start(10000);
+
+    ball = new Ball();        // create an instance of the ball
+
+//    QTimer timer;
+
+    board->scene->addItem(ball);        // add the ball to the board
+
+//    timer.singleShot(10000, board->scene, SLOT(update()));
+
+
 }
 
 // initialize all the static variables that are going to be used

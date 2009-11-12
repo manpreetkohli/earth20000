@@ -3,8 +3,7 @@
 
 
 #include "block.h"
-
-
+#include "spaceship.h"
 
 
 class Constants
@@ -24,6 +23,10 @@ class Constants
 
         static int levelNumber;
 
+
+        static SpaceShip *life1;
+        static SpaceShip *life2;
+        static SpaceShip *life3;
 };
 
 #endif // CONSTANTS_H

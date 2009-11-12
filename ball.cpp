@@ -13,10 +13,14 @@
 #include <iostream>
 #include "levelOne.h"
 #include "levelTwo.h"
+#include <QtGui>
+#include "constants.h"
+
 
 // constructor
 Ball::Ball()
 {
+    count = 3;
     ballImage.load(":soccer.png");          // load an image for the ball
     ballImage.load(":cricketball.png");     // load an image for the ball
     directionX = 1;                         // set the X-axis increment for the movement
@@ -47,7 +51,7 @@ QRectF Ball::boundingRect() const
 }
 
 // function set the players Ship position to be used in the physics portion in the advance function
-int Ball::setShipPositon(int pos)
+void Ball::setShipPositon(int pos)
 {
     shipXPosition = pos;
 }
@@ -102,8 +106,7 @@ void Ball::advance(int phase)
         directionX = -directionX;
     }
 
-    // comment out the positionY >= 85 part to make it not
-    // bounce back on hitting the bottom part of the screen
+    // ball bounces off the top part of the screen
     if (positionY <= -630)
     {
         directionY = -directionY;
@@ -112,6 +115,58 @@ void Ball::advance(int phase)
     // if the ball went beyond the bottom of the screen
     if (positionY >= 85)
     {
+        if (count == 3)
+        {
+            this->scene()->removeItem(Constants::life3);
+            count--;
+            QSound *spawnSound = new QSound("start.wav", 0);
+            spawnSound->setLoops(1);
+            spawnSound->play();
+
+        }
+
+        else if (count == 2)
+        {
+            this->scene()->removeItem(Constants::life2);
+            count--;
+            QSound *spawnSound = new QSound("start.wav", 0);
+            spawnSound->setLoops(1);
+            spawnSound->play();
+
+        }
+
+        else if (count == 1)
+        {
+            this->scene()->removeItem(Constants::life1);
+            count--;
+            QSound *spawnSound = new QSound("start.wav", 0);
+            spawnSound->setLoops(1);
+            spawnSound->play();
+        }
+
+
+        else if (count == 0)
+        {
+            // add game over logic
+            QFont *font = new QFont();
+
+            font->setBold(true);
+            font->setPointSize(25);
+
+
+            QSound *gameover = new QSound("gameover.wav", 0);
+            gameover->setLoops(1);
+            gameover->play();
+
+
+            QGraphicsTextItem *gameOver = this->scene()->addText(QString("GAME OVER"), *font);
+            gameOver->setDefaultTextColor(Qt::cyan);
+            gameOver->setOpacity(0.8);
+            gameOver->setPos(300, 200);
+
+            this->scene()->removeItem(this);
+        }
+
         positionX = 0;                          // reset X coordinate to 0
         positionY = 0;                          // reset Y coordinate to 0
         setPos(positionX, positionY);           // set the coordinates to initial position
@@ -123,9 +178,15 @@ void Ball::advance(int phase)
     // checks to see if ball collides with something then does ball physics
     if (!listOfCollidingItems.isEmpty())
     {
+
+
         // physics when the ball collides with top of Ship // Ivan Collazo
         if (positionY == 0)
         {
+            QSound *shipHit = new QSound("paddle.wav", 0);
+            shipHit->setLoops(1);
+            shipHit->play();
+
             if (ballDirection == 4) //Ball traveling SE
             {
                 // physics for when the ball hits left most quarter portion of the ship
@@ -192,6 +253,10 @@ void Ball::advance(int phase)
         // physics when the ball collides portion near the event horizons of the ship // Ivan Collazo
         else if ((positionY <= 15) && (positionY >= 1) && ((positionX <= shipXPosition - 40) || (positionX >= shipXPosition - 40)))
         {
+            QSound *shipHit = new QSound("paddle.wav", 0);
+            shipHit->setLoops(1);
+            shipHit->play();
+
             if (ballDirection == 4) //Ball traveling SE
             {
                 directionX = -3;  //directionX;
@@ -208,6 +273,10 @@ void Ball::advance(int phase)
         // physics when the ball collides with the event horizon of ship // Ivan Collazo
         else if ((positionY > 15) && ((positionX == shipXPosition - 40) || (positionX == shipXPosition + 40)))
         {
+            QSound *shipHit = new QSound("paddle.wav", 0);
+            shipHit->setLoops(1);
+            shipHit->play();
+
             if (ballDirection == 4) //Ball traveling SE
             {
                 directionX = -6;
