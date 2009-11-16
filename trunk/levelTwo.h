@@ -10,7 +10,9 @@ Author: Natraj Subramanian
 #ifndef LEVELTWO_H
 #define LEVELTWO_H
 
-
+#include <QGraphicsItem>
+#include <QtGui>
+#include "block.h"
 
 #define LEVELW 600
 #define LEVELH 300
@@ -19,6 +21,7 @@ class levelTwo: public QGraphicsItem
 {
 public:
     int xPos, yPos;
+    Block *block[9][20];
     levelTwo(QGraphicsScene *theScene);
     QRectF boundingRect() const;
     void levelTwo::paint(QPainter *painter,

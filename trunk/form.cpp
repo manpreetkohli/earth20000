@@ -107,29 +107,23 @@ void Form::on_newGame_clicked()
     m_ui->view->setRenderHint(QPainter::Antialiasing);
     //m_ui->view->setCacheMode(QGraphicsView::CacheBackground);
 
-    Constants::levelNumber = 1;
+    Constants::levelNumber = 5;
 
     board = new Board(m_ui->view);       // add the board to the view
-    board->connectTimerToBall();         // connect the timer to the ball
-    //Ball *ball = new Ball();        // create an instance of the ball
-
-
 
     // create an instance of the player's spaceship
     playersShip = new SpaceShip (); // Ivan Collazo
 
+    //EnemyShip *ship = new EnemyShip();
 
-
-    EnemyShip *ship = new EnemyShip();
-
-    board->scene->addItem(ship);
+    //board->scene->addItem(ship);
 
 //     add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
 
-    QSound *intro = new QSound("intro.wav", 0);
-    intro->setLoops(1);
-    intro->play();
+    //QSound *intro = new QSound("intro.wav", 0);
+    //intro->setLoops(1);
+    //intro->play();
 
 //    QTimer timer(0);
     //timer.start(10000);
@@ -233,31 +227,31 @@ void Form::on_levelEditor_clicked()
 
     Block *emptyBlock = new EmptyBlock();
     itemsWindowScene->addItem(emptyBlock);
-    emptyBlock->setPos(-200, -40);
+    emptyBlock->setPos(-375, -330);
 
-    Block *block = new Block();
+    Block *block = new MonoBlock();
     itemsWindowScene->addItem(block);
-    block->setPos(-168, -40);
+    block->setPos(-343, -330);
 
     Block *redBlock = new RedBlock();
     itemsWindowScene->addItem(redBlock);
-    redBlock->setPos(-136, -40);
+    redBlock->setPos(-311, -330);
 
     Block *greenBlock = new GreenBlock();
     itemsWindowScene->addItem(greenBlock);
-    greenBlock->setPos(-104, -40);
+    greenBlock->setPos(-279, -330);
 
     Block *blueBlock = new BlueBlock();
     itemsWindowScene->addItem(blueBlock);
-    blueBlock->setPos(-72, -40);
+    blueBlock->setPos(-247, -330);
 
     Block *magentaBlock = new MagentaBlock();
     itemsWindowScene->addItem(magentaBlock);
-    magentaBlock->setPos(-40, -40);
+    magentaBlock->setPos(-215, -330);
 
     Block *yellowBlock = new YellowBlock();
     itemsWindowScene->addItem(yellowBlock);
-    yellowBlock->setPos(-8, -40);
+    yellowBlock->setPos(-183, -330);
 
     QLabel *currentBlockLabel = new QLabel(itemsWindow);
     currentBlockLabel->setText("<font color = RED> Current selection: <font color/>");
@@ -472,7 +466,7 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
             {
                 playersShip->moveBy(-20,0);
                 playersShip->setShipPosX(-20);
-                qDebug() << playersShip->getShipPosX();
+                //qDebug() << playersShip->getShipPosX();
                 ball->setShipPositon(playersShip->getShipPosX());
                 //playersShip->setShipDirection(1);
                 //qDebug() << playersShip->getShipDirection();
@@ -490,7 +484,7 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
             {
                 playersShip->moveBy(20,0);
                 playersShip->setShipPosX(20);
-                qDebug() << playersShip->getShipPosX();
+                //qDebug() << playersShip->getShipPosX();
                 ball->setShipPositon(playersShip->getShipPosX());
                 //playersShip->setShipDirection(2);
                 //qDebug() << playersShip->getShipDirection();
@@ -501,6 +495,10 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
 
         case Qt::Key_Space:
             qDebug() << "FIRE";
+            break;
+
+        case Qt::Key_Return:
+            board->connectTimerToBall();         // connect the timer to the ball
             break;
     }
 }

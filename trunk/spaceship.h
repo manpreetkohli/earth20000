@@ -12,6 +12,8 @@
 //#include "MoveBehavior.h"
 //#include "ShotBehavior.h"
 
+// Added by Natraj
+#define ID_SPACESHIP    256
 
 #include <QGraphicsItem>
 
@@ -45,6 +47,9 @@ class SpaceShip : public QGraphicsItem
 
         // the bounding rectangle of the object for collision detection
         QRectF boundingRect () const;
+
+        // Added by Natraj
+        virtual int type() const {return ID_SPACESHIP; }
 
         // called whenever the spaceShip needs to be drawn
         void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

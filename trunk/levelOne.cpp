@@ -17,12 +17,10 @@ Author: Natraj Subramanian
 #include "levelOne.h"
 #include "block.h"
 
-//QList<QGraphicsItem*> listOfCollidingItems;
-
 levelOne::levelOne(QGraphicsScene *theScene)
 {
-    xPos = (BOUNDWIDTH - 16 * OUTLINEW)/2;
-    yPos = (BOUNDHEIGHT)/(5/2);
+    xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;
+    yPos = -630 + (BOUNDHEIGHT)/(5/2);
 
     // Declare variable to hold seconds in clock
     time_t seconds;
@@ -33,7 +31,6 @@ levelOne::levelOne(QGraphicsScene *theScene)
     // Convert seconds to a unsigned integer
     srand((unsigned int) seconds);
 
-    Block *block[6][16];
     int detColor;
 
     for(int i = 0; i < 6; i++)
@@ -50,7 +47,7 @@ levelOne::levelOne(QGraphicsScene *theScene)
 
                 if(detColor == 0)
                 {
-                    block[i][j] = new Block;
+                    block[i][j] = new MonoBlock;
                 }
                 if(detColor == 1)
                 {
@@ -74,6 +71,8 @@ levelOne::levelOne(QGraphicsScene *theScene)
                     block[i][j] = new YellowBlock;
                 }
 
+                block[i][j]->setXPos(xPos);
+                block[i][j]->setYPos(yPos);
                 block[i][j]->scale(1.0, 1.0);
                 block[i][j]->setPos(xPos, yPos);
                 xPos += BLOCKW + SPACE;
@@ -84,14 +83,14 @@ levelOne::levelOne(QGraphicsScene *theScene)
         }
 
         yPos += BLOCKH + SPACE;
-        xPos = (BOUNDWIDTH - 16 * OUTLINEW)/2;;
+        xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;;
 
     }
 }
 
 QRectF levelOne::boundingRect() const
 {
-    return QRectF(0, 0, 16 * OUTLINEW, 6 * OUTLINEH);
+    return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
 }
 
 void levelOne::paint(QPainter *painter,

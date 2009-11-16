@@ -20,8 +20,8 @@ Author: Natraj Subramanian
 
 levelFive::levelFive(QGraphicsScene *theScene)
 {
-    xPos = (BOUNDWIDTH - 25 * OUTLINEW)/4;
-    yPos = (BOUNDHEIGHT)/3;
+    xPos = -380 + (BOUNDWIDTH - 25 * OUTLINEW)/4;
+    yPos = -630 + (BOUNDHEIGHT)/3;
 
     // Declare variable to hold seconds in clock
     time_t seconds;
@@ -32,7 +32,6 @@ levelFive::levelFive(QGraphicsScene *theScene)
     // Convert seconds to a unsigned integer
     srand((unsigned int) seconds);
 
-    Block *block[10][25];
     int detColor;
 
     for(int i = 0; i < 10; i++)
@@ -49,7 +48,7 @@ levelFive::levelFive(QGraphicsScene *theScene)
 
                 if(detColor == 0)
                 {
-                    block[i][j] = new Block;
+                    block[i][j] = new MonoBlock;
                 }
                 if(detColor == 1)
                 {
@@ -73,6 +72,8 @@ levelFive::levelFive(QGraphicsScene *theScene)
                     block[i][j] = new YellowBlock;
                 }
 
+                block[i][j]->setXPos(xPos);
+                block[i][j]->setYPos(yPos);
                 block[i][j]->scale(1.0, 1.0);
                 block[i][j]->setPos(xPos, yPos);
                 xPos += BLOCKW + SPACE;
@@ -83,7 +84,7 @@ levelFive::levelFive(QGraphicsScene *theScene)
         }
 
         yPos += BLOCKH + SPACE;
-        xPos = (BOUNDWIDTH - 25 * OUTLINEW)/4;
+        xPos = -380 + (BOUNDWIDTH - 25 * OUTLINEW)/4;
 
     }
 
@@ -91,7 +92,7 @@ levelFive::levelFive(QGraphicsScene *theScene)
 
 QRectF levelFive::boundingRect() const
 {
-    return QRectF(300, 20, 25 * OUTLINEW, 10 * OUTLINEH);
+    return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
 }
 
 void levelFive::paint(QPainter *painter,
