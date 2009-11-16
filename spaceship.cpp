@@ -36,7 +36,7 @@ SpaceShip::SpaceShip()
     left = 0;  //325
     top = 0;   //620
     color = (Qt::red);
-    qDebug() << "Constructor" ;
+    //qDebug() << "Constructor" ;
     setPos(0, 0);
 }
 

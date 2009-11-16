@@ -10,17 +10,17 @@ Author: Natraj Subramanian
 #ifndef LEVELONE_H
 #define LEVELONE_H
 
-
+#include <QGraphicsItem>
+#include <QtGui>
+#include "block.h"
 
 #define LEVELW 600
 #define LEVELH 300
-
-extern QList<QGraphicsItem*> listOfCollidingItems;
-
 class levelOne: public QGraphicsItem
 {
 public:
     int xPos, yPos;
+    Block *block[6][16];
     levelOne(QGraphicsScene *theScene);
     QRectF boundingRect() const;
     void levelOne::paint(QPainter *painter,

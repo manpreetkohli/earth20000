@@ -15,7 +15,6 @@ Author: Natraj Subramanian
 
 QColor colors[8] = {QColor(Qt::white), QColor(Qt::black), QColor(Qt::red), QColor(Qt::green),
                     QColor(Qt::blue), QColor(Qt::magenta), QColor(Qt::yellow), QColor(Qt::transparent)};
-int color1, color2;
 
 SingleBlock::SingleBlock(QGraphicsItem *parent = 0)
         :QGraphicsItem(parent)
@@ -24,6 +23,8 @@ SingleBlock::SingleBlock(QGraphicsItem *parent = 0)
     {
         color1 = ((SingleBlock *)parent)->getColor1();
         color2 = ((SingleBlock *)parent)->getColor2();
+        xPos = ((SingleBlock *)parent)->getXPos();
+        yPos = ((SingleBlock *)parent)->getYPos();
     }
 }
 
@@ -57,12 +58,6 @@ int SingleBlock::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;
 }
-
-int SingleBlock::type() const
-{
-    return Type;
-}
-
 
 // Added by Manpreet Kohli
 QVector<QPointF> Constants::positions;
@@ -177,6 +172,20 @@ void SingleBlock::setColor2(int theColor)
     *colorPtr= theColor;
 }
 
+void SingleBlock::setXPos(int thePos)
+{
+    int *posPtr;
+    posPtr = &xPos;
+    *posPtr= thePos;
+}
+
+void SingleBlock::setYPos(int thePos)
+{
+    int *posPtr;
+    posPtr = &yPos;
+    *posPtr= thePos;
+}
+
 int SingleBlock::getColor1()
 {
     return color1;
@@ -187,13 +196,18 @@ int SingleBlock::getColor2()
     return color2;
 }
 
+int SingleBlock::getXPos()
+{
+    return xPos;
+}
+
+int SingleBlock::getYPos()
+{
+    return yPos;
+}
+
 Block::Block()
 {
-    //set default color
-    setColor1(1);
-    setColor2(0);
-
-    QGraphicsItem *oneBlock = new SingleBlock(this);
 }
 
 QRectF Block::boundingRect() const
@@ -202,6 +216,28 @@ QRectF Block::boundingRect() const
 }
 
 void Block::paint(QPainter *painter,
+                  const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    Q_UNUSED(painter);
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
+}
+
+MonoBlock::MonoBlock()
+{
+    //Set color to red
+    setColor1(0);
+    setColor2(1);
+
+    QGraphicsItem *oneBlock = new SingleBlock(this);
+}
+
+QRectF MonoBlock::boundingRect() const
+{
+    return QRectF();
+}
+
+void MonoBlock::paint(QPainter *painter,
                   const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);

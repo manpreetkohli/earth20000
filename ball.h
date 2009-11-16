@@ -30,10 +30,12 @@ class Ball : public QGraphicsItem
 
         ~Ball();
         void setShipPositon (int pos);
-
-
-
-
+        bool posXDir;
+        bool posYDir;
+        bool rightEdge;
+        bool leftEdge;
+        bool topEdge;
+        bool spaceshipHit;
 };
 
 #endif // BALL_H

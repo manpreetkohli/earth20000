@@ -10,7 +10,9 @@ Author: Natraj Subramanian
 #ifndef LEVELFIVE_H
 #define LEVELFIVE_H
 
-
+#include <QGraphicsItem>
+#include <QtGui>
+#include "block.h"
 
 #define LEVELW 600
 #define LEVELH 300
@@ -19,6 +21,7 @@ class levelFive: public QGraphicsItem
 {
 public:
     int xPos, yPos;
+    Block *block[10][25];
     levelFive(QGraphicsScene *theScene);
     QRectF boundingRect() const;
     void levelFive::paint(QPainter *painter,
