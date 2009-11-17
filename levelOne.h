@@ -30,11 +30,6 @@ public:
                            QWidget *widget = 0);
     int generateRandomNumber(int min, int max);
 
-
-
-
-//    Block *block[6][16];
-
 };
 
 #endif // LEVELONE_H
