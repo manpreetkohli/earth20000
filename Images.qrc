@@ -8,5 +8,10 @@
         <file>bg2.jpg</file>
         <file>bg3.jpg</file>
         <file>universe4.jpg</file>
+        <file>bullet.png</file>
+        <file>missiles.png</file>
+        <file>fire.png</file>
+        <file>alienSpaceship.png</file>
+        <file>alienTestShip.png</file>
     </qresource>
 </RCC>
