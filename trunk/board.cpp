@@ -21,6 +21,7 @@
 #include <QtGui>
 
 #include "spaceship.h"
+#include "sleeperthread.h"
 
 
 
@@ -53,10 +54,7 @@ Board::Board(QGraphicsView *view)
     if (Constants::levelNumber == 0)
     {
         LevelEditor *theLevelEditor = new LevelEditor(scene);
-        QGraphicsTextItem *levelNumber = scene->addText(QString("LEVEL EDITOR MODE"), *font);
-        levelNumber->setDefaultTextColor(Qt::cyan);
-        levelNumber->setOpacity(0.6);
-        levelNumber->setPos(15, 0);
+        displayHUDLevel(scene, "LEVEL EDITOR MODE", font);
     }
     else if (Constants::levelNumber == 1)
     {

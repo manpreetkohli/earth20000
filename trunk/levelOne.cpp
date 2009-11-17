@@ -17,6 +17,9 @@ Author: Natraj Subramanian
 #include "levelOne.h"
 #include "block.h"
 
+
+//QList<QGraphicsItem*> listOfCollidingItems;
+
 levelOne::levelOne(QGraphicsScene *theScene)
 {
     xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;
@@ -86,6 +89,12 @@ levelOne::levelOne(QGraphicsScene *theScene)
         xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;;
 
     }
+
+
+
+
+
+
 }
 
 QRectF levelOne::boundingRect() const

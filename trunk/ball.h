@@ -10,7 +10,7 @@
 #define BALL_H
 
 #include <QGraphicsItem>
-
+#include "sleeperthread.h"
 
 class Ball : public QGraphicsItem
 {
@@ -22,6 +22,9 @@ class Ball : public QGraphicsItem
         QRectF boundingRect() const;
         void setBounceBounds(qreal x, qreal y);
         void advance(int phase);
+
+
+         SleeperThread *t;
 
 
         int count;

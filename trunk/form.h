@@ -39,8 +39,17 @@ class Form : public QWidget
         static int windowHeight;
         static int mainViewWidth;
         static int shipPos;
+        QFont *font;
+        QPushButton *cont;
+        QLabel *storyText1;
+        QLabel *storyText2;
+        QLabel *storyText3;
+
 
     private slots:
+        void loadLevel1();
+        void loadStoryScreen3();
+        void loadStoryScreen2();
         void on_load_clicked();
         void on_levelEditor_clicked();
         void on_newGame_clicked();

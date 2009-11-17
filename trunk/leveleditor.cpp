@@ -14,11 +14,11 @@
 
 LevelEditor::LevelEditor(QGraphicsScene *theScene)
 {
-    xPos = 3;
-    yPos = 32;
+    xPos = -375;
+    yPos = -590;
 
     // draw all the transparent blocks for the level editor window
-    for (int i = 0; i < 21; i++)
+    for (int i = 0; i < 20; i++)
     {
         for (int j = 0; j < 27; j++)
         {
@@ -30,13 +30,13 @@ LevelEditor::LevelEditor(QGraphicsScene *theScene)
             xPos+=OUTLINEW;
         }
         yPos += OUTLINEH;
-        xPos = 3;
+        xPos = -375;
     }
 }
 
 QRectF LevelEditor::boundingRect() const
 {
-    return QRectF(0, 0, 27 * OUTLINEW, 21 * OUTLINEH);
+    return QRectF(0, 0, 27 * OUTLINEW, 20 * OUTLINEH);
 }
 
 void LevelEditor::paint(QPainter *painter,

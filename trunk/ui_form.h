@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'form.ui'
 **
-** Created: Wed Nov 11 07:54:12 2009
+** Created: Sun Nov 15 23:58:27 2009
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -96,7 +96,11 @@ public:
     void retranslateUi(QWidget *Form)
     {
         Form->setWindowTitle(QApplication::translate("Form", "Earth: 20000", 0, QApplication::UnicodeUTF8));
-        title->setText(QApplication::translate("Form", "<font color= RED> Earth: 20000 </font>", 0, QApplication::UnicodeUTF8));
+        title->setText(QApplication::translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:50pt; font-weight:600; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#ff0000;\">EARTH: 20000 </span></p></body></html>", 0, QApplication::UnicodeUTF8));
         newGame->setStyleSheet(QApplication::translate("Form", "background-color: rgba(255, 255, 255, 100);", 0, QApplication::UnicodeUTF8));
         newGame->setText(QApplication::translate("Form", "NEW GAME", 0, QApplication::UnicodeUTF8));
         levelEditor->setStyleSheet(QApplication::translate("Form", "background-color: rgba(255, 255, 255, 100);", 0, QApplication::UnicodeUTF8));

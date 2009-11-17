@@ -15,8 +15,8 @@
 
 LoadGame::LoadGame(QGraphicsScene *theScene)
 {
-    xPos = 3;
-    yPos = 32;
+    xPos = -375;
+    yPos = -590;
 
 
     QFile file("levels.txt");
@@ -33,7 +33,7 @@ LoadGame::LoadGame(QGraphicsScene *theScene)
     QChar c;
 
     // draw all the transparent blocks for the level editor window
-    for (int i = 0; i < 21; i++)
+    for (int i = 0; i < 20; i++)
     {
         for (int j = 0; j < 27; j++)
         {
@@ -41,7 +41,7 @@ LoadGame::LoadGame(QGraphicsScene *theScene)
             in >> c;
 
             if (c == 'w')
-                Constants::blocks[i][j] = new Block();
+                Constants::blocks[i][j] = new MonoBlock();
             else if (c == 'r')
                 Constants::blocks[i][j] = new RedBlock();
             else if (c == 'g')
@@ -69,13 +69,13 @@ LoadGame::LoadGame(QGraphicsScene *theScene)
         in >> c;
         in >> c;
         yPos += OUTLINEH;
-        xPos = 3;
+        xPos = -375;
     }
 }
 
 QRectF LoadGame::boundingRect() const
 {
-    return QRectF(0, 0, 27 * OUTLINEW, 21 * OUTLINEH);
+    return QRectF(0, 0, 27 * OUTLINEW, 20 * OUTLINEH);
 }
 
 void LoadGame::paint(QPainter *painter,

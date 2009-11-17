@@ -15,7 +15,7 @@ class Constants
         static int windowHeight;
         static int mainViewWidth;
         static Block *currentBlock;
-        static Block *blocks[21][27];
+        static Block *blocks[20][27];
         static bool inLevelEditorMode;
         static QVector<QPointF> positions;      // change name later on
 
