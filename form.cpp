@@ -1,4 +1,4 @@
-/*!
+/*
  * Manpreet Kohli
  * CS 340, Fall 2009
  *
@@ -8,8 +8,8 @@
 
 
 // include necessary files
+#include "sleeperthread.h"
 #include "ui_form.h"
-
 #include "ball.h"
 #include "levelOne.h"
 #include "levelTwo.h"
@@ -22,8 +22,6 @@
 #include "block.h"
 #include "constants.h"
 #include "enemyShip.h"
-
-// include the header file for this class
 #include "form.h"
 
 // create an instance of the player's space ship
@@ -34,6 +32,7 @@ Ball *ball;        // create an instance of the ball
 bool Constants::inLevelEditorMode;
 int Constants::levelNumber;
 
+
 // constructor sets up the graphics item
 Form::Form(QWidget *parent) :
     QWidget(parent),
@@ -43,11 +42,13 @@ Form::Form(QWidget *parent) :
     m_ui->setupUi(this);
 }
 
+
 // destructor to delete the instance
 Form::~Form()
 {
     delete m_ui;
 }
+
 
 void Form::changeEvent(QEvent *e)
 {
@@ -61,11 +62,13 @@ void Form::changeEvent(QEvent *e)
     }
 }
 
+
 // exit the program if the exit button is clicked
 void Form::on_exit_clicked()
 {
     exit(1);
 }
+
 
 // hide all the elements (QButtons and QLabels) of the splash screen
 void Form::hideElements(Ui::Form *m_ui)
@@ -95,57 +98,133 @@ void Form::hideElements(Ui::Form *m_ui)
     delete m_ui->exit;
 }
 
-// function called when the "New Game" button is clicked on the splash screen
-void Form::on_newGame_clicked()
+
+// function to start the first level of the game after the story screens
+void Form::loadLevel1()
 {
-    // call function to hide all the elements (QButtons and QLabels) of the splash screen
-    hideElements(m_ui);
+    // sleep for 3 secs so that the intro music can finish playing
+    SleeperThread *t = new SleeperThread();
+    t->msleep(3000);
 
-    // set a new background for level 1
+    storyText3->hide();
+    delete storyText3;
+
+    cont->hide();
+    delete cont;
+
     m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
-
     m_ui->view->setRenderHint(QPainter::Antialiasing);
-    //m_ui->view->setCacheMode(QGraphicsView::CacheBackground);
-
-    Constants::levelNumber = 5;
-
+    Constants::levelNumber = 1;
     board = new Board(m_ui->view);       // add the board to the view
 
     // create an instance of the player's spaceship
     playersShip = new SpaceShip (); // Ivan Collazo
 
     //EnemyShip *ship = new EnemyShip();
-
     //board->scene->addItem(ship);
 
-//     add the player's spaceship to the board
+    // add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
 
-    //QSound *intro = new QSound("intro.wav", 0);
-    //intro->setLoops(1);
-    //intro->play();
-
-//    QTimer timer(0);
-    //timer.start(10000);
-
-    ball = new Ball();        // create an instance of the ball
-
-//    QTimer timer;
-
+    ball = new Ball();                  // create an instance of the ball
     board->scene->addItem(ball);        // add the ball to the board
-
-//    timer.singleShot(10000, board->scene, SLOT(update()));
-
-
 }
+
+
+// function to display the final screen of the story line
+// hides second screen of the story line and loads the third and final screen
+void Form::loadStoryScreen3()
+{
+    storyText2->hide();
+    delete storyText2;
+
+    // disconnect previous connection for the continue button
+    cont->disconnect(this, SLOT(loadStoryScreen3()));
+
+    font->setBold(true);
+    font->setPointSize(80);
+
+    storyText3 = new QLabel(this);
+    storyText3->setText("<font color = BLUEVIOLET> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEVEL 1 </font>");
+    storyText3->setFont(*font);
+    storyText3->setGeometry(0, 0, 762, 500);
+    storyText3->show();
+
+    // play the level start music
+    QSound *intro = new QSound("intro.wav", 0);
+    intro->setLoops(1);
+    intro->play();
+
+    // if the continue button is clicked on the screen, load the first level
+    QObject::connect(cont, SIGNAL(clicked()), this, SLOT(loadLevel1()));
+}
+
+
+// function to display the second screen of the story line
+// hides first screen of the story line and loads the second screen
+void Form::loadStoryScreen2()
+{
+    storyText1->hide();
+    delete storyText1;
+
+    // disconnect previous connection for the continue button
+    cont->disconnect(this, SLOT(loadStoryScreen2()));
+
+    font->setBold(true);
+    font->setPointSize(73);
+
+    storyText2 = new QLabel(this);
+    storyText2->setText("<font color = BLUEVIOLET> SHIT HAPPENS! </font>");
+    storyText2->setFont(*font);
+    storyText2->setGeometry(0, 0, 762, 500);
+    storyText2->show();
+
+    // if the continue button is clicked on the screen, load the third screen of the story line
+    QObject::connect(cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen3()));
+}
+
+
+// function called when the "New Game" button is clicked on the splash screen
+// hides all the elements of the splash screen and displays the first page of the story line
+void Form::on_newGame_clicked()
+{
+    // call function to hide all the elements (QButtons and QLabels) of the splash screen
+    hideElements(m_ui);
+
+    font = new QFont();
+    font->setBold(true);
+    font->setPointSize(78);
+
+    storyText1 = new QLabel(this);
+    storyText1->setText("<font color = BLUEVIOLET> IT'S THE YEAR <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19999 </font>");
+    storyText1->setFont(*font);
+    storyText1->setGeometry(0, 0, 762, 500);
+    storyText1->show();
+
+    font->setPointSize(13);
+    font->setBold(true);
+    font->setWeight(75);
+
+    cont = new QPushButton(this);
+    cont->setText("CONTINUE");
+    cont->setGeometry(300, 600, 150, 40);
+    cont->setFont(*font);
+    cont->show();
+    cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+
+    // if the continue button is clicked on the screen, call load the second screen of the story line
+    QObject::connect(cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen2()));
+}
+
 
 // initialize all the static variables that are going to be used
 int Constants::itemsWindowViewWidth = 238;
 Block *Constants::currentBlock;
-Block *Constants::blocks[21][27];
+Block *Constants::blocks[20][27];
 int Constants::windowWidth = 1000;
 int Constants::windowHeight = 725;
 int Constants::mainViewWidth = 762;
+
 
 // function called when the "Level Editor" button is clicked on the splash screen
 void Form::on_levelEditor_clicked()
@@ -155,8 +234,8 @@ void Form::on_levelEditor_clicked()
 
     Constants::inLevelEditorMode = true;
     resize(Constants::windowWidth, Constants::windowHeight);      // expand the window size
-    setMinimumSize(QSize(Constants::windowWidth, Constants::windowHeight));   // change the minimum size of the window
-    setMaximumSize(QSize(Constants::windowWidth, Constants::windowHeight));   // change the maximum size of the window
+    setMinimumSize(QSize(Constants::windowWidth, Constants::windowHeight));
+    setMaximumSize(QSize(Constants::windowWidth, Constants::windowHeight));
     move(120, 10);          // relocate the window after it's dimensions change
 
     m_ui->view->setGeometry(0, 0, Constants::mainViewWidth, Constants::windowHeight);    // change the geometry of the current view
@@ -167,23 +246,18 @@ void Form::on_levelEditor_clicked()
     itemsWindow->setGeometry(763, 0, Constants::itemsWindowViewWidth, Constants::windowHeight);     // set the geometry of the new view
 
     Constants::levelNumber = 0;
-
     board = new Board(m_ui->view);
 
-    fflush(0);
     QGraphicsScene *itemsWindowScene = new QGraphicsScene();    // create a new scene for the new view
+    itemsWindowScene->setSceneRect(0, 0, Constants::itemsWindowViewWidth - 2, Constants::windowHeight - 2);
 
-    QLabel *backgrounds = new QLabel(itemsWindow);
-
-    backgrounds->setText("<font color = RED> Select background: <font color/>");
-
+    // add various blocks and labels to the itemsWindowScene
     QFont *fontForLabels = new QFont();
-
     fontForLabels->setBold(true);
     fontForLabels->setPointSize(15);
 
-
-
+    QLabel *backgrounds = new QLabel(itemsWindow);
+    backgrounds->setText("<font color = RED> Select background: <font color/>");
     backgrounds->setFont(*fontForLabels);
     backgrounds->show();
 
@@ -216,55 +290,51 @@ void Form::on_levelEditor_clicked()
     backgroundThreeButton->show();
     backgroundFourButton->show();
 
-
     QLabel *selectBlock = new QLabel(itemsWindow);
     selectBlock->setText("<font color = RED> Select block: <font color/>");
     selectBlock->setFont(*fontForLabels);
     selectBlock->show();
-    selectBlock->setGeometry(0, 225, 250, 60);
-
-    itemsWindow->setScene(itemsWindowScene);
+    selectBlock->setGeometry(0, 235, selectBlock->width(), selectBlock->height());
 
     Block *emptyBlock = new EmptyBlock();
     itemsWindowScene->addItem(emptyBlock);
-    emptyBlock->setPos(-375, -330);
+    emptyBlock->setPos(-370, -340);
 
     Block *block = new MonoBlock();
     itemsWindowScene->addItem(block);
-    block->setPos(-343, -330);
+    block->setPos(-338, -340);
 
     Block *redBlock = new RedBlock();
     itemsWindowScene->addItem(redBlock);
-    redBlock->setPos(-311, -330);
+    redBlock->setPos(-306, -340);
 
     Block *greenBlock = new GreenBlock();
     itemsWindowScene->addItem(greenBlock);
-    greenBlock->setPos(-279, -330);
+    greenBlock->setPos(-274, -340);
 
     Block *blueBlock = new BlueBlock();
     itemsWindowScene->addItem(blueBlock);
-    blueBlock->setPos(-247, -330);
+    blueBlock->setPos(-242, -340);
 
     Block *magentaBlock = new MagentaBlock();
     itemsWindowScene->addItem(magentaBlock);
-    magentaBlock->setPos(-215, -330);
+    magentaBlock->setPos(-210, -340);
 
     Block *yellowBlock = new YellowBlock();
     itemsWindowScene->addItem(yellowBlock);
-    yellowBlock->setPos(-183, -330);
+    yellowBlock->setPos(-178, -340);
 
     QLabel *currentBlockLabel = new QLabel(itemsWindow);
     currentBlockLabel->setText("<font color = RED> Current selection: <font color/>");
     currentBlockLabel->setFont(*fontForLabels);
     currentBlockLabel->show();
-    currentBlockLabel->setGeometry(0, 360, 250, 60);
-
+    currentBlockLabel->setGeometry(0, 360, currentBlockLabel->width(), currentBlockLabel->height());
 
     Constants::currentBlock = new EmptyBlock();
     itemsWindowScene->addItem(Constants::currentBlock);
-    Constants::currentBlock->setPos(-105, 100);
+    Constants::currentBlock->setPos(-274, -225);
 
-
+    // connect the various background buttons to actual background loading
     connect(backgroundOneButton, SIGNAL(clicked()), this, SLOT(backgroundOne_clicked()));
     connect(backgroundTwoButton, SIGNAL(clicked()), this, SLOT(backgroundTwo_clicked()));
     connect(backgroundThreeButton, SIGNAL(clicked()), this, SLOT(backgroundThree_clicked()));
@@ -274,21 +344,18 @@ void Form::on_levelEditor_clicked()
     save->setText("Save");
     save->setGeometry(65, 500, 100, 25);
     save->setFont(font);
-
     connect(save, SIGNAL(clicked()), this, SLOT(save_clicked()));
 
     QPushButton *done = new QPushButton(itemsWindow);
     done->setText("Done");
     done->setGeometry(10, 550, 100, 25);
     done->setFont(font);
-
     connect(done, SIGNAL(clicked()), this, SLOT(done_clicked()));
 
     QPushButton *reset = new QPushButton(itemsWindow);
     reset->setText("Reset");
     reset->setGeometry(120, 550, 100, 25);
     reset->setFont(font);
-
     connect(reset, SIGNAL(clicked()), this, SLOT(reset_clicked()));
 
     save->show();
@@ -297,48 +364,59 @@ void Form::on_levelEditor_clicked()
 
     m_ui->view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     itemsWindow->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
-
+    itemsWindow->setScene(itemsWindowScene);
     itemsWindow->show();    // display the new view
-
 }
 
+
+// slot to load background 1 for the level editor
 void Form::backgroundOne_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
 }
 
+
+// slot to load background 2 for the level editor
 void Form::backgroundTwo_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg2.jpg"));
 }
 
+
+// slot to load background 3 for the level editor
 void Form::backgroundThree_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg3.jpg"));
 }
 
+
+// slot to load background 4 for the level editor
 void Form::backgroundFour_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg4.jpg"));
 }
 
-//if the done button is clicked
+
+// if the done button is clicked in the level editor
 void Form::done_clicked()
 {
-    qDebug() << "size = " << Constants::colors.size();
-    qDebug() << "size = " << Constants::positions.size();
+    // play the level start music
+    QSound *intro = new QSound("intro.wav", 0);
+    intro->setLoops(1);
+    intro->play();
 
+    // sleep for 3 secs so that the intro music can finish playing
+    SleeperThread *t = new SleeperThread();
+    t->msleep(5000);
 
-    for (int i = 0; i < 21; i++)
+    // remove the transparent "unselected" blocks from the level editor and double
+    // the transparency for the selected blocks
+    for (int i = 0; i < 20; i++)
     {
         for (int j = 0; j < 27; j++)
         {
-            qDebug() << "1 " << Constants::blocks[i][j]->pos();
-
-
             if (!Constants::positions.contains(Constants::blocks[i][j]->pos()))
                 m_ui->view->scene()->removeItem(Constants::blocks[i][j]);
-
             else
                 Constants::blocks[i][j]->setOpacity(2.0);
         }
@@ -349,34 +427,27 @@ void Form::done_clicked()
     setMaximumSize(QSize(Constants::mainViewWidth, Constants::windowHeight));   // change the maximum size of the window
     move(250, 10);          // relocate the window after it's dimensions change
 
-
-    //Ball *ball = new Ball();
-
-    ball = new Ball(); // create ball in the level editor
-
+    ball = new Ball();                  // create ball in the level editor
     m_ui->view->scene()->addItem(ball);
 
-    playersShip = new SpaceShip();
+    playersShip = new SpaceShip();      // create spaceship in the level editor
     m_ui->view->scene()->addItem(playersShip);
 
     QTimer *timer = new QTimer();       // create a new QTimer() instance
-
     QObject::connect(timer, SIGNAL(timeout()), m_ui->view->scene(), SLOT(advance()));
 
     // Set the timer to trigger every 0 ms.
     timer->start(0);
 
     Constants::inLevelEditorMode = false;
-
 }
 
 
 // if the reset button gets clicked
 void Form::reset_clicked()
 {
-    // clear the positions vector so that the previously clicked blocks don't get drawn
+    // clear the positions and colors vectors so that the previously clicked blocks don't get drawn
     Constants::positions.clear();
-
     Constants::colors.clear();
 
     // delete the board pointer and create a fresh instance of the board
@@ -388,18 +459,18 @@ void Form::reset_clicked()
 // if the save button gets clicked
 void Form::save_clicked()
 {
+    // open file for writing
     QFile file("levels.txt");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         qDebug() << "Cannot open file for writing: ";
-        exit(0);
+        exit(-1);
     }
 
     QTextStream out(&file);
 
-    qDebug() << "kabaddi " << Constants::positions.size();
-
-    for (int i = 0; i < 21; i++)
+    // write each block to the file (the block's color's initial gets written)
+    for (int i = 0; i < 20; i++)
     {
         for (int j = 0; j < 27; j++)
         {
@@ -413,7 +484,7 @@ void Form::save_clicked()
                     switch(Constants::colors.at(k))
                     {
                         case 0:
-                            out << "w";        // don't know if space is needed
+                            out << "w";
                             break;
                         case 2:
                             out << "r";
@@ -441,14 +512,10 @@ void Form::save_clicked()
             }
 
             if (temp == false)
-            {
                 out << "t";
-
-            }
         }
 
         out << endl;
-
     }
 }
 
@@ -458,39 +525,27 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
 {
     switch(event->key())
     {
-        case Qt::Key_A: //Key_Left
-            if (playersShip->getShipPosX() <= -340)
+        case Qt::Key_A:
+            if (playersShip->getShipPosX() <= -300)
                 playersShip->moveBy(0, 0);
-
             else
             {
-                playersShip->moveBy(-20,0);
-                playersShip->setShipPosX(-20);
-                //qDebug() << playersShip->getShipPosX();
+                playersShip->moveBy(-30,0);
+                playersShip->setShipPosX(-30);
                 ball->setShipPositon(playersShip->getShipPosX());
-                //playersShip->setShipDirection(1);
-                //qDebug() << playersShip->getShipDirection();
-                //qDebug() << "if 1 works";
             }
-
             break;
 
-        case Qt::Key_D: //Key_Right
-
-            if (playersShip->getShipPosX() >= 340)
+        case Qt::Key_D:
+            if (playersShip->getShipPosX() >= 300)
                 playersShip->moveBy(0, 0);
-
             else
             {
-                playersShip->moveBy(20,0);
-                playersShip->setShipPosX(20);
-                //qDebug() << playersShip->getShipPosX();
+                qDebug() << playersShip->pos();
+                playersShip->moveBy(30,0);
+                playersShip->setShipPosX(30);
                 ball->setShipPositon(playersShip->getShipPosX());
-                //playersShip->setShipDirection(2);
-                //qDebug() << playersShip->getShipDirection();
-                //qDebug() << "if 2 works";
             }
-
             break;
 
         case Qt::Key_Space:
@@ -503,23 +558,16 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
     }
 }
 
-void Form::soundEffect()
-{
-      QSound *soundEffect = new QSound("/Users/SkyNet/Desktop//barebear.wav",0);
-      soundEffect->setLoops(-1);
-      soundEffect->play();
-  }
 
-
+// if load game is clicked on the splash screen
 void Form::on_load_clicked()
 {
-
+    // open the file for reading
     QFile file("levels.txt");
     if (!file.open(QIODevice::ReadOnly))
     {
         qDebug() << "Cannot open file for writing: ";
-
-
+        exit(-1);
     }
 
     if (!file.exists())
@@ -529,35 +577,27 @@ void Form::on_load_clicked()
         err->show();
     }
 
-
-    hideElements(m_ui);
+    hideElements(m_ui);     // hide all the elements on the splash screen
 
     resize(Constants::mainViewWidth, Constants::windowHeight);      // expand the window size
     setMinimumSize(QSize(Constants::mainViewWidth, Constants::windowHeight));   // change the minimum size of the window
     setMaximumSize(QSize(Constants::mainViewWidth, Constants::windowHeight));   // change the maximum size of the window
-
     m_ui->view->setGeometry(0, 0, Constants::mainViewWidth, Constants::windowHeight);
 
     Constants::levelNumber = 6;
-
     Board* board = new Board(m_ui->view);
 
-
-
-    ball = new Ball(); // create ball in the level editor
-
+    ball = new Ball();
     m_ui->view->scene()->addItem(ball);
 
     playersShip = new SpaceShip();
     m_ui->view->scene()->addItem(playersShip);
 
-    QTimer *timer = new QTimer();       // create a new QTimer() instance
-
+    QTimer *timer = new QTimer();
     QObject::connect(timer, SIGNAL(timeout()), m_ui->view->scene(), SLOT(advance()));
 
-    // Set the timer to trigger every 0 ms.
+    // Set the timer to trigger every 5 ms.
     timer->start(5);
 
     Constants::inLevelEditorMode = false;
-
 }

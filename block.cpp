@@ -67,6 +67,8 @@ int SingleBlock::colorSelected = 7;
 // Added by Manpreet Kohli
 void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
+
+    qDebug() << "whoa " << this->scene()->width();
     qDebug() << "selected " << colorSelected;
     if (Constants::inLevelEditorMode == true)
     {
@@ -84,7 +86,7 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
             {
                 case 0:
                     qDebug() << "color set to 0";
-                    Constants::currentBlock = new Block();
+                    Constants::currentBlock = new MonoBlock();
                     break;
 
                 case 2:
@@ -122,7 +124,7 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
             this->scene()->addItem(Constants::currentBlock);
 
-            Constants::currentBlock->setPos(-105, 100);
+            Constants::currentBlock->setPos(-274, -225);
         }
 
         else //if (this->scene()->width() > Constants::itemsWindowViewWidth)
@@ -140,15 +142,11 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
                 this->setOpacity(2.0);
 
-                qDebug() << "wha " << this->getColor2();
-
                 Constants::positions.push_back(this->scenePos());
                 Constants::colors.push_back(this->getColor2());
 
             }
 
-            qDebug() << "okgat " << this->pos();
-            qDebug() << "this is me yo " << this->scenePos();
 
             update(this->boundingRect());
             update(this->sceneBoundingRect());
@@ -225,9 +223,9 @@ void Block::paint(QPainter *painter,
 
 MonoBlock::MonoBlock()
 {
-    //Set color to red
-    setColor1(0);
-    setColor2(1);
+    //Set color to black
+    setColor1(1);
+    setColor2(0);
 
     QGraphicsItem *oneBlock = new SingleBlock(this);
 }
@@ -248,7 +246,7 @@ void MonoBlock::paint(QPainter *painter,
 // Added by Manpreet Kohli
 EmptyBlock::EmptyBlock()
 {
-    //Set color to red
+    //Set color to transparent
     setColor1(7);
     setColor2(7);
 

@@ -25,7 +25,8 @@ Ball::Ball()
     count = 3;
     ballImage.load(":soccer.png");          // load an image for the ball
     ballImage.load(":cricketball.png");     // load an image for the ball
-    directionX =  1;                         // set the X-axis increment for the movement
+    directionX = 1;                         // set the X-axis increment for the movement
+
     directionY = -1;                        // set the Y-axis increment for the movement
     positionX = 0;                          // initial X coordinate of the ball
     positionY = 0;                          // initial Y coordinate of the ball
@@ -36,6 +37,10 @@ Ball::Ball()
     topEdge = false;
     spaceshipHit = true;
     setPos(positionX, positionY);           // set initial position of the ball
+
+
+    t = new SleeperThread();
+
 }
 
 // destructor
@@ -47,13 +52,15 @@ Ball::~Ball() //Ivan
 // function that paints the ball below the loaded image
 void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+//    painter->drawEllipse(375, 625, 15, 15);
     painter->drawPixmap(375, 625, 20, 20, ballImage);
 }
 
 // Define the bounding rectangle of the object for collision detection
 QRectF Ball::boundingRect() const
 {
-    return QRectF(375, 625, 20, 20);
+     return QRectF(375, 625, 20, 20);
+
 }
 
 // function set the players Ship position to be used in the physics portion in the advance function
@@ -211,8 +218,8 @@ void Ball::advance(int phase)
                     if(((Block *)(hits.at(0)))->getColor2() != 1)
                     {
                         ((Block *)(hits.at(0)))->setVisible(false);
-                        ((Block *)(hits.at(0)))->setColor1(0);
-                        ((Block *)(hits.at(0)))->setColor2(1);
+                        ((Block *)(hits.at(0)))->setColor1(1);
+                        ((Block *)(hits.at(0)))->setColor2(0);
                         ((Block *)(hits.at(0)))->show();
                     }
                     else
@@ -492,33 +499,49 @@ void Ball::advance(int phase)
     }
 
     // if the ball went beyond the bottom of the screen
-    if (positionY >= 85)
+//    if (positionY >= 85)
+    if (positionY >= 95)
     {
         if (count == 3)
         {
             this->scene()->removeItem(Constants::life3);
             count--;
-            //QSound *spawnSound = new QSound("start.wav", 0);
-            //spawnSound->setLoops(1);
-            //spawnSound->play();
+
+            QSound *spawnSound = new QSound("start.wav", 0);
+            spawnSound->setLoops(1);
+            spawnSound->play();
+
+
+            t->msleep(3000);
+
 
         }
         else if (count == 2)
         {
             this->scene()->removeItem(Constants::life2);
             count--;
+            QSound *spawnSound = new QSound("start.wav", 0);
+            spawnSound->setLoops(1);
+            spawnSound->play();
             //QSound *spawnSound = new QSound("start.wav", 0);
             //spawnSound->setLoops(1);
             //spawnSound->play();
+
+            t->msleep(3000);
 
         }
         else if (count == 1)
         {
             this->scene()->removeItem(Constants::life1);
             count--;
+            QSound *spawnSound = new QSound("start.wav", 0);
+            spawnSound->setLoops(1);
+            spawnSound->play();
             //QSound *spawnSound = new QSound("start.wav", 0);
             //spawnSound->setLoops(1);
             //spawnSound->play();
+
+            t->msleep(3000);
         }
         else if (count == 0)
         {
@@ -531,6 +554,11 @@ void Ball::advance(int phase)
             //QSound *gameover = new QSound("gameover.wav", 0);
             //gameover->setLoops(1);
             //gameover->play();
+
+            QSound *gameover = new QSound("gameover.wav", 0);
+            gameover->setLoops(1);
+            gameover->play();
+
 
             QGraphicsTextItem *gameOver = this->scene()->addText(QString("GAME OVER"), *font);
             gameOver->setDefaultTextColor(Qt::cyan);
@@ -552,7 +580,12 @@ void Ball::advance(int phase)
         topEdge = false;
         spaceshipHit = true;        
     }
-    
+
+    // Ivan Collazo
+    // checks to see if ball collides with something then does ball physics
+
+
+
     // set the new position of the ball
     setPos(positionX,positionY);
     

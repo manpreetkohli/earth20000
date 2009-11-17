@@ -14,6 +14,8 @@ Author: Natraj Subramanian
 #include <QtGui>
 #include "block.h"
 
+#include "block.h"
+
 #define LEVELW 600
 #define LEVELH 300
 class levelOne: public QGraphicsItem
@@ -27,6 +29,11 @@ public:
                            const QStyleOptionGraphicsItem *option,
                            QWidget *widget = 0);
     int generateRandomNumber(int min, int max);
+
+
+
+
+//    Block *block[6][16];
 
 };
 
