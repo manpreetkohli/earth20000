@@ -215,7 +215,7 @@ void Ball::advance(int phase)
                           ********************************/
                 if(spaceshipHit == true)
                 {
-                    if(((Block *)(hits.at(0)))->getColor2() != 1)
+                    if(((Block *)(hits.at(0)))->getColor2() != 0)
                     {
                         ((Block *)(hits.at(0)))->setVisible(false);
                         ((Block *)(hits.at(0)))->setColor1(1);

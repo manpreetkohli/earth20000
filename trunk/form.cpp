@@ -526,10 +526,13 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
     switch(event->key())
     {
         case Qt::Key_A:
-            if (playersShip->getShipPosX() <= -300)
+
+        qDebug() << playersShip->pos();
+            if (playersShip->getShipPosX() <= -330)
                 playersShip->moveBy(0, 0);
             else
             {
+
                 playersShip->moveBy(-30,0);
                 playersShip->setShipPosX(-30);
                 ball->setShipPositon(playersShip->getShipPosX());
@@ -537,7 +540,8 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
             break;
 
         case Qt::Key_D:
-            if (playersShip->getShipPosX() >= 300)
+            qDebug() << playersShip->pos();
+            if (playersShip->getShipPosX() >= 330)
                 playersShip->moveBy(0, 0);
             else
             {
