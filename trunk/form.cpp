@@ -23,9 +23,13 @@
 #include "constants.h"
 #include "enemyShip.h"
 #include "form.h"
+#include "shipbullet.h" // Ivan Collazo
+#include "shipsmissiles.h" // Ivan Collazo
 
 // create an instance of the player's space ship
 SpaceShip *playersShip; // Ivan Collazo
+ShipBullet *bullets; // Ivan Collazo
+ShipsMissiles *missiles; //Ivan Collazo
 
 Ball *ball;        // create an instance of the ball
 
@@ -552,9 +556,28 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
             }
             break;
 
+        // Ivan Collazo
+        // Case statement when space bar is pressed to fire weapons
         case Qt::Key_Space:
-            qDebug() << "FIRE";
-            break;
+             if ((Constants::levelNumber == 1) || (Constants::levelNumber == 2)) // Levels with no weapons fired
+             {
+                 qDebug() << "NO WEAPONS";
+             }
+             else if (Constants::levelNumber == 5) // Level with Missiles Fired
+             {
+                 ShipsMissiles *missiles = new ShipsMissiles(); // Ivan Collazo
+                 missiles->setShipPosition(playersShip->getShipPosX());
+                 board->scene->addItem(missiles); // Ivan Collazo
+                 qDebug() << "FIRE MISSILES";
+             }
+             else // Level with Bullets Fired
+             {
+                 bullets = new ShipBullet(); // Ivan Collazo
+                 bullets->setShipPosition(playersShip->getShipPosX());
+                 board->scene->addItem(bullets); // Ivan Collazo
+                 qDebug() << "FIRE";
+             }
+             break;
 
         case Qt::Key_Return:
             board->connectTimerToBall();         // connect the timer to the ball
