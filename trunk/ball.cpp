@@ -207,6 +207,10 @@ void Ball::advance(int phase)
         {
             if(hits.first()->type() == BLOCKID)
             {
+                QSound *blockHit = new QSound("brick.wav", 0);
+                blockHit->setLoops(1);
+                blockHit->play();
+                
                 // Copyright of Natraj Subramanian
                 // I own you
 
