@@ -24,7 +24,8 @@ class Form : public QWidget
 
     public:
         Form(QWidget *parent = 0);
-        ~Form();     
+        ~Form();
+        void stopTimer();
 
     protected:
         void changeEvent(QEvent *e);

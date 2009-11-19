@@ -28,7 +28,7 @@
 void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
 {
     QGraphicsTextItem *levelInfo = scene->addText(levelNumber, *font);
-    levelInfo->setDefaultTextColor(Qt::cyan);
+    levelInfo->setDefaultTextColor(Qt::white);
     levelInfo->setOpacity(0.6);
     levelInfo->setPos(15, 0);
 }
@@ -47,9 +47,10 @@ Board::Board(QGraphicsView *view)
     scene->setSceneRect(0, 0, width, height);       // set dimensions of the scene
 
     QFont *font = new QFont();
-
+    font->setStyleHint(QFont::SansSerif, QFont::PreferAntialias);
+    font->setLetterSpacing(QFont::PercentageSpacing, 125);
     font->setBold(true);
-    font->setPointSize(15);
+    font->setPointSize(14);
 
     if (Constants::levelNumber == 0)
     {
@@ -59,6 +60,7 @@ Board::Board(QGraphicsView *view)
     else if (Constants::levelNumber == 1)
     {
         levelOne *theFirstLevel = new levelOne(scene);
+
         displayHUDLevel(scene, "LEVEL 1", font);
     }
 
@@ -78,8 +80,11 @@ Board::Board(QGraphicsView *view)
         displayHUDLevel(scene, "SAVED GAME", font);
     }
 
+    font->setFamily("SansSerif");
+    font->setBold(true);
+    font->setPointSize(15);    
     QGraphicsTextItem *lives = scene->addText(QString("SPAWNS: "), *font);
-    lives->setDefaultTextColor(Qt::cyan);
+    lives->setDefaultTextColor(Qt::red);
     lives->setOpacity(0.6);
     lives->setPos(485, 0);
 
@@ -114,6 +119,12 @@ void Board::connectTimerToBall()
     QObject::connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
 
      // Set the timer to trigger every 3 ms.
-    timer->start(7);
+    timer->start(7);    
 }
+
+void Board::stopTimer()
+{
+    QObject::disconnect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+}
+
 

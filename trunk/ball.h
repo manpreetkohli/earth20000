@@ -12,25 +12,23 @@
 #include <QGraphicsItem>
 #include "sleeperthread.h"
 
+
 class Ball : public QGraphicsItem
 {
     private:
-        QPixmap ballImage;
-        qreal directionX, directionY, positionX, positionY, ballDirection;
-        qreal viewWidth, viewHeight, width, height, shipXPosition;
+        QPixmap ballImage;        
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
         QRectF boundingRect() const;
         void setBounceBounds(qreal x, qreal y);
         void advance(int phase);
 
-
          SleeperThread *t;
-
-
         int count;
     public:
         Ball();
-
+        void moveX(int amount);
+        qreal directionX, directionY, positionX, positionY, ballDirection;
+        qreal viewWidth, viewHeight, width, height, shipXPosition;
         ~Ball();
         void setShipPositon (int pos);
         bool posXDir;
