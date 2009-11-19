@@ -22,6 +22,7 @@ class Board
         Board(QGraphicsView *view);
         void connectTimerToBall();
         void displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font);
+        void stopTimer();
 
 };
 #endif // BOARD_H

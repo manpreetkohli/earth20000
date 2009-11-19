@@ -92,7 +92,7 @@ void Form::hideElements(Ui::Form *m_ui)
     m_ui->highScores->close();
     m_ui->credits->close();
     m_ui->exit->close();
-    
+
     delete m_ui->title;
     delete m_ui->newGame;
     delete m_ui->levelEditor;
@@ -116,9 +116,17 @@ void Form::loadLevel1()
     cont->hide();
     delete cont;
 
-    m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
-    m_ui->view->setRenderHint(QPainter::Antialiasing);
-    Constants::levelNumber = 1;
+    Constants::levelNumber = 2;
+    if(Constants::levelNumber == 1)
+    {
+        m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
+    }
+    else
+    {
+        m_ui->view->setBackgroundBrush(QPixmap(":level3.jpg"));
+    }
+
+    m_ui->view->setRenderHint(QPainter::Antialiasing);    
     board = new Board(m_ui->view);       // add the board to the view
 
     // create an instance of the player's spaceship
@@ -531,12 +539,11 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
     {
         case Qt::Key_A:
 
-        qDebug() << playersShip->pos();
+        //qDebug() << playersShip->pos();
             if (playersShip->getShipPosX() <= -330)
                 playersShip->moveBy(0, 0);
             else
             {
-
                 playersShip->moveBy(-30,0);
                 playersShip->setShipPosX(-30);
                 ball->setShipPositon(playersShip->getShipPosX());
@@ -544,12 +551,12 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
             break;
 
         case Qt::Key_D:
-            qDebug() << playersShip->pos();
+            //qDebug() << playersShip->pos();
             if (playersShip->getShipPosX() >= 330)
                 playersShip->moveBy(0, 0);
             else
             {
-                qDebug() << playersShip->pos();
+                //qDebug() << playersShip->pos();
                 playersShip->moveBy(30,0);
                 playersShip->setShipPosX(30);
                 ball->setShipPositon(playersShip->getShipPosX());
@@ -580,7 +587,13 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
              break;
 
         case Qt::Key_Return:
-            board->connectTimerToBall();         // connect the timer to the ball
+            if(!board->timer->isActive())
+             {
+                board->connectTimerToBall();         // connect the timer to the ball
+                break;
+            }
+        case Qt::Key_T:
+            board->stopTimer();
             break;
     }
 }
@@ -628,3 +641,4 @@ void Form::on_load_clicked()
 
     Constants::inLevelEditorMode = false;
 }
+

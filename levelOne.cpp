@@ -23,7 +23,7 @@ Author: Natraj Subramanian
 levelOne::levelOne(QGraphicsScene *theScene)
 {
     xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;
-    yPos = -630 + (BOUNDHEIGHT)/(5/2);
+    yPos = -630 + (BOUNDHEIGHT)/(7/2);
 
     // Declare variable to hold seconds in clock
     time_t seconds;

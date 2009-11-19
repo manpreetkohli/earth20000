@@ -10,7 +10,9 @@ HEADERS += board.h \
     constants.h \
     leveleditor.h \
     loadGame.h \
-    sleeperthread.h
+    sleeperthread.h \
+    shipbullet.h \
+    shipsmissiles.h
 SOURCES += board.cpp \
     ball.cpp \
     Main.cpp \
@@ -23,7 +25,9 @@ SOURCES += board.cpp \
     enemyShip.cpp \
     leveleditor.cpp \
     loadGame.cpp \
-    sleeperthread.cpp
+    sleeperthread.cpp \
+    shipbullet.cpp \
+    shipsmissiles.cpp
 FORMS += form.ui
 RESOURCES += Images.qrc
 OTHER_FILES += 

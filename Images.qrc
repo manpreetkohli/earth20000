@@ -13,5 +13,6 @@
         <file>fire.png</file>
         <file>alienSpaceship.png</file>
         <file>alienTestShip.png</file>
+        <file>level3.jpg</file>
     </qresource>
 </RCC>
