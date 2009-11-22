@@ -242,22 +242,18 @@ void Ball::advance(int phase)
                 qDebug() << "BlockX + OUTLINEW: " << blockX + OUTLINEW;
                 qDebug() << "BlockY + OUTLINEH/2: " << blockY + OUTLINEH/2 << "\n";*/
                 
-                // When the point of impact is on the BOTTOM
-                blockX = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getXPos();		// not sure if needed
-                blockY = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getYPos();		// not sure if needed
-
-                // When the point of impact is on the LEFT BOTTOM
+                                // When the point of impact is on the BOTTOM
                 // end of the block. Y > blockY simply because the
                 // Y axes is inverted in the scope of the game board
                 // and hence, in reality, it is checking if the ball has
                 // hit the bottom side of the block.
-                if((positionX < blockX + OUTLINEW/2 &&
-                    positionX >= blockX - OUTLINEW) &&
-                    positionY >= blockY + OUTLINEH/2 + SPACE + 1)
+                if((positionX >= blockX - 19 &&
+                    positionX <= blockX + 27) &&
+                   positionY >= blockY + 25)
                 {
                     if(posXDir == true && posYDir == true)
                     {
-//                        qDebug() << "I entered 1";
+                        //qDebug() << "I entered 1";
                         directionX = directionX;
                         directionY = -directionY;
                         posXDir = true;
@@ -265,50 +261,24 @@ void Ball::advance(int phase)
                     }
                     if(posXDir == false && posYDir == true)
                     {
-//                        qDebug() << "I entered 2";
+                        //qDebug() << "I entered 2";
                         directionX = directionX;
                         directionY = -directionY;
                         posXDir = false;
                         posYDir = false;
                     }
+
                 }
-                // In order to see if the ball hit the RIGHT BOTTOM
-                // of a block, we check if the point of impact is farther
-                // from the X midpoint of the block and also that its
-                // not impacted it at the end of the block
-                // The Y condition is to check if the point of impact
-                // is at the lower end of the block.
-                if((positionX >= blockX + OUTLINEW/2 &&
-                    positionX >= blockX - OUTLINEW) &&
-                   positionY >= blockY + OUTLINEH/2 + SPACE + 1)
-                {
-                    if(posXDir == true && posYDir == true)
-                    {
-//                        qDebug() << "I entered 3";
-                        directionX = directionX;
-                        directionY = -directionY;
-                        posXDir = true;
-                        posYDir = false;
-                    }
-                    if(posXDir == false && posYDir == true)
-                    {
-//                        qDebug() << "I entered 4";
-                        directionX = directionX;
-                        directionY = -directionY;
-                        posXDir = false;
-                        posYDir = false;
-                    }
-                }
-                // If the ball hit the LOWER RIGHT SIDE of the block
+                // If the ball hit the RIGHT SIDE of the block
                 // Ball positionX is at the farther right end
                 // and ball positionY is at the lower end of the block
-                if((positionX > blockX + OUTLINEW - SPACE &&
-                   positionX <= blockX + OUTLINEW + SPACE +2) &&
-                   positionY > blockY + OUTLINEH/2)
+                if(positionX >= blockX + 25 &&
+                   (positionY <= blockY + 27 &&
+                    positionY >= blockY - 21))
                 {
                     if(posXDir == false && posYDir == true)
                     {
-//                        qDebug() << "I entered 5";
+                        //qDebug() << "I entered 5";
                         directionX = -directionX;
                         directionY = directionY;
                         posXDir = true;
@@ -316,47 +286,24 @@ void Ball::advance(int phase)
                     }
                     if(posXDir == false && posYDir == false)
                     {
-//                        qDebug() << "I entered 6";
+                        //qDebug() << "I entered 6";
                         directionX = -directionX;
                         directionY = directionY;
                         posXDir = true;
                         posYDir = false;
                     }
                 }
-                // If the ball hit the UPPER RIGHT SIDE of the block
-                // Ball positionX is at the farther right end
-                // Standard deviation for ball position x +- 2
-                // and ball positionY is at the upper end of the block
-                if((positionX > blockX + OUTLINEW - SPACE &&
-                   positionX <= blockX + OUTLINEW + SPACE +2) &&
-                   positionY <= blockY + OUTLINEH/2)
-                {
-                    if(posXDir == false && posYDir == true)
-                    {
-//                        qDebug() << "I entered 7";
-                        directionX = -directionX;
-                        directionY = directionY;
-                        posXDir = true;
-                        posYDir = true;
-                    }
-                    if(posXDir == false && posYDir == false)
-                    {
-//                        qDebug() << "I entered 8";
-                        directionX = -directionX;
-                        directionY = directionY;
-                        posXDir = true;
-                        posYDir = false;
-                    }
-                }
-                // If the ball hit the LOWER LEFT SIDE of the block
+                // If the ball hit the LEFT SIDE of the block
                 // Ball positionX is at the farther right end
                 // and ball positionY is at the lower end of the block
-                if(positionX <= blockX - OUTLINEW/2 - SPACE + 1 &&
-                   positionY > blockY + OUTLINEH/2)
+                if((positionX >= blockX - 21 &&
+                    positionX <= blockX - 16) &&
+                   (positionY <= blockY + 27 &&
+                    positionY >= blockY - 21))
                 {
                     if(posXDir == true && posYDir == true)
                     {
-//                        qDebug() << "I entered 9";
+                        //qDebug() << "I entered 9";
                         directionX = -directionX;
                         directionY = directionY;
                         posXDir = false;
@@ -364,49 +311,25 @@ void Ball::advance(int phase)
                     }
                     if(posXDir == true && posYDir == false)
                     {
-//                        qDebug() << "I entered 10";
+                        //qDebug() << "I entered 10";
                         directionX = -directionX;
                         directionY = directionY;
                         posXDir = false;
                         posYDir = false;
                     }
                 }
-                // If the ball hit the UPPER LEFT SIDE of the block
-                // Ball positionX is at the farther right end
-                // Standard deviation for ball position x +- 2
-                // and ball positionY is at the upper end of the block
-                if(positionX <= blockX - OUTLINEW/2 - SPACE + 1 &&
-                   positionY <= blockY + OUTLINEH/2)
-                {
-                    if(posXDir == true && posYDir == true)
-                    {
-//                        qDebug() << "I entered 11";
-                        directionX = -directionX;
-                        directionY = directionY;
-                        posXDir = false;
-                        posYDir = true;
-                    }
-                    if(posXDir == true && posYDir == false)
-                    {
-//                        qDebug() << "I entered 12";
-                        directionX = -directionX;
-                        directionY = directionY;
-                        posXDir = false;
-                        posYDir = false;
-                    }
-                }
-                // If the ball hits the LEFT TOP side of the block
+                // If the ball hits the TOP side of the block
                 // PositionY is calculated in such a way that there
                 // is a bit of a standard deviation involved with the
                 // actual impact point
-                if((positionX < blockX + OUTLINEW/2 &&
-                    positionX != blockX + OUTLINEW) &&
-                   (positionY < blockY - OUTLINEH/2 - SPACE - 1 ||
-                    positionY < blockY - OUTLINEH/2 - SPACE + 1))
+                if((positionX >= blockX - 19 &&
+                    positionX <= blockX + 27) &&
+                   (positionY >= blockY - 21 &&
+                    positionY <= blockY - 16))
                 {
                     if(posXDir == true && posYDir == false)
                     {
-//                        qDebug() << "I entered 13";
+                        //qDebug() << "I entered 13";
                         directionX = directionX;
                         directionY = -directionY;
                         posXDir = true;
@@ -414,30 +337,7 @@ void Ball::advance(int phase)
                     }
                     if(posXDir == false && posYDir == false)
                     {
-//                        qDebug() << "I entered 14";
-                        directionX = directionX;
-                        directionY = -directionY;
-                        posXDir = false;
-                        posYDir = true;
-                    }
-                }
-                // If the ball hits the TOP RIGHT side of the block
-                // This also includes the midpoint of the block
-                if((positionX >= blockX + OUTLINEW/2 &&
-                    positionX != blockX + OUTLINEW) &&
-                   positionY <= blockY - OUTLINEH/2 - SPACE + 1)
-                {
-                    if(posXDir == true && posYDir == false)
-                    {
-//                        qDebug() << "I entered 15";
-                        directionX = directionX;
-                        directionY = -directionY;
-                        posXDir = true;
-                        posYDir = true;
-                    }
-                    if(posXDir == false && posYDir == false)
-                    {
-//                        qDebug() << "I entered 16";
+                        //qDebug() << "I entered 14";
                         directionX = directionX;
                         directionY = -directionY;
                         posXDir = false;
@@ -445,6 +345,7 @@ void Ball::advance(int phase)
                     }
 
                 }
+
 
                 /** ********************************
                              END BLOCK COLLISION RULES

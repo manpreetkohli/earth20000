@@ -126,7 +126,7 @@ void Form::loadLevel1()
     Constants::cont->hide();
     delete Constants::cont;
 
-    Constants::levelNumber = 1;
+    Constants::levelNumber = 2;
     if(Constants::levelNumber == 1)
     {
         m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
