@@ -25,6 +25,7 @@
 #include "form.h"
 #include "shipbullet.h" // Ivan Collazo
 #include "shipsmissiles.h" // Ivan Collazo
+#include "powerup.h"
 
 // create an instance of the player's space ship
 SpaceShip *playersShip; // Ivan Collazo

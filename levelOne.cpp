@@ -78,6 +78,7 @@ levelOne::levelOne(QGraphicsScene *theScene)
                 block[i][j]->setYPos(yPos);
                 block[i][j]->scale(1.0, 1.0);
                 block[i][j]->setPos(xPos, yPos);
+                block[i][j]->setPowerup(0);
                 xPos += BLOCKW + SPACE;
                 theScene->addItem(block[i][j]);
 

@@ -21,6 +21,7 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
 {
     xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;       // 260
     yPos = -630 + (BOUNDHEIGHT)/(5);
+    int randomPowerBlock;
 
     // Declare variable to hold seconds in clock
     time_t seconds;
@@ -47,7 +48,8 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
              }
             else
             {
-                detColor = generateRandomNumber(0,5);
+                detColor = generateRandomNumber(0,10);
+                randomPowerBlock = generateRandomNumber(0,1);
 
                 if(detColor == 0)
                 {
@@ -73,6 +75,11 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
                 if(detColor == 5)
                 {
                     block[i][j] = new YellowBlock;
+                }
+
+                if(randomPowerBlock == 5)
+                {
+                    block[i][j]->setPowerup(1);
                 }
 
                 block[i][j]->setXPos(xPos);

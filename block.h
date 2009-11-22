@@ -1,12 +1,12 @@
 /**
   block.h
-
+  
   Header file for block.cpp
-
+  
   Contains the prototypes for the methods used in the block.cpp class.
 300
   Author: Natraj Subramanian
-
+      
   **/
 
 #ifndef BLOCK_H
@@ -34,15 +34,15 @@
 
 class SingleBlock : public QGraphicsItem
 {
-
-
+    
+    
 private:
     static int colorSelected;
-
+    
 public:
     int color1;
     int color2;
-    int xPos, yPos;
+    int xPos, yPos, hasPowerup;
     SingleBlock(QGraphicsItem *parent);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
@@ -50,16 +50,16 @@ public:
     virtual void setColor2(int theColor);
     virtual void setXPos(int thePos);
     virtual void setYPos(int thePos);
+    virtual void setPowerup(int value);
     virtual int type() const {return BLOCKID; }
     int getColor1();
     int getColor2();
     int getXPos();
     int getYPos();
+    int getPowerup();
     int getBlockNumber();
-
     // change to virtual
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
-    int generateRandomNumber(int min, int max);
 };
 
 class Block : public SingleBlock
@@ -84,7 +84,7 @@ public:
     EmptyBlock();
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-
+    
 };
 
 
@@ -102,20 +102,20 @@ class GreenBlock : public Block
 {
 public:
     GreenBlock();
-
+    
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-
+    
 };
 
 class BlueBlock : public Block
 {
 public:
     BlueBlock();
-
+    
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-
+    
 };
 
 
@@ -123,20 +123,20 @@ class MagentaBlock : public Block
 {
 public:
     MagentaBlock();
-
+    
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-
+    
 };
 
 class YellowBlock : public Block
 {
 public:
     YellowBlock();
-
+    
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-
+    
 };
 
 #endif
