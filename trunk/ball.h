@@ -11,6 +11,7 @@
 
 #include <QGraphicsItem>
 #include "sleeperthread.h"
+#include <QtGui>
 
 
 class Ball : public QGraphicsItem
@@ -21,6 +22,20 @@ class Ball : public QGraphicsItem
         QRectF boundingRect() const;
         void setBounceBounds(qreal x, qreal y);
         void advance(int phase);
+
+        void disconnectTimerAndBall();
+
+        int counter;
+
+
+        QGraphicsTextItem *storyText;
+
+        void loadStoryLevel2(QGraphicsScene *scene);
+        void loadStoryLevel3(QGraphicsScene *scene);
+
+        QPushButton *cont;
+
+        bool visibleFound;
 
          SleeperThread *t;
         int count;
@@ -37,6 +52,9 @@ class Ball : public QGraphicsItem
         bool leftEdge;
         bool topEdge;
         bool spaceshipHit;
+
+
+
 };
 
 #endif // BALL_H

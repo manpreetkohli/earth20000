@@ -28,7 +28,7 @@
 #include "powerup.h"
 
 // create an instance of the player's space ship
-SpaceShip *playersShip; // Ivan Collazo
+SpaceShip *Constants::playersShip; // Ivan Collazo
 ShipBullet *bullets; // Ivan Collazo
 ShipsMissiles *missiles; //Ivan Collazo
 
@@ -36,6 +36,9 @@ Ball *ball;        // create an instance of the ball
 
 bool Constants::inLevelEditorMode;
 int Constants::levelNumber;
+
+
+QTimer *Constants::timer;
 
 
 // constructor sets up the graphics item
@@ -104,6 +107,9 @@ void Form::hideElements(Ui::Form *m_ui)
 }
 
 
+
+int Constants::count;
+
 // function to start the first level of the game after the story screens
 void Form::loadLevel1()
 {
@@ -111,13 +117,16 @@ void Form::loadLevel1()
     SleeperThread *t = new SleeperThread();
     t->msleep(3000);
 
+
+    Constants::count = 3;
+
     storyText3->hide();
     delete storyText3;
 
-    cont->hide();
-    delete cont;
+    Constants::cont->hide();
+    delete Constants::cont;
 
-    Constants::levelNumber = 2;
+    Constants::levelNumber = 1;
     if(Constants::levelNumber == 1)
     {
         m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
@@ -131,16 +140,17 @@ void Form::loadLevel1()
     board = new Board(m_ui->view);       // add the board to the view
 
     // create an instance of the player's spaceship
-    playersShip = new SpaceShip (); // Ivan Collazo
+    Constants::playersShip = new SpaceShip (); // Ivan Collazo
 
     //EnemyShip *ship = new EnemyShip();
     //board->scene->addItem(ship);
 
     // add the player's spaceship to the board
-    board->scene->addItem(playersShip); // Ivan Collazo
+    board->scene->addItem(Constants::playersShip); // Ivan Collazo
 
     ball = new Ball();                  // create an instance of the ball
     board->scene->addItem(ball);        // add the ball to the board
+
 }
 
 
@@ -152,7 +162,7 @@ void Form::loadStoryScreen3()
     delete storyText2;
 
     // disconnect previous connection for the continue button
-    cont->disconnect(this, SLOT(loadStoryScreen3()));
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen3()));
 
     font->setBold(true);
     font->setPointSize(80);
@@ -169,7 +179,7 @@ void Form::loadStoryScreen3()
     intro->play();
 
     // if the continue button is clicked on the screen, load the first level
-    QObject::connect(cont, SIGNAL(clicked()), this, SLOT(loadLevel1()));
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadLevel1()));
 }
 
 
@@ -181,7 +191,7 @@ void Form::loadStoryScreen2()
     delete storyText1;
 
     // disconnect previous connection for the continue button
-    cont->disconnect(this, SLOT(loadStoryScreen2()));
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen2()));
 
     font->setBold(true);
     font->setPointSize(73);
@@ -193,9 +203,10 @@ void Form::loadStoryScreen2()
     storyText2->show();
 
     // if the continue button is clicked on the screen, load the third screen of the story line
-    QObject::connect(cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen3()));
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen3()));
 }
 
+QPushButton *Constants::cont;
 
 // function called when the "New Game" button is clicked on the splash screen
 // hides all the elements of the splash screen and displays the first page of the story line
@@ -218,15 +229,15 @@ void Form::on_newGame_clicked()
     font->setBold(true);
     font->setWeight(75);
 
-    cont = new QPushButton(this);
-    cont->setText("CONTINUE");
-    cont->setGeometry(300, 600, 150, 40);
-    cont->setFont(*font);
-    cont->show();
-    cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+    Constants::cont = new QPushButton(this);
+    Constants::cont->setText("CONTINUE");
+    Constants::cont->setGeometry(300, 600, 150, 40);
+    Constants::cont->setFont(*font);
+    Constants::cont->show();
+    Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
 
     // if the continue button is clicked on the screen, call load the second screen of the story line
-    QObject::connect(cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen2()));
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen2()));
 }
 
 
@@ -443,14 +454,14 @@ void Form::done_clicked()
     ball = new Ball();                  // create ball in the level editor
     m_ui->view->scene()->addItem(ball);
 
-    playersShip = new SpaceShip();      // create spaceship in the level editor
-    m_ui->view->scene()->addItem(playersShip);
+    Constants::playersShip = new SpaceShip();      // create spaceship in the level editor
+    m_ui->view->scene()->addItem(Constants::playersShip);
 
-    QTimer *timer = new QTimer();       // create a new QTimer() instance
-    QObject::connect(timer, SIGNAL(timeout()), m_ui->view->scene(), SLOT(advance()));
+    Constants::timer = new QTimer();       // create a new QTimer() instance
+    QObject::connect(Constants::timer, SIGNAL(timeout()), m_ui->view->scene(), SLOT(advance()));
 
     // Set the timer to trigger every 0 ms.
-    timer->start(0);
+    Constants::timer->start(0);
 
     Constants::inLevelEditorMode = false;
 }
@@ -540,27 +551,27 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
     {
         case Qt::Key_A:
 
-        //qDebug() << playersShip->pos();
-            if (playersShip->getShipPosX() <= -330)
-                playersShip->moveBy(0, 0);
+//        qDebug() << playersShip->pos();
+            if (Constants::playersShip->getShipPosX() <= -330)
+                Constants::playersShip->moveBy(0, 0);
             else
             {
-                playersShip->moveBy(-30,0);
-                playersShip->setShipPosX(-30);
-                ball->setShipPositon(playersShip->getShipPosX());
+                Constants::playersShip->moveBy(-30,0);
+                Constants::playersShip->setShipPosX(-30);
+                ball->setShipPositon(Constants::playersShip->getShipPosX());
             }
             break;
 
         case Qt::Key_D:
-            //qDebug() << playersShip->pos();
-            if (playersShip->getShipPosX() >= 330)
-                playersShip->moveBy(0, 0);
+//            qDebug() << playersShip->pos();
+            if (Constants::playersShip->getShipPosX() >= 330)
+                Constants::playersShip->moveBy(0, 0);
             else
             {
-                //qDebug() << playersShip->pos();
-                playersShip->moveBy(30,0);
-                playersShip->setShipPosX(30);
-                ball->setShipPositon(playersShip->getShipPosX());
+//                qDebug() << playersShip->pos();
+                Constants::playersShip->moveBy(30,0);
+                Constants::playersShip->setShipPosX(30);
+                ball->setShipPositon(Constants::playersShip->getShipPosX());
             }
             break;
 
@@ -574,14 +585,14 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
              else if (Constants::levelNumber == 5) // Level with Missiles Fired
              {
                  ShipsMissiles *missiles = new ShipsMissiles(); // Ivan Collazo
-                 missiles->setShipPosition(playersShip->getShipPosX());
+                 missiles->setShipPosition(Constants::playersShip->getShipPosX());
                  board->scene->addItem(missiles); // Ivan Collazo
                  qDebug() << "FIRE MISSILES";
              }
              else // Level with Bullets Fired
              {
                  bullets = new ShipBullet(); // Ivan Collazo
-                 bullets->setShipPosition(playersShip->getShipPosX());
+                 bullets->setShipPosition(Constants::playersShip->getShipPosX());
                  board->scene->addItem(bullets); // Ivan Collazo
                  qDebug() << "FIRE";
              }
@@ -597,6 +608,50 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
             board->stopTimer();
             break;
     }
+}
+
+
+void Form::loadLevel2()
+{
+
+    Constants::cont->disconnect(this, SLOT(loadLevel2()));
+    Constants::cont->hide();
+
+
+    if (Constants::life1 != NULL)
+        Constants::life1->show();
+
+    if (Constants::life2 != NULL)
+        Constants::life2->show();
+
+    if (Constants::life3 != NULL)
+        Constants::life3->show();
+
+    // sleep for 3 secs so that the intro music can finish playing
+    SleeperThread *t = new SleeperThread();
+    t->msleep(3000);
+
+    Constants::levelNumber = 2;
+    if(Constants::levelNumber == 1)
+    {
+        m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
+    }
+    else
+    {
+        m_ui->view->setBackgroundBrush(QPixmap(":level3.jpg"));
+    }
+
+    m_ui->view->setRenderHint(QPainter::Antialiasing);
+    board = new Board(m_ui->view);       // add the board to the view
+
+    // create an instance of the player's spaceship
+    Constants::playersShip = new SpaceShip (); // Ivan Collazo
+
+    // add the player's spaceship to the board
+    board->scene->addItem(Constants::playersShip); // Ivan Collazo
+
+    ball = new Ball();                  // create an instance of the ball
+    board->scene->addItem(ball);        // add the ball to the board
 }
 
 
@@ -631,14 +686,14 @@ void Form::on_load_clicked()
     ball = new Ball();
     m_ui->view->scene()->addItem(ball);
 
-    playersShip = new SpaceShip();
-    m_ui->view->scene()->addItem(playersShip);
+    Constants::playersShip = new SpaceShip();
+    m_ui->view->scene()->addItem(Constants::playersShip);
 
-    QTimer *timer = new QTimer();
-    QObject::connect(timer, SIGNAL(timeout()), m_ui->view->scene(), SLOT(advance()));
+    Constants::timer = new QTimer();
+    QObject::connect(Constants::timer, SIGNAL(timeout()), m_ui->view->scene(), SLOT(advance()));
 
     // Set the timer to trigger every 5 ms.
-    timer->start(5);
+    Constants::timer->start(5);
 
     Constants::inLevelEditorMode = false;
 }

@@ -23,6 +23,10 @@ class levelOne: public QGraphicsItem
 public:
     int xPos, yPos;
     Block *block[6][16];
+
+//    Block *block[6][16];
+
+//    static Block *block[1][5];
     levelOne(QGraphicsScene *theScene);
     QRectF boundingRect() const;
     void levelOne::paint(QPainter *painter,

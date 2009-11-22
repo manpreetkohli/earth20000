@@ -23,20 +23,24 @@
 #include "spaceship.h"
 #include "sleeperthread.h"
 
-
+QGraphicsTextItem *Constants::levelInfo;
 
 void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
 {
-    QGraphicsTextItem *levelInfo = scene->addText(levelNumber, *font);
-    levelInfo->setDefaultTextColor(Qt::white);
-    levelInfo->setOpacity(0.6);
-    levelInfo->setPos(15, 0);
+    Constants::levelInfo = scene->addText(levelNumber, *font);
+//    levelInfo->setDefaultTextColor(Qt::cyan);
+    Constants::levelInfo->setDefaultTextColor(Qt::white);
+    Constants::levelInfo->setOpacity(0.6);
+    Constants::levelInfo->setPos(15, 0);
 }
 
 
+
+QGraphicsTextItem *Constants::lives;
 SpaceShip *Constants::life1;
 SpaceShip *Constants::life2;
 SpaceShip *Constants::life3;
+
 
 // constructor
 Board::Board(QGraphicsView *view)
@@ -60,7 +64,6 @@ Board::Board(QGraphicsView *view)
     else if (Constants::levelNumber == 1)
     {
         levelOne *theFirstLevel = new levelOne(scene);
-
         displayHUDLevel(scene, "LEVEL 1", font);
     }
 
@@ -83,28 +86,39 @@ Board::Board(QGraphicsView *view)
     font->setFamily("SansSerif");
     font->setBold(true);
     font->setPointSize(15);    
-    QGraphicsTextItem *lives = scene->addText(QString("SPAWNS: "), *font);
-    lives->setDefaultTextColor(Qt::red);
-    lives->setOpacity(0.6);
-    lives->setPos(485, 0);
 
-    Constants::life1 = new SpaceShip();
-    scene->addItem(Constants::life1);
-    Constants::life1->setPos(435, -310);
-    Constants::life1->scale(0.5, 0.5);
-    Constants::life1->setOpacity(0.5);
+    Constants::lives = scene->addText(QString("SPAWNS: "), *font);
+    Constants::lives->setDefaultTextColor(Qt::red);
+    Constants::lives->setOpacity(0.6);
+    Constants::lives->setPos(485, 0);
 
-    Constants::life2 = new SpaceShip();
-    scene->addItem(Constants::life2);
-    Constants::life2->setPos(485, -310);
-    Constants::life2->scale(0.5, 0.5);
-    Constants::life2->setOpacity(0.5);
+                qDebug() << "viola viola" << Constants::count;
 
-    Constants::life3 = new SpaceShip();
-    scene->addItem(Constants::life3);
-    Constants::life3->setPos(535, -310);
-    Constants::life3->scale(0.5, 0.5);
-    Constants::life3->setOpacity(0.5);
+
+    if (Constants::count >= 1)
+    {
+        Constants::life1 = new SpaceShip();
+        scene->addItem(Constants::life1);
+        Constants::life1->setPos(435, -310);
+        Constants::life1->scale(0.5, 0.5);
+        Constants::life1->setOpacity(0.5);
+    }
+    if (Constants::count >= 2)
+    {
+        Constants::life2 = new SpaceShip();
+        scene->addItem(Constants::life2);
+        Constants::life2->setPos(485, -310);
+        Constants::life2->scale(0.5, 0.5);
+        Constants::life2->setOpacity(0.5);
+    }
+    if (Constants::count >= 3)
+    {
+        Constants::life3 = new SpaceShip();
+        scene->addItem(Constants::life3);
+        Constants::life3->setPos(535, -310);
+        Constants::life3->scale(0.5, 0.5);
+        Constants::life3->setOpacity(0.5);
+    }
 
     view->setRenderHint(QPainter::Antialiasing);
     view->setCacheMode(QGraphicsView::CacheBackground);
@@ -119,7 +133,7 @@ void Board::connectTimerToBall()
     QObject::connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
 
      // Set the timer to trigger every 3 ms.
-    timer->start(7);    
+    timer->start(6);
 }
 
 void Board::stopTimer()

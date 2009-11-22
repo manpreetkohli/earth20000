@@ -23,7 +23,7 @@ Author: Natraj Subramanian
 levelOne::levelOne(QGraphicsScene *theScene)
 {
     xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;
-    yPos = -630 + (BOUNDHEIGHT)/(7/2);
+    yPos = -630 + (BOUNDHEIGHT)/4;
 
     // Declare variable to hold seconds in clock
     time_t seconds;
@@ -47,7 +47,7 @@ levelOne::levelOne(QGraphicsScene *theScene)
             else
             {
                 detColor = generateRandomNumber(0,5);
-
+                qDebug() << i << j;
                 if(detColor == 0)
                 {
                     block[i][j] = new MonoBlock;
@@ -56,7 +56,6 @@ levelOne::levelOne(QGraphicsScene *theScene)
                 {
                     block[i][j] = new RedBlock;
                 }
-
                 if(detColor == 2)
                 {
                     block[i][j] = new GreenBlock;

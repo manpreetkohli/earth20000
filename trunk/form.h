@@ -18,7 +18,6 @@ namespace Ui {
     class Form;
 }
 
-static Board *board;
 
 class Form : public QWidget
 {
@@ -36,16 +35,17 @@ class Form : public QWidget
 
     private:
         Ui::Form *m_ui;
+        Board *board;
         void hideElements(Ui::Form *m_ui);
         static int windowWidth;
         static int windowHeight;
         static int mainViewWidth;
         static int shipPos;
         QFont *font;
-        QPushButton *cont;
         QLabel *storyText1;
         QLabel *storyText2;
         QLabel *storyText3;
+//        stati
 
 
     private slots:
@@ -63,6 +63,8 @@ class Form : public QWidget
         void backgroundTwo_clicked();
         void backgroundThree_clicked();
         void backgroundFour_clicked();
+
+        void loadLevel2();
 
 };
 
