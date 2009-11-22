@@ -18,12 +18,8 @@ class Constants
         static Block *blocks[20][27];
         static bool inLevelEditorMode;
         static QVector<QPointF> positions;      // change name later on
-
         static QVector<int> colors;      // change name later on
-
         static int levelNumber;
-
-
         static SpaceShip *life1;
         static SpaceShip *life2;
         static SpaceShip *life3;

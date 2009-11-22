@@ -18,7 +18,9 @@
 #include "levelFive.h"
 #include "constants.h"
 #include "form.h"
+#include "form.cpp"
 #include "board.h"
+#include "powerup.h"
 
 // constructor
 Ball::Ball()
@@ -41,7 +43,6 @@ Ball::Ball()
 
 
     t = new SleeperThread();
-
 }
 
 // destructor
@@ -220,48 +221,33 @@ void Ball::advance(int phase)
                 // Copyright of Natraj Subramanian
                 // I own you
 
+                blockX = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getXPos();
+                blockY = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getYPos();
+
+
                 /** ********************************
                              BEGIN BLOCK COLLISION RULES
                           ********************************/               
                 
-                if(spaceshipHit == true)
+                if(((Block *)(hits.at(0)))->getColor2() != 0)
                 {
-                    if(((Block *)(hits.at(0)))->getColor2() != 0)
-                    {
-                        ((Block *)(hits.at(0)))->setVisible(false);
-                        ((Block *)(hits.at(0)))->setColor1(1);
-                        ((Block *)(hits.at(0)))->setColor2(0);
-                        ((Block *)(hits.at(0)))->show();
-                    }
-                    else
-                    {
-                        ((Block *)(hits.at(0)))->setVisible(false);
-                    }
-
-                    spaceshipHit = false;
+                    ((Block *)(hits.at(0)))->setVisible(false);
+                    ((Block *)(hits.at(0)))->setColor1(1);
+                    ((Block *)(hits.at(0)))->setColor2(0);
+                    ((Block *)(hits.at(0)))->show();
                 }
                 else
                 {
-                    srand(time(NULL));
-                    int temp = rand()%2;
-                    if(temp == 1)
+                    ((Block *)(hits.at(0)))->setVisible(false);
+
+                    if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup() == 1)
                     {
-                        if(((Block *)(hits.at(0)))->getColor2() != 0)
-                        {
-                            ((Block *)(hits.at(0)))->setVisible(false);
-                            ((Block *)(hits.at(0)))->setColor1(1);
-                            ((Block *)(hits.at(0)))->setColor2(0);
-                            ((Block *)(hits.at(0)))->show();
-                        }
-                        else
-                        {
-                            ((Block *)(hits.at(0)))->setVisible(false);
-                        }
+                        Powerup *oneup = new Powerup;
+                        oneup->setPosition(blockX, blockY);
+                        board->scene->addItem(oneup);
                     }
                 }
-                
-                blockX = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getXPos();
-                blockY = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getYPos();
+
                 
                 /*qDebug() << "Ball position X: " << positionX;
                 qDebug() << "Ball position Y: " <<  positionY;

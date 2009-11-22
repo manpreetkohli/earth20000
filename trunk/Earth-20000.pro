@@ -12,7 +12,8 @@ HEADERS += board.h \
     loadGame.h \
     sleeperthread.h \
     shipbullet.h \
-    shipsmissiles.h
+    shipsmissiles.h \
+    powerup.h
 SOURCES += board.cpp \
     ball.cpp \
     Main.cpp \
@@ -27,7 +28,8 @@ SOURCES += board.cpp \
     loadGame.cpp \
     sleeperthread.cpp \
     shipbullet.cpp \
-    shipsmissiles.cpp
+    shipsmissiles.cpp \
+    powerup.cpp
 FORMS += form.ui
 RESOURCES += Images.qrc
 OTHER_FILES += 

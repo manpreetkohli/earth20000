@@ -25,6 +25,7 @@ SingleBlock::SingleBlock(QGraphicsItem *parent = 0)
         color2 = ((SingleBlock *)parent)->getColor2();
         xPos = ((SingleBlock *)parent)->getXPos();
         yPos = ((SingleBlock *)parent)->getYPos();
+        hasPowerup = ((SingleBlock *)parent)->getPowerup();
     }
 }
 
@@ -52,11 +53,6 @@ void SingleBlock::paint(QPainter *painter,
     painter->setBrush(gradient);
     painter->setPen(QPen(Qt::black, 0));
     painter->drawRoundedRect(BLOCKX, BLOCKY, BLOCKW, BLOCKH, XRADIUS, YRADIUS, Qt::RelativeSize);
-}
-
-int SingleBlock::generateRandomNumber(int min, int max)
-{
-    return rand() % (max - min + 1) + min;
 }
 
 // Added by Manpreet Kohli
@@ -184,6 +180,13 @@ void SingleBlock::setYPos(int thePos)
     *posPtr= thePos;
 }
 
+void SingleBlock::setPowerup(int value)
+{
+    int *valuePtr;
+    valuePtr = &hasPowerup;
+    *valuePtr = value;
+}
+
 int SingleBlock::getColor1()
 {
     return color1;
@@ -202,6 +205,11 @@ int SingleBlock::getXPos()
 int SingleBlock::getYPos()
 {
     return yPos;
+}
+
+int SingleBlock::getPowerup()
+{
+    return hasPowerup;
 }
 
 Block::Block()

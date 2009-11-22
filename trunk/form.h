@@ -18,12 +18,14 @@ namespace Ui {
     class Form;
 }
 
+static Board *board;
+
 class Form : public QWidget
 {
     Q_OBJECT
 
     public:
-        Form(QWidget *parent = 0);
+        Form(QWidget *parent = 0);        
         ~Form();
         void stopTimer();
 
@@ -34,7 +36,6 @@ class Form : public QWidget
 
     private:
         Ui::Form *m_ui;
-        Board *board;
         void hideElements(Ui::Form *m_ui);
         static int windowWidth;
         static int windowHeight;
