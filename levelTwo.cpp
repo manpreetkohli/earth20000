@@ -48,8 +48,8 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
              }
             else
             {
-                detColor = generateRandomNumber(0,10);
-                randomPowerBlock = generateRandomNumber(0,1);
+                detColor = generateRandomNumber(0,5);
+                randomPowerBlock = generateRandomNumber(0,10);
 
                 if(detColor == 0)
                 {
