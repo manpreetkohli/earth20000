@@ -218,7 +218,26 @@ void Ball::advance(int phase)
                 {
                     ((Block *)(hits.at(0)))->setVisible(false);
                     ((Block *)(hits.at(0)))->setColor1(1);
-                    ((Block *)(hits.at(0)))->setColor2(0);
+
+                    switch(((Block *)(hits.at(0)))->getColor2())
+                    {
+                        case 6:
+                            ((Block *)(hits.at(0)))->setColor2(5);
+                            break;
+                        case 5:
+                            ((Block *)(hits.at(0)))->setColor2(4);
+                            break;
+                        case 4:
+                            ((Block *)(hits.at(0)))->setColor2(3);
+                            break;
+                        case 3:
+                            ((Block *)(hits.at(0)))->setColor2(2);
+                            break;
+                        case 2:
+                            ((Block *)(hits.at(0)))->setColor2(0);
+                            break;
+                    }
+
                     ((Block *)(hits.at(0)))->show();
                 }
                 else
@@ -242,7 +261,7 @@ void Ball::advance(int phase)
                 qDebug() << "BlockX + OUTLINEW: " << blockX + OUTLINEW;
                 qDebug() << "BlockY + OUTLINEH/2: " << blockY + OUTLINEH/2 << "\n";*/
                 
-                                // When the point of impact is on the BOTTOM
+                // When the point of impact is on the BOTTOM
                 // end of the block. Y > blockY simply because the
                 // Y axes is inverted in the scope of the game board
                 // and hence, in reality, it is checking if the ball has
@@ -356,10 +375,8 @@ void Ball::advance(int phase)
             {                
                 this->hide();                       // hide the ball
                 loadStoryLevel2(this->scene());     // call function to load the level 2 story screen
-//                this->setVisible(false);
                 this->scene()->removeItem(this);    // remove the ball from the scene
                 Constants::playersShip->hide();     // hide the spaceship
-
                 qDebug() << "level one done";
                 counter = 0;
             }
@@ -369,14 +386,10 @@ void Ball::advance(int phase)
                 // load story level 3
                 this->hide();                       // hide the ball
                 loadStoryLevel3(this->scene());     // call function to load the level 2 story screen
-//                this->setVisible(false);
                 this->scene()->removeItem(this);    // remove the ball from the scene
-
                 Constants::playersShip->hide();     // hide the spaceship
-
                 qDebug() << "level two done";
                 counter = 0;
-
             }
         }
     }
@@ -431,9 +444,6 @@ void Ball::advance(int phase)
     // if the ball went beyond the bottom of the screen
     if (positionY >= 95)
     {
-        qDebug() << "baller " << Constants::count;
-
-
         if (Constants::count == 3)
         {
             this->scene()->removeItem(Constants::life3);        // remove a spawn from the HUD
@@ -473,20 +483,15 @@ void Ball::advance(int phase)
         else if (Constants::count == 0)
         {
             // add game over logic
-
             QGraphicsView *temp  = this->scene()->views().at(0);
 
             this->scene()->deleteLater();
 
             QGraphicsScene *gameOverScene = new QGraphicsScene;
 
-//            this->scene()->views().at(0)->
             temp->setScene(gameOverScene);
 
-
-
             gameOverScene->setSceneRect(0, 0, temp->geometry().width() - 5, temp->geometry().height() - 5);       // set dimensions of the scene
-
 
             QFont *font = new QFont();
             font->setBold(true);
@@ -503,11 +508,8 @@ void Ball::advance(int phase)
             gameOver->setOpacity(0.8);
             gameOver->setPos(150, 200);
 
-
-
             font->setPointSize(13);
             font->setWeight(75);
-
 
             QPushButton *exit = new QPushButton(temp->parentWidget());
             exit->setText("EXIT");
@@ -529,7 +531,6 @@ void Ball::advance(int phase)
         rightEdge = false;
         leftEdge = false;
         topEdge = false;
-//        spaceshipHit = true;
     }
 
     // set the new position of the ball
@@ -566,7 +567,6 @@ void Ball::loadStoryLevel2(QGraphicsScene *scene)
     QSound *intro = new QSound("intro.wav", 0);
     intro->setLoops(1);
     intro->play();
-
 
     Constants::lives->hide();
 
@@ -616,7 +616,6 @@ void Ball::loadStoryLevel3(QGraphicsScene *scene)
     intro->setLoops(1);
     intro->play();
 
-
     Constants::lives->hide();
 
     font->setPointSize(13);
@@ -631,7 +630,7 @@ void Ball::loadStoryLevel3(QGraphicsScene *scene)
     Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
 
     // if the continue button is clicked on the screen, load the second level
-//    QObject::connect(Constants::cont, SIGNAL(clicked()), this->scene()->views().at(0)->parentWidget(), SLOT(loadLevel3()));
+    // QObject::connect(Constants::cont, SIGNAL(clicked()), this->scene()->views().at(0)->parentWidget(), SLOT(loadLevel3()));
 }
 
 
