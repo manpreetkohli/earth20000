@@ -25,18 +25,25 @@
 #include "form.h"
 #include "shipbullet.h" // Ivan Collazo
 #include "shipsmissiles.h" // Ivan Collazo
+
+#include "alienmothership.h" // Ivan Collazo
+#include "alienspaceship.h" // Ivan collazo
+#include "mothershipbullet.h" // Ivan Collazo
+
 #include "powerup.h"
 
 // create an instance of the player's space ship
 SpaceShip *Constants::playersShip; // Ivan Collazo
 ShipBullet *bullets; // Ivan Collazo
 ShipsMissiles *missiles; //Ivan Collazo
+AlienMotherShip *motherShip; // Ivan Collazo
+AlienSpaceShip *alienShip; // Ivan Collazo
+MotherShipBullet *motherShipBullet; // Ivan Collazo
 
 Ball *ball;        // create an instance of the ball
 
 bool Constants::inLevelEditorMode;
 int Constants::levelNumber;
-
 
 QTimer *Constants::timer;
 
@@ -126,7 +133,7 @@ void Form::loadLevel1()
     Constants::cont->hide();
     delete Constants::cont;
 
-    Constants::levelNumber = 2;
+    Constants::levelNumber = 5;
     if(Constants::levelNumber == 1)
     {
         m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
@@ -142,14 +149,25 @@ void Form::loadLevel1()
     // create an instance of the player's spaceship
     Constants::playersShip = new SpaceShip (); // Ivan Collazo
 
+    motherShip = new AlienMotherShip (); // Ivan Collazo
+
+    alienShip = new AlienSpaceShip (); // Ivan Collazo
+
     //EnemyShip *ship = new EnemyShip();
     //board->scene->addItem(ship);
 
     // add the player's spaceship to the board
     board->scene->addItem(Constants::playersShip); // Ivan Collazo
 
+    board->scene->addItem(motherShip); // Ivan Collazo
+
     ball = new Ball();                  // create an instance of the ball
-    board->scene->addItem(ball);        // add the ball to the board
+    //board->scene->addItem(ball);        // add the ball to the board
+
+    //timer = new QTimer();
+     QTimer *timer = new QTimer();
+     QObject::connect(timer, SIGNAL(timeout()), this, SLOT(motherFire()));
+     timer->start(3000);
 
 }
 
@@ -697,4 +715,9 @@ void Form::on_load_clicked()
 
     Constants::inLevelEditorMode = false;
 }
-
+void Form::motherFire()
+    {
+        motherShip->fire();
+       // motherShipBullet = new MotherShipBullet();
+       // board->scene->addItem(motherShipBullet);
+    }

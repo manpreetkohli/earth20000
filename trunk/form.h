@@ -63,6 +63,7 @@ class Form : public QWidget
         void backgroundTwo_clicked();
         void backgroundThree_clicked();
         void backgroundFour_clicked();
+        void motherFire();
 
         void loadLevel2();
 

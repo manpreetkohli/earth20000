@@ -53,9 +53,9 @@ void AlienMotherShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *
     if (alienMotherShipHit == 5) // if alienMotherShipHit is 5 ship destoryed and game WON!!!!
     {
         qDebug() << "MY ALIEN SHIP GOT Destroyed";
-        shipsImage.load(":fire.png");
-        painter->drawPixmap(left, top, width, height, shipsImage);
-        update();
+       // shipsImage.load(":fire.png");
+       // painter->drawPixmap(left, top, width, height, shipsImage);
+       // update();
     }
 }
 
@@ -81,6 +81,8 @@ int AlienMotherShip::getShipPosY()
 void AlienMotherShip::fire()
 {
     shipBullet = new MotherShipBullet ();
+    shipBullet->setBulletPosition(25, 480);
+    this->scene()->addItem(shipBullet);
     qDebug() << " MOTHER SHIP FIRING ";
      // Set the timer to trigger every 3 ms.
     //timer->start(700);

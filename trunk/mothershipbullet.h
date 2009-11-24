@@ -1,6 +1,9 @@
 #ifndef MOTHERSHIPBULLET_H
 #define MOTHERSHIPBULLET_H
 
+
+#define ID_MOTHERSHIPBULLET    64
+
 #include <QGraphicsItem>
 
 class MotherShipBullet : public QGraphicsItem
@@ -19,13 +22,7 @@ class MotherShipBullet : public QGraphicsItem
 
         ~MotherShipBullet();
 
-        void setShipPosition (int pos);
-
-        void setBulletYPosition (int pos);
-
-        void setBulletXPosition (int pos);
-
-
+        void setBulletPosition (int posX, int posY);
 };
 
 #endif // MOTHERSHIPBULLET_H
