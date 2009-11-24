@@ -41,7 +41,7 @@ public:
         // gets Alien MotherShip Y Position
         int getShipPosY();
 
-      public slots:
+     // public slots:
         void fire();
 
 };
