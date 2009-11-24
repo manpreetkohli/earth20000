@@ -13,7 +13,10 @@ HEADERS += board.h \
     sleeperthread.h \
     shipbullet.h \
     shipsmissiles.h \
-    powerup.h
+    powerup.h \
+    levelThree.h \
+    alienmothership.h \
+    mothershipbullet.h
 SOURCES += board.cpp \
     ball.cpp \
     Main.cpp \
@@ -29,7 +32,10 @@ SOURCES += board.cpp \
     sleeperthread.cpp \
     shipbullet.cpp \
     shipsmissiles.cpp \
-    powerup.cpp
+    powerup.cpp \
+    levelThree.cpp \
+    alienmothership.cpp \
+    mothershipbullet.cpp
 FORMS += form.ui
 RESOURCES += Images.qrc
 OTHER_FILES += 

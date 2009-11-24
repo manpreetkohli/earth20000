@@ -24,6 +24,8 @@ LevelEditor::LevelEditor(QGraphicsScene *theScene)
         {
             Constants::blocks[i][j] = new EmptyBlock();
             theScene->addItem(Constants::blocks[i][j]);
+            Constants::blocks[i][j]->setXPos(xPos);
+            Constants::blocks[i][j]->setYPos(yPos);
             Constants::blocks[i][j]->setPos(xPos, yPos);
             Constants::blocks[i][j]->setOpacity(0.4);
             Constants::blocks[i][j]->show();

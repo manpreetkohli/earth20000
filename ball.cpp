@@ -14,10 +14,15 @@
 #include "block.h"
 #include "levelOne.h"
 #include "levelTwo.h"
+#include "levelThree.h"
 #include "levelFive.h"
 #include <QtGui>
 #include "constants.h"
 #include "powerup.h"
+#include "form.h"
+#include "board.h"
+
+int Constants::scoreCount;
 
 // constructor
 Ball::Ball()
@@ -25,8 +30,9 @@ Ball::Ball()
     //count = 3;
     ballImage.load(":soccer.png");          // load an image for the ball
     ballImage.load(":cricketball.png");     // load an image for the ball
-    directionX = 1;                         // set the X-axis increment for the movement
-    directionY = -1;                        // set the Y-axis increment for the movement
+    factor = 0.25;
+    directionX = 1.0;                         // set the X-axis increment for the movement
+    directionY = -1.0;                        // set the Y-axis increment for the movement
     positionX = 0;                          // initial X coordinate of the ball
     positionY = 0;                          // initial Y coordinate of the ball
     posXDir = true;
@@ -35,8 +41,10 @@ Ball::Ball()
     leftEdge = false;
     topEdge = false;
     setPos(positionX, positionY);           // set initial position of the ball
+    Constants::powerup = 0;
+    Constants::scoreCount = 0;
     counter = 0;
-    t = new SleeperThread();
+    t = new SleeperThread();    
 }
 
 
@@ -57,7 +65,7 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 // Define the bounding rectangle of the object for collision detection
 QRectF Ball::boundingRect() const
 {
-     return QRectF(375, 625, 20, 20);
+    return QRectF(375, 625, 20, 20);
 }
 
 
@@ -74,19 +82,30 @@ void Ball::advance(int phase)
     int blockX, blockY;
     if(!phase) return;
     QList<QGraphicsItem *> hits = this->collidingItems(Qt::IntersectsItemBoundingRect);
+    
+    // Power up i.e. decrease the speed of the ball
+    if(Constants::powerup == 1)
+    {
+        factor = 0.125;
+    }
+    // Power down i.e. increase the speed of the ball
+    if(Constants::powerup == 2)
+    {
+        factor = 0.50;
+    }
 
     // Ivan Collazo
     // checks to see if ball collides with something then does ball physics
     if (!hits.isEmpty())
     {
         if(hits.first()->type() == ID_SPACESHIP)
-        {
+        {           
             /** ********************************
                    BEGIN SPACESHIP COLLISION RULES
                   ********************************/
             // physics when the ball collides with top of Ship // Ivan Collazo
             if (positionY == 0)
-            {
+            {                
                 QSound *shipHit = new QSound("paddle.wav", 0);
                 shipHit->setLoops(1);
                 shipHit->play();
@@ -133,7 +152,7 @@ void Ball::advance(int phase)
                     // physics for when the ball hits left quarter portion of the ship
                     else if ((positionX >= shipXPosition - 20) && (positionX <= shipXPosition))
                     {
-                        directionX = -1 ;//directionX;
+                        directionX = -1;//directionX;
                         directionY = -2;//directionY;
                     }
 
@@ -192,7 +211,7 @@ void Ball::advance(int phase)
                 }
             }
 
-                  /**********************************
+            /**********************************
                     END SPACESHIP COLLISION RULES
                   ********************************/
         }
@@ -209,7 +228,8 @@ void Ball::advance(int phase)
 
                 blockX = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getXPos();
                 blockY = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getYPos();
-
+                
+                qDebug() << "Score: " << Constants::scoreCount;
 
                 /**********************************
                    BEGIN BLOCK COLLISION RULES
@@ -221,35 +241,56 @@ void Ball::advance(int phase)
 
                     switch(((Block *)(hits.at(0)))->getColor2())
                     {
-                        case 6:
-                            ((Block *)(hits.at(0)))->setColor2(5);
-                            break;
-                        case 5:
-                            ((Block *)(hits.at(0)))->setColor2(4);
-                            break;
-                        case 4:
-                            ((Block *)(hits.at(0)))->setColor2(3);
-                            break;
-                        case 3:
-                            ((Block *)(hits.at(0)))->setColor2(2);
-                            break;
-                        case 2:
-                            ((Block *)(hits.at(0)))->setColor2(0);
-                            break;
+                    case 6:
+                        ((Block *)(hits.at(0)))->setColor2(5);
+                        Constants::scoreCount+=5;
+
+                        break;
+                    case 5:
+                        ((Block *)(hits.at(0)))->setColor2(4);
+                        Constants::scoreCount+=6;
+                        break;
+                    case 4:
+                        ((Block *)(hits.at(0)))->setColor2(3);
+                        Constants::scoreCount+=7;
+                        break;
+                    case 3:
+                        ((Block *)(hits.at(0)))->setColor2(2);
+                        Constants::scoreCount+=8;
+                        break;
+                    case 2:
+                        ((Block *)(hits.at(0)))->setColor2(0);
+                        Constants::scoreCount+=9;
+                        break;
                     }
 
-                    ((Block *)(hits.at(0)))->show();
+                    ((Block *)(hits.at(0)))->show();                    
                 }
                 else
                 {
                     ((Block *)(hits.at(0)))->setVisible(false);
+                    Constants::scoreCount+=10;
 
-                    if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup() == 1)
+                    /*if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup() == 1)
                     {
+                        qDebug() << "My type is: " << ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup();
                         Powerup *oneup = new Powerup;
                         oneup->setPosition(blockX, blockY);
+                        oneup->setType(1);
                         this->scene()->addItem(oneup);
+                        qDebug() << "I slow down";
                     }
+                    if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup() == 2)
+                    {
+                        qDebug() << "My type is: " << ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup();
+                        Powerup *oneup = new Powerup;
+                        oneup->setPosition(blockX, blockY);
+                        oneup->setType(2);
+                        this->scene()->addItem(oneup);
+                        qDebug() << "I speed up";
+                    }
+
+                    Constants::powerup = Constants::powerup;*/
                     counter++;
                 }
                 
@@ -424,8 +465,8 @@ void Ball::advance(int phase)
     }
 
     // Set the position parameters
-    positionX+=directionX;
-    positionY+=directionY;
+    positionX+=directionX * factor;
+    positionY+=directionY * factor;
 
     // ball bounces off the left and right side of the screen
     if ((positionX >= 360) || (positionX <= -380))
@@ -524,8 +565,10 @@ void Ball::advance(int phase)
         positionX = 0;                          // reset X coordinate to 0
         positionY = 0;                          // reset Y coordinate to 0
         setPos(positionX, positionY);           // set the coordinates to initial position
-        directionX = 1;                         // set the X-axis increment for the movement
-        directionY = -1;                        // set the Y-axis increment for the movement
+        factor = 0.25;
+        directionX = 1.0;                         // set the X-axis increment for the movement
+        directionY = -1.0;                        // set the Y-axis increment for the movement
+        Constants::powerup = 0;
         posXDir = true;
         posYDir = true;
         rightEdge = false;
