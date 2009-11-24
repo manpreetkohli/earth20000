@@ -1,45 +1,24 @@
+#include <QPainter>
+#include <QStyleOption>
 #include "powerup.h"
 #include "constants.h"
+#include "spaceship.h"
+#include "block.h"
+#include "board.h"
+#include "ball.h"
 
-PowerupDesign::PowerupDesign(QGraphicsItem *parent = 0)
-        :QGraphicsItem(parent)
-{
-}
-
-QRectF PowerupDesign::boundingRect() const
-{
-    return QRectF(OUTLINEX, OUTLINEY, OUTLINEW, OUTLINEH);
-}
-
-void PowerupDesign::paint(QPainter *painter,
-                        const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
-
-    painter->setPen(QPen(Qt::cyan, 0));
-    painter->setBrush(Qt::white);
-    painter->drawRoundedRect(OUTLINEX, OUTLINEY, OUTLINEW, OUTLINEH, XRADIUS, YRADIUS, Qt::RelativeSize);
-
-    QLinearGradient gradient(0, 20, 0, 4);
-    gradient.setSpread(QGradient::ReflectSpread);
-
-    gradient.setColorAt(0, Qt::red);
-    gradient.setColorAt(1, Qt::blue);
-
-    painter->setBrush(gradient);
-    painter->setPen(QPen(Qt::black, 0));
-    painter->drawRoundedRect(BLOCKX, BLOCKY, BLOCKW, BLOCKH, XRADIUS, YRADIUS, Qt::RelativeSize);
-}
+int Constants::powerup;
 
 Powerup::Powerup()
 {
-    PowerupDesign *temp = new PowerupDesign(this);
-    xPos = 0;
-    yPos = 0;
-    directionX = 0;
-    directionY = -2;
-    setPos(xPos, yPos);    
+    powerupImage.load(":Powerup.png");          // load an image for the ball
+    factor = 0.25;
+    directionX = 0;                         // set the X-axis increment for the movement
+    directionY = -1;                        // set the Y-axis increment for the movement
+    xPos = 0;                          // initial X coordinate of the ball
+    yPos = 0;                          // initial Y coordinate of the ball
+    timer = 0;
+    setPos(xPos, yPos);
 }
 
 Powerup::~Powerup()
@@ -52,26 +31,76 @@ void Powerup::setPosition(int x, int y)
     yPos = y;
 }
 
+void Powerup::setType(int type)
+{
+    int *typePtr;
+    typePtr = &powerupType;
+    *typePtr = type;
+}
+
+
 QRectF Powerup::boundingRect() const
 {
-    return QRectF();
+    return QRectF(375, 625, 27, 27);
 }
 
 void Powerup::paint(QPainter *painter,
-                  const QStyleOptionGraphicsItem *option, QWidget *widget)
+                    const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    Q_UNUSED(painter);
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
+    painter->drawPixmap(375, 625, 27, 27, powerupImage);
 }
 
 void Powerup::advance(int phase)
 {
     if(!phase) return;
 
-    yPos-=directionY;
+    if(yPos < 95)
+    {
+        QList<QGraphicsItem *> hits = this->collidingItems(Qt::IntersectsItemBoundingRect);
 
-    setPos(xPos, yPos);
+        if(Constants::powerup != 0)
+        {
+            timer++;
+
+            if(timer == 30000)
+            {
+                Constants::powerup = 0;
+            }
+        }
+
+        if(!hits.isEmpty())
+        {
+            //qDebug() << "Hit type: " << hits.first()->type();
+            if(hits.first()->type() == ID_SPACESHIP)
+            {
+                this->setVisible(false);
+
+                if(this->powerupType == 1)
+                {
+                    if(Constants::powerup != 1)
+                    {
+                        Constants::powerup = 1;
+                    }
+                }
+                if(this->powerupType == 2)
+                {
+                    if(Constants::powerup != 2)
+                    {
+                        Constants::powerup = 2;
+                    }
+                }
+
+                //qDebug() << "Powerup: " << Constants::powerup;
+
+            }
+
+        }
+
+        yPos-=directionY;
+        qDebug() << "yPos: " << yPos;
+
+        setPos(xPos, yPos);
+    }
 }
 
 

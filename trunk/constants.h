@@ -4,7 +4,7 @@
 
 #include "block.h"
 #include "spaceship.h"
-
+#include "powerup.h"
 
 class Constants
 {
@@ -25,9 +25,12 @@ class Constants
         static SpaceShip *life3;
         static QGraphicsTextItem *levelInfo;
         static QGraphicsTextItem *lives;
+        static QGraphicsTextItem *score;
         static int count;
+        static int powerup;
+        static int scoreCount;
         static QPushButton *cont;
-        static QTimer *timer;
+        static QTimer *timer;        
 };
 
 #endif // CONSTANTS_H

@@ -113,7 +113,8 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
             }
 
             this->scene()->addItem(Constants::currentBlock);
-
+            Constants::currentBlock->setXPos(-274);
+            Constants::currentBlock->setYPos(-225);
             Constants::currentBlock->setPos(-274, -225);
         }
 

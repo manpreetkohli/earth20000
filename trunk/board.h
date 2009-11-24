@@ -16,14 +16,18 @@
 
 class Board
 {
-    private:
+    private slots:
+        void advance();
 
     public:
         QGraphicsScene *scene;
         QTimer *timer;
+        QTimer *scoreTimer;
         Board(QGraphicsView *view);
         void connectTimerToBall();
+        void connectTimerToScore();
         void displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font);
         void stopTimer();
+
 };
 #endif // BOARD_H

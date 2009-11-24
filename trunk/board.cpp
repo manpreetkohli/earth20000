@@ -13,6 +13,7 @@
 #include "block.h"
 #include "levelOne.h"
 #include "levelTwo.h"
+#include "levelThree.h"
 #include "levelFive.h"
 #include "leveleditor.h"
 #include "loadGame.h"
@@ -28,7 +29,7 @@ QGraphicsTextItem *Constants::levelInfo;
 void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
 {
     Constants::levelInfo = scene->addText(levelNumber, *font);
-//    levelInfo->setDefaultTextColor(Qt::cyan);
+    //    levelInfo->setDefaultTextColor(Qt::cyan);
     Constants::levelInfo->setDefaultTextColor(Qt::white);
     Constants::levelInfo->setOpacity(0.6);
     Constants::levelInfo->setPos(15, 0);
@@ -37,6 +38,7 @@ void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *f
 
 
 QGraphicsTextItem *Constants::lives;
+QGraphicsTextItem *Constants::score;
 SpaceShip *Constants::life1;
 SpaceShip *Constants::life2;
 SpaceShip *Constants::life3;
@@ -71,7 +73,12 @@ Board::Board(QGraphicsView *view)
     {
         levelTwo *theSecondLevel = new levelTwo(scene);
         displayHUDLevel(scene, "LEVEL 2", font);
-   }
+    }
+    else if (Constants::levelNumber == 3)
+    {
+        levelThree *theThirdLevel = new levelThree(scene);
+        displayHUDLevel(scene, "LEVEL 3", font);
+    }
     else if (Constants::levelNumber == 5)
     {
         levelFive *theFifthLevel = new levelFive(scene);
@@ -92,7 +99,13 @@ Board::Board(QGraphicsView *view)
     Constants::lives->setOpacity(0.6);
     Constants::lives->setPos(485, 0);
 
-                qDebug() << "viola viola" << Constants::count;
+    font->setPointSize(24);
+    Constants::score = scene->addText(QString::number(Constants::scoreCount, 10), *font);
+    Constants::score->setDefaultTextColor(Qt::white);
+    Constants::score->setOpacity(1.0);
+    Constants::score->setPos(330, 0);
+
+    qDebug() << "viola viola" << Constants::count;
 
 
     if (Constants::count >= 1)
@@ -124,6 +137,7 @@ Board::Board(QGraphicsView *view)
     view->setCacheMode(QGraphicsView::CacheBackground);
     view->setScene(scene);          // set the created scene inside the view
     timer = new QTimer();       // create a new QTimer() instance
+    scoreTimer = new QTimer();
 }
 
 // method to connect the timer to the ball inside the board
@@ -132,13 +146,26 @@ void Board::connectTimerToBall()
     // connect the timer to the advance method inside the Ball class
     QObject::connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
 
-     // Set the timer to trigger every 3 ms.
-    timer->start(6);
+    // Set the timer to trigger every 3 ms.
+    timer->start(1);
 }
 
 void Board::stopTimer()
 {
     QObject::disconnect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
 }
+
+/*void Board::advance()
+{
+    QFont *font = new QFont();
+    font->setStyleHint(QFont::SansSerif, QFont::PreferAntialias);
+    font->setLetterSpacing(QFont::PercentageSpacing, 125);
+    font->setBold(true);
+    font->setPointSize(24);
+    
+    Constants::score->setVisible(false);
+}*/
+
+
 
 

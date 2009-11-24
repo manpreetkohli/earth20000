@@ -1,5 +1,5 @@
 /**
- levelTwo.cpp
+ levelThree.cpp
 
 Creates the design for the second level. Uses the polymorphism feature
 of the block.cpp class and randomly generates blocks of different colors
@@ -14,13 +14,13 @@ Author: Natraj Subramanian
 #include <cstdlib>
 #include <time.h>
 #include <QGraphicsItem>
-#include "levelTwo.h"
+#include "levelThree.h"
 #include "block.h"
 
-levelTwo::levelTwo(QGraphicsScene *theScene)
+levelThree::levelThree(QGraphicsScene *theScene)
 {
     xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;       // 260
-    yPos = -630 + (BOUNDHEIGHT)/(5);
+    yPos = -630 + (BOUNDHEIGHT)/(8);
     int randomPowerBlock, powerupCounter;
     powerupCounter = 0;
 
@@ -35,18 +35,16 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
 
     int detColor;
 
-    for(int i = 0; i < 9; i++)
+    for(int i = 0; i < 11; i++)
     {
         for(int j = 0; j < 20; j++)
         {
-            if( (i == 0) && ( j > 6 && j < 13 )||
-                (i == 1) && ( j == 0 || ( j > 7 && j < 12 )|| j == 19) ||
-                (i == 2) && ( j == 0 || j == 1 || j == 9 || j == 10 || j == 18 || j == 19) ||
-                (i == 3) && ( j < 3 || j > 16 ) ||
-                (i > 4 && i < 9) && (j == 0 || j == 1 || j == 9 || j == 10 || j == 18 || j == 19))
+            if(((i == 0 || i == 1 || i == 2 || i == 3 || i == 5 || i == 5 || i == 7
+                 || i == 9) && (j == 0 || ( j > 6 && j < 13 ) || j == 19) ) ||
+                 (i == 3 || i == 4) && (j == 0 || j == 19))
             {
-                 xPos += BLOCKW + SPACE;
-             }
+                xPos += BLOCKW + SPACE;
+            }
             else
             {
                 detColor = generateRandomNumber(0,5);
@@ -95,7 +93,7 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
                 block[i][j]->scale(1.0, 1.0);
                 block[i][j]->setPos(xPos, yPos);
                 xPos += BLOCKW + SPACE;
-                theScene->addItem(block[i][j]);  
+                theScene->addItem(block[i][j]);
             }
         }
 
@@ -106,21 +104,22 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
 
 }
 
-QRectF levelTwo::boundingRect() const
+QRectF levelThree::boundingRect() const
 {
     return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
 }
 
-void levelTwo::paint(QPainter *painter,
-                     const QStyleOptionGraphicsItem *option,
-                     QWidget *widget)
+void levelThree::paint(QPainter *painter,
+                       const QStyleOptionGraphicsItem *option,
+                       QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
 
-int levelTwo::generateRandomNumber(int min, int max)
+int levelThree::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;
 }
+

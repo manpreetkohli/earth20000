@@ -38,23 +38,24 @@ class Ball : public QGraphicsItem
         bool visibleFound;
 
          SleeperThread *t;
-        int count;
+         int count;
     public:
-        Ball();
+        Ball();        
         void moveX(int amount);
         qreal directionX, directionY, positionX, positionY, ballDirection;
         qreal viewWidth, viewHeight, width, height, shipXPosition;
+        int score, hasPowerup;
+        double factor;
         ~Ball();
         void setShipPositon (int pos);
+        void setXSpeed(int factor);
+        void setYSpeed(int factor);
         bool posXDir;
         bool posYDir;
         bool rightEdge;
         bool leftEdge;
         bool topEdge;
         bool spaceshipHit;
-
-
-
 };
 
 #endif // BALL_H
