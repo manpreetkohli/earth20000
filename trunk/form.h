@@ -12,9 +12,17 @@
 
 #include <QtGui>
 #include "board.h"
+#include "ball.h"
+#include "shipbullet.h"         // Ivan Collazo
+#include "shipsmissiles.h"      // Ivan Collazo
+#include "block.h"
+#include "alienmothership.h" // Ivan Collazo
+//#include "alienspaceship.h" // Ivan collazo
+#include "mothershipbullet.h" // Ivan Collazo
 
 
-namespace Ui {
+namespace Ui
+{
     class Form;
 }
 
@@ -28,6 +36,7 @@ class Form : public QWidget
         ~Form();
         void stopTimer();
 
+
     protected:
         void changeEvent(QEvent *e);
         void keyPressEvent(QKeyEvent *); // Ivan Collazo
@@ -37,16 +46,51 @@ class Form : public QWidget
         Ui::Form *m_ui;
         Board *board;
         void hideElements(Ui::Form *m_ui);
-        static int windowWidth;
-        static int windowHeight;
-        static int mainViewWidth;
+
+
+        QSound *intro;
+        SleeperThread *t;
+        SpaceShip *playersShip; // Ivan Collazo
+        QGraphicsView *itemsWindow;
+        QGraphicsScene *itemsWindowScene;
+        QLabel *backgrounds;
+        QPushButton *backgroundOneButton ;
+        QPushButton *backgroundTwoButton ;
+        QPushButton *backgroundThreeButton ;
+        QPushButton *backgroundFourButton ;
+        QLabel *selectBlock;
+        Block *emptyBlock;
+        Block *monoBlock;
+        Block *redBlock;
+        Block *greenBlock;
+        Block *blueBlock;
+        Block *magentaBlock;
+        Block *yellowBlock;
+        QLabel *currentBlockLabel;
+        QPushButton *save;
+        QPushButton *done ;
+        QPushButton *reset ;
+
+
+        int windowWidth;
+        int windowHeight;
+        int mainViewWidth;
+        int itemsWindowViewWidth;
+
+
+        AlienMotherShip *motherShip; // Ivan Collazo
+        //AlienSpaceShip *alienShip; // Ivan Collazo
+        MotherShipBullet *motherShipBullet; // Ivan Collazo
+
         static int shipPos;
         QFont *font;
-        QLabel *storyText1;
-        QLabel *storyText2;
-        QLabel *storyText3;
-//        stati
+        QLabel *storyText;
 
+        Ball *ball;        // create an instance of the ball
+        ShipBullet *bullets; // Ivan Collazo
+        ShipsMissiles *missiles; //Ivan Collazo
+
+        QTimer *timer;
 
     private slots:
         void loadLevel1();
@@ -66,6 +110,8 @@ class Form : public QWidget
         void motherFire();
 
         void loadLevel2();
+        void loadLevel3();
+        void loadLevel4();
 
 };
 

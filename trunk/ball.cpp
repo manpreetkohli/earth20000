@@ -25,8 +25,9 @@
 int Constants::scoreCount;
 
 // constructor
-Ball::Ball()
+Ball::Ball(SpaceShip *ship)
 {
+    playersShip = ship;
     //count = 3;
     ballImage.load(":soccer.png");          // load an image for the ball
     ballImage.load(":cricketball.png");     // load an image for the ball
@@ -293,15 +294,7 @@ void Ball::advance(int phase)
                     Constants::powerup = Constants::powerup;*/
                     counter++;
                 }
-                
-                /*qDebug() << "Ball position X: " << positionX;
-                qDebug() << "Ball position Y: " <<  positionY;
-                qDebug() << "BlockX : " << blockX;
-                qDebug() << "BlockY : " << blockY;
-                qDebug() << "BlockX + OUTLINEW/2: " << blockX + OUTLINEW/2;
-                qDebug() << "BlockX + OUTLINEW: " << blockX + OUTLINEW;
-                qDebug() << "BlockY + OUTLINEH/2: " << blockY + OUTLINEH/2 << "\n";*/
-                
+                                
                 // When the point of impact is on the BOTTOM
                 // end of the block. Y > blockY simply because the
                 // Y axes is inverted in the scope of the game board
@@ -412,26 +405,48 @@ void Ball::advance(int phase)
                       ********************************/
             }
 
-            if (Constants::levelNumber == 1 && counter == 84)        // should be 84 for level 1
+            if (Constants::levelNumber == 1 && counter == 1)        // should be 84 for level 1
             {                
                 this->hide();                       // hide the ball
                 loadStoryLevel2(this->scene());     // call function to load the level 2 story screen
                 this->scene()->removeItem(this);    // remove the ball from the scene
-                Constants::playersShip->hide();     // hide the spaceship
+                playersShip->hide();     // hide the spaceship
                 qDebug() << "level one done";
                 counter = 0;
             }
 
-            else if (Constants::levelNumber == 2 && counter == 132)       // should be 132 for level 2
+            else if (Constants::levelNumber == 2 && counter == 1)       // should be 132 for level 2
             {
-                // load story level 3
                 this->hide();                       // hide the ball
                 loadStoryLevel3(this->scene());     // call function to load the level 2 story screen
                 this->scene()->removeItem(this);    // remove the ball from the scene
-                Constants::playersShip->hide();     // hide the spaceship
+                playersShip->hide();     // hide the spaceship
                 qDebug() << "level two done";
                 counter = 0;
             }
+
+
+            else if (Constants::levelNumber == 3 && counter == 1)       // should be 262 for level 3
+            {
+                this->hide();                       // hide the ball
+                loadStoryLevel4(this->scene());     // call function to load the level 2 story screen
+                this->scene()->removeItem(this);    // remove the ball from the scene
+                playersShip->hide();     // hide the spaceship
+                qDebug() << "level three done";
+                counter = 0;
+            }
+
+
+//            else if (Constants::levelNumber == 5 && counter == 132)       // should be 132 for level 2
+//            {
+//                this->hide();                       // hide the ball
+//                loadStoryLevel3(this->scene());     // call function to load the level 2 story screen
+//                this->scene()->removeItem(this);    // remove the ball from the scene
+//                playersShip->hide();     // hide the spaceship
+//                qDebug() << "level two done";
+//                counter = 0;
+//            }
+
         }
     }
 
@@ -672,10 +687,59 @@ void Ball::loadStoryLevel3(QGraphicsScene *scene)
     Constants::cont->show();
     Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
 
-    // if the continue button is clicked on the screen, load the second level
-    // QObject::connect(Constants::cont, SIGNAL(clicked()), this->scene()->views().at(0)->parentWidget(), SLOT(loadLevel3()));
+    // if the continue button is clicked on the screen, load the third level
+     QObject::connect(Constants::cont, SIGNAL(clicked()), this->scene()->views().at(0)->parentWidget(), SLOT(loadLevel3()));
 }
 
+
+
+
+// function to display the level 2 message
+// hides ___________________
+void Ball::loadStoryLevel4(QGraphicsScene *scene)
+{
+    // hide the spawns remaining
+    if (Constants::life1 != NULL)
+        Constants::life1->hide();
+
+    if (Constants::life2 != NULL)
+        Constants::life2->hide();
+
+    if (Constants::life3 != NULL)
+        Constants::life3->hide();
+
+    Constants::levelInfo->hide();
+
+    QFont *font = new QFont();
+    font->setBold(true);
+    font->setPointSize(80);
+
+    storyText = scene->addText("    FINAL LEVEL", *font);
+    storyText->setDefaultTextColor(Qt::blue);
+    storyText->setPos(40, 70);
+    storyText->show();
+
+    // play the start level music
+    QSound *intro = new QSound("intro.wav", 0);
+    intro->setLoops(1);
+    intro->play();
+
+    Constants::lives->hide();
+
+    font->setPointSize(13);
+    font->setBold(true);
+    font->setWeight(75);
+
+    Constants::cont = new QPushButton(scene->views().at(0)->parentWidget());
+    Constants::cont->setText("CONTINUE");
+    Constants::cont->setGeometry(300, 600, 150, 40);
+    Constants::cont->setFont(*font);
+    Constants::cont->show();
+    Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+
+    // if the continue button is clicked on the screen, load the third level
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this->scene()->views().at(0)->parentWidget(), SLOT(loadLevel4()));
+}
 
 
 

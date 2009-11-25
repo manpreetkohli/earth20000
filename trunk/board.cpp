@@ -20,21 +20,20 @@
 #include <QTimer>
 #include <QGraphicsView>
 #include <QtGui>
-
 #include "spaceship.h"
 #include "sleeperthread.h"
 
 QGraphicsTextItem *Constants::levelInfo;
+int Constants::count;
+
 
 void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
 {
     Constants::levelInfo = scene->addText(levelNumber, *font);
-    //    levelInfo->setDefaultTextColor(Qt::cyan);
     Constants::levelInfo->setDefaultTextColor(Qt::white);
     Constants::levelInfo->setOpacity(0.6);
     Constants::levelInfo->setPos(15, 0);
 }
-
 
 
 QGraphicsTextItem *Constants::lives;
@@ -60,32 +59,38 @@ Board::Board(QGraphicsView *view)
 
     if (Constants::levelNumber == 0)
     {
+        Constants::count = 3;
         LevelEditor *theLevelEditor = new LevelEditor(scene);
         displayHUDLevel(scene, "LEVEL EDITOR MODE", font);
     }
     else if (Constants::levelNumber == 1)
     {
+        Constants::count = 3;
         levelOne *theFirstLevel = new levelOne(scene);
         displayHUDLevel(scene, "LEVEL 1", font);
     }
 
     else if (Constants::levelNumber == 2)
     {
+//        Constants::count = 3;
         levelTwo *theSecondLevel = new levelTwo(scene);
         displayHUDLevel(scene, "LEVEL 2", font);
     }
     else if (Constants::levelNumber == 3)
     {
+//        Constants::count = 3;
         levelThree *theThirdLevel = new levelThree(scene);
         displayHUDLevel(scene, "LEVEL 3", font);
     }
     else if (Constants::levelNumber == 5)
     {
+//        Constants::count = 3;
         levelFive *theFifthLevel = new levelFive(scene);
         displayHUDLevel(scene, "LEVEL 5", font);
     }
     else if (Constants::levelNumber == 6)
     {
+        Constants::count = 3;
         LoadGame *theSavedGame = new LoadGame(scene);
         displayHUDLevel(scene, "SAVED GAME", font);
     }
