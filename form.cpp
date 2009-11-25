@@ -765,9 +765,9 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
                 board->connectTimerToBall();         // connect the timer to the ball
                 break;
             }
-        case Qt::Key_T:
-            board->stopTimer();
-            break;
+//        case Qt::Key_T:
+//            board->stopTimer();
+//            break;
     }
 }
 

@@ -34,8 +34,8 @@ Ball::Ball(SpaceShip *ship)
     factor = 0.25;
     directionX = 1.0;                         // set the X-axis increment for the movement
     directionY = -1.0;                        // set the Y-axis increment for the movement
-//    positionX = 0;                          // initial X coordinate of the ball
-//    positionY = 0;                          // initial Y coordinate of the ball
+    positionX = 0;                          // initial X coordinate of the ball
+    positionY = 0;                          // initial Y coordinate of the ball
     posXDir = true;
     posYDir = true;
     rightEdge = false;
@@ -453,15 +453,18 @@ void Ball::advance(int phase)
             }
 
 
-//            else if (Constants::levelNumber == 5 && counter == 132)       // should be 132 for level 2
-//            {
-//                this->hide();                       // hide the ball
-//                loadStoryLevel3(this->scene());     // call function to load the level 2 story screen
-//                this->scene()->removeItem(this);    // remove the ball from the scene
-//                playersShip->hide();     // hide the spaceship
-//                qDebug() << "level two done";
+            else if (Constants::levelNumber == 5 && counter == 1)       // should be 132 for level 2
+            {
+                this->hide();                       // hide the ball
+                loadEndStory(this->scene());     // call function to load the level 2 story screen
+                this->scene()->removeItem(this);    // remove the ball from the scene
+                playersShip->hide();     // hide the spaceship
+                qDebug() << "level four done";
 //                counter = 0;
-//            }
+
+
+                //delete various instances later on
+          }
 
         }
     }
@@ -589,6 +592,9 @@ void Ball::advance(int phase)
             exit->setFont(*font);
             exit->show();
             exit->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+
+            Constants::timer->disconnect(this->scene(), SLOT(advance()));
+            Constants::timer->stop();
 
             QObject::connect(exit, SIGNAL(clicked()), temp->parentWidget(), SLOT(close()));
         }
@@ -760,5 +766,52 @@ void Ball::loadStoryLevel4(QGraphicsScene *scene)
 }
 
 
+// function to display the final message
+// hides ___________________
+void Ball::loadEndStory(QGraphicsScene *scene)
+{
+    // hide the spawns remaining
+    if (Constants::life1 != NULL)
+        Constants::life1->hide();
+
+    if (Constants::life2 != NULL)
+        Constants::life2->hide();
+
+    if (Constants::life3 != NULL)
+        Constants::life3->hide();
+
+    Constants::levelInfo->hide();
+
+    QFont *font = new QFont();
+    font->setBold(true);
+    font->setPointSize(23);
+
+    storyText = scene->addText("HOW THE FUCK DID YOU BEAT THIS GAME?", *font);
+    storyText->setDefaultTextColor(Qt::blue);
+    storyText->setPos(40, 70);
+    storyText->show();
+
+    // TODO: play applause instead of intro
+    // play the start level music
+    QSound *intro = new QSound("intro.wav", 0);
+    intro->setLoops(1);
+    intro->play();
+
+    Constants::lives->hide();
+
+    font->setPointSize(13);
+    font->setBold(true);
+    font->setWeight(75);
+
+    Constants::cont = new QPushButton(scene->views().at(0)->parentWidget());
+    Constants::cont->setText("EXIT");
+    Constants::cont->setGeometry(300, 600, 150, 40);
+    Constants::cont->setFont(*font);
+    Constants::cont->show();
+    Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+
+    // if the exit button is clicked on the screen, quit
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this->scene()->views().at(0)->parentWidget(), SLOT(close()));
+}
 
 

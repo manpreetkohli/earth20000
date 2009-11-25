@@ -27,7 +27,7 @@ class Board
         void connectTimerToBall();
         void connectTimerToScore();
         void displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font);
-        void stopTimer();
+
 
 };
 #endif // BOARD_H
