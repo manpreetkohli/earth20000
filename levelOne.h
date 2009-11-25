@@ -14,26 +14,18 @@ Author: Natraj Subramanian
 #include <QtGui>
 #include "block.h"
 
-#include "block.h"
 
-#define LEVELW 600
-#define LEVELH 300
 class levelOne: public QGraphicsItem
 {
-public:
-    int xPos, yPos;
-    Block *block[6][16];
-
-//    Block *block[6][16];
-
-//    static Block *block[1][5];
-    levelOne(QGraphicsScene *theScene);
-    QRectF boundingRect() const;
-    void levelOne::paint(QPainter *painter,
-                           const QStyleOptionGraphicsItem *option,
-                           QWidget *widget = 0);
-    int generateRandomNumber(int min, int max);
-
+    public:
+        int xPos, yPos;
+        Block *block[6][16];
+        levelOne(QGraphicsScene *theScene);
+        QRectF boundingRect() const;
+        void levelOne::paint(QPainter *painter,
+                             const QStyleOptionGraphicsItem *option,
+                             QWidget *widget = 0);
+        int generateRandomNumber(int min, int max);
 };
 
 #endif // LEVELONE_H

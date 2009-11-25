@@ -34,8 +34,8 @@ Ball::Ball(SpaceShip *ship)
     factor = 0.25;
     directionX = 1.0;                         // set the X-axis increment for the movement
     directionY = -1.0;                        // set the Y-axis increment for the movement
-    positionX = 0;                          // initial X coordinate of the ball
-    positionY = 0;                          // initial Y coordinate of the ball
+//    positionX = 0;                          // initial X coordinate of the ball
+//    positionY = 0;                          // initial Y coordinate of the ball
     posXDir = true;
     posYDir = true;
     rightEdge = false;
@@ -60,14 +60,14 @@ Ball::~Ball() //Ivan
 // function that paints the ball below the loaded image
 void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawPixmap(375, 625, 20, 20, ballImage);
+    painter->drawPixmap(375, 622, 20, 20, ballImage);
 }
 
 
 // Define the bounding rectangle of the object for collision detection
 QRectF Ball::boundingRect() const
 {
-    return QRectF(375, 625, 20, 20);
+    return QRectF(375, 622, 20, 20);
 }
 
 
@@ -416,9 +416,9 @@ void Ball::advance(int phase)
                 }
 
 
-                /** ********************************
+                      /**********************************
                              END BLOCK COLLISION RULES
-                      ********************************/
+                       **********************************/
             }
 
             if (Constants::levelNumber == 1 && counter == 1)        // should be 84 for level 1
@@ -593,8 +593,8 @@ void Ball::advance(int phase)
             QObject::connect(exit, SIGNAL(clicked()), temp->parentWidget(), SLOT(close()));
         }
 
-        positionX = 0;                          // reset X coordinate to 0
-        positionY = 0;                          // reset Y coordinate to 0
+        positionX = playersShip->x();                          // reset X coordinate to 0
+        positionY = playersShip->y();                          // reset Y coordinate to 0
         setPos(positionX, positionY);           // set the coordinates to initial position
         factor = 0.25;
         directionX = 1.0;                         // set the X-axis increment for the movement
@@ -605,6 +605,8 @@ void Ball::advance(int phase)
         rightEdge = false;
         leftEdge = false;
         topEdge = false;
+        Constants::timer->disconnect(this->scene(), SIGNAL(advance()));
+        Constants::timer->stop();
     }
 
     // set the new position of the ball
@@ -730,7 +732,7 @@ void Ball::loadStoryLevel4(QGraphicsScene *scene)
     font->setBold(true);
     font->setPointSize(80);
 
-    storyText = scene->addText("    FINAL LEVEL", *font);
+    storyText = scene->addText("FINAL LEVEL", *font);
     storyText->setDefaultTextColor(Qt::blue);
     storyText->setPos(40, 70);
     storyText->show();

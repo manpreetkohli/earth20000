@@ -14,8 +14,6 @@ Author: Natraj Subramanian
 #include <QtGui>
 #include "block.h"
 
-#define LEVELW 600
-#define LEVELH 300
 
 class levelFive: public QGraphicsItem
 {
@@ -25,8 +23,8 @@ public:
     levelFive(QGraphicsScene *theScene);
     QRectF boundingRect() const;
     void levelFive::paint(QPainter *painter,
-                           const QStyleOptionGraphicsItem *option,
-                           QWidget *widget = 0);
+                          const QStyleOptionGraphicsItem *option,
+                          QWidget *widget = 0);
     int generateRandomNumber(int min, int max);
 };
 

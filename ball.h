@@ -20,6 +20,11 @@ class Ball : public QGraphicsItem
     private:
         SpaceShip *playersShip;
         //QPushButton *cont;
+
+
+
+
+
         QPixmap ballImage;        
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
         QRectF boundingRect() const;
@@ -58,6 +63,18 @@ class Ball : public QGraphicsItem
         bool leftEdge;
         bool topEdge;
         bool spaceshipHit;
+
+
+
+        void setPositionX(qreal pos)
+        {
+            positionX += pos;
+        }
+
+        void setPositionY(qreal pos)
+        {
+            positionY += pos;
+        }
 };
 
 #endif // BALL_H

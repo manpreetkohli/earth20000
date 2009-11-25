@@ -16,6 +16,9 @@ class Constants
         static QPushButton *cont;
         static int levelNumber;
 
+
+
+
         static int count;
 
         static QVector<QPointF> positions;      // change name later on
