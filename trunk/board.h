@@ -21,7 +21,7 @@ class Board
 
     public:
         QGraphicsScene *scene;
-        QTimer *timer;
+//        QTimer *timer;
         QTimer *scoreTimer;
         Board(QGraphicsView *view);
         void connectTimerToBall();

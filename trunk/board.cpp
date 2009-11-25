@@ -26,6 +26,7 @@
 QGraphicsTextItem *Constants::levelInfo;
 int Constants::count;
 
+QTimer *Constants::timer;
 
 void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
 {
@@ -141,7 +142,7 @@ Board::Board(QGraphicsView *view)
     view->setRenderHint(QPainter::Antialiasing);
     view->setCacheMode(QGraphicsView::CacheBackground);
     view->setScene(scene);          // set the created scene inside the view
-    timer = new QTimer();       // create a new QTimer() instance
+    Constants::timer = new QTimer();       // create a new QTimer() instance
     scoreTimer = new QTimer();
 }
 
@@ -149,15 +150,15 @@ Board::Board(QGraphicsView *view)
 void Board::connectTimerToBall()
 {
     // connect the timer to the advance method inside the Ball class
-    QObject::connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+    QObject::connect(Constants::timer, SIGNAL(timeout()), scene, SLOT(advance()));
 
     // Set the timer to trigger every 3 ms.
-    timer->start(1);
+    Constants::timer->start(1);
 }
 
 void Board::stopTimer()
 {
-    QObject::disconnect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+    QObject::disconnect(Constants::timer, SIGNAL(timeout()), scene, SLOT(advance()));
 }
 
 

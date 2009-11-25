@@ -14,9 +14,6 @@ Author: Natraj Subramanian
 #include <QtGui>
 #include "block.h"
 
-#define LEVELW 600
-#define LEVELH 300
-
 class levelThree: public QGraphicsItem
 {
 public:

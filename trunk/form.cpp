@@ -650,7 +650,7 @@ void Form::on_load_clicked()
     m_ui->view->setGeometry(0, 0, mainViewWidth, windowHeight);
 
     Constants::levelNumber = 6;
-    Board* board = new Board(m_ui->view);
+    board = new Board(m_ui->view);
 
     ball = new Ball(playersShip);
     m_ui->view->scene()->addItem(ball);
@@ -674,24 +674,65 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
     switch(event->key())
     {
         case Qt::Key_A:
-            if (playersShip->getShipPosX() <= -330)
-                playersShip->moveBy(0, 0);
+
+            if (!Constants::timer->isActive())
+            {
+                if (playersShip->getShipPosX() <= -330)
+                {
+                    playersShip->moveBy(0, 0);
+                    ball->moveBy(0, 0);
+                }
+                else
+                {
+                    playersShip->moveBy(-30, 0);
+                    playersShip->setShipPosX(-30);
+                    ball->moveBy(-30, 0);
+                    ball->setPositionX(-30);
+//                    ball->setPos(ball->x() - 30, 0);
+                    ball->setShipPositon(playersShip->getShipPosX());
+                }
+
+            }
+
             else
             {
-                playersShip->moveBy(-30,0);
-                playersShip->setShipPosX(-30);
-                ball->setShipPositon(playersShip->getShipPosX());
+                if (playersShip->getShipPosX() <= -330)
+                    playersShip->moveBy(0, 0);
+                else
+                {
+                    playersShip->moveBy(-30,0);
+                    playersShip->setShipPosX(-30);
+                    ball->setShipPositon(playersShip->getShipPosX());
+                }
             }
             break;
 
         case Qt::Key_D:
-            if (playersShip->getShipPosX() >= 330)
-                playersShip->moveBy(0, 0);
+            if (!Constants::timer->isActive())
+            {
+                if (playersShip->getShipPosX() >= 330)
+                    playersShip->moveBy(0, 0);
+
+                else
+                {
+                    playersShip->moveBy(30,0);
+                    playersShip->setShipPosX(30);
+                    ball->moveBy(30, 0);
+                    ball->setPositionX(30);
+                    ball->setShipPositon(playersShip->getShipPosX());
+                }
+            }
+
             else
             {
-                playersShip->moveBy(30,0);
-                playersShip->setShipPosX(30);
-                ball->setShipPositon(playersShip->getShipPosX());
+                if (playersShip->getShipPosX() >= 330)
+                    playersShip->moveBy(0, 0);
+                else
+                {
+                    playersShip->moveBy(30,0);
+                    playersShip->setShipPosX(30);
+                    ball->setShipPositon(playersShip->getShipPosX());
+                }
             }
             break;
 
@@ -719,7 +760,7 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
              break;
 
         case Qt::Key_Return:
-            if(!board->timer->isActive())
+            if(!Constants::timer->isActive())
              {
                 board->connectTimerToBall();         // connect the timer to the ball
                 break;
