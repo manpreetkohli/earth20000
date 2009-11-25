@@ -42,10 +42,11 @@ Ball::Ball(SpaceShip *ship)
     leftEdge = false;
     topEdge = false;
     setPos(positionX, positionY);           // set initial position of the ball
-    Constants::powerup = 0;
     Constants::scoreCount = 0;
     counter = 0;
     t = new SleeperThread();    
+    timer = 0;
+    multipleBalls = 0;
 }
 
 
@@ -85,15 +86,27 @@ void Ball::advance(int phase)
     QList<QGraphicsItem *> hits = this->collidingItems(Qt::IntersectsItemBoundingRect);
     
     // Power up i.e. decrease the speed of the ball
-    if(Constants::powerup == 1)
+    if(Constants::powerup == 1 && timer < 3000)
     {
         factor = 0.125;
+        timer = timer + 100;
+        //qDebug() << "Timer (slow): " << timer;
     }
     // Power down i.e. increase the speed of the ball
-    if(Constants::powerup == 2)
+    if(Constants::powerup == 2 && timer < 3000)
     {
         factor = 0.50;
+        timer = timer + 100;
+        //qDebug() << "Timer (speed): " << timer;
     }
+
+    if(timer == 3000)
+    {
+        factor = 0.25;
+        timer = 0;
+    }
+
+    //qDebug() << "Factor: " << factor;
 
     // Ivan Collazo
     // checks to see if ball collides with something then does ball physics
@@ -272,26 +285,29 @@ void Ball::advance(int phase)
                     ((Block *)(hits.at(0)))->setVisible(false);
                     Constants::scoreCount+=10;
 
-                    /*if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup() == 1)
+                    if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup() == 1)
                     {
                         qDebug() << "My type is: " << ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup();
                         Powerup *oneup = new Powerup;
                         oneup->setPosition(blockX, blockY);
                         oneup->setType(1);
+                        oneup->setVisible(true);
                         this->scene()->addItem(oneup);
                         qDebug() << "I slow down";
+                        timer = 0;
                     }
                     if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup() == 2)
                     {
                         qDebug() << "My type is: " << ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup();
-                        Powerup *oneup = new Powerup;
-                        oneup->setPosition(blockX, blockY);
-                        oneup->setType(2);
-                        this->scene()->addItem(oneup);
+                        Powerup *anotherup = new Powerup;
+                        anotherup->setPosition(blockX, blockY);
+                        anotherup->setType(2);
+                        anotherup->setVisible(true);
+                        this->scene()->addItem(anotherup);
                         qDebug() << "I speed up";
+                        timer = 0;
                     }
 
-                    Constants::powerup = Constants::powerup;*/
                     counter++;
                 }
                                 

@@ -18,13 +18,8 @@
 class Ball : public QGraphicsItem
 {
     private:
-
         SpaceShip *playersShip;
-//        QPushButton *cont;
-
-
-
-
+        //QPushButton *cont;
         QPixmap ballImage;        
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
         QRectF boundingRect() const;
@@ -32,30 +27,26 @@ class Ball : public QGraphicsItem
         void advance(int phase);
 
         void disconnectTimerAndBall();
-
         int counter;
 
 
         QGraphicsTextItem *storyText;
-
         void loadStoryLevel2(QGraphicsScene *scene);
         void loadStoryLevel3(QGraphicsScene *scene);
         void loadStoryLevel4(QGraphicsScene *scene);
-//        void loadStoryLevel3(QGraphicsScene *scene);
-
-//        QPushButton *cont;
-
+        //void loadStoryLevel3(QGraphicsScene *scene);
+        //QPushButton *cont;
         bool visibleFound;
-
-         SleeperThread *t;
-//        int count;
-       //  int count;
+        SleeperThread *t;
+        //int count;
+        //int count;
     public:
         Ball(SpaceShip *ship);
         void moveX(int amount);
         qreal directionX, directionY, positionX, positionY, ballDirection;
         qreal viewWidth, viewHeight, width, height, shipXPosition;
-        int score, hasPowerup;
+        int score, hasPowerup, multipleBalls;
+        long timer;
         double factor;
         ~Ball();
         void setShipPositon (int pos);

@@ -15,5 +15,6 @@
         <file>alienTestShip.png</file>
         <file>level3.jpg</file>
         <file>enemyBullet.png</file>
+        <file>Powerup.png</file>
     </qresource>
 </RCC>

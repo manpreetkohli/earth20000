@@ -21,7 +21,9 @@ Author: Natraj Subramanian
 levelFive::levelFive(QGraphicsScene *theScene)
 {
     xPos = -380 + (BOUNDWIDTH - 25 * OUTLINEW)/4;
-    yPos = -630 + (BOUNDHEIGHT)/3;
+    yPos = -630 + (BOUNDHEIGHT)/4;
+    int randomPowerBlock, powerupCounter;
+    powerupCounter = 0;
 
     // Declare variable to hold seconds in clock
     time_t seconds;
@@ -45,6 +47,7 @@ levelFive::levelFive(QGraphicsScene *theScene)
             else
             {
                 detColor = generateRandomNumber(0,5);
+                randomPowerBlock = generateRandomNumber(0,10);
 
                 if(detColor == 0)
                 {
@@ -70,6 +73,17 @@ levelFive::levelFive(QGraphicsScene *theScene)
                 if(detColor == 5)
                 {
                     block[i][j] = new YellowBlock;
+                }
+
+                if(randomPowerBlock == 1)
+                {
+                    block[i][j]->setPowerup(1);
+                    powerupCounter++;
+
+                    if(powerupCounter % 3 == 0)
+                    {
+                        block[i][j]->setPowerup(2);
+                    }
                 }
 
                 block[i][j]->setXPos(xPos);

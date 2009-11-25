@@ -26,7 +26,6 @@ namespace Ui
     class Form;
 }
 
-
 class Form : public QWidget
 {
     Q_OBJECT
