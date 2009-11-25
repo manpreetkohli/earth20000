@@ -87,7 +87,7 @@ Board::Board(QGraphicsView *view)
     {
 //        Constants::count = 3;
         levelFive *theFifthLevel = new levelFive(scene);
-        displayHUDLevel(scene, "LEVEL 5", font);
+        displayHUDLevel(scene, "FINAL LEVEL", font);
     }
     else if (Constants::levelNumber == 6)
     {
@@ -156,10 +156,6 @@ void Board::connectTimerToBall()
     Constants::timer->start(1);
 }
 
-void Board::stopTimer()
-{
-    QObject::disconnect(Constants::timer, SIGNAL(timeout()), scene, SLOT(advance()));
-}
 
 
 

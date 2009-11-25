@@ -39,6 +39,7 @@ class Ball : public QGraphicsItem
         void loadStoryLevel2(QGraphicsScene *scene);
         void loadStoryLevel3(QGraphicsScene *scene);
         void loadStoryLevel4(QGraphicsScene *scene);
+        void loadEndStory(QGraphicsScene *scene);
         //void loadStoryLevel3(QGraphicsScene *scene);
         //QPushButton *cont;
         bool visibleFound;
