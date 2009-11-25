@@ -160,17 +160,6 @@ void Board::stopTimer()
     QObject::disconnect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
 }
 
-/*void Board::advance()
-{
-    QFont *font = new QFont();
-    font->setStyleHint(QFont::SansSerif, QFont::PreferAntialias);
-    font->setLetterSpacing(QFont::PercentageSpacing, 125);
-    font->setBold(true);
-    font->setPointSize(24);
-    
-    Constants::score->setVisible(false);
-}*/
-
 
 
 

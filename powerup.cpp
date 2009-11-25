@@ -17,7 +17,6 @@ Powerup::Powerup()
     directionY = -1;                        // set the Y-axis increment for the movement
     xPos = 0;                          // initial X coordinate of the ball
     yPos = 0;                          // initial Y coordinate of the ball
-    timer = 0;
     setPos(xPos, yPos);
 }
 
@@ -58,20 +57,10 @@ void Powerup::advance(int phase)
     {
         QList<QGraphicsItem *> hits = this->collidingItems(Qt::IntersectsItemBoundingRect);
 
-        if(Constants::powerup != 0)
-        {
-            timer++;
-
-            if(timer == 30000)
-            {
-                Constants::powerup = 0;
-            }
-        }
 
         if(!hits.isEmpty())
         {
-            //qDebug() << "Hit type: " << hits.first()->type();
-            if(hits.first()->type() == ID_SPACESHIP)
+            if(hits.first()->type() == ID_SPACESHIP && hits.first()->type() != BLOCKID)
             {
                 this->setVisible(false);
 
@@ -90,8 +79,6 @@ void Powerup::advance(int phase)
                     }
                 }
 
-                //qDebug() << "Powerup: " << Constants::powerup;
-
             }
 
         }
@@ -101,6 +88,11 @@ void Powerup::advance(int phase)
 
         setPos(xPos, yPos);
     }
+    else
+    {
+        Constants::powerup = 0;
+    }
+
 }
 
 
