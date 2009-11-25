@@ -58,9 +58,13 @@ class SpaceShip : public QGraphicsItem
 
         int getShipPosX();
 
+        int getShipPosY();
+
         int getShipDirection();
 
+
         void setShipPosX(int xPos);
+        void setShipPosY(int yPos);
 
         void setShipDirection(int direction);
 

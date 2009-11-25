@@ -63,16 +63,28 @@ QRectF SpaceShip::boundingRect() const
     return QRectF(335, 640, 90, 35);
 }
 
-// gets Ships horizontal position
+// gets ship's horizontal position
 int SpaceShip::getShipPosX()
 {
     return left;
+}
+
+// gets ship's vertical position
+int SpaceShip::getShipPosY()
+{
+    return top;
 }
 
 // sets Ships horizontal position
 void SpaceShip::setShipPosX (int xPos)
 {
     left += xPos;
+}
+
+// sets Ships vertical position
+void SpaceShip::setShipPosY (int yPos)
+{
+    top += yPos;
 }
 
 // gets the Ship directions

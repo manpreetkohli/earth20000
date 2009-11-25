@@ -63,8 +63,7 @@ int SingleBlock::colorSelected = 7;
 // Added by Manpreet Kohli
 void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-
-    if (Constants::inLevelEditorMode == true)
+    if (Constants::levelNumber == 0)
     {
         if (this->scene()->width() < Constants::itemsWindowViewWidth)
         {
@@ -120,11 +119,16 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
         else
         {
-            this->setColor2(colorSelected);
+
 
             if (colorSelected == 7)
             {
+                if (this->getColor1() != 7)
+                    Constants::positions.remove(Constants::positions.indexOf(this->scenePos()));
+
                 this->setColor1(7);
+
+                qDebug() << "here " << Constants::positions.lastIndexOf(this->scenePos());
             }
             else
             {
@@ -132,12 +136,14 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
                 this->setOpacity(2.0);
 
-                Constants::positions.push_back(this->scenePos());
-                Constants::colors.push_back(this->getColor2());
-
+                if (!Constants::positions.contains(this->scenePos()))
+                {
+                    Constants::positions.push_back(this->scenePos());
+                    Constants::colors.push_back(this->getColor2());
+                }
             }
 
-
+            this->setColor2(colorSelected);
             update(this->boundingRect());
             update(this->sceneBoundingRect());
 

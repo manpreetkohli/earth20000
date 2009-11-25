@@ -12,11 +12,19 @@
 #include <QGraphicsItem>
 #include "sleeperthread.h"
 #include <QtGui>
+#include "spaceship.h"
 
 
 class Ball : public QGraphicsItem
 {
     private:
+
+        SpaceShip *playersShip;
+//        QPushButton *cont;
+
+
+
+
         QPixmap ballImage;        
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
         QRectF boundingRect() const;
@@ -32,15 +40,18 @@ class Ball : public QGraphicsItem
 
         void loadStoryLevel2(QGraphicsScene *scene);
         void loadStoryLevel3(QGraphicsScene *scene);
+        void loadStoryLevel4(QGraphicsScene *scene);
+//        void loadStoryLevel3(QGraphicsScene *scene);
 
-        QPushButton *cont;
+//        QPushButton *cont;
 
         bool visibleFound;
 
          SleeperThread *t;
-         int count;
+//        int count;
+       //  int count;
     public:
-        Ball();        
+        Ball(SpaceShip *ship);
         void moveX(int amount);
         qreal directionX, directionY, positionX, positionY, ballDirection;
         qreal viewWidth, viewHeight, width, height, shipXPosition;
@@ -59,3 +70,4 @@ class Ball : public QGraphicsItem
 };
 
 #endif // BALL_H
+
