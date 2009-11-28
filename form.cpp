@@ -19,6 +19,7 @@
 #include "powerup.h"
 
 
+// added by Manpreet Kohli
 // initialize all the static variables that are going to be used
 int Constants::itemsWindowViewWidth = 238;
 Block *Constants::currentBlock;
@@ -58,12 +59,14 @@ void Form::changeEvent(QEvent *e)
     }
 }
 
+// added by Manpreet Kohli
 // exit the program if the exit button is clicked
 void Form::on_exit_clicked()
 {
     exit(1);
 }
 
+// added by Manpreet Kohli
 // hide and deletes all the elements (QButtons and QLabels) of the splash screen
 void Form::hideElements(Ui::Form *m_ui)
 {
@@ -84,6 +87,7 @@ void Form::hideElements(Ui::Form *m_ui)
     delete m_ui->exit;
 }
 
+// added by Manpreet Kohli
 // function called when the "New Game" button is clicked on the splash screen
 // hides all the elements of the splash screen and displays the first page of the story line
 void Form::on_newGame_clicked()
@@ -113,6 +117,7 @@ void Form::on_newGame_clicked()
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen2()));
 }
 
+// added by Manpreet Kohli
 // function to display the second screen of the story line
 // hides first screen of the story line and loads the second screen
 void Form::loadStoryScreen2()
@@ -130,6 +135,7 @@ void Form::loadStoryScreen2()
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen3()));
 }
 
+// added by Manpreet Kohli
 // function to display the final screen of the story line
 // hides second screen of the story line and loads the third and final screen
 void Form::loadStoryScreen3()
@@ -152,6 +158,7 @@ void Form::loadStoryScreen3()
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadLevel1()));
 }
 
+// added by Manpreet Kohli, modified by Ivan Collazo
 // function to start the first level of the game after the story screens
 void Form::loadLevel1()
 {
@@ -163,7 +170,7 @@ void Form::loadLevel1()
     Constants::cont->hide();
     delete Constants::cont;
 
-    Constants::levelNumber = 1;
+    Constants::levelNumber = 5;
     if(Constants::levelNumber == 1)
     {
         m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
@@ -182,20 +189,21 @@ void Form::loadLevel1()
     // add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
 
-//    motherShip = new AlienMotherShip (); // Ivan Collazo
-//    board->scene->addItem(motherShip); // Ivan Collazo
+    motherShip = new AlienMotherShip (); // Ivan Collazo
+    board->scene->addItem(motherShip); // Ivan Collazo
 
 //    alienShip = new AlienSpaceShip (); // Ivan Collazo
 
-//    timer = new QTimer();
+    timer = new QTimer();
 //    QTimer *timer = new QTimer();
-//    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(motherFire()));
-//    timer->start(3000);
+    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(motherFire()));
+    timer->start(3000);
 
     ball = new Ball(playersShip);                  // create an instance of the ball
     board->scene->addItem(ball);        // add the ball to the board
 }
 
+// added by Manpreet Kohli, modified by Ivan Collazo
 void Form::loadLevel2()
 {
     Constants::cont->disconnect(this, SLOT(loadLevel2()));
@@ -211,7 +219,6 @@ void Form::loadLevel2()
         Constants::life3->show();
 
     // sleep for 3 secs so that the intro music can finish playing
-
     t->msleep(3000);
 
     Constants::levelNumber = 2;
@@ -237,6 +244,7 @@ void Form::loadLevel2()
     board->scene->addItem(ball);        // add the ball to the board
 }
 
+// added by Manpreet Kohli, modified by Ivan Collazo
 void Form::loadLevel3()
 {
     Constants::cont->disconnect(this, SLOT(loadLevel3()));
@@ -284,6 +292,7 @@ void Form::loadLevel3()
 //    timer->start(3000);
 }
 
+// added by Manpreet Kohli, modified by Ivan Collazo
 void Form::loadLevel4()
 {
     Constants::cont->disconnect(this, SLOT(loadLevel3()));
@@ -299,7 +308,6 @@ void Form::loadLevel4()
         Constants::life3->show();
 
     // sleep for 3 secs so that the intro music can finish playing
-
     t->msleep(3000);
 
     Constants::levelNumber = 5;
@@ -332,6 +340,7 @@ void Form::loadLevel4()
     timer->start(3000);
 }
 
+// added by Manpreet Kohli
 // function called when the "Level Editor" button is clicked on the splash screen
 void Form::on_levelEditor_clicked()
 {
@@ -471,30 +480,35 @@ void Form::on_levelEditor_clicked()
     itemsWindow->show();    // display the new view
 }
 
+// added by Manpreet Kohli
 // slot to load background 1 for the level editor
 void Form::backgroundOne_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
 }
 
+// added by Manpreet Kohli
 // slot to load background 2 for the level editor
 void Form::backgroundTwo_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg2.jpg"));
 }
 
+// added by Manpreet Kohli
 // slot to load background 3 for the level editor
 void Form::backgroundThree_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg3.jpg"));
 }
 
+// added by Manpreet Kohli
 // slot to load background 4 for the level editor
 void Form::backgroundFour_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg4.jpg"));
 }
 
+// added by Manpreet Kohli
 // if the done button is clicked in the level editor
 void Form::done_clicked()
 {
@@ -542,6 +556,7 @@ void Form::done_clicked()
     m_ui->view->scene()->addItem(playersShip);
 }
 
+// added by Manpreet Kohli
 // if the reset button gets clicked
 void Form::reset_clicked()
 {
@@ -554,6 +569,7 @@ void Form::reset_clicked()
     board = new Board(m_ui->view);
 }
 
+// added by Manpreet Kohli
 // if the save button gets clicked
 void Form::save_clicked()
 {
@@ -567,17 +583,25 @@ void Form::save_clicked()
 
     QTextStream out(&file);
 
+
+
+    for (int i = 0; i < Constants::positions.size(); i++)
+        qDebug() << Constants::positions.at(i);
+
     // write each block to the file (the color's initial gets written)
     for (int i = 0; i < 20; i++)
     {
         for (int j = 0; j < 27; j++)
         {
+//            qDebug() << "actual " << Constants::blocks[i][j]->pos();
             bool temp = false;
 
             for (int k = 0; k < Constants::positions.size(); k++)
             {
                 if (Constants::positions.at(k) == Constants::blocks[i][j]->pos())
                 {
+                    qDebug() <<"hello " << Constants::colors.at(k);
+
                     switch(Constants::colors.at(k))
                     {
                         case 0:
@@ -616,6 +640,7 @@ void Form::save_clicked()
     }
 }
 
+// added by Manpreet Kohli
 // if load game is clicked on the splash screen
 void Form::on_load_clicked()
 {
@@ -659,13 +684,13 @@ void Form::on_load_clicked()
 //    Constants::inLevelEditorMode = false;
 }
 
+// added by Ivan Collazo, modified by Manpreet Kohli
 // function that gets called when a key is pressed during the game
 void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
 {
     switch(event->key())
     {
         case Qt::Key_A:
-
             if (!Constants::timer->isActive())
             {
                 if (playersShip->getShipPosX() <= -330)
@@ -682,7 +707,6 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
 //                    ball->setPos(ball->x() - 30, 0);
                     ball->setShipPositon(playersShip->getShipPosX());
                 }
-
             }
 
             else
@@ -750,18 +774,20 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
              }
              break;
 
-        case Qt::Key_Return:
-            if(!Constants::timer->isActive())
+         case Qt::Key_Return:
+             // added by Manpreet Kohli
+             if(!Constants::timer->isActive())
              {
-                board->connectTimerToBall();         // connect the timer to the ball
-                break;
-            }
+                 board->connectTimerToBall();         // connect the timer to the ball
+                 break;
+             }
 //        case Qt::Key_T:
 //            board->stopTimer();
 //            break;
     }
 }
 
+// added by Ivan Collazo
 void Form::motherFire()
     {
         motherShip->fire();

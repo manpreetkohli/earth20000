@@ -122,33 +122,51 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
 
             if (colorSelected == 7)
-            {
-                if (this->getColor1() != 7)
-                    Constants::positions.remove(Constants::positions.indexOf(this->scenePos()));
-
                 this->setColor1(7);
 
-                qDebug() << "here " << Constants::positions.lastIndexOf(this->scenePos());
-            }
+
             else
-            {
                 this->setColor1(1);
 
-                this->setOpacity(2.0);
 
-                if (!Constants::positions.contains(this->scenePos()))
-                {
-                    Constants::positions.push_back(this->scenePos());
-                    Constants::colors.push_back(this->getColor2());
-                }
+            if (this->getColor2() != 7)
+            {
+                int tempIndex = Constants::positions.indexOf(this->scenePos());
+
+                qDebug() << "temp Index = " << tempIndex;
+                Constants::positions.remove(tempIndex);
+                Constants::colors.remove(tempIndex);
+
             }
 
-            this->setColor2(colorSelected);
+
+           this->setOpacity(2.0);
+           this->setColor2(colorSelected);
+
+           if (colorSelected != 7)
+           {
+
+                    Constants::positions.push_back(this->scenePos());
+                    Constants::colors.push_back(this->getColor2());
+           }
+
+
             update(this->boundingRect());
             update(this->sceneBoundingRect());
 
+
+
+            for (int i = 0; i < Constants::positions.size(); i++)
+                qDebug() << "array " << i << Constants::positions.at(i);
+
+            for (int i = 0; i < Constants::colors.size(); i++)
+                qDebug() << "colors " << i << Constants::colors.at(i);
+
         }
+
+
     }
+
 }
 
 void SingleBlock::setColor1(int theColor)

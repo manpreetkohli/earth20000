@@ -40,6 +40,8 @@ LoadGame::LoadGame(QGraphicsScene *theScene)
 
             in >> c;
 
+
+
             if (c == 'w')
                 Constants::blocks[i][j] = new MonoBlock();
             else if (c == 'r')

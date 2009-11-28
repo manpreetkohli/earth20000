@@ -85,7 +85,7 @@ Board::Board(QGraphicsView *view)
     }
     else if (Constants::levelNumber == 5)
     {
-//        Constants::count = 3;
+        Constants::count = 3;
         levelFive *theFifthLevel = new levelFive(scene);
         displayHUDLevel(scene, "FINAL LEVEL", font);
     }

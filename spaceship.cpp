@@ -16,6 +16,10 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include "mothershipbullet.h"
+#include "constants.h"
+
+
+
 //MoveBehavior shipMoving;
 //ShotBehavior shipShooting;
 
@@ -57,6 +61,89 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
             qDebug() << "SPACE SHIP GOT HIT BY MOTHER SHIP BULLET";
             shipHit++;
             qDebug() << shipHit;
+
+            if (Constants::count == 3)
+            {
+                this->scene()->removeItem(Constants::life3);        // remove a spawn from the HUD
+                Constants::count--;                                 // decrement no. of lives remaining
+
+                // play respawn music
+                QSound *spawnSound = new QSound("start.wav", 0);
+                spawnSound->setLoops(1);
+                spawnSound->play();
+
+                t->msleep(3000);
+            }
+            else if (Constants::count == 2)
+            {
+                this->scene()->removeItem(Constants::life2);        // remove a spawn from the HUD
+                Constants::count--;                                 // decrement no. of lives remaining
+
+                // play respawn music
+                QSound *spawnSound = new QSound("start.wav", 0);
+                spawnSound->setLoops(1);
+                spawnSound->play();
+
+                t->msleep(3000);
+            }
+            else if (Constants::count == 1)
+            {
+                this->scene()->removeItem(Constants::life1);        // remove a spawn from the HUD
+                Constants::count--;                                 // decrement no. of lives remaining
+
+                // play respawn music
+                QSound *spawnSound = new QSound("start.wav", 0);
+                spawnSound->setLoops(1);
+                spawnSound->play();
+
+                t->msleep(3000);
+            }
+            else if (Constants::count == 0)
+            {
+                // add game over logic
+                QGraphicsView *temp  = this->scene()->views().at(0);
+
+                this->scene()->deleteLater();
+
+                QGraphicsScene *gameOverScene = new QGraphicsScene;
+
+                temp->setScene(gameOverScene);
+
+                gameOverScene->setSceneRect(0, 0, temp->geometry().width() - 5, temp->geometry().height() - 5);       // set dimensions of the scene
+
+                QFont *font = new QFont();
+                font->setBold(true);
+                font->setPointSize(60);
+
+                // play game over music
+                QSound *gameover = new QSound("gameover.wav", 0);
+                gameover->setLoops(1);
+                gameover->play();
+
+                // display game over message
+                QGraphicsTextItem *gameOver = gameOverScene->addText(QString("GAME OVER"), *font);
+                gameOver->setDefaultTextColor(Qt::cyan);
+                gameOver->setOpacity(0.8);
+                gameOver->setPos(150, 200);
+
+                font->setPointSize(13);
+                font->setWeight(75);
+
+                QPushButton *exit = new QPushButton(temp->parentWidget());
+                exit->setText("EXIT");
+                exit->setGeometry(300, 600, 150, 40);
+                exit->setFont(*font);
+                exit->show();
+                exit->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+
+                Constants::timer->disconnect(this->scene(), SLOT(advance()));
+                Constants::timer->stop();
+
+                QObject::connect(exit, SIGNAL(clicked()), temp->parentWidget(), SLOT(close()));
+            }
+
+
+
         }
     }
 
