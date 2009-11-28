@@ -60,12 +60,13 @@ void ShipsMissiles::advance(int phase)
 
     // comment out the positionY >= 85 part to make it not
     // bounce back on hitting the bottom part of the screen
-    if (positionY <= -630)
+    if (!listOfCollidingItems.isEmpty() && positionY <= -100)
     {
-       // qDebug() << "Clear this up when missed or hit object";
+        qDebug() << "Clear this up when missed or hit object";
        // positionY+= 100;
         //this->ShipBullet::~ShipBullet();
         // delete;
+        positionX += 700;
     }
 
     // set the new position of the ball

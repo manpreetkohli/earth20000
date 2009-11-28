@@ -10,7 +10,7 @@ class MotherShipBullet : public QGraphicsItem
 {
     private:
         QPixmap bulletImage;
-        qreal directionX, directionY, positionX, positionY, ballDirection;
+        qreal directionX, directionY, positionX, positionY;
         qreal viewWidth, viewHeight, width, height, shipXPosition;
 
         virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -21,6 +21,8 @@ class MotherShipBullet : public QGraphicsItem
         MotherShipBullet();
 
         ~MotherShipBullet();
+
+        virtual int type() const {return ID_MOTHERSHIPBULLET; }
 
         void setBulletPosition (int posX, int posY);
 };
