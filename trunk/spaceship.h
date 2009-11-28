@@ -27,6 +27,7 @@ class SpaceShip : public QGraphicsItem
         qreal width;
         qreal height;
         qreal shipDirection;
+        qreal shipHit;
 
         // Color of the character,
         QColor color;

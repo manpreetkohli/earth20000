@@ -29,9 +29,6 @@ public:
     // the bounding rectangle of the object for collision detection
           QRectF boundingRect () const;
 
-        // the bounding rectangle of the object for collision detection
-//         QRectF boundingRectWings () const;
-
         // called whenever the spaceShip needs to be drawn
         void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 

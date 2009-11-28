@@ -10,6 +10,8 @@
 
 #include <QGraphicsItem>
 
+#define ID_SPACESHIPMISSILE    16
+
 class ShipsMissiles : public QGraphicsItem
 {
 
@@ -27,6 +29,8 @@ class ShipsMissiles : public QGraphicsItem
         ShipsMissiles();
 
         ~ShipsMissiles();
+
+        virtual int type() const {return ID_SPACESHIPMISSILE; }
 
         void setShipPosition (int pos);
 };

@@ -39,13 +39,11 @@ Form::Form(QWidget *parent) :  QWidget(parent), m_ui(new Ui::Form)
     t = new SleeperThread();
 }
 
-
 // destructor to delete the instance
 Form::~Form()
 {
     delete m_ui;
 }
-
 
 void Form::changeEvent(QEvent *e)
 {
@@ -60,13 +58,11 @@ void Form::changeEvent(QEvent *e)
     }
 }
 
-
 // exit the program if the exit button is clicked
 void Form::on_exit_clicked()
 {
     exit(1);
 }
-
 
 // hide and deletes all the elements (QButtons and QLabels) of the splash screen
 void Form::hideElements(Ui::Form *m_ui)
@@ -87,7 +83,6 @@ void Form::hideElements(Ui::Form *m_ui)
     delete m_ui->credits;
     delete m_ui->exit;
 }
-
 
 // function called when the "New Game" button is clicked on the splash screen
 // hides all the elements of the splash screen and displays the first page of the story line
@@ -118,7 +113,6 @@ void Form::on_newGame_clicked()
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen2()));
 }
 
-
 // function to display the second screen of the story line
 // hides first screen of the story line and loads the second screen
 void Form::loadStoryScreen2()
@@ -135,7 +129,6 @@ void Form::loadStoryScreen2()
     // if the continue button is clicked on the screen, load the third screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen3()));
 }
-
 
 // function to display the final screen of the story line
 // hides second screen of the story line and loads the third and final screen
@@ -158,7 +151,6 @@ void Form::loadStoryScreen3()
     // if the continue button is clicked on the screen, load the first level
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadLevel1()));
 }
-
 
 // function to start the first level of the game after the story screens
 void Form::loadLevel1()
@@ -245,7 +237,6 @@ void Form::loadLevel2()
     board->scene->addItem(ball);        // add the ball to the board
 }
 
-
 void Form::loadLevel3()
 {
     Constants::cont->disconnect(this, SLOT(loadLevel3()));
@@ -283,12 +274,15 @@ void Form::loadLevel3()
     // add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
 
+   // alienShip = new AlienSpaceShip (); // Ivan Collazo
+    //board->scene->addItem(alienShip); // Ivan Collazo
+
     ball = new Ball(playersShip);                  // create an instance of the ball
     board->scene->addItem(ball);        // add the ball to the board
+//    QTimer *timer = new QTimer();
+//    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(alienFire()));
+//    timer->start(3000);
 }
-
-
-
 
 void Form::loadLevel4()
 {
@@ -325,12 +319,18 @@ void Form::loadLevel4()
     playersShip = new SpaceShip (); // Ivan Collazo
 
     // add the player's spaceship to the board
-    board->scene->addItem(playersShip); // Ivan Collazo
+    board->scene->addItem(playersShip);  // Ivan Collazo
 
-    ball = new Ball(playersShip);                  // create an instance of the ball
-    board->scene->addItem(ball);        // add the ball to the board
+    motherShip = new AlienMotherShip (); // Ivan Collazo
+    board->scene->addItem(motherShip);   // Ivan Collazo
+
+    ball = new Ball(playersShip);        // create an instance of the ball
+    board->scene->addItem(ball);         // add the ball to the board
+
+    QTimer *timer = new QTimer();
+    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(motherFire()));
+    timer->start(3000);
 }
-
 
 // function called when the "Level Editor" button is clicked on the splash screen
 void Form::on_levelEditor_clicked()
@@ -471,13 +471,11 @@ void Form::on_levelEditor_clicked()
     itemsWindow->show();    // display the new view
 }
 
-
 // slot to load background 1 for the level editor
 void Form::backgroundOne_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
 }
-
 
 // slot to load background 2 for the level editor
 void Form::backgroundTwo_clicked()
@@ -485,20 +483,17 @@ void Form::backgroundTwo_clicked()
     m_ui->view->setBackgroundBrush(QPixmap(":bg2.jpg"));
 }
 
-
 // slot to load background 3 for the level editor
 void Form::backgroundThree_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg3.jpg"));
 }
 
-
 // slot to load background 4 for the level editor
 void Form::backgroundFour_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg4.jpg"));
 }
-
 
 // if the done button is clicked in the level editor
 void Form::done_clicked()
@@ -547,7 +542,6 @@ void Form::done_clicked()
     m_ui->view->scene()->addItem(playersShip);
 }
 
-
 // if the reset button gets clicked
 void Form::reset_clicked()
 {
@@ -559,7 +553,6 @@ void Form::reset_clicked()
     delete board;
     board = new Board(m_ui->view);
 }
-
 
 // if the save button gets clicked
 void Form::save_clicked()
@@ -623,7 +616,6 @@ void Form::save_clicked()
     }
 }
 
-
 // if load game is clicked on the splash screen
 void Form::on_load_clicked()
 {
@@ -666,7 +658,6 @@ void Form::on_load_clicked()
 
 //    Constants::inLevelEditorMode = false;
 }
-
 
 // function that gets called when a key is pressed during the game
 void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
@@ -770,7 +761,6 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
 //            break;
     }
 }
-
 
 void Form::motherFire()
     {
