@@ -34,6 +34,8 @@ void MotherShipBullet::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 QRectF MotherShipBullet::boundingRect() const
 {
   return QRectF(325,-110, width,height);
+    
+//    return QRectF(325, -50, width, height);
 }
 
 void MotherShipBullet::setBulletPosition (int posX, int posY)
@@ -42,7 +44,7 @@ void MotherShipBullet::setBulletPosition (int posX, int posY)
     positionY = posY;
 }
 
-// function to add motion to the ball inside the board
+// function to add motion to the bullet inside the board
 void MotherShipBullet::advance(int phase)
 {
     if(!phase) return;
@@ -63,6 +65,15 @@ void MotherShipBullet::advance(int phase)
 
     // set the new position of the ball
     setPos(positionX,positionY);
+
+
+
+//    qDebug() << "it's at " << positionY;
+
+
+    if (positionY < 0)
+        this->scene()->removeItem(this);
+//    this->
 }
 
 

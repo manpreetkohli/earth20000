@@ -12,6 +12,9 @@
 //#include "MoveBehavior.h"
 //#include "ShotBehavior.h"
 
+#include "sleeperthread.h"
+
+
 // Added by Natraj
 #define ID_SPACESHIP    256
 
@@ -28,6 +31,8 @@ class SpaceShip : public QGraphicsItem
         qreal height;
         qreal shipDirection;
         qreal shipHit;
+
+        SleeperThread *t;
 
         // Color of the character,
         QColor color;

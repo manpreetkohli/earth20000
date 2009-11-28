@@ -453,7 +453,7 @@ void Ball::advance(int phase)
             }
 
 
-            else if (Constants::levelNumber == 5 && counter == 1)       // should be 132 for level 2
+            else if (Constants::levelNumber == 5 && counter == 40)       // should be 132 for level 2
             {
                 this->hide();                       // hide the ball
                 loadEndStory(this->scene());     // call function to load the level 2 story screen
