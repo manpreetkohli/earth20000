@@ -93,6 +93,12 @@ class Form : public QWidget
 
     private slots:
         void loadLevel1();
+        void loadStoryScreen9();
+        void loadStoryScreen8();
+        void loadStoryScreen7();
+        void loadStoryScreen6();
+        void loadStoryScreen5();
+        void loadStoryScreen4();
         void loadStoryScreen3();
         void loadStoryScreen2();
         void on_load_clicked();

@@ -16,5 +16,17 @@
         <file>level3.jpg</file>
         <file>enemyBullet.png</file>
         <file>Powerup.png</file>
+        <file>Storyline/slide1.jpg</file>
+        <file>Storyline/slide2.jpg</file>
+        <file>Storyline/slide3.jpg</file>
+        <file>Storyline/slide4.jpg</file>
+        <file>Storyline/slide5.jpg</file>
+        <file>Storyline/slide6.jpg</file>
+        <file>Storyline/slide7.jpg</file>
+        <file>Storyline/slide8.jpg</file>
+        <file>Storyline/level1.jpg</file>
+        <file>Storyline/level2.jpg</file>
+        <file>Storyline/level3.jpg</file>
+        <file>Storyline/level4.jpg</file>
     </qresource>
 </RCC>
