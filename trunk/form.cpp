@@ -90,18 +90,12 @@ void Form::hideElements(Ui::Form *m_ui)
 // added by Manpreet Kohli
 // function called when the "New Game" button is clicked on the splash screen
 // hides all the elements of the splash screen and displays the first page of the story line
+// Storyline slides added by Natraj Subramanian
 void Form::on_newGame_clicked()
 {
     // call function to hide all the elements (QButtons and QLabels) of the splash screen
     hideElements(m_ui);
-
-    font->setBold(true);
-    font->setPointSize(78);
-
-    storyText->setText("<font color = BLUEVIOLET> IT'S THE YEAR <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19999 </font>");
-    storyText->setFont(*font);
-    storyText->setGeometry(0, 0, 762, 500);
-    storyText->show();
+    m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide1.jpg)");
 
     font->setPointSize(13);
     font->setWeight(75);
@@ -120,16 +114,13 @@ void Form::on_newGame_clicked()
 // added by Manpreet Kohli
 // function to display the second screen of the story line
 // hides first screen of the story line and loads the second screen
+// Storyline slides added by Natraj Subramanian
 void Form::loadStoryScreen2()
 {
     // disconnect previous connection for the continue button
     Constants::cont->disconnect(this, SLOT(loadStoryScreen2()));
 
-    font->setBold(true);
-    font->setPointSize(73);
-
-    storyText->setText("<font color = BLUEVIOLET> SHIT HAPPENS! </font>");
-    storyText->setFont(*font);
+    m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide2.jpg)");
 
     // if the continue button is clicked on the screen, load the third screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen3()));
@@ -142,19 +133,69 @@ void Form::loadStoryScreen3()
 {
     // disconnect previous connection for the continue button
     Constants::cont->disconnect(this, SLOT(loadStoryScreen3()));
+    m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide3.jpg)");
+    // if the continue button is clicked on the screen, load the first level
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen4()));
+}
 
-    font->setBold(true);
-    font->setPointSize(80);
+void Form::loadStoryScreen4()
+{
+    // disconnect previous connection for the continue button
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen3()));
+    m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide4.jpg)");
+    // if the continue button is clicked on the screen, load the fourth screen of the story line
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen5()));
+}
 
-    storyText->setText("<font color = BLUEVIOLET> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LEVEL 1 </font>");
-    storyText->setFont(*font);
+void Form::loadStoryScreen5()
+{
+    // disconnect previous connection for the continue button
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen4()));
+    m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide5.jpg)");
+    // if the continue button is clicked on the screen, load the fifth screen of the story line
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen6()));
+}
+
+void Form::loadStoryScreen6()
+{
+    // disconnect previous connection for the continue button
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen5()));
+    m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide6.jpg)");
+    // if the continue button is clicked on the screen, load the sixth screen of the story line
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen7()));
+}
+
+void Form::loadStoryScreen7()
+{
+    // disconnect previous connection for the continue button
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen6()));
+    m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide7.jpg)");
+    // if the continue button is clicked on the screen, load the seventh screen of the story line
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen8()));
+}
+
+void Form::loadStoryScreen8()
+{
+    // disconnect previous connection for the continue button
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen7()));
+    m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide8.jpg)");
+    // if the continue button is clicked on the screen, load the seventh screen of the story line
+    QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen9()));
+}
+
+void Form::loadStoryScreen9()
+{
+    // disconnect previous connection for the continue button
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen8()));
+    
+    m_ui->view->setStyleSheet("background-image: url(:/Storyline/level1.jpg)");
 
     // play the level start music
     intro = new QSound("intro.wav", 0);
     intro->setLoops(1);
-    intro->play();
+    intro->play();  
 
-    // if the continue button is clicked on the screen, load the first level
+    // if the continue button is clicked on the screen, load level one
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadLevel1()));
 }
 
@@ -170,7 +211,7 @@ void Form::loadLevel1()
     Constants::cont->hide();
     delete Constants::cont;
 
-    Constants::levelNumber = 5;
+    Constants::levelNumber = 1;
     if(Constants::levelNumber == 1)
     {
         m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
@@ -189,15 +230,15 @@ void Form::loadLevel1()
     // add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
 
-    motherShip = new AlienMotherShip (); // Ivan Collazo
-    board->scene->addItem(motherShip); // Ivan Collazo
+    //motherShip = new AlienMotherShip (); // Ivan Collazo
+    //board->scene->addItem(motherShip); // Ivan Collazo
 
 //    alienShip = new AlienSpaceShip (); // Ivan Collazo
 
-    timer = new QTimer();
+    //timer = new QTimer();
 //    QTimer *timer = new QTimer();
-    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(motherFire()));
-    timer->start(3000);
+    //QObject::connect(timer, SIGNAL(timeout()), this, SLOT(motherFire()));
+    //timer->start(3000);
 
     ball = new Ball(playersShip);                  // create an instance of the ball
     board->scene->addItem(ball);        // add the ball to the board
