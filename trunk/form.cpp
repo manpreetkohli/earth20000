@@ -26,6 +26,7 @@ Block *Constants::currentBlock;
 Block *Constants::blocks[20][27];
 int Constants::levelNumber;
 QPushButton *Constants::cont;
+QPushButton *skipIntro;
 
 // constructor sets up the graphics item
 Form::Form(QWidget *parent) :  QWidget(parent), m_ui(new Ui::Form)
@@ -102,13 +103,21 @@ void Form::on_newGame_clicked()
 
     Constants::cont = new QPushButton(this);
     Constants::cont->setText("CONTINUE");
-    Constants::cont->setGeometry(300, 600, 150, 40);
+    Constants::cont->setGeometry(200, 600, 150, 40);
     Constants::cont->setFont(*font);
     Constants::cont->show();
     Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
 
+    skipIntro = new QPushButton(this);
+    skipIntro->setText("Skip Intro");
+    skipIntro->setGeometry(400, 600, 150, 40);
+    skipIntro->setFont(*font);
+    skipIntro->show();
+    skipIntro->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+
     // if the continue button is clicked on the screen, call load the second screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen2()));
+    QObject::connect(skipIntro, SIGNAL(clicked()), this, SLOT(loadLevel1()));
 }
 
 // added by Manpreet Kohli
@@ -204,6 +213,8 @@ void Form::setupLevel(int levelNumber)
         storyText->hide();
         Constants::cont->hide();
         delete Constants::cont;
+        skipIntro->hide();
+        delete skipIntro;
         Constants::levelNumber = 1;
         m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
     }
