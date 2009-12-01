@@ -252,6 +252,17 @@ void Form::setupLevel(int levelNumber)
     // add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
 
+
+    if (levelNumber == 3)
+    {
+        alienShip = new AlienSpaceShip (); // Ivan Collazo
+        board->scene->addItem(alienShip); // Ivan Collazo
+
+        QTimer *timer3 = new QTimer();
+        QObject::connect(timer3, SIGNAL(timeout()), this, SLOT(alienFire()));
+        timer3->start(2000);
+    }
+
     if (levelNumber == 4)
     {
         motherShip = new AlienMotherShip (); // Ivan Collazo
@@ -265,7 +276,6 @@ void Form::setupLevel(int levelNumber)
     ball = new Ball(playersShip);                  // create an instance of the ball
     board->scene->addItem(ball);        // add the ball to the board
 }
-
 
 // added by Manpreet Kohli
 // function to start the first level of the game after the story screens
@@ -703,7 +713,7 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
              {
                  qDebug() << "NO WEAPONS";
              }
-             else if (Constants::levelNumber == 5) // Level with Missiles Fired
+             else if (Constants::levelNumber == 4) // Level with Missiles Fired
              {
                  ShipsMissiles *missiles = new ShipsMissiles(); // Ivan Collazo
                  missiles->setShipPosition(playersShip->getShipPosX());
@@ -734,6 +744,14 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
 
 // added by Ivan Collazo
 void Form::motherFire()
-{
-    motherShip->fire();
-}
+    {
+        motherShip->fire();
+       // motherShipBullet = new MotherShipBullet();
+       // board->scene->addItem(motherShipBullet);
+    }
+
+// added by Ivan Collazo
+void Form::alienFire()
+    {
+        alienShip->fire();
+    }

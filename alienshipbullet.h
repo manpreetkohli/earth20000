@@ -1,18 +1,11 @@
-/**
-/ Author: Ivan Collazo
-/ File: shipbullet.h
-/ Date: 10/20/2009
-/
-*/
+#ifndef ALIENSHIPBULLET_H
+#define ALIENSHIPBULLET_H
 
-#ifndef SHIPBULLET_H
-#define SHIPBULLET_H
+#define ID_ALIENSHIPBULLET    2
 
 #include <QGraphicsItem>
 
-#define ID_SPACESHIPBULLET    8
-
-class ShipBullet : public QGraphicsItem
+class AlienShipBullet : public QGraphicsItem
 {
     private:
         QPixmap bulletImage;
@@ -24,16 +17,15 @@ class ShipBullet : public QGraphicsItem
         virtual void advance(int phase);
 
     public:
-        ShipBullet();
+        AlienShipBullet();
 
-        ~ShipBullet();
+        ~AlienShipBullet();
 
         void setShipPosition (int pos);
 
-        virtual int type() const {return ID_SPACESHIPBULLET; }
+        void setBulletPosition (int posX, int posY);
 
-        int getShipBulletYPosition();
 
-    };
+};
 
-#endif // SHIPBULLET_H
+#endif // ALIENSHIPBULLET_H
