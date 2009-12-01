@@ -21,7 +21,9 @@ class Ball : public QGraphicsItem
         SpaceShip *playersShip;
         //QPushButton *cont;
 
-
+        void loadStory(int levelNumber);
+        void removeSpawn(int currentLives);
+        void loadStoryScreen(QGraphicsScene *scene, int level, QString levelNumber);
 
 
 

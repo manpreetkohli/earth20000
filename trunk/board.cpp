@@ -83,9 +83,9 @@ Board::Board(QGraphicsView *view)
         levelThree *theThirdLevel = new levelThree(scene);
         displayHUDLevel(scene, "LEVEL 3", font);
     }
-    else if (Constants::levelNumber == 5)
+    else if (Constants::levelNumber == 4)
     {
-        Constants::count = 3;
+//        Constants::count = 3;
         levelFive *theFifthLevel = new levelFive(scene);
         displayHUDLevel(scene, "FINAL LEVEL", font);
     }
@@ -153,7 +153,7 @@ void Board::connectTimerToBall()
     QObject::connect(Constants::timer, SIGNAL(timeout()), scene, SLOT(advance()));
 
     // Set the timer to trigger every 3 ms.
-    Constants::timer->start(1);
+    Constants::timer->start(2);
 }
 
 

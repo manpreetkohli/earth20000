@@ -11,7 +11,6 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-
 #include <QGraphicsScene>
 
 class Board
@@ -21,13 +20,10 @@ class Board
 
     public:
         QGraphicsScene *scene;
-//        QTimer *timer;
         QTimer *scoreTimer;
         Board(QGraphicsView *view);
         void connectTimerToBall();
         void connectTimerToScore();
         void displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font);
-
-
 };
 #endif // BOARD_H
