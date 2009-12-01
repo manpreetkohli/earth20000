@@ -10,6 +10,9 @@
 #include <QDebug>
 #include <iostream>
 #include <QStyleOption>
+#include "block.h"
+#include "constants.h"
+#include "alienmothership.h"
 
 ShipsMissiles::ShipsMissiles()
 {   
@@ -56,18 +59,29 @@ void ShipsMissiles::advance(int phase)
 
     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();//ivan
 
-    positionY+=directionY;
 
-    // comment out the positionY >= 85 part to make it not
-    // bounce back on hitting the bottom part of the screen
-    if (!listOfCollidingItems.isEmpty() && positionY <= -100)
+    if (!listOfCollidingItems.isEmpty())
     {
-        qDebug() << "Clear this up when missed or hit object";
-       // positionY+= 100;
-        //this->ShipBullet::~ShipBullet();
-        // delete;
-        positionX += 700;
+        if (listOfCollidingItems.first()->type() == BLOCKID)
+         {
+            qDebug() << "MISSILE HIT A BLOCK";
+            this->scene()->removeItem(this);
+         }
+
+         else if (listOfCollidingItems.first()->type() == ID_MOTHERSHIP)
+         {
+             qDebug() << "HITTING MOTHER SHITTT";
+             this->scene()->removeItem(this);
+         }
+
+         else if (listOfCollidingItems.first()->type() == ID_SPACESHIPMISSILE)
+         {
+             qDebug() << " SHITTT";
+             this->scene()->removeItem(this);
+         }
     }
+
+    positionY+=directionY;
 
     // set the new position of the ball
     setPos(positionX+330, positionY-80);

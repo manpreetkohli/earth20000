@@ -1,7 +1,6 @@
 #ifndef MOTHERSHIPBULLET_H
 #define MOTHERSHIPBULLET_H
 
-
 #define ID_MOTHERSHIPBULLET    64
 
 #include <QGraphicsItem>

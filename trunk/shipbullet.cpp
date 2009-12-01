@@ -9,6 +9,10 @@
 #include <QPainter>
 #include <QDebug>
 #include <iostream>
+#include "block.h"
+#include "alienspaceship.h"
+#include "spaceship.h"
+#include "constants.h"
 
 ShipBullet::ShipBullet()
 {
@@ -24,22 +28,21 @@ ShipBullet::ShipBullet()
 
 ShipBullet::~ShipBullet()
 {
-    qDebug() << "Destructor";
-    //delete this->ShipBullet::~ShipBullet();
+    qDebug() << "Ship Bullet Destructor";
 }
 
 void ShipBullet::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawPixmap(-10, 625, 10, 10, bulletImage);
+    painter->drawPixmap(-10, 600, 10, 10, bulletImage);
 }
 
 // Define the bounding rectangle of the object for collision detection
 QRectF ShipBullet::boundingRect() const
 {
-  return QRectF(-10,625, 20,20);
+  return QRectF(-10,600, 20,20);
 }
 
-// function set the players Ship position to be used in the physics portion in the advance function
+// function set the players Ship position to be used in the firing of bullets
 void ShipBullet::setShipPosition (int pos)
 {
     shipXPosition = pos;
@@ -58,24 +61,28 @@ void ShipBullet::advance(int phase)
 
     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();//ivan
 
-
-    if (!listOfCollidingItems.isEmpty() && positionY <= -380)
+    if (!listOfCollidingItems.isEmpty())
     {
-      qDebug() << "HITTING SHITTT";
-        positionX += 700;
+         if(listOfCollidingItems.first()->type() == BLOCKID)
+         {
+            //qDebug() << "BULLET HIT A BLOCK";
+            //directionY = 4;
+         }
+
+         else if (listOfCollidingItems.first()->type() == ID_SPACESHIP)
+         {
+            qDebug() << "BULLET HIT spaceShip";
+            this->scene()->removeItem(this);
+         }
+
+         else if (listOfCollidingItems.first()->type() == ID_ALIENSPACESHIP)
+         {
+          qDebug() << "HITTING Alien SHITTT";
+          this->scene()->removeItem(this);//   positionX += 700;
+         }
     }
 
     positionY+=directionY;
-
-    // comment out the positionY >= 85 part to make it not
-    // bounce back on hitting the bottom part of the screen
-    if (positionY <= -630)
-    {
-        //qDebug() << "Clear this up when missed or hit object";
-       // positionY+= 100;
-        //this->ShipBullet::~ShipBullet();
-        // delete this;
-    }
 
     // set the new position of the ball
     setPos(positionX+380,positionY);

@@ -28,5 +28,6 @@
         <file>Storyline/level2.jpg</file>
         <file>Storyline/level3.jpg</file>
         <file>Storyline/level4.jpg</file>
+        <file>motherShipBullet.png</file>
     </qresource>
 </RCC>

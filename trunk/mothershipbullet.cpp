@@ -57,7 +57,7 @@ void MotherShipBullet::advance(int phase)
         if(listOfCollidingItems.first()->type() == ID_SPACESHIP)
         {
             qDebug() << "HITTING SPACE SHIP";
-            positionX += 700;
+            this->scene()->removeItem(this);
         }
     }
 
@@ -67,12 +67,11 @@ void MotherShipBullet::advance(int phase)
     setPos(positionX,positionY);
 
 
-
-//    qDebug() << "it's at " << positionY;
-
-
-    if (positionY < 0)
+    if (positionY > 800)
+    {
+        qDebug() << "mother bullet gone";
         this->scene()->removeItem(this);
+    }
 //    this->
 }
 

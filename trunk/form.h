@@ -16,9 +16,11 @@
 #include "shipbullet.h"         // Ivan Collazo
 #include "shipsmissiles.h"      // Ivan Collazo
 #include "block.h"
-#include "alienmothership.h"    // Ivan Collazo
-#include "mothershipbullet.h"   // Ivan Collazo
 
+#include "alienmothership.h" // Ivan Collazo
+#include "alienspaceship.h" // Ivan collazo
+#include "mothershipbullet.h"   // Ivan Collazo
+#include "alienshipbullet.h" // Ivan Collazo
 
 namespace Ui
 {
@@ -74,10 +76,10 @@ class Form : public QWidget
         int windowHeight;
         int mainViewWidth;
 
-
         AlienMotherShip *motherShip; // Ivan Collazo
-        //AlienSpaceShip *alienShip; // Ivan Collazo
+        AlienSpaceShip *alienShip; // Ivan Collazo
         MotherShipBullet *motherShipBullet; // Ivan Collazo
+        AlienShipBullet *alienBullet; // Ivan collazo
 
         static int shipPos;
         QFont *font;
@@ -115,7 +117,9 @@ class Form : public QWidget
         void backgroundTwo_clicked();
         void backgroundThree_clicked();
         void backgroundFour_clicked();
+        void alienFire();
         void motherFire();
+
 
         void loadLevel2();
         void loadLevel3();
