@@ -16,9 +16,8 @@
 #include "shipbullet.h"         // Ivan Collazo
 #include "shipsmissiles.h"      // Ivan Collazo
 #include "block.h"
-#include "alienmothership.h" // Ivan Collazo
-//#include "alienspaceship.h" // Ivan collazo
-#include "mothershipbullet.h" // Ivan Collazo
+#include "alienmothership.h"    // Ivan Collazo
+#include "mothershipbullet.h"   // Ivan Collazo
 
 
 namespace Ui
@@ -74,7 +73,6 @@ class Form : public QWidget
         int windowWidth;
         int windowHeight;
         int mainViewWidth;
-        int itemsWindowViewWidth;
 
 
         AlienMotherShip *motherShip; // Ivan Collazo
@@ -90,6 +88,11 @@ class Form : public QWidget
         ShipsMissiles *missiles; //Ivan Collazo
 
         QTimer *timer;
+
+
+
+
+        void setupLevel(int levelNumber);
 
     private slots:
         void loadLevel1();

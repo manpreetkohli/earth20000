@@ -8,7 +8,6 @@ Author: Natraj Subramanian
 
   **/
 
-
 #include <QtGui>
 #include "block.h"
 #include "constants.h"
@@ -68,9 +67,7 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
         if (this->scene()->width() < Constants::itemsWindowViewWidth)
         {
             colorSelected = this->color2;
-
             this->scene()->removeItem(Constants::currentBlock);
-
             delete Constants::currentBlock;
 
             switch(colorSelected)
@@ -119,54 +116,31 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 
         else
         {
-
-
             if (colorSelected == 7)
                 this->setColor1(7);
-
-
             else
                 this->setColor1(1);
-
 
             if (this->getColor2() != 7)
             {
                 int tempIndex = Constants::positions.indexOf(this->scenePos());
-
-                qDebug() << "temp Index = " << tempIndex;
                 Constants::positions.remove(tempIndex);
                 Constants::colors.remove(tempIndex);
-
             }
 
+            this->setOpacity(2.0);
+            this->setColor2(colorSelected);
 
-           this->setOpacity(2.0);
-           this->setColor2(colorSelected);
-
-           if (colorSelected != 7)
-           {
-
-                    Constants::positions.push_back(this->scenePos());
-                    Constants::colors.push_back(this->getColor2());
-           }
-
+            if (colorSelected != 7)
+            {
+                Constants::positions.push_back(this->scenePos());
+                Constants::colors.push_back(this->getColor2());
+            }
 
             update(this->boundingRect());
             update(this->sceneBoundingRect());
-
-
-
-            for (int i = 0; i < Constants::positions.size(); i++)
-                qDebug() << "array " << i << Constants::positions.at(i);
-
-            for (int i = 0; i < Constants::colors.size(); i++)
-                qDebug() << "colors " << i << Constants::colors.at(i);
-
         }
-
-
     }
-
 }
 
 void SingleBlock::setColor1(int theColor)
@@ -300,7 +274,6 @@ RedBlock::RedBlock()
     setColor2(2);
 
     QGraphicsItem *oneBlock = new SingleBlock(this);
-
 }
 
 QRectF RedBlock::boundingRect() const
@@ -324,7 +297,6 @@ GreenBlock::GreenBlock()
     setColor2(3);
 
     QGraphicsItem *oneBlock = new SingleBlock(this);
-
 }
 
 QRectF GreenBlock::boundingRect() const
@@ -348,7 +320,6 @@ BlueBlock::BlueBlock()
     setColor2(4);
 
     QGraphicsItem *oneBlock = new SingleBlock(this);
-
 }
 
 QRectF BlueBlock::boundingRect() const
@@ -372,7 +343,6 @@ MagentaBlock::MagentaBlock()
     setColor2(5);
 
     QGraphicsItem *oneBlock = new SingleBlock(this);
-
 }
 
 QRectF MagentaBlock::boundingRect() const
@@ -395,7 +365,6 @@ YellowBlock::YellowBlock()
     setColor2(6);
 
     QGraphicsItem *oneBlock = new SingleBlock(this);
-
 }
 
 QRectF YellowBlock::boundingRect() const

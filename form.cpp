@@ -126,9 +126,6 @@ void Form::loadStoryScreen2()
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen3()));
 }
 
-// added by Manpreet Kohli
-// function to display the final screen of the story line
-// hides second screen of the story line and loads the third and final screen
 void Form::loadStoryScreen3()
 {
     // disconnect previous connection for the continue button
@@ -141,7 +138,7 @@ void Form::loadStoryScreen3()
 void Form::loadStoryScreen4()
 {
     // disconnect previous connection for the continue button
-    Constants::cont->disconnect(this, SLOT(loadStoryScreen3()));
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen4()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide4.jpg)");
     // if the continue button is clicked on the screen, load the fourth screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen5()));
@@ -150,7 +147,7 @@ void Form::loadStoryScreen4()
 void Form::loadStoryScreen5()
 {
     // disconnect previous connection for the continue button
-    Constants::cont->disconnect(this, SLOT(loadStoryScreen4()));
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen5()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide5.jpg)");
     // if the continue button is clicked on the screen, load the fifth screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen6()));
@@ -159,7 +156,7 @@ void Form::loadStoryScreen5()
 void Form::loadStoryScreen6()
 {
     // disconnect previous connection for the continue button
-    Constants::cont->disconnect(this, SLOT(loadStoryScreen5()));
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen6()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide6.jpg)");
     // if the continue button is clicked on the screen, load the sixth screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen7()));
@@ -168,7 +165,7 @@ void Form::loadStoryScreen6()
 void Form::loadStoryScreen7()
 {
     // disconnect previous connection for the continue button
-    Constants::cont->disconnect(this, SLOT(loadStoryScreen6()));
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen7()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide7.jpg)");
     // if the continue button is clicked on the screen, load the seventh screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen8()));
@@ -177,7 +174,7 @@ void Form::loadStoryScreen7()
 void Form::loadStoryScreen8()
 {
     // disconnect previous connection for the continue button
-    Constants::cont->disconnect(this, SLOT(loadStoryScreen7()));
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen8()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide8.jpg)");
     // if the continue button is clicked on the screen, load the seventh screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen9()));
@@ -186,42 +183,67 @@ void Form::loadStoryScreen8()
 void Form::loadStoryScreen9()
 {
     // disconnect previous connection for the continue button
-    Constants::cont->disconnect(this, SLOT(loadStoryScreen8()));
+    Constants::cont->disconnect(this, SLOT(loadStoryScreen9()));
     
-    m_ui->view->setStyleSheet("background-image: url(:/Storyline/level1.jpg)");
-
-    // play the level start music
-    intro = new QSound("intro.wav", 0);
+    // play the start level music
+    QSound *intro = new QSound("intro.wav", 0);
     intro->setLoops(1);
-    intro->play();  
+    intro->play();
+
+    m_ui->view->setStyleSheet("background-image: url(:/Storyline/level1.jpg)");
 
     // if the continue button is clicked on the screen, load level one
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadLevel1()));
 }
 
 // added by Manpreet Kohli, modified by Ivan Collazo
-// function to start the first level of the game after the story screens
-void Form::loadLevel1()
+void Form::setupLevel(int levelNumber)
 {
-    // sleep for 3 secs so that the intro music can finish playing
-    t->msleep(3000);
-
-    storyText->hide();
-
-    Constants::cont->hide();
-    delete Constants::cont;
-
-    Constants::levelNumber = 1;
-    if(Constants::levelNumber == 1)
+    if (levelNumber == 1)
     {
+        storyText->hide();
+        Constants::cont->hide();
+        delete Constants::cont;
+        Constants::levelNumber = 1;
         m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
     }
-    else
+
+    if (levelNumber == 2)
     {
+        Constants::cont->disconnect(this, SLOT(loadLevel2()));
+        Constants::levelNumber = 2;
+    }
+
+    if (levelNumber == 3)
+    {
+        Constants::cont->disconnect(this, SLOT(loadLevel3()));
+        Constants::levelNumber = 3;
+    }
+
+    if (levelNumber == 4)
+    {
+        Constants::cont->disconnect(this, SLOT(loadLevel4()));
+        Constants::levelNumber = 4;
+    }
+
+    if (levelNumber == 2 || levelNumber == 3 || levelNumber == 4)
+    {
+        Constants::cont->hide();
+
+        if (Constants::life1 != NULL)
+            Constants::life1->show();
+        if (Constants::life2 != NULL)
+            Constants::life2->show();
+        if (Constants::life3 != NULL)
+            Constants::life3->show();
+
         m_ui->view->setBackgroundBrush(QPixmap(":level3.jpg"));
     }
 
-    m_ui->view->setRenderHint(QPainter::Antialiasing);    
+    // sleep for 3 secs so that the intro music can finish playing
+    t->msleep(3000);
+
+    m_ui->view->setRenderHint(QPainter::Antialiasing);
     board = new Board(m_ui->view);       // add the board to the view
 
     // create an instance of the player's spaceship
@@ -230,155 +252,44 @@ void Form::loadLevel1()
     // add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
 
-    //motherShip = new AlienMotherShip (); // Ivan Collazo
-    //board->scene->addItem(motherShip); // Ivan Collazo
+    if (levelNumber == 4)
+    {
+        motherShip = new AlienMotherShip (); // Ivan Collazo
+        board->scene->addItem(motherShip); // Ivan Collazo
 
-//    alienShip = new AlienSpaceShip (); // Ivan Collazo
-
-    //timer = new QTimer();
-//    QTimer *timer = new QTimer();
-    //QObject::connect(timer, SIGNAL(timeout()), this, SLOT(motherFire()));
-    //timer->start(3000);
+        QTimer *timer = new QTimer();
+        QObject::connect(timer, SIGNAL(timeout()), this, SLOT(motherFire()));
+        timer->start(3000);
+    }
 
     ball = new Ball(playersShip);                  // create an instance of the ball
     board->scene->addItem(ball);        // add the ball to the board
 }
 
-// added by Manpreet Kohli, modified by Ivan Collazo
+
+// added by Manpreet Kohli
+// function to start the first level of the game after the story screens
+void Form::loadLevel1()
+{
+    setupLevel(1);
+}
+
+// added by Manpreet Kohli
 void Form::loadLevel2()
 {
-    Constants::cont->disconnect(this, SLOT(loadLevel2()));
-    Constants::cont->hide();
-
-    if (Constants::life1 != NULL)
-        Constants::life1->show();
-
-    if (Constants::life2 != NULL)
-        Constants::life2->show();
-
-    if (Constants::life3 != NULL)
-        Constants::life3->show();
-
-    // sleep for 3 secs so that the intro music can finish playing
-    t->msleep(3000);
-
-    Constants::levelNumber = 2;
-    if(Constants::levelNumber == 1)
-    {
-        m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
-    }
-    else
-    {
-        m_ui->view->setBackgroundBrush(QPixmap(":level3.jpg"));
-    }
-
-    m_ui->view->setRenderHint(QPainter::Antialiasing);
-    board = new Board(m_ui->view);       // add the board to the view
-
-    // create an instance of the player's spaceship
-    playersShip = new SpaceShip (); // Ivan Collazo
-
-    // add the player's spaceship to the board
-    board->scene->addItem(playersShip); // Ivan Collazo
-
-    ball = new Ball(playersShip);                  // create an instance of the ball
-    board->scene->addItem(ball);        // add the ball to the board
+    setupLevel(2);
 }
 
-// added by Manpreet Kohli, modified by Ivan Collazo
+// added by Manpreet Kohli
 void Form::loadLevel3()
 {
-    Constants::cont->disconnect(this, SLOT(loadLevel3()));
-    Constants::cont->hide();
-
-    if (Constants::life1 != NULL)
-        Constants::life1->show();
-
-    if (Constants::life2 != NULL)
-        Constants::life2->show();
-
-    if (Constants::life3 != NULL)
-        Constants::life3->show();
-
-    // sleep for 3 secs so that the intro music can finish playing
-
-    t->msleep(3000);
-
-    Constants::levelNumber = 3;
-    if(Constants::levelNumber == 1)
-    {
-        m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
-    }
-    else
-    {
-        m_ui->view->setBackgroundBrush(QPixmap(":level3.jpg"));
-    }
-
-    m_ui->view->setRenderHint(QPainter::Antialiasing);
-    board = new Board(m_ui->view);       // add the board to the view
-
-    // create an instance of the player's spaceship
-    playersShip = new SpaceShip (); // Ivan Collazo
-
-    // add the player's spaceship to the board
-    board->scene->addItem(playersShip); // Ivan Collazo
-
-   // alienShip = new AlienSpaceShip (); // Ivan Collazo
-    //board->scene->addItem(alienShip); // Ivan Collazo
-
-    ball = new Ball(playersShip);                  // create an instance of the ball
-    board->scene->addItem(ball);        // add the ball to the board
-//    QTimer *timer = new QTimer();
-//    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(alienFire()));
-//    timer->start(3000);
+   setupLevel(3);
 }
 
-// added by Manpreet Kohli, modified by Ivan Collazo
+// added by Manpreet Kohli
 void Form::loadLevel4()
 {
-    Constants::cont->disconnect(this, SLOT(loadLevel3()));
-    Constants::cont->hide();
-
-    if (Constants::life1 != NULL)
-        Constants::life1->show();
-
-    if (Constants::life2 != NULL)
-        Constants::life2->show();
-
-    if (Constants::life3 != NULL)
-        Constants::life3->show();
-
-    // sleep for 3 secs so that the intro music can finish playing
-    t->msleep(3000);
-
-    Constants::levelNumber = 5;
-    if(Constants::levelNumber == 1)
-    {
-        m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
-    }
-    else
-    {
-        m_ui->view->setBackgroundBrush(QPixmap(":level3.jpg"));
-    }
-
-    m_ui->view->setRenderHint(QPainter::Antialiasing);
-    board = new Board(m_ui->view);       // add the board to the view
-
-    // create an instance of the player's spaceship
-    playersShip = new SpaceShip (); // Ivan Collazo
-
-    // add the player's spaceship to the board
-    board->scene->addItem(playersShip);  // Ivan Collazo
-
-    motherShip = new AlienMotherShip (); // Ivan Collazo
-    board->scene->addItem(motherShip);   // Ivan Collazo
-
-    ball = new Ball(playersShip);        // create an instance of the ball
-    board->scene->addItem(ball);         // add the ball to the board
-
-    QTimer *timer = new QTimer();
-    QObject::connect(timer, SIGNAL(timeout()), this, SLOT(motherFire()));
-    timer->start(3000);
+    setupLevel(4);
 }
 
 // added by Manpreet Kohli
@@ -567,10 +478,8 @@ void Form::done_clicked()
     {
         for (int j = 0; j < 27; j++)
         {
-//            if (Constants::blocks[i][j]->getColor1() == 7 && Constants::blocks[i][j]->getColor2() == 7)
             if (!Constants::positions.contains(Constants::blocks[i][j]->pos()))
             {
-
                 m_ui->view->scene()->removeItem(Constants::blocks[i][j]);
                 delete Constants::blocks[i][j];
             }
@@ -590,6 +499,10 @@ void Form::done_clicked()
     setMaximumSize(QSize(mainViewWidth, windowHeight));   // change the maximum size of the window
     move(250, 10);          // relocate the window after it's dimensions change
 
+    //int width = view->geometry().width() - 5;
+    //int height = view->geometry().height() - 5;
+    m_ui->view->scene()->setSceneRect(0, 0, mainViewWidth - 5, windowHeight - 5);       // set dimensions of the scene
+    
     ball = new Ball(playersShip);                  // create ball in the level editor
     m_ui->view->scene()->addItem(ball);
 
@@ -715,14 +628,6 @@ void Form::on_load_clicked()
 
     playersShip = new SpaceShip();
     m_ui->view->scene()->addItem(playersShip);
-
-//    timer = new QTimer();
-//    QObject::connect(timer, SIGNAL(timeout()), m_ui->view->scene(), SLOT(advance()));
-
-//    Set the timer to trigger every 5 ms.
-//    timer->start(5);
-
-//    Constants::inLevelEditorMode = false;
 }
 
 // added by Ivan Collazo, modified by Manpreet Kohli
@@ -745,7 +650,6 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
                     playersShip->setShipPosX(-30);
                     ball->moveBy(-30, 0);
                     ball->setPositionX(-30);
-//                    ball->setPos(ball->x() - 30, 0);
                     ball->setShipPositon(playersShip->getShipPosX());
                 }
             }
@@ -830,8 +734,6 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
 
 // added by Ivan Collazo
 void Form::motherFire()
-    {
-        motherShip->fire();
-       // motherShipBullet = new MotherShipBullet();
-       // board->scene->addItem(motherShipBullet);
-    }
+{
+    motherShip->fire();
+}
