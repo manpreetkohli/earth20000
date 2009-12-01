@@ -3,6 +3,8 @@
 
 #include <QGraphicsItem>
 
+#define ID_MOTHERSHIP    4
+
 class AlienMotherShip : public QGraphicsItem
 {
     private:
@@ -21,13 +23,13 @@ class AlienMotherShip : public QGraphicsItem
         // for image of th ship that will be place on the object.
         QPixmap shipsImage;
 
-public:
-    AlienMotherShip();
+    public:
+        AlienMotherShip();
 
-    ~AlienMotherShip();
+        ~AlienMotherShip();
 
-    // the bounding rectangle of the object for collision detection
-          QRectF boundingRect () const;
+        // the bounding rectangle of the object for collision detection
+        QRectF boundingRect () const;
 
         // called whenever the spaceShip needs to be drawn
         void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -38,7 +40,9 @@ public:
         // gets Alien MotherShip Y Position
         int getShipPosY();
 
-     // public slots:
+        virtual int type() const {return ID_MOTHERSHIP; }
+
+        // public slots:
         void fire();
 
 };
