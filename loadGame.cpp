@@ -7,7 +7,6 @@
  *
  */
 
-
 #include <QtGui>
 #include "loadGame.h"
 #include "block.h"
@@ -18,18 +17,14 @@ LoadGame::LoadGame(QGraphicsScene *theScene)
     xPos = -375;
     yPos = -590;
 
-
     QFile file("levels.txt");
 
     if (!file.open(QIODevice::ReadOnly))
     {
         qDebug() << "Cannot open file for reading: ";
-
-
     }
 
     QTextStream in(&file);
-
     QChar c;
 
     // draw all the transparent blocks for the level editor window
@@ -37,10 +32,7 @@ LoadGame::LoadGame(QGraphicsScene *theScene)
     {
         for (int j = 0; j < 27; j++)
         {
-
             in >> c;
-
-
 
             if (c == 'w')
                 Constants::blocks[i][j] = new MonoBlock();
@@ -61,8 +53,9 @@ LoadGame::LoadGame(QGraphicsScene *theScene)
                 continue;
             }
 
-
             theScene->addItem(Constants::blocks[i][j]);
+            Constants::blocks[i][j]->setXPos(xPos);
+            Constants::blocks[i][j]->setYPos(yPos);
             Constants::blocks[i][j]->setPos(xPos, yPos);
             Constants::blocks[i][j]->show();
             xPos+=OUTLINEW;
