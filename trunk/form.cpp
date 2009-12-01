@@ -509,15 +509,13 @@ void Form::done_clicked()
     setMaximumSize(QSize(mainViewWidth, windowHeight));   // change the maximum size of the window
     move(250, 10);          // relocate the window after it's dimensions change
 
-    //int width = view->geometry().width() - 5;
-    //int height = view->geometry().height() - 5;
     m_ui->view->scene()->setSceneRect(0, 0, mainViewWidth - 5, windowHeight - 5);       // set dimensions of the scene
-    
-    ball = new Ball(playersShip);                  // create ball in the level editor
-    m_ui->view->scene()->addItem(ball);
 
     playersShip = new SpaceShip();      // create spaceship in the level editor
     m_ui->view->scene()->addItem(playersShip);
+
+    ball = new Ball(playersShip);                  // create ball in the level editor
+    m_ui->view->scene()->addItem(ball);
 }
 
 // added by Manpreet Kohli
@@ -633,11 +631,11 @@ void Form::on_load_clicked()
     Constants::levelNumber = 6;
     board = new Board(m_ui->view);
 
-    ball = new Ball(playersShip);
-    m_ui->view->scene()->addItem(ball);
-
     playersShip = new SpaceShip();
     m_ui->view->scene()->addItem(playersShip);
+
+    ball = new Ball(playersShip);
+    m_ui->view->scene()->addItem(ball);
 }
 
 // added by Ivan Collazo, modified by Manpreet Kohli

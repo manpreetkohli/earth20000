@@ -153,7 +153,10 @@ void Board::connectTimerToBall()
     QObject::connect(Constants::timer, SIGNAL(timeout()), scene, SLOT(advance()));
 
     // Set the timer to trigger every 3 ms.
-    Constants::timer->start(2);
+    if (Constants::levelNumber == 0)
+        Constants::timer->start(0);
+    else
+        Constants::timer->start(1);
 }
 
 
