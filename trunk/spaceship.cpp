@@ -16,6 +16,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include "mothershipbullet.h"
+#include "alienshipbullet.h"
 #include "constants.h"
 
 
@@ -56,7 +57,7 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
 
     if (!listOfCollidingItems.isEmpty())
     {
-        if(listOfCollidingItems.first()->type() == ID_MOTHERSHIPBULLET)
+        if (listOfCollidingItems.first()->type() == ID_ALIENSHIPBULLET)// ((listOfCollidingItems.first()->type() == ID_MOTHERSHIPBULLET) || (listOfCollidingItems.first()->type() == ID_ALIENSHIPBULLET))
         {
             qDebug() << "SPACE SHIP GOT HIT BY MOTHER SHIP BULLET";
             shipHit++;
@@ -141,13 +142,9 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
 
                 QObject::connect(exit, SIGNAL(clicked()), temp->parentWidget(), SLOT(close()));
             }
-
-
-
         }
     }
 
-   // painter->setBrush(color);
   //  painter->drawRect(335, 640, 80, 30);
     painter->drawPixmap(335, 640, 90, 35, shipsImage);
 }

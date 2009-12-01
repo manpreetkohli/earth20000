@@ -37,9 +37,6 @@ void AlienMotherShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *
     // can later traverse to examine what collided with the character.
     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
 
-    // connect the timer to the advance method inside the Ball class
-    //    QObject::connect(timer, SIGNAL(timeout()), this->scene(), SLOT(fire()));
-        // painter->setBrush(color);
         //painter->drawEllipse(178,330,378,90);
        // painter->drawRect(178, 260, 378, 96);
       //  painter->drawRect(304, 320, 126, 108);
