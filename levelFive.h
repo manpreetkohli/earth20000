@@ -22,9 +22,7 @@ public:
     Block *block[10][25];
     levelFive(QGraphicsScene *theScene);
     QRectF boundingRect() const;
-    void levelFive::paint(QPainter *painter,
-                          const QStyleOptionGraphicsItem *option,
-                          QWidget *widget = 0);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
     int generateRandomNumber(int min, int max);
 };
 

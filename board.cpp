@@ -29,24 +29,12 @@
 
 QGraphicsTextItem *Constants::levelInfo;
 int Constants::count;
-
-QTimer *Constants::timer;
-
-void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
-{
-    Constants::levelInfo = scene->addText(levelNumber, *font);
-    Constants::levelInfo->setDefaultTextColor(Qt::white);
-    Constants::levelInfo->setOpacity(0.6);
-    Constants::levelInfo->setPos(15, 0);
-}
-
-
 QGraphicsTextItem *Constants::lives;
 QGraphicsTextItem *Constants::score;
 SpaceShip *Constants::life1;
 SpaceShip *Constants::life2;
 SpaceShip *Constants::life3;
-
+QTimer *Constants::timer;
 
 // constructor
 Board::Board(QGraphicsView *view)
@@ -77,7 +65,7 @@ Board::Board(QGraphicsView *view)
 
     else if (Constants::levelNumber == 2)
     {
-        Constants::count = 3;
+//        Constants::count = 3;
         levelTwo *theSecondLevel = new levelTwo(scene);
         displayHUDLevel(scene, "LEVEL 2", font);
     }
@@ -96,7 +84,7 @@ Board::Board(QGraphicsView *view)
     else if (Constants::levelNumber == 6)
     {
         Constants::count = 3;
-        LoadGame *theSavedGame = new LoadGame(scene);
+        LoadGame *theSavedGame = new LoadGame(scene, view);
         displayHUDLevel(scene, "SAVED GAME", font);
     }
 
@@ -114,9 +102,6 @@ Board::Board(QGraphicsView *view)
     Constants::score->setDefaultTextColor(Qt::white);
     Constants::score->setOpacity(1.0);
     Constants::score->setPos(330, 0);
-
-    qDebug() << "viola viola" << Constants::count;
-
 
     if (Constants::count >= 1)
     {
@@ -150,6 +135,15 @@ Board::Board(QGraphicsView *view)
     scoreTimer = new QTimer();
 }
 
+// function to display level info in the HUD
+void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
+{
+    Constants::levelInfo = scene->addText(levelNumber, *font);
+    Constants::levelInfo->setDefaultTextColor(Qt::white);
+    Constants::levelInfo->setOpacity(0.6);
+    Constants::levelInfo->setPos(15, 0);
+}
+
 // method to connect the timer to the ball inside the board
 void Board::connectTimerToBall()
 {
@@ -162,8 +156,3 @@ void Board::connectTimerToBall()
     else
         Constants::timer->start(1);
 }
-
-
-
-
-

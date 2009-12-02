@@ -25,13 +25,10 @@ levelFive::levelFive(QGraphicsScene *theScene)
 
     // Declare variable to hold seconds in clock
     time_t seconds;
-
     // Get value from system clock and place in seconds variable
     time(&seconds);
-
     // Convert seconds to a unsigned integer
     srand((unsigned int) seconds);
-
     int detColor;
 
     // Create the layout for the level
@@ -42,7 +39,7 @@ levelFive::levelFive(QGraphicsScene *theScene)
             if( (i > 1 && i < 8) && ( j > 3 && j < 21) )
             {
                  xPos += BLOCKW + SPACE;
-             }
+            }
             else
             {
                 detColor = generateRandomNumber(0,5);
@@ -55,7 +52,6 @@ levelFive::levelFive(QGraphicsScene *theScene)
                 {
                     block[i][j] = new RedBlock;
                 }
-
                 if(detColor == 2)
                 {
                     block[i][j] = new GreenBlock;
@@ -79,16 +75,12 @@ levelFive::levelFive(QGraphicsScene *theScene)
                 block[i][j]->setPos(xPos, yPos);
                 xPos += BLOCKW + SPACE;
                 theScene->addItem(block[i][j]);
-
             }
-
         }
 
         yPos += BLOCKH + SPACE;
         xPos = -380 + (BOUNDWIDTH - 25 * OUTLINEW)/4;
-
     }
-
 }
 
 QRectF levelFive::boundingRect() const

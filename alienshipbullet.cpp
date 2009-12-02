@@ -8,7 +8,7 @@ AlienShipBullet::AlienShipBullet()
 {
     bulletImage.load(":motherShipBullet.png");
     directionX = 0;                         // set the X-axis increment for the movement
-    directionY = 3;                        // set the Y-axis increment for the movement
+    directionY = 0.25;                        // set the Y-axis increment for the movement
     positionX = 0;                          // initial X coordinate of the ball
     positionY = 0;                          // initial Y coordinate of the ball
     width = 20;
