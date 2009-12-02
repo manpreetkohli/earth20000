@@ -34,14 +34,9 @@
 
 class SingleBlock : public QGraphicsItem
 {
-    
-    
     private:
         static int colorSelected;
 
-
-
-    
     public:
         int color1;
         int color2;
@@ -66,8 +61,6 @@ class SingleBlock : public QGraphicsItem
 
 class Block : public SingleBlock
 {
-
-
     public:
         Block();
         QRectF boundingRect() const;
@@ -87,8 +80,7 @@ class EmptyBlock : public Block
     public:
         EmptyBlock();
         QRectF boundingRect() const;
-        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-    
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);   
 };
 
 
@@ -105,42 +97,34 @@ class RedBlock : public Block
 class GreenBlock : public Block
 {
     public:
-        GreenBlock();
-        
+        GreenBlock();        
         QRectF boundingRect() const;
-        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-    
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);    
 };
 
 class BlueBlock : public Block
 {
     public:
-        BlueBlock();
-        
+        BlueBlock();        
         QRectF boundingRect() const;
-        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-    
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);    
 };
 
 
 class MagentaBlock : public Block
 {
     public:
-        MagentaBlock();
-        
+        MagentaBlock();        
         QRectF boundingRect() const;
-        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-    
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);  
 };
 
 class YellowBlock : public Block
 {
     public:
-        YellowBlock();
-        
+        YellowBlock();        
         QRectF boundingRect() const;
-        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
-    
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);    
 };
 
 #endif

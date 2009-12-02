@@ -7,6 +7,10 @@
  *
  */
 
+/**
+  HUD slightly modified by Natraj Subramanian
+  **/
+
 // include the header file for this class
 #include "board.h"
 #include "constants.h"
@@ -73,7 +77,7 @@ Board::Board(QGraphicsView *view)
 
     else if (Constants::levelNumber == 2)
     {
-//        Constants::count = 3;
+        Constants::count = 3;
         levelTwo *theSecondLevel = new levelTwo(scene);
         displayHUDLevel(scene, "LEVEL 2", font);
     }

@@ -1,3 +1,12 @@
+/**
+ powerup.h
+
+Contains prototypes for the powerup.cpp class.
+
+Author: Natraj Subramanian
+
+  **/
+
 #ifndef POWERUP_H
 #define POWERUP_H
 
@@ -13,6 +22,7 @@ public:
     QPixmap powerupImage;
     int powerupType;
     int xPos, yPos, directionX, directionY, timer;
+    QSound *powerupAcquired;
     double factor;
     Powerup();
     ~Powerup();
