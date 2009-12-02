@@ -9,20 +9,18 @@ Author: Natraj Subramanian
 
   **/
 
+#include <QGraphicsItem>
 #include <QtGui>
 #include <cctype>
 #include <cstdlib>
 #include <time.h>
-#include <QGraphicsItem>
-#include "levelThree.h"
 #include "block.h"
+#include "levelThree.h"
 
 levelThree::levelThree(QGraphicsScene *theScene)
 {
     xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;       // 260
     yPos = -630 + (BOUNDHEIGHT)/(8);
-    int randomPowerBlock, powerupCounter;
-    powerupCounter = 0;
 
     // Declare variable to hold seconds in clock
     time_t seconds;
@@ -48,7 +46,6 @@ levelThree::levelThree(QGraphicsScene *theScene)
             else
             {
                 detColor = generateRandomNumber(0,5);
-                randomPowerBlock = generateRandomNumber(0,10);
 
                 if(detColor == 0)
                 {
@@ -76,18 +73,8 @@ levelThree::levelThree(QGraphicsScene *theScene)
                     block[i][j] = new YellowBlock;
                 }
 
-                if(randomPowerBlock == 1)
-                {
-                    block[i][j]->setPowerup(1);
-                    powerupCounter++;
-
-                    if(powerupCounter % 3 == 0)
-                    {
-                        block[i][j]->setPowerup(2);
-                    }
-
-                }
-
+                // setXPos and setYPos are used to assist the ball with its block
+                // collision detection
                 block[i][j]->setXPos(xPos);
                 block[i][j]->setYPos(yPos);
                 block[i][j]->scale(1.0, 1.0);
@@ -118,6 +105,8 @@ void levelThree::paint(QPainter *painter,
     Q_UNUSED(widget);
 }
 
+// Given a min and a max, generate a random number between
+// this range
 int levelThree::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;

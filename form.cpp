@@ -6,6 +6,10 @@
  *
  ************************************************************************************/
 
+/**
+ Storyline graphics and slides created by Natraj Subramanian
+
+  **/
 
 // include necessary files
 #include "sleeperthread.h"
@@ -108,6 +112,8 @@ void Form::on_newGame_clicked()
     Constants::cont->show();
     Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
 
+    // Added by Natraj Subramanian
+    // Skip the intro and head to the starting level straightaway
     skipIntro = new QPushButton(this);
     skipIntro->setText("Skip Intro");
     skipIntro->setGeometry(400, 600, 150, 40);
@@ -215,7 +221,7 @@ void Form::setupLevel(int levelNumber)
         delete Constants::cont;
         skipIntro->hide();
         delete skipIntro;
-        Constants::levelNumber = 1;
+        Constants::levelNumber = 2;
         m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
     }
 
@@ -756,15 +762,13 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
              break;
 
          case Qt::Key_Return:
-             // added by Manpreet Kohli
+             // added by Natraj Subramanian
+             // modified and improved by Manpreet Kohli during restructuring
              if(!Constants::timer->isActive())
              {
                  board->connectTimerToBall();         // connect the timer to the ball
                  break;
              }
-//        case Qt::Key_T:
-//            board->stopTimer();
-//            break;
     }
 }
 

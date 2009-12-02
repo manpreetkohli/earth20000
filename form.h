@@ -90,10 +90,6 @@ class Form : public QWidget
         ShipsMissiles *missiles; //Ivan Collazo
 
         QTimer *timer;
-
-
-
-
         void setupLevel(int levelNumber);
 
     private slots:

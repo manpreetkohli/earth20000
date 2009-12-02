@@ -9,16 +9,13 @@ Author: Natraj Subramanian
 
   **/
 
+#include <QGraphicsItem>
 #include <QtGui>
 #include <cctype>
 #include <cstdlib>
 #include <time.h>
-#include <QGraphicsItem>
-#include "levelOne.h"
 #include "block.h"
-
-
-//QList<QGraphicsItem*> listOfCollidingItems;
+#include "levelOne.h"
 
 levelOne::levelOne(QGraphicsScene *theScene)
 {
@@ -73,6 +70,8 @@ levelOne::levelOne(QGraphicsScene *theScene)
                     block[i][j] = new YellowBlock;
                 }
 
+                // setXPos and setYPos are used to assist the ball with its block
+                // collision detection
                 block[i][j]->setXPos(xPos);
                 block[i][j]->setYPos(yPos);
                 block[i][j]->scale(1.0, 1.0);
@@ -80,7 +79,6 @@ levelOne::levelOne(QGraphicsScene *theScene)
                 block[i][j]->setPowerup(0);
                 xPos += BLOCKW + SPACE;
                 theScene->addItem(block[i][j]);
-
             }
 
         }
@@ -89,12 +87,6 @@ levelOne::levelOne(QGraphicsScene *theScene)
         xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;;
 
     }
-
-
-
-
-
-
 }
 
 QRectF levelOne::boundingRect() const
@@ -111,6 +103,8 @@ void levelOne::paint(QPainter *painter,
     Q_UNUSED(widget);
 }
 
+// Given a min and a max, generate a random number between
+// this range
 int levelOne::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;

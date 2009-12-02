@@ -5,6 +5,8 @@ Creates the design for the second level. Uses the polymorphism feature
 of the block.cpp class and randomly generates blocks of different colors
 and places them in a pre-defined layout.
 
+This level contains powerups
+
 Author: Natraj Subramanian
 
   **/
@@ -78,7 +80,9 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
                     block[i][j] = new YellowBlock;
                 }
 
-                if(randomPowerBlock == 1)
+                // Randomly set the powerup value for the current block
+                // to either 1 or 2.
+                if(randomPowerBlock == 1 && powerupCounter < 7)
                 {
                     block[i][j]->setPowerup(1);
                     powerupCounter++;
@@ -87,9 +91,10 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
                     {
                         block[i][j]->setPowerup(2);
                     }
-
                 }
 
+                // setXPos and setYPos are used to assist the ball with its block
+                // collision detection
                 block[i][j]->setXPos(xPos);
                 block[i][j]->setYPos(yPos);
                 block[i][j]->scale(1.0, 1.0);
@@ -120,6 +125,8 @@ void levelTwo::paint(QPainter *painter,
     Q_UNUSED(widget);
 }
 
+// Given a min and a max, generate a random number between
+// this range
 int levelTwo::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;

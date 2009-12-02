@@ -6,21 +6,32 @@
  *
  */
 
+/**
+  * Ball motion originally coded by Ivan Collazo.
+  * Later modified by Natraj Subramanian for the use of powerups
+  *
+  * Block collision detection and reactive movement coded by Natraj
+  * Subramanian
+  *
+  * Powerups by Natraj Subramanian
+  *
+  */
+
 // include necessary files
-#include "ball.h"
 #include <QPainter>
 #include <QDebug>
+#include <QtGui>
 #include <iostream>
+#include "ball.h"
 #include "block.h"
+#include "board.h"
+#include "constants.h"
+#include "form.h"
 #include "levelOne.h"
 #include "levelTwo.h"
 #include "levelThree.h"
 #include "levelFive.h"
-#include <QtGui>
-#include "constants.h"
 #include "powerup.h"
-#include "form.h"
-#include "board.h"
 
 int Constants::scoreCount;
 
@@ -37,15 +48,10 @@ Ball::Ball(SpaceShip *ship)
     positionY = 0;                          // initial Y coordinate of the ball
     posXDir = true;
     posYDir = true;
-    rightEdge = false;
-    leftEdge = false;
-    topEdge = false;
     setPos(positionX, positionY);           // set initial position of the ball
-    Constants::scoreCount = 0;
+    Constants::scoreCount = 0;           // Initialize the score
     counter = 0;
-    t = new SleeperThread();    
-    timer = 0;
-    multipleBalls = 0;
+    t = new SleeperThread();
 }
 
 // destructor
@@ -117,27 +123,39 @@ void Ball::advance(int phase)
     QList<QGraphicsItem *> hits = this->collidingItems(Qt::IntersectsItemBoundingRect);
     
     // Power up i.e. decrease the speed of the ball
-    if(Constants::powerup == 1 && timer < 3000)
+    // Natraj Subramanian
+    if(Constants::powerup == 1 && timer != 0)
     {
-        factor = 0.125;
-        timer = timer + 100;
-        //qDebug() << "Timer (slow): " << timer;
+        Constants::timer->stop();
+        Constants::timer->start(3);
+        timer = timer + 10;
     }
     // Power down i.e. increase the speed of the ball
-    if(Constants::powerup == 2 && timer < 3000)
+    // Natraj Subramanian
+    if(Constants::powerup == 2 && timer != 0)
     {
-        factor = 0.50;
-        timer = timer + 100;
-        //qDebug() << "Timer (speed): " << timer;
+        factor = 0.75;
+        timer = timer + 10;
     }
 
-    if(timer == 3000)
+    // Timer for how long each powerup should stay in effect
+    // Once that timer value has been exceeded, reset the speed
+    // back to normal
+    // Natraj Subramanian
+    if(Constants::powerup == 1 && timer > 25000)
     {
         factor = 0.25;
+        Constants::timer->stop();
+        Constants::timer->start(1);
         timer = 0;
     }
-
-    //qDebug() << "Factor: " << factor;
+    if(Constants::powerup == 2 && timer > 10000)
+    {
+        factor = 0.25;
+        Constants::timer->stop();
+        Constants::timer->start(1);
+        timer = 0;
+    }
 
     // Ivan Collazo
     // checks to see if ball collides with something then does ball physics
@@ -268,13 +286,13 @@ void Ball::advance(int phase)
                 blockHit->setLoops(1);
                 blockHit->play();
 
-                // Copyright of Natraj Subramanian
-                // I own you
-
+                // Get the x and y parameters of the block that the ball just
+                // collided with and use it for calculating movement after
+                // collision
                 blockX = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getXPos();
                 blockY = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getYPos();
                 
-                qDebug() << "Score: " << Constants::scoreCount;
+                //qDebug() << "Score: " << Constants::scoreCount;
 
                 /********************************
                    BEGIN BLOCK COLLISION RULES
@@ -316,26 +334,22 @@ void Ball::advance(int phase)
                     Constants::scoreCount+=10;
 
                     if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup() == 1)
-                    {
-                        qDebug() << "My type is: " << ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup();
+                    {                        
                         Powerup *oneup = new Powerup;
                         oneup->setPosition(blockX, blockY);
                         oneup->setType(1);
                         oneup->setVisible(true);
                         this->scene()->addItem(oneup);
-                        qDebug() << "I slow down";
-                        timer = 0;
+                        timer = 10;
                     }
                     if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup() == 2)
                     {
-                        qDebug() << "My type is: " << ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup();
                         Powerup *anotherup = new Powerup;
                         anotherup->setPosition(blockX, blockY);
                         anotherup->setType(2);
                         anotherup->setVisible(true);
                         this->scene()->addItem(anotherup);
-                        qDebug() << "I speed up";
-                        timer = 0;
+                        timer = 10;
                     }
 
                     counter++;
@@ -352,7 +366,6 @@ void Ball::advance(int phase)
                 {
                     if(posXDir == true && posYDir == true)
                     {
-                        //qDebug() << "I entered 1";
                         directionX = directionX;
                         directionY = -directionY;
                         posXDir = true;
@@ -360,7 +373,6 @@ void Ball::advance(int phase)
                     }
                     if(posXDir == false && posYDir == true)
                     {
-                        //qDebug() << "I entered 2";
                         directionX = directionX;
                         directionY = -directionY;
                         posXDir = false;
@@ -377,7 +389,6 @@ void Ball::advance(int phase)
                 {
                     if(posXDir == false && posYDir == true)
                     {
-                        //qDebug() << "I entered 5";
                         directionX = -directionX;
                         directionY = directionY;
                         posXDir = true;
@@ -385,7 +396,6 @@ void Ball::advance(int phase)
                     }
                     if(posXDir == false && posYDir == false)
                     {
-                        //qDebug() << "I entered 6";
                         directionX = -directionX;
                         directionY = directionY;
                         posXDir = true;
@@ -402,7 +412,6 @@ void Ball::advance(int phase)
                 {
                     if(posXDir == true && posYDir == true)
                     {
-                        //qDebug() << "I entered 9";
                         directionX = -directionX;
                         directionY = directionY;
                         posXDir = false;
@@ -410,7 +419,6 @@ void Ball::advance(int phase)
                     }
                     if(posXDir == true && posYDir == false)
                     {
-                        //qDebug() << "I entered 10";
                         directionX = -directionX;
                         directionY = directionY;
                         posXDir = false;
@@ -428,7 +436,6 @@ void Ball::advance(int phase)
                 {
                     if(posXDir == true && posYDir == false)
                     {
-                        //qDebug() << "I entered 13";
                         directionX = directionX;
                         directionY = -directionY;
                         posXDir = true;
@@ -436,7 +443,6 @@ void Ball::advance(int phase)
                     }
                     if(posXDir == false && posYDir == false)
                     {
-                        //qDebug() << "I entered 14";
                         directionX = directionX;
                         directionY = -directionY;
                         posXDir = false;
@@ -451,7 +457,7 @@ void Ball::advance(int phase)
 
             if (Constants::levelNumber == 1 && counter == 1)        // should be 84 for level 1         
                 loadStory(1);
-            else if (Constants::levelNumber == 2 && counter == 1)       // should be 132 for level 2
+            else if (Constants::levelNumber == 2 && counter == 132)       // should be 132 for level 2
                 loadStory(2);
             else if (Constants::levelNumber == 3 && counter == 1)       // should be 262 for level 3
                 loadStory(3);
@@ -556,18 +562,18 @@ void Ball::advance(int phase)
             QObject::connect(exit, SIGNAL(clicked()), temp->parentWidget(), SLOT(close()));
         }
 
+         /* Reset all the values and parameters of the ball and disconnect
+             it from the timer so that it doesn't start moving immediately
+             after respawning  */
         positionX = playersShip->x();                          // reset X coordinate to 0
         positionY = playersShip->y();                          // reset Y coordinate to 0
         setPos(positionX, positionY);           // set the coordinates to initial position
         factor = 0.25;
         directionX = 1.0;                         // set the X-axis increment for the movement
         directionY = -1.0;                        // set the Y-axis increment for the movement
-        Constants::powerup = 0;
+        Constants::powerup = 0;             // Reset the powerup value
         posXDir = true;
         posYDir = true;
-        rightEdge = false;
-        leftEdge = false;
-        topEdge = false;
         Constants::timer->disconnect(this->scene(), SIGNAL(advance()));
         Constants::timer->stop();
     }

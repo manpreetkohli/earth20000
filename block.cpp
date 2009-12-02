@@ -143,6 +143,7 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
     }
 }
 
+// Set color 1 of this block
 void SingleBlock::setColor1(int theColor)
 {
     int *colorPtr;
@@ -150,6 +151,7 @@ void SingleBlock::setColor1(int theColor)
     *colorPtr= theColor;
 }
 
+// Set color 2 of this block
 void SingleBlock::setColor2(int theColor)
 {
     int *colorPtr;
@@ -157,6 +159,8 @@ void SingleBlock::setColor2(int theColor)
     *colorPtr= theColor;
 }
 
+// In order for the ball class to be able to access the individual X
+// and Y coordinates of this block
 void SingleBlock::setXPos(int thePos)
 {
     int *posPtr;
@@ -164,6 +168,8 @@ void SingleBlock::setXPos(int thePos)
     *posPtr= thePos;
 }
 
+// In order for the ball class to be able to access the individual X
+// and Y coordinates of this block
 void SingleBlock::setYPos(int thePos)
 {
     int *posPtr;
@@ -171,6 +177,7 @@ void SingleBlock::setYPos(int thePos)
     *posPtr= thePos;
 }
 
+// Turn powerup on
 void SingleBlock::setPowerup(int value)
 {
     int *valuePtr;
@@ -178,26 +185,31 @@ void SingleBlock::setPowerup(int value)
     *valuePtr = value;
 }
 
+// Returns color 1
 int SingleBlock::getColor1()
 {
     return color1;
 }
 
+// Returns color 2
 int SingleBlock::getColor2()
 {
     return color2;
 }
 
+// Returns xPos
 int SingleBlock::getXPos()
 {
     return xPos;
 }
 
+// Returns yPos
 int SingleBlock::getYPos()
 {
     return yPos;
 }
 
+// Returns powerup value
 int SingleBlock::getPowerup()
 {
     return hasPowerup;

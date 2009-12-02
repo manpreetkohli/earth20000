@@ -6,6 +6,10 @@
  *
  */
 
+/**
+  * Cleaned up December 02, 2009 by Natraj Subramanian
+  */
+
 #ifndef BALL_H
 #define BALL_H
 
@@ -17,57 +21,44 @@
 
 class Ball : public QGraphicsItem
 {
-    private:
-        SpaceShip *playersShip;
-        //QPushButton *cont;
-
-        void loadStory(int levelNumber);
-        void removeSpawn(int currentLives);
-        void loadStoryScreen(QGraphicsScene *scene, int level, QString levelNumber);
-
-
-
-        QPixmap ballImage;        
+    private:        
+        QPixmap ballImage;
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
         QRectF boundingRect() const;
         void setBounceBounds(qreal x, qreal y);
         void advance(int phase);
-
         void disconnectTimerAndBall();
         int counter;
 
+        SpaceShip *playersShip;
+        void removeSpawn(int currentLives);
+        void loadStory(int levelNumber);
+        void loadStoryScreen(QGraphicsScene *scene, int level, QString levelNumber);
 
         QGraphicsTextItem *storyText;
         void loadStoryLevel2(QGraphicsScene *scene);
         void loadStoryLevel3(QGraphicsScene *scene);
         void loadStoryLevel4(QGraphicsScene *scene);
         void loadEndStory(QGraphicsScene *scene);
-        //void loadStoryLevel3(QGraphicsScene *scene);
-        //QPushButton *cont;
+
         bool visibleFound;
         SleeperThread *t;
-        //int count;
-        //int count;
+
     public:
         Ball(SpaceShip *ship);
+        ~Ball();
         void moveX(int amount);
+        void setShipPositon (int pos);
+        void setXSpeed(int factor);
+        void setYSpeed(int factor);
+
         qreal directionX, directionY, positionX, positionY, ballDirection;
         qreal viewWidth, viewHeight, width, height, shipXPosition;
         int score, hasPowerup, multipleBalls;
         long timer;
         double factor;
-        ~Ball();
-        void setShipPositon (int pos);
-        void setXSpeed(int factor);
-        void setYSpeed(int factor);
         bool posXDir;
         bool posYDir;
-        bool rightEdge;
-        bool leftEdge;
-        bool topEdge;
-        bool spaceshipHit;
-
-
 
         void setPositionX(qreal pos)
         {
