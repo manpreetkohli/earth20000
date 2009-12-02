@@ -30,7 +30,6 @@
 QGraphicsTextItem *Constants::levelInfo;
 int Constants::count;
 QGraphicsTextItem *Constants::lives;
-QGraphicsTextItem *Constants::score;
 SpaceShip *Constants::life1;
 SpaceShip *Constants::life2;
 SpaceShip *Constants::life3;
@@ -65,19 +64,16 @@ Board::Board(QGraphicsView *view)
 
     else if (Constants::levelNumber == 2)
     {
-//        Constants::count = 3;
         levelTwo *theSecondLevel = new levelTwo(scene);
         displayHUDLevel(scene, "LEVEL 2", font);
     }
     else if (Constants::levelNumber == 3)
     {
-//        Constants::count = 3;
         levelThree *theThirdLevel = new levelThree(scene);
         displayHUDLevel(scene, "LEVEL 3", font);
     }
     else if (Constants::levelNumber == 4)
     {
-//        Constants::count = 3;
         levelFive *theFifthLevel = new levelFive(scene);
         displayHUDLevel(scene, "FINAL LEVEL", font);
     }
@@ -96,12 +92,6 @@ Board::Board(QGraphicsView *view)
     Constants::lives->setDefaultTextColor(Qt::red);
     Constants::lives->setOpacity(0.6);
     Constants::lives->setPos(485, 0);
-
-    font->setPointSize(24);
-    Constants::score = scene->addText(QString::number(Constants::scoreCount, 10), *font);
-    Constants::score->setDefaultTextColor(Qt::white);
-    Constants::score->setOpacity(1.0);
-    Constants::score->setPos(330, 0);
 
     if (Constants::count >= 1)
     {
