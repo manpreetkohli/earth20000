@@ -52,6 +52,7 @@ Ball::Ball(SpaceShip *ship)
     Constants::scoreCount = 0;           // Initialize the score
     counter = 0;
     t = new SleeperThread();
+    skip = false;
 }
 
 // destructor
@@ -78,7 +79,7 @@ void Ball::setShipPositon(int pos)
     shipXPosition = pos;
 }
 
-
+// generic function to load story screen right before level starts
 void Ball::loadStory(int levelNumber)
 {
     if (levelNumber == 1)
@@ -96,6 +97,23 @@ void Ball::loadStory(int levelNumber)
     counter = 0;
 }
 
+void Ball::setSkip(bool value)
+{
+    skip = value;
+}
+
+bool Ball::getSkip()
+{
+    return skip;
+}
+
+void Ball::setPositionX(qreal pos)
+{
+    positionX += pos;
+}
+
+
+// function that removes a spawn from the HUD
 void Ball::removeSpawn(int currentLives)
 {
     if (currentLives == 3)
@@ -106,18 +124,31 @@ void Ball::removeSpawn(int currentLives)
         this->scene()->removeItem(Constants::life1);        // remove a spawn from the HUD
 
     Constants::count--;                                 // decrement no. of lives remaining
-    t->msleep(3000);
 
     // play respawn music
     QSound *spawnSound = new QSound("start.wav", 0);
     spawnSound->setLoops(1);
     spawnSound->play();
-}
 
+    t->msleep(3000);
+}
 
 // function to add motion to the ball inside the board
 void Ball::advance(int phase)
 {
+    if (getSkip())
+    {
+        setSkip(false);
+        if (Constants::levelNumber == 1)
+            loadStory(1);
+        else if (Constants::levelNumber == 2)
+            loadStory(2);
+        else if (Constants::levelNumber == 3)
+            loadStory(3);
+        else if (Constants::levelNumber == 4)
+            loadStory(4);
+    }
+
     int blockX, blockY;
     if(!phase) return;
     QList<QGraphicsItem *> hits = this->collidingItems(Qt::IntersectsItemBoundingRect);
@@ -351,7 +382,6 @@ void Ball::advance(int phase)
                         this->scene()->addItem(anotherup);
                         timer = 10;
                     }
-
                     counter++;
                 }
                                 
@@ -455,13 +485,13 @@ void Ball::advance(int phase)
                        **********************************/
             }
 
-            if (Constants::levelNumber == 1 && counter == 1)        // should be 84 for level 1         
+            if (Constants::levelNumber == 1 && counter == 84)        // should be 84 for level 1
                 loadStory(1);
             else if (Constants::levelNumber == 2 && counter == 132)       // should be 132 for level 2
                 loadStory(2);
-            else if (Constants::levelNumber == 3 && counter == 1)       // should be 262 for level 3
+            else if (Constants::levelNumber == 3 && counter == 162)       // should be 162 for level 3
                 loadStory(3);
-            else if (Constants::levelNumber == 4 && counter == 1)       // should be 132 for level 2
+            else if (Constants::levelNumber == 4 && counter == 148)       // should be 148 for level 4
                 loadStory(4);
         }
     }
@@ -562,9 +592,9 @@ void Ball::advance(int phase)
             QObject::connect(exit, SIGNAL(clicked()), temp->parentWidget(), SLOT(close()));
         }
 
-         /* Reset all the values and parameters of the ball and disconnect
-             it from the timer so that it doesn't start moving immediately
-             after respawning  */
+        // Reset all the values and parameters of the ball and disconnect
+        // it from the timer so that it doesn't start moving immediately
+        // after respawning
         positionX = playersShip->x();                          // reset X coordinate to 0
         positionY = playersShip->y();                          // reset Y coordinate to 0
         setPos(positionX, positionY);           // set the coordinates to initial position
@@ -582,7 +612,7 @@ void Ball::advance(int phase)
     setPos(positionX,positionY);
 }
 
-
+// function to load screen right before the level starts
 void Ball::loadStoryScreen(QGraphicsScene *scene, int level, QString levelNumber)
 {
     // hide the spawns remaining

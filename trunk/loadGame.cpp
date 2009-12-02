@@ -12,20 +12,33 @@
 #include "block.h"
 #include "constants.h"
 
-LoadGame::LoadGame(QGraphicsScene *theScene)
+LoadGame::LoadGame(QGraphicsScene *theScene, QGraphicsView *view)
 {
     xPos = -375;
     yPos = -590;
 
     QFile file("levels.txt");
+    QFile bgFile("bgs.txt");
 
     if (!file.open(QIODevice::ReadOnly))
     {
-        qDebug() << "Cannot open file for reading: ";
+        qDebug() << "Cannot open file for reading ";
+    }
+    
+     if (!bgFile.open(QIODevice::ReadOnly))
+    {
+        qDebug() << "Cannot open file for reading ";
     }
 
     QTextStream in(&file);
+    QTextStream in2(&bgFile);
     QChar c;
+    QString bg;
+    
+    in2 >> bg;    
+
+
+    view->setBackgroundBrush(QPixmap(bg));
 
     // draw all the transparent blocks for the level editor window
     for (int i = 0; i < 20; i++)

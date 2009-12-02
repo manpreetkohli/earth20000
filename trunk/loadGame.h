@@ -14,8 +14,7 @@
 class LoadGame
 {
     public:
-        LoadGame(QGraphicsScene *theScene);
-
+        LoadGame(QGraphicsScene *theScene, QGraphicsView *view);
 
     private:
         int xPos, yPos;
@@ -23,7 +22,6 @@ class LoadGame
         void paint(QPainter *painter,
                    const QStyleOptionGraphicsItem *option,
                    QWidget *widget);
-
 };
 
 

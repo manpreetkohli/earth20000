@@ -32,6 +32,7 @@ int Constants::levelNumber;
 QPushButton *Constants::cont;
 QPushButton *skipIntro;
 
+// added by Manpreet Kohli
 // constructor sets up the graphics item
 Form::Form(QWidget *parent) :  QWidget(parent), m_ui(new Ui::Form)
 {
@@ -39,7 +40,6 @@ Form::Form(QWidget *parent) :  QWidget(parent), m_ui(new Ui::Form)
     windowWidth = 1000;
     windowHeight = 725;
     mainViewWidth = 762;
-
     font = new QFont();
     storyText = new QLabel(this);
     t = new SleeperThread();
@@ -115,7 +115,7 @@ void Form::on_newGame_clicked()
     // Added by Natraj Subramanian
     // Skip the intro and head to the starting level straightaway
     skipIntro = new QPushButton(this);
-    skipIntro->setText("Skip Intro");
+    skipIntro->setText("SKIP INTRO");
     skipIntro->setGeometry(400, 600, 150, 40);
     skipIntro->setFont(*font);
     skipIntro->show();
@@ -123,7 +123,7 @@ void Form::on_newGame_clicked()
 
     // if the continue button is clicked on the screen, call load the second screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen2()));
-    QObject::connect(skipIntro, SIGNAL(clicked()), this, SLOT(loadLevel1()));
+    QObject::connect(skipIntro, SIGNAL(clicked()), this, SLOT(loadStoryScreen9()));
 }
 
 // added by Manpreet Kohli
@@ -134,9 +134,7 @@ void Form::loadStoryScreen2()
 {
     // disconnect previous connection for the continue button
     Constants::cont->disconnect(this, SLOT(loadStoryScreen2()));
-
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide2.jpg)");
-
     // if the continue button is clicked on the screen, load the third screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen3()));
 }
@@ -146,7 +144,7 @@ void Form::loadStoryScreen3()
     // disconnect previous connection for the continue button
     Constants::cont->disconnect(this, SLOT(loadStoryScreen3()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide3.jpg)");
-    // if the continue button is clicked on the screen, load the first level
+    // if the continue button is clicked on the screen, load the fourth screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen4()));
 }
 
@@ -155,7 +153,7 @@ void Form::loadStoryScreen4()
     // disconnect previous connection for the continue button
     Constants::cont->disconnect(this, SLOT(loadStoryScreen4()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide4.jpg)");
-    // if the continue button is clicked on the screen, load the fourth screen of the story line
+    // if the continue button is clicked on the screen, load the fifth screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen5()));
 }
 
@@ -164,7 +162,7 @@ void Form::loadStoryScreen5()
     // disconnect previous connection for the continue button
     Constants::cont->disconnect(this, SLOT(loadStoryScreen5()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide5.jpg)");
-    // if the continue button is clicked on the screen, load the fifth screen of the story line
+    // if the continue button is clicked on the screen, load the sixth screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen6()));
 }
 
@@ -173,7 +171,7 @@ void Form::loadStoryScreen6()
     // disconnect previous connection for the continue button
     Constants::cont->disconnect(this, SLOT(loadStoryScreen6()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide6.jpg)");
-    // if the continue button is clicked on the screen, load the sixth screen of the story line
+    // if the continue button is clicked on the screen, load the seventh screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen7()));
 }
 
@@ -182,7 +180,7 @@ void Form::loadStoryScreen7()
     // disconnect previous connection for the continue button
     Constants::cont->disconnect(this, SLOT(loadStoryScreen7()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide7.jpg)");
-    // if the continue button is clicked on the screen, load the seventh screen of the story line
+    // if the continue button is clicked on the screen, load the eighth screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen8()));
 }
 
@@ -191,14 +189,18 @@ void Form::loadStoryScreen8()
     // disconnect previous connection for the continue button
     Constants::cont->disconnect(this, SLOT(loadStoryScreen8()));
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide8.jpg)");
-    // if the continue button is clicked on the screen, load the seventh screen of the story line
+    // if the continue button is clicked on the screen, load the ninth screen of the story line
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen9()));
 }
 
 void Form::loadStoryScreen9()
 {
+    Constants::cont->setGeometry(300, 600, 150, 40);
     // disconnect previous connection for the continue button
     Constants::cont->disconnect(this, SLOT(loadStoryScreen9()));
+
+    skipIntro->hide();
+    delete skipIntro;
     
     // play the start level music
     QSound *intro = new QSound("intro.wav", 0);
@@ -206,7 +208,6 @@ void Form::loadStoryScreen9()
     intro->play();
 
     m_ui->view->setStyleSheet("background-image: url(:/Storyline/level1.jpg)");
-
     // if the continue button is clicked on the screen, load level one
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadLevel1()));
 }
@@ -219,9 +220,7 @@ void Form::setupLevel(int levelNumber)
         storyText->hide();
         Constants::cont->hide();
         delete Constants::cont;
-        skipIntro->hide();
-        delete skipIntro;
-        Constants::levelNumber = 2;
+        Constants::levelNumber = 1;
         m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
     }
 
@@ -268,7 +267,6 @@ void Form::setupLevel(int levelNumber)
 
     // add the player's spaceship to the board
     board->scene->addItem(playersShip); // Ivan Collazo
-
 
     if (levelNumber == 3)
     {
@@ -468,10 +466,34 @@ void Form::on_levelEditor_clicked()
 }
 
 // added by Manpreet Kohli
+// saves the background selected by the user to a file
+void Form::saveBackground(QString bg)
+{
+    // open file for writing
+    QFile file("bgs.txt");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qDebug() << "Cannot open file for writing ";
+        exit(-1);
+    }
+
+    if (!file.exists())
+    {
+        QErrorMessage *err = new QErrorMessage();
+        err->showMessage("<font size= \"15\"> ERROR!!! File not found! No saved games exist!</font>");
+        err->show();
+    }
+
+    QTextStream out(&file);
+    out << bg;
+}
+
+// added by Manpreet Kohli
 // slot to load background 1 for the level editor
 void Form::backgroundOne_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
+    saveBackground(":universe4.jpg");
 }
 
 // added by Manpreet Kohli
@@ -479,6 +501,7 @@ void Form::backgroundOne_clicked()
 void Form::backgroundTwo_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg2.jpg"));
+    saveBackground(":bg2.jpg");
 }
 
 // added by Manpreet Kohli
@@ -486,6 +509,7 @@ void Form::backgroundTwo_clicked()
 void Form::backgroundThree_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg3.jpg"));
+    saveBackground(":bg3.jpg");
 }
 
 // added by Manpreet Kohli
@@ -493,6 +517,7 @@ void Form::backgroundThree_clicked()
 void Form::backgroundFour_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg4.jpg"));
+    saveBackground(":bg4.jpg");
 }
 
 // added by Manpreet Kohli
@@ -560,35 +585,27 @@ void Form::reset_clicked()
 // if the save button gets clicked
 void Form::save_clicked()
 {
+    saveBackground("");         // to make sure a new file always gets created
     // open file for writing
     QFile file("levels.txt");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-        qDebug() << "Cannot open file for writing: ";
+        qDebug() << "Cannot open file for writing ";
         exit(-1);
     }
 
     QTextStream out(&file);
-
-
-
-    for (int i = 0; i < Constants::positions.size(); i++)
-        qDebug() << Constants::positions.at(i);
 
     // write each block to the file (the color's initial gets written)
     for (int i = 0; i < 20; i++)
     {
         for (int j = 0; j < 27; j++)
         {
-//            qDebug() << "actual " << Constants::blocks[i][j]->pos();
             bool temp = false;
-
             for (int k = 0; k < Constants::positions.size(); k++)
             {
                 if (Constants::positions.at(k) == Constants::blocks[i][j]->pos())
                 {
-                    qDebug() <<"hello " << Constants::colors.at(k);
-
                     switch(Constants::colors.at(k))
                     {
                         case 0:
@@ -613,16 +630,13 @@ void Form::save_clicked()
                             out << "t";
                             break;
                     }
-
                     temp = true;
                     break;
                 }
             }
-
             if (temp == false)
                 out << "t";
         }
-
         out << endl;
     }
 }
@@ -635,32 +649,32 @@ void Form::on_load_clicked()
     QFile file("levels.txt");
     if (!file.open(QIODevice::ReadOnly))
     {
-        qDebug() << "Cannot open file for writing: ";
-        exit(-1);
-    }
-
-    if (!file.exists())
-    {
+        qDebug() << "Cannot open file for writing ";
         QErrorMessage *err = new QErrorMessage();
         err->showMessage("<font size= \"15\"> ERROR!!! File not found! </font>");
         err->show();
+
+        QObject::connect(err, SIGNAL(accepted()), err, SLOT(close()));
     }
 
-    hideElements(m_ui);     // hide all the elements on the splash screen
+    else
+    {
+        hideElements(m_ui);     // hide all the elements on the splash screen
 
-    resize(mainViewWidth, windowHeight);      // expand the window size
-    setMinimumSize(QSize(mainViewWidth, windowHeight));   // change the minimum size of the window
-    setMaximumSize(QSize(mainViewWidth, windowHeight));   // change the maximum size of the window
-    m_ui->view->setGeometry(0, 0, mainViewWidth, windowHeight);
+        resize(mainViewWidth, windowHeight);      // expand the window size
+        setMinimumSize(QSize(mainViewWidth, windowHeight));   // change the minimum size of the window
+        setMaximumSize(QSize(mainViewWidth, windowHeight));   // change the maximum size of the window
+        m_ui->view->setGeometry(0, 0, mainViewWidth, windowHeight);
 
-    Constants::levelNumber = 6;
-    board = new Board(m_ui->view);
+        Constants::levelNumber = 6;
+        board = new Board(m_ui->view);
 
-    playersShip = new SpaceShip();
-    m_ui->view->scene()->addItem(playersShip);
+        playersShip = new SpaceShip();
+        m_ui->view->scene()->addItem(playersShip);
 
-    ball = new Ball(playersShip);
-    m_ui->view->scene()->addItem(ball);
+        ball = new Ball(playersShip);
+        m_ui->view->scene()->addItem(ball);
+    }
 }
 
 // added by Ivan Collazo, modified by Manpreet Kohli
@@ -762,6 +776,7 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
              break;
 
          case Qt::Key_Return:
+
              // added by Natraj Subramanian
              // modified and improved by Manpreet Kohli during restructuring
              if(!Constants::timer->isActive())
@@ -769,29 +784,31 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
                  board->connectTimerToBall();         // connect the timer to the ball
                  break;
              }
+
+
+         case Qt::Key_Period:
+             ball->setSkip(true);
+             break;
+
     }
 }
 
 // added by Ivan Collazo
 void Form::motherFire()
-    {
-        motherShip->fire();
-       // motherShipBullet = new MotherShipBullet();
-       // board->scene->addItem(motherShipBullet);
-    }
+{
+    motherShip->fire();
+    // motherShipBullet = new MotherShipBullet();
+    // board->scene->addItem(motherShipBullet);
+}
 
 // added by Ivan Collazo
 void Form::alienFire()
+{
+    if (playersShip->getShipHit() == 0)
     {
-        if (playersShip->getShipHit() == 0)
-        {
-             qDebug() << "GAME OVER CAUSE OF ALIEN FIRE";
-            qDebug() << playersShip->getShipHit();
-        }
-
-        else
-        {
-            alienShip->fire();
-        }
-
+        qDebug() << "GAME OVER CAUSE OF ALIEN FIRE";
+        qDebug() << playersShip->getShipHit();
     }
+    else
+        alienShip->fire();
+}

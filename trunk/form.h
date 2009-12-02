@@ -92,6 +92,8 @@ class Form : public QWidget
         QTimer *timer;
         void setupLevel(int levelNumber);
 
+        void saveBackground(QString bg);
+
     private slots:
         void loadLevel1();
         void loadStoryScreen9();

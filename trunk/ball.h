@@ -21,7 +21,10 @@
 
 class Ball : public QGraphicsItem
 {
-    private:        
+    private:
+        bool skip;
+        bool getSkip();
+
         QPixmap ballImage;
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
         QRectF boundingRect() const;
@@ -52,6 +55,7 @@ class Ball : public QGraphicsItem
         void setXSpeed(int factor);
         void setYSpeed(int factor);
 
+        void setSkip(bool value);
         qreal directionX, directionY, positionX, positionY, ballDirection;
         qreal viewWidth, viewHeight, width, height, shipXPosition;
         int score, hasPowerup, multipleBalls;
@@ -60,15 +64,8 @@ class Ball : public QGraphicsItem
         bool posXDir;
         bool posYDir;
 
-        void setPositionX(qreal pos)
-        {
-            positionX += pos;
-        }
+        void setPositionX(qreal pos);
 
-        void setPositionY(qreal pos)
-        {
-            positionY += pos;
-        }
 };
 
 #endif // BALL_H
