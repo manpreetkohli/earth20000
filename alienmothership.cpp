@@ -57,6 +57,11 @@ void AlienMotherShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *
         qDebug() << "MY ALIEN SHIP GOT Destroyed";
         shipsImage.load(":fire.png");
         painter->drawPixmap(left, top, width, height, shipsImage);
+
+        QSound *shipExplosionFX = new QSound("explosion_2.wav", 0);
+        shipExplosionFX->setLoops(1);
+        shipExplosionFX->play();
+
         update();
         //ball->loadEndStory(this->scene());     // call function to load the level 2 story screen
     }
@@ -86,4 +91,8 @@ void AlienMotherShip::fire()
     shipBullet->setBulletPosition(left - 145, top + 280);
     this->scene()->addItem(shipBullet);
     qDebug() << " MOTHER SHIP FIRING ";
+
+    QSound *alienShipFireFX = new QSound("laser_1.wav", 0);
+    alienShipFireFX->setLoops(1);
+    alienShipFireFX->play();
 }
