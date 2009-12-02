@@ -1,7 +1,7 @@
 #ifndef ALIENSHIPBULLET_H
 #define ALIENSHIPBULLET_H
 
-#define ID_ALIENSHIPBULLET    2
+#define ID_ALIENSHIPBULLET    200
 
 #include <QGraphicsItem>
 
@@ -20,6 +20,9 @@ class AlienShipBullet : public QGraphicsItem
         AlienShipBullet();
 
         ~AlienShipBullet();
+
+
+        virtual int type() const {return ID_ALIENSHIPBULLET;}
 
         void setShipPosition (int pos);
 

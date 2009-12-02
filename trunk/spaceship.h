@@ -60,16 +60,16 @@ class SpaceShip : public QGraphicsItem
         // called whenever the spaceShip needs to be drawn
         void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-       // void setBounceBounds (qreal x, qreal y);
-
         int getShipPosX();
 
         int getShipPosY();
 
         int getShipDirection();
 
+        int getShipHit();
 
         void setShipPosX(int xPos);
+
         void setShipPosY(int yPos);
 
         void setShipDirection(int direction);
