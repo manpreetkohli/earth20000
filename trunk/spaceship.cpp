@@ -32,7 +32,7 @@ int static rightDirection = 2;
 // constructor
 SpaceShip::SpaceShip()
 {
-    shipsImage.load(":playerShip.jpg");
+    shipsImage.load(":X-Wing-icon-1.png");
     width = 0; //100
     height = 0; //60
     left = 0;  //325
@@ -57,7 +57,7 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
 
     if (!listOfCollidingItems.isEmpty())
     {
-        if (listOfCollidingItems.first()->type() == ID_ALIENSHIPBULLET)// ((listOfCollidingItems.first()->type() == ID_MOTHERSHIPBULLET) || (listOfCollidingItems.first()->type() == ID_ALIENSHIPBULLET))
+        if ((listOfCollidingItems.first()->type() == ID_MOTHERSHIPBULLET) || (listOfCollidingItems.first()->type() == ID_ALIENSHIPBULLET))
         {
             qDebug() << "SPACE SHIP GOT HIT BY MOTHER SHIP BULLET";
             shipHit++;
@@ -137,22 +137,21 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
                 exit->show();
                 exit->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
 
-                Constants::timer->disconnect(this->scene(), SLOT(advance()));
-                Constants::timer->stop();
+               // Constants::timer->disconnect(this->scene(), SLOT(advance()));
+               // Constants::timer->stop();
 
                 QObject::connect(exit, SIGNAL(clicked()), temp->parentWidget(), SLOT(close()));
             }
         }
     }
 
-  //  painter->drawRect(335, 640, 80, 30);
-    painter->drawPixmap(335, 640, 90, 35, shipsImage);
+    painter->drawPixmap(335, 640, 90, 40, shipsImage);
 }
 
 // the bounding rectangle of the object for collision detection
 QRectF SpaceShip::boundingRect() const
 {
-    return QRectF(335, 640, 90, 35);
+    return QRectF(335, 640, 90, 40);
 }
 
 // gets ship's horizontal position
@@ -201,6 +200,12 @@ void SpaceShip::setShipDirection(int direction)
     }
 }
 
+
+int SpaceShip::getShipHit()
+{
+    return Constants::count + 1;
+    //return  shipHit;
+}
 //void SpaceShip::performShipMovement()
 //{
     //shipMoving.move(QKeyEvent *event);

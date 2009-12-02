@@ -14,7 +14,7 @@ AlienShipBullet *alienBullet;
 
 AlienSpaceShip::AlienSpaceShip()
 {
-    shipsImage.load(":alienTestShip.png");
+    shipsImage.load(":TieFighter-icon.png");
     width = 0; //100
     height = 0; //60
     left = 0;  //325
