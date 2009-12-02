@@ -7,7 +7,7 @@
  */
 
 /**
-  * Ball motion originally coded by Ivan Collazo.
+  * Ball motion originally coded by Manpreet Kohli and Ivan Collazo.
   * Later modified by Natraj Subramanian for the use of powerups
   *
   * Block collision detection and reactive movement coded by Natraj
@@ -33,8 +33,6 @@
 #include "levelFive.h"
 #include "powerup.h"
 
-int Constants::scoreCount;
-
 // constructor
 Ball::Ball(SpaceShip *ship)
 {
@@ -49,10 +47,24 @@ Ball::Ball(SpaceShip *ship)
     posXDir = true;
     posYDir = true;
     setPos(positionX, positionY);           // set initial position of the ball
-    Constants::scoreCount = 0;           // Initialize the score
+    scoreCount = 0;           // Initialize the score
     counter = 0;
     t = new SleeperThread();
+    scoreFont = new QFont();
+    initializeScore();
     skip = false;
+}
+
+void Ball::initializeScore()
+{
+    scoreFont ->setFamily("SansSerif");
+    scoreFont ->setBold(true);
+    scoreFont ->setPointSize(24);
+    scoreDisplay = playersShip->scene()->addText(QString::number(scoreCount, 10), *scoreFont);
+    scoreDisplay->setDefaultTextColor(Qt::white);
+    scoreDisplay->setOpacity(1.0);
+    scoreDisplay->setPos(330, -10);
+    scoreDisplay->show();
 }
 
 // destructor
@@ -91,9 +103,9 @@ void Ball::loadStory(int levelNumber)
     else if (levelNumber == 4)
         loadStoryScreen(this->scene(), 5, "HOW THE FUCK DID YOU BEAT THIS GAME?");
 
-    this->hide();                       // hide the ball
-    this->scene()->removeItem(this);    // remove the ball from the scene
-    playersShip->hide();     // hide the spaceship
+    this->hide();                           // hide the ball
+    this->scene()->removeItem(this);        // remove the ball from the scene
+    playersShip->hide();                    // hide the spaceship
     counter = 0;
 }
 
@@ -112,7 +124,6 @@ void Ball::setPositionX(qreal pos)
     positionX += pos;
 }
 
-
 // function that removes a spawn from the HUD
 void Ball::removeSpawn(int currentLives)
 {
@@ -123,13 +134,12 @@ void Ball::removeSpawn(int currentLives)
     else if (currentLives == 1)
         this->scene()->removeItem(Constants::life1);        // remove a spawn from the HUD
 
-    Constants::count--;                                 // decrement no. of lives remaining
-
     // play respawn music
     QSound *spawnSound = new QSound("start.wav", 0);
     spawnSound->setLoops(1);
     spawnSound->play();
 
+    Constants::count--;                                 // decrement no. of lives remaining
     t->msleep(3000);
 }
 
@@ -323,7 +333,7 @@ void Ball::advance(int phase)
                 blockX = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getXPos();
                 blockY = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getYPos();
                 
-                //qDebug() << "Score: " << Constants::scoreCount;
+                //qDebug() << "Score: " << scoreCount;
 
                 /********************************
                    BEGIN BLOCK COLLISION RULES
@@ -337,32 +347,34 @@ void Ball::advance(int phase)
                     {
                     case 6:
                         ((Block *)(hits.at(0)))->setColor2(5);
-                        Constants::scoreCount+=5;
+                        scoreCount+=5;
                         break;
                     case 5:
                         ((Block *)(hits.at(0)))->setColor2(4);
-                        Constants::scoreCount+=6;
+                        scoreCount+=6;
                         break;
                     case 4:
                         ((Block *)(hits.at(0)))->setColor2(3);
-                        Constants::scoreCount+=7;
+                        scoreCount+=7;
                         break;
                     case 3:
                         ((Block *)(hits.at(0)))->setColor2(2);
-                        Constants::scoreCount+=8;
+                        scoreCount+=8;
                         break;
                     case 2:
                         ((Block *)(hits.at(0)))->setColor2(0);
-                        Constants::scoreCount+=9;
+                        scoreCount+=9;
                         break;
                     }
 
+                    scoreDisplay->setPlainText(QString::number(scoreCount, 10));
                     ((Block *)(hits.at(0)))->show();                    
                 }
                 else
                 {
                     ((Block *)(hits.at(0)))->setVisible(false);
-                    Constants::scoreCount+=10;
+                    scoreCount+=10;
+                    scoreDisplay->setPlainText(QString::number(scoreCount, 10));
 
                     if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPowerup() == 1)
                     {                        

@@ -20,9 +20,7 @@ class Constants
         static SpaceShip *life3;
         static QGraphicsTextItem *levelInfo;
         static QGraphicsTextItem *lives;
-        static QGraphicsTextItem *score;
         static int powerup;
-        static int scoreCount;
         static QTimer *timer;        
 };
 
