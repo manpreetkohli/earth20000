@@ -269,9 +269,17 @@ void Form::setupLevel(int levelNumber)
         alienShip = new AlienSpaceShip (); // Ivan Collazo
         board->scene->addItem(alienShip); // Ivan Collazo
 
-        QTimer *timer3 = new QTimer();
-        QObject::connect(timer3, SIGNAL(timeout()), this, SLOT(alienFire()));
-        timer3->start(2000);
+        if (playersShip->getShipHit() == 0)
+        {
+             qDebug() << "GAME OVER";
+        }
+        else if (playersShip->getShipHit() > 0)
+        {
+            qDebug() << "GAME ON";
+            QTimer *timer3 = new QTimer();
+            QObject::connect(timer3, SIGNAL(timeout()), this, SLOT(alienFire()));
+            timer3->start(2000);
+        }
     }
 
     if (levelNumber == 4)
@@ -728,6 +736,11 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
                  missiles->setShipPosition(playersShip->getShipPosX());
                  board->scene->addItem(missiles); // Ivan Collazo
                  qDebug() << "FIRE MISSILES";
+
+                 QSound *missileFireFX = new QSound("missile.wav", 0);
+                 missileFireFX->setLoops(1);
+                 missileFireFX->play();
+
              }
              else // Level with Bullets Fired
              {
@@ -735,6 +748,10 @@ void Form::keyPressEvent(QKeyEvent *event)// Ivan Collazo
                  bullets->setShipPosition(playersShip->getShipPosX());
                  board->scene->addItem(bullets); // Ivan Collazo
                  qDebug() << "FIRE";
+
+                 QSound *gunFireFX = new QSound("44magnum.wav", 0);
+                 gunFireFX->setLoops(1);
+                 gunFireFX->play();
              }
              break;
 
@@ -762,5 +779,15 @@ void Form::motherFire()
 // added by Ivan Collazo
 void Form::alienFire()
     {
-        alienShip->fire();
+        if (playersShip->getShipHit() == 0)
+        {
+             qDebug() << "GAME OVER CAUSE OF ALIEN FIRE";
+            qDebug() << playersShip->getShipHit();
+        }
+
+        else
+        {
+            alienShip->fire();
+        }
+
     }

@@ -54,6 +54,11 @@ void AlienSpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *o
        qDebug() << "MY ALIEN SHIP GOT Destroyed";
        shipsImage.load(":fire.png");
        painter->drawPixmap(355, 100, 80, 40, shipsImage);
+
+       QSound *shipExplosionFX = new QSound("explosion_2.wav", 0);
+       shipExplosionFX->setLoops(1);
+       shipExplosionFX->play();
+
        // the bounding rectangle of the object for collision detection
        update();
     }
@@ -83,6 +88,11 @@ void AlienSpaceShip::fire()
     alienBullet->setBulletPosition(25, 480);
     this->scene()->addItem(alienBullet);
     qDebug() << " Alien SHIP FIRING ";
+
+    QSound *alienShipFireFX = new QSound("bomb.wav", 0);
+    alienShipFireFX->setLoops(1);
+    alienShipFireFX->play();
+
 }
 
 

@@ -66,7 +66,7 @@ void ShipBullet::advance(int phase)
          if(listOfCollidingItems.first()->type() == BLOCKID)
          {
             qDebug() << "BULLET HIT A BLOCK";
-            directionY = 4;
+            //directionY = 4;
          }
 
          else if (listOfCollidingItems.first()->type() == ID_SPACESHIP)
