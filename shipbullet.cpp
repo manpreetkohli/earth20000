@@ -85,5 +85,5 @@ void ShipBullet::advance(int phase)
     positionY+=directionY;
 
     // set the new position of the ball
-    setPos(positionX+380,positionY);
+    setPos(positionX+385,positionY);
 }

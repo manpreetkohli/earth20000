@@ -2,7 +2,6 @@
     <qresource prefix="/" >
         <file>spacebattle.jpg</file>
         <file>soccer.png</file>
-        <file>playerShip.jpg</file>
         <file>cricketball.png</file>
         <file>bg4.jpg</file>
         <file>bg2.jpg</file>
@@ -29,5 +28,7 @@
         <file>Storyline/level3.jpg</file>
         <file>Storyline/level4.jpg</file>
         <file>motherShipBullet.png</file>
+        <file>X-Wing-icon-1.png</file>
+        <file>TieFighter-icon.png</file>
     </qresource>
 </RCC>
