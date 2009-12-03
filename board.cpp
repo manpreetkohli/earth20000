@@ -21,12 +21,11 @@
 #include "levelFive.h"
 #include "leveleditor.h"
 #include "loadGame.h"
-#include <QTimer>
-#include <QGraphicsView>
-#include <QtGui>
 #include "spaceship.h"
 #include "sleeperthread.h"
 
+// added by Manpreet Kohli
+// initialize all the statics
 QGraphicsTextItem *Constants::levelInfo;
 int Constants::count;
 QGraphicsTextItem *Constants::lives;
@@ -35,13 +34,12 @@ SpaceShip *Constants::life2;
 SpaceShip *Constants::life3;
 QTimer *Constants::timer;
 
+// added by Manpreet Kohli
 // constructor
 Board::Board(QGraphicsView *view)
 {
-    scene = new QGraphicsScene();           // create a new scene
-    int width = view->geometry().width() - 5;
-    int height = view->geometry().height() - 5;
-    scene->setSceneRect(0, 0, width, height);       // set dimensions of the scene
+    scene = new QGraphicsScene();                   // create a new scene
+    scene->setSceneRect(0, 0, view->geometry().width() - 5,  view->geometry().height() - 5);       // set dimensions of the scene
 
     QFont *font = new QFont();
     font->setStyleHint(QFont::SansSerif, QFont::PreferAntialias);
@@ -49,6 +47,7 @@ Board::Board(QGraphicsView *view)
     font->setBold(true);
     font->setPointSize(14);
 
+    // check which level needs to be displayed and call function to display the corresponding HUD
     if (Constants::levelNumber == 0)
     {
         Constants::count = 3;
@@ -58,23 +57,22 @@ Board::Board(QGraphicsView *view)
     else if (Constants::levelNumber == 1)
     {
         Constants::count = 3;
-        levelOne *theFirstLevel = new levelOne(scene);
+        LevelOne *theFirstLevel = new LevelOne(scene);
         displayHUDLevel(scene, "LEVEL 1", font);
     }
-
     else if (Constants::levelNumber == 2)
     {
-        levelTwo *theSecondLevel = new levelTwo(scene);
+        LevelTwo *theSecondLevel = new LevelTwo(scene);
         displayHUDLevel(scene, "LEVEL 2", font);
     }
     else if (Constants::levelNumber == 3)
     {
-        levelThree *theThirdLevel = new levelThree(scene);
+        LevelThree *theThirdLevel = new LevelThree(scene);
         displayHUDLevel(scene, "LEVEL 3", font);
     }
     else if (Constants::levelNumber == 4)
     {
-        levelFive *theFifthLevel = new levelFive(scene);
+        LevelFive *theFifthLevel = new LevelFive(scene);
         displayHUDLevel(scene, "FINAL LEVEL", font);
     }
     else if (Constants::levelNumber == 6)
@@ -88,11 +86,13 @@ Board::Board(QGraphicsView *view)
     font->setBold(true);
     font->setPointSize(15);    
 
+    // display the spawns part of the HUD
     Constants::lives = scene->addText(QString("SPAWNS: "), *font);
     Constants::lives->setDefaultTextColor(Qt::red);
     Constants::lives->setOpacity(0.6);
     Constants::lives->setPos(485, 0);
 
+    // based on the number of spawns remaining, draw the spawns in the HUD
     if (Constants::count >= 1)
     {
         Constants::life1 = new SpaceShip();
@@ -120,11 +120,11 @@ Board::Board(QGraphicsView *view)
 
     view->setRenderHint(QPainter::Antialiasing);
     view->setCacheMode(QGraphicsView::CacheBackground);
-    view->setScene(scene);          // set the created scene inside the view
-    Constants::timer = new QTimer();       // create a new QTimer() instance
-    scoreTimer = new QTimer();
+    view->setScene(scene);                      // set the created scene inside the view
+    Constants::timer = new QTimer();            // create a new QTimer() instance
 }
 
+// added by Manpreet Kohli
 // function to display level info in the HUD
 void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
 {
@@ -134,13 +134,14 @@ void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *f
     Constants::levelInfo->setPos(15, 0);
 }
 
+// added by Manpreet Kohli
 // method to connect the timer to the ball inside the board
 void Board::connectTimerToBall()
 {
     // connect the timer to the advance method inside the Ball class
     QObject::connect(Constants::timer, SIGNAL(timeout()), scene, SLOT(advance()));
 
-    // Set the timer to trigger every 3 ms.
+    // Set the timer to trigger every 1 ms for normal levels, and every  0 ms for the level editor
     if (Constants::levelNumber == 0)
         Constants::timer->start(0);
     else

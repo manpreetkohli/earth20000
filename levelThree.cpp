@@ -9,17 +9,12 @@ Author: Natraj Subramanian
 
   **/
 
-#include <QGraphicsItem>
 #include <QtGui>
-#include <cctype>
-#include <cstdlib>
-#include <time.h>
-#include "block.h"
 #include "levelThree.h"
 
-levelThree::levelThree(QGraphicsScene *theScene)
+LevelThree::LevelThree(QGraphicsScene *theScene)
 {
-    xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;       // 260
+    xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;
     yPos = -630 + (BOUNDHEIGHT)/(8);
 
     // Declare variable to hold seconds in clock
@@ -55,7 +50,6 @@ levelThree::levelThree(QGraphicsScene *theScene)
                 {
                     block[i][j] = new RedBlock;
                 }
-
                 if(detColor == 2)
                 {
                     block[i][j] = new GreenBlock;
@@ -86,19 +80,15 @@ levelThree::levelThree(QGraphicsScene *theScene)
 
         yPos += BLOCKH + SPACE;
         xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;
-
     }
-
 }
 
-QRectF levelThree::boundingRect() const
+QRectF LevelThree::boundingRect() const
 {
     return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
 }
 
-void levelThree::paint(QPainter *painter,
-                       const QStyleOptionGraphicsItem *option,
-                       QWidget *widget)
+void LevelThree::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
@@ -107,8 +97,7 @@ void levelThree::paint(QPainter *painter,
 
 // Given a min and a max, generate a random number between
 // this range
-int levelThree::generateRandomNumber(int min, int max)
+int LevelThree::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;
 }
-

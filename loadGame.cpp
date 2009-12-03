@@ -35,9 +35,7 @@ LoadGame::LoadGame(QGraphicsScene *theScene, QGraphicsView *view)
     QChar c;
     QString bg;
     
-    in2 >> bg;    
-
-
+    in2 >> bg;              // read in the background saved into the string bg
     view->setBackgroundBrush(QPixmap(bg));
 
     // draw all the transparent blocks for the level editor window
@@ -46,7 +44,6 @@ LoadGame::LoadGame(QGraphicsScene *theScene, QGraphicsView *view)
         for (int j = 0; j < 27; j++)
         {
             in >> c;
-
             if (c == 'w')
                 Constants::blocks[i][j] = new MonoBlock();
             else if (c == 'r')
@@ -59,13 +56,11 @@ LoadGame::LoadGame(QGraphicsScene *theScene, QGraphicsView *view)
                 Constants::blocks[i][j] = new MagentaBlock();
             else if (c == 'y')
                 Constants::blocks[i][j] = new YellowBlock();
-
             else
             {
                 xPos+=OUTLINEW;
                 continue;
             }
-
             theScene->addItem(Constants::blocks[i][j]);
             Constants::blocks[i][j]->setXPos(xPos);
             Constants::blocks[i][j]->setYPos(yPos);
@@ -73,7 +68,6 @@ LoadGame::LoadGame(QGraphicsScene *theScene, QGraphicsView *view)
             Constants::blocks[i][j]->show();
             xPos+=OUTLINEW;
         }
-
         in >> c;
         in >> c;
         yPos += OUTLINEH;
@@ -86,13 +80,9 @@ QRectF LoadGame::boundingRect() const
     return QRectF(0, 0, 27 * OUTLINEW, 20 * OUTLINEH);
 }
 
-void LoadGame::paint(QPainter *painter,
-                     const QStyleOptionGraphicsItem *option,
-                     QWidget *widget)
+void LoadGame::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
-
-

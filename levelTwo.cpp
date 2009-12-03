@@ -12,14 +12,9 @@ Author: Natraj Subramanian
   **/
 
 #include <QtGui>
-#include <cctype>
-#include <cstdlib>
-#include <time.h>
-#include <QGraphicsItem>
 #include "levelTwo.h"
-#include "block.h"
 
-levelTwo::levelTwo(QGraphicsScene *theScene)
+LevelTwo::LevelTwo(QGraphicsScene *theScene)
 {
     xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;       // 260
     yPos = -630 + (BOUNDHEIGHT)/(5);
@@ -48,7 +43,7 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
                 (i > 4 && i < 9) && (j == 0 || j == 1 || j == 9 || j == 10 || j == 18 || j == 19))
             {
                  xPos += BLOCKW + SPACE;
-             }
+            }
             else
             {
                 detColor = generateRandomNumber(0,5);
@@ -106,19 +101,15 @@ levelTwo::levelTwo(QGraphicsScene *theScene)
 
         yPos += BLOCKH + SPACE;
         xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;
-
     }
-
 }
 
-QRectF levelTwo::boundingRect() const
+QRectF LevelTwo::boundingRect() const
 {
     return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
 }
 
-void levelTwo::paint(QPainter *painter,
-                     const QStyleOptionGraphicsItem *option,
-                     QWidget *widget)
+void LevelTwo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
@@ -127,7 +118,7 @@ void levelTwo::paint(QPainter *painter,
 
 // Given a min and a max, generate a random number between
 // this range
-int levelTwo::generateRandomNumber(int min, int max)
+int LevelTwo::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;
 }

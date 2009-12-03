@@ -9,18 +9,16 @@
 #ifndef FORM_H
 #define FORM_H
 
-
 #include <QtGui>
 #include "board.h"
 #include "ball.h"
-#include "shipbullet.h"         // Ivan Collazo
-#include "shipsmissiles.h"      // Ivan Collazo
+#include "shipbullet.h"             // Ivan Collazo
+#include "shipsmissiles.h"          // Ivan Collazo
 #include "block.h"
-
-#include "alienmothership.h" // Ivan Collazo
-#include "alienspaceship.h" // Ivan collazo
-#include "mothershipbullet.h"   // Ivan Collazo
-#include "alienshipbullet.h" // Ivan Collazo
+#include "alienmothership.h"        // Ivan Collazo
+#include "alienspaceship.h"         // Ivan collazo
+#include "mothershipbullet.h"       // Ivan Collazo
+#include "alienshipbullet.h"        // Ivan Collazo
 
 namespace Ui
 {
@@ -31,33 +29,16 @@ class Form : public QWidget
 {
     Q_OBJECT
 
-    public:
-        Form(QWidget *parent = 0);        
-        ~Form();
-        void stopTimer();
-
-
-    protected:
-        void changeEvent(QEvent *e);
-        void keyPressEvent(QKeyEvent *); // Ivan Collazo
-        void soundEffect(); // Ivan Collazo
-
     private:
         Ui::Form *m_ui;
         Board *board;
-        void hideElements(Ui::Form *m_ui);
-
-
         QSound *intro;
         SleeperThread *t;
-        SpaceShip *playersShip; // Ivan Collazo
+        SpaceShip *playersShip;                 // Ivan Collazo
         QGraphicsView *itemsWindow;
         QGraphicsScene *itemsWindowScene;
         QLabel *backgrounds;
-        QPushButton *backgroundOneButton ;
-        QPushButton *backgroundTwoButton ;
-        QPushButton *backgroundThreeButton ;
-        QPushButton *backgroundFourButton ;
+        QPushButton *backgroundOneButton, *backgroundTwoButton, *backgroundThreeButton, *backgroundFourButton;
         QLabel *selectBlock;
         Block *emptyBlock;
         Block *monoBlock;
@@ -68,34 +49,43 @@ class Form : public QWidget
         Block *yellowBlock;
         QLabel *currentBlockLabel;
         QPushButton *save;
-        QPushButton *done ;
-        QPushButton *reset ;
-
-
+        QPushButton *done;
+        QPushButton *reset;
         int windowWidth;
         int windowHeight;
         int mainViewWidth;
-
-        AlienMotherShip *motherShip; // Ivan Collazo
-        AlienSpaceShip *alienShip; // Ivan Collazo
-        MotherShipBullet *motherShipBullet; // Ivan Collazo
-        AlienShipBullet *alienBullet; // Ivan collazo
-
-        static int shipPos;
+        AlienMotherShip *motherShip;            // Ivan Collazo
+        AlienSpaceShip *alienShip;              // Ivan Collazo
+        MotherShipBullet *motherShipBullet;     // Ivan Collazo
+        AlienShipBullet *alienBullet;           // Ivan collazo
         QFont *font;
         QLabel *storyText;
-
-        Ball *ball;        // create an instance of the ball
-        ShipBullet *bullets; // Ivan Collazo
-        ShipsMissiles *missiles; //Ivan Collazo
-
+        Ball *ball;
+        ShipBullet *bullets;                    // Ivan Collazo
+        ShipsMissiles *missiles;                //Ivan Collazo
         QTimer *timer;
-        void setupLevel(int levelNumber);
 
+        void hideElements(Ui::Form *m_ui);
+        void setupLevel(int levelNumber);
         void saveBackground(QString bg);
 
+    public:
+        Form(QWidget *parent = 0);        
+        ~Form();
+
+    protected:
+        void changeEvent(QEvent *e);
+        void keyPressEvent(QKeyEvent *);        // Ivan Collazo
+
     private slots:
+        void on_load_clicked();
+        void on_levelEditor_clicked();
+        void on_newGame_clicked();
+        void on_exit_clicked();
         void loadLevel1();
+        void loadLevel2();
+        void loadLevel3();
+        void loadLevel4();
         void loadStoryScreen9();
         void loadStoryScreen8();
         void loadStoryScreen7();
@@ -104,10 +94,6 @@ class Form : public QWidget
         void loadStoryScreen4();
         void loadStoryScreen3();
         void loadStoryScreen2();
-        void on_load_clicked();
-        void on_levelEditor_clicked();
-        void on_newGame_clicked();
-        void on_exit_clicked();
         void save_clicked();
         void done_clicked();
         void reset_clicked();
@@ -117,12 +103,6 @@ class Form : public QWidget
         void backgroundFour_clicked();
         void alienFire();
         void motherFire();
-
-
-        void loadLevel2();
-        void loadLevel3();
-        void loadLevel4();
-
 };
 
 #endif // FORM_H

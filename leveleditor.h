@@ -13,15 +13,13 @@
 
 class LevelEditor
 {
-    public:
-        LevelEditor(QGraphicsScene *theScene);
-
     private:
         int xPos, yPos;
         QRectF boundingRect() const;
-        void paint(QPainter *painter,
-                   const QStyleOptionGraphicsItem *option,
-                   QWidget *widget);
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+    public:
+        LevelEditor(QGraphicsScene *theScene);    
 };
 
 #endif // LEVELEDITOR_H

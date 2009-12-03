@@ -11,14 +11,9 @@ Author: Natraj Subramanian
   **/
 
 #include <QtGui>
-#include <cctype>
-#include <cstdlib>
-#include <time.h>
-#include <QGraphicsItem>
 #include "levelFive.h"
-#include "block.h"
 
-levelFive::levelFive(QGraphicsScene *theScene)
+LevelFive::LevelFive(QGraphicsScene *theScene)
 {
     xPos = -380 + (BOUNDWIDTH - 25 * OUTLINEW)/4;
     yPos = -630 + (BOUNDHEIGHT)/4;
@@ -29,6 +24,7 @@ levelFive::levelFive(QGraphicsScene *theScene)
     time(&seconds);
     // Convert seconds to a unsigned integer
     srand((unsigned int) seconds);
+
     int detColor;
 
     // Create the layout for the level
@@ -83,12 +79,12 @@ levelFive::levelFive(QGraphicsScene *theScene)
     }
 }
 
-QRectF levelFive::boundingRect() const
+QRectF LevelFive::boundingRect() const
 {
     return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
 }
 
-void levelFive::paint(QPainter *painter,
+void LevelFive::paint(QPainter *painter,
                      const QStyleOptionGraphicsItem *option,
                      QWidget *widget)
 {
@@ -99,7 +95,7 @@ void levelFive::paint(QPainter *painter,
 
 // Given a min and a max, generate a random number between
 // this range
-int levelFive::generateRandomNumber(int min, int max)
+int LevelFive::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;
 }
