@@ -4,18 +4,18 @@
  *
  * Ball.cpp: creates the ball that bounces around inside the level
  *
+ * Ball motion originally coded by Manpreet Kohli and Ivan Collazo.
+ * Later modified by Natraj Subramanian for the use of powerups
+ *
+ * Block collision detection and reactive movement coded by Natraj
+ * Subramanian
+ *
+ * Powerups by Natraj Subramanian
+ *
+ *
+ *
+ *
  */
-
-/**
-  * Ball motion originally coded by Manpreet Kohli and Ivan Collazo.
-  * Later modified by Natraj Subramanian for the use of powerups
-  *
-  * Block collision detection and reactive movement coded by Natraj
-  * Subramanian
-  *
-  * Powerups by Natraj Subramanian
-  *
-  */
 
 // include necessary files
 #include <QPainter>
@@ -33,28 +33,37 @@
 #include "levelFive.h"
 #include "powerup.h"
 
+int Ball::scoreCount = 0;
+
 // constructor
 Ball::Ball(SpaceShip *ship)
 {
     playersShip = ship;
-    ballImage.load(":soccer.png");          // load an image for the ball
-    ballImage.load(":cricketball.png");     // load an image for the ball
+    ballImage.load(":soccer.png");            // load an image for the ball
+    ballImage.load(":cricketball.png");       // load an image for the ball
     factor = 0.25;
     directionX = 1.0;                         // set the X-axis increment for the movement
     directionY = -1.0;                        // set the Y-axis increment for the movement
-    positionX = 0;                          // initial X coordinate of the ball
-    positionY = 0;                          // initial Y coordinate of the ball
+    positionX = 0;                            // initial X coordinate of the ball
+    positionY = 0;                            // initial Y coordinate of the ball
     posXDir = true;
     posYDir = true;
-    setPos(positionX, positionY);           // set initial position of the ball
-    scoreCount = 0;           // Initialize the score
-    counter = 0;
+    setPos(positionX, positionY);             // set initial position of the ball
+    counter = 0;                              // to keep track of the no. of blocks that have been destroyed
     t = new SleeperThread();
     scoreFont = new QFont();
     initializeScore();
     skip = false;
 }
 
+// destructor
+Ball::~Ball() //Ivan
+{
+    qDebug() << "Destructor";
+}
+
+// added by Manpreet Kohli
+// displays the score in the HUD
 void Ball::initializeScore()
 {
     scoreFont ->setFamily("SansSerif");
@@ -67,18 +76,14 @@ void Ball::initializeScore()
     scoreDisplay->show();
 }
 
-// destructor
-Ball::~Ball() //Ivan
-{
-    qDebug() << "Destructor";
-}
-
+// added by Manpreet Kohli
 // function that paints the ball below the loaded image
 void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->drawPixmap(375, 622, 20, 20, ballImage);
 }
 
+// added by Manpreet Kohli
 // Define the bounding rectangle of the object for collision detection
 QRectF Ball::boundingRect() const
 {
@@ -91,6 +96,7 @@ void Ball::setShipPositon(int pos)
     shipXPosition = pos;
 }
 
+// added by Manpreet Kohli
 // generic function to load story screen right before level starts
 void Ball::loadStory(int levelNumber)
 {
@@ -109,11 +115,15 @@ void Ball::loadStory(int levelNumber)
     counter = 0;
 }
 
+// added by Manpreet Kohli
+// calls if the user has pressed period for cheat mode to skip to the next level
 void Ball::setSkip(bool value)
 {
     skip = value;
 }
 
+// added by Manpreet Kohli
+// returns the variable skip
 bool Ball::getSkip()
 {
     return skip;
@@ -124,7 +134,8 @@ void Ball::setPositionX(qreal pos)
     positionX += pos;
 }
 
-// function that removes a spawn from the HUD
+// added by Manpreet Kohli
+// function that removes a spawn from the HUD and sleeps for 3 secs to finish playing the respawning music
 void Ball::removeSpawn(int currentLives)
 {
     if (currentLives == 3)
@@ -139,13 +150,18 @@ void Ball::removeSpawn(int currentLives)
     spawnSound->setLoops(1);
     spawnSound->play();
 
-    Constants::count--;                                 // decrement no. of lives remaining
-    t->msleep(3000);
+    Constants::count--;                                     // decrement no. of lives remaining
+    t->msleep(3000);                                        // sleep for 3 secs
 }
 
-// function to add motion to the ball inside the board
+// created and modified by all 3 of us
+// function to add motion to the ball inside the board, check for cheat mode,
+// check for collisions, check for powerups, and to check if the ball went
+// beyond the bottom of the screen to respawn
 void Ball::advance(int phase)
 {
+    // added by Manpreet Kohli
+    // check if cheat mode got activated, and if so, skip to the next level
     if (getSkip())
     {
         setSkip(false);
@@ -160,7 +176,7 @@ void Ball::advance(int phase)
     }
 
     int blockX, blockY;
-    if(!phase) return;
+    if (!phase) return;
     QList<QGraphicsItem *> hits = this->collidingItems(Qt::IntersectsItemBoundingRect);
     
     // Power up i.e. decrease the speed of the ball
@@ -207,20 +223,23 @@ void Ball::advance(int phase)
                  /********************************
                    BEGIN SPACESHIP COLLISION RULES
                   ********************************/
-            // physics when the ball collides with top of Ship // Ivan Collazo
+            // physics when the ball collides with top of Ship
+            // Ivan Collazo
             if (positionY == 0)
             {                
+                // Manpreet Kohli
+                // play ship hit sound effect
                 QSound *shipHit = new QSound("paddle.wav", 0);
                 shipHit->setLoops(1);
                 shipHit->play();
 
-                if (ballDirection == 4) //Ball traveling SE
+                if (ballDirection == 4)     //Ball traveling SE
                 {
                     // physics for when the ball hits left most quarter portion of the ship
                     if ((positionX >= shipXPosition - 60) && (positionX <= shipXPosition - 21))
                     {
-                        directionX = 1;  //directionX;
-                        directionY = -1; //-directionY;
+                        directionX = 1;     //directionX;
+                        directionY = -1;    //-directionY;
                     }
 
                     // physics for when the ball hits left quarter portion of the ship
@@ -233,15 +252,15 @@ void Ball::advance(int phase)
                     // physics for when the ball hits right quarter portion of the ship
                     else if ((positionX >= shipXPosition) && (positionX <= shipXPosition + 20))
                     {
-                        directionX = 1; //directionX;
-                        directionY = -2;//-directionY;
+                        directionX = 1;     //directionX;
+                        directionY = -2;    //-directionY;
                     }
 
                     // physics for when the ball hits right most quarter portion of the ship
                     else if ((positionX >= shipXPosition + 21) && (positionX <= shipXPosition + 60))
                     {
-                        directionX = 2;// directionX + 1;
-                        directionY = -1;//-directionY;
+                        directionX = 2;     // directionX + 1;
+                        directionY = -1;    //-directionY;
                     }
                 }
                 else if (ballDirection == 3) //Ball traveling SW
@@ -249,15 +268,15 @@ void Ball::advance(int phase)
                     // physics for when the ball hits left most quarter portion of the ship
                     if ((positionX >= shipXPosition - 60) && (positionX <= shipXPosition - 21))
                     {
-                        directionX = -2; //directionX;
-                        directionY = -1; //directionY;
+                        directionX = -2;    //directionX;
+                        directionY = -1;    //directionY;
                     }
 
                     // physics for when the ball hits left quarter portion of the ship
                     else if ((positionX >= shipXPosition - 20) && (positionX <= shipXPosition))
                     {
-                        directionX = -1;//directionX;
-                        directionY = -2;//directionY;
+                        directionX = -1;    //directionX;
+                        directionY = -2;    //directionY;
                     }
 
                     // physics for when the ball hits right quarter portion of the ship
@@ -275,34 +294,40 @@ void Ball::advance(int phase)
                     }
                 }
             }
-            // physics when the ball collides portion near the event horizons of the ship // Ivan Collazo
+            // physics when the ball collides portion near the event horizons of the ship
+            // Ivan Collazo
             else if ((positionY <= 15) && (positionY >= 1) && ((positionX <= shipXPosition - 40) || (positionX >= shipXPosition - 40)))
             {
+                // Manpreet Kohli
+                // play ship hit sound effect
                 QSound *shipHit = new QSound("paddle.wav", 0);
                 shipHit->setLoops(1);
                 shipHit->play();
 
-                if (ballDirection == 4) //Ball traveling SE
+                if (ballDirection == 4)     //Ball traveling SE
                 {
-                    directionX = -3;  //directionX;
-                    directionY = -1; //-directionY;
+                    directionX = -3;        //directionX;
+                    directionY = -1;        //-directionY;
                 }
 
                 else if (ballDirection == 3) //Ball traveling SW
                 {
-                    directionX = 3;  //directionX;
-                    directionY = -1; //-directionY;
+                    directionX = 3;         //directionX;
+                    directionY = -1;        //-directionY;
                 }
             }
 
-            // physics when the ball collides with the event horizon of ship // Ivan Collazo
+            // physics when the ball collides with the event horizon of ship
+            // Ivan Collazo
             else if ((positionY > 15) && ((positionX == shipXPosition - 40) || (positionX == shipXPosition + 40)))
             {
+                // Manpreet Kohli
+                // play ship hit sound effect
                 QSound *shipHit = new QSound("paddle.wav", 0);
                 shipHit->setLoops(1);
                 shipHit->play();
 
-                if (ballDirection == 4) //Ball traveling SE
+                if (ballDirection == 4)     //Ball traveling SE
                 {
                     directionX = -6;
                     directionY = 6;
@@ -323,6 +348,8 @@ void Ball::advance(int phase)
         {
             if(hits.first()->type() == BLOCKID)
             {
+                // Manpreet Kohli
+                // play block collision sound effect
                 QSound *blockHit = new QSound("brick.wav", 0);
                 blockHit->setLoops(1);
                 blockHit->play();
@@ -333,8 +360,6 @@ void Ball::advance(int phase)
                 blockX = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getXPos();
                 blockY = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getYPos();
                 
-                //qDebug() << "Score: " << scoreCount;
-
                 /********************************
                    BEGIN BLOCK COLLISION RULES
                  ********************************/
@@ -497,7 +522,10 @@ void Ball::advance(int phase)
                        **********************************/
             }
 
-            if (Constants::levelNumber == 1 && counter == 84)        // should be 84 for level 1
+            // Manpreet Kohli
+            // check to see how many blocks have been eliminated in each level,
+            // and skip to the next level if all of them are done
+            if (Constants::levelNumber == 1 && counter == 84)             // should be 84 for level 1
                 loadStory(1);
             else if (Constants::levelNumber == 2 && counter == 132)       // should be 132 for level 2
                 loadStory(2);
@@ -538,8 +566,8 @@ void Ball::advance(int phase)
     }
 
     // Set the position parameters
-    positionX+=directionX * factor;
-    positionY+=directionY * factor;
+    positionX += directionX * factor;
+    positionY += directionY * factor;
 
     // ball bounces off the left and right side of the screen
     if ((positionX >= 360) || (positionX <= -380))
@@ -555,15 +583,19 @@ void Ball::advance(int phase)
         posYDir = !(posYDir);
     }
 
+    // added by Manpreet Kohli
     // if the ball went beyond the bottom of the screen
     if (positionY >= 95)
     {
+        // call function to remove a spawn if spawns remain
         if (Constants::count == 3)
             removeSpawn(3);
         else if (Constants::count == 2)
             removeSpawn(2);
         else if (Constants::count == 1)
             removeSpawn(1);
+
+        // otherwise end the game
         else if (Constants::count == 0)
         {
             // add game over logic
@@ -591,6 +623,7 @@ void Ball::advance(int phase)
             font->setPointSize(13);
             font->setWeight(75);
 
+            // display an exit button
             QPushButton *exit = new QPushButton(temp->parentWidget());
             exit->setText("EXIT");
             exit->setGeometry(300, 600, 150, 40);
@@ -607,15 +640,18 @@ void Ball::advance(int phase)
         // Reset all the values and parameters of the ball and disconnect
         // it from the timer so that it doesn't start moving immediately
         // after respawning
-        positionX = playersShip->x();                          // reset X coordinate to 0
-        positionY = playersShip->y();                          // reset Y coordinate to 0
-        setPos(positionX, positionY);           // set the coordinates to initial position
+        positionX = playersShip->x();             // reset X coordinate to 0
+        positionY = playersShip->y();             // reset Y coordinate to 0
+        setPos(positionX, positionY);             // set the coordinates to initial position
         factor = 0.25;
         directionX = 1.0;                         // set the X-axis increment for the movement
         directionY = -1.0;                        // set the Y-axis increment for the movement
-        Constants::powerup = 0;             // Reset the powerup value
+        Constants::powerup = 0;                   // Reset the powerup value
         posXDir = true;
         posYDir = true;
+
+        // Manpreet Kohli
+        // disconnect the timer with the ball and stop it
         Constants::timer->disconnect(this->scene(), SIGNAL(advance()));
         Constants::timer->stop();
     }
@@ -624,7 +660,8 @@ void Ball::advance(int phase)
     setPos(positionX,positionY);
 }
 
-// function to load screen right before the level starts
+// added by Manpreet Kohli
+// function to hide the HUD and other info and load screen right before the level starts
 void Ball::loadStoryScreen(QGraphicsScene *scene, int level, QString levelNumber)
 {
     // hide the spawns remaining
@@ -635,12 +672,11 @@ void Ball::loadStoryScreen(QGraphicsScene *scene, int level, QString levelNumber
     if (Constants::life3 != NULL)
         Constants::life3->hide();
 
-    Constants::levelInfo->hide();
+    Constants::levelInfo->hide();       // hide the HUD level info
 
     QFont *font = new QFont();
     font->setBold(true);
     font->setPointSize(80);
-
     if (level == 5)
         font->setPointSize(23);
 

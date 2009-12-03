@@ -9,15 +9,10 @@ Author: Natraj Subramanian
 
   **/
 
-#include <QGraphicsItem>
 #include <QtGui>
-#include <cctype>
-#include <cstdlib>
-#include <time.h>
-#include "block.h"
 #include "levelOne.h"
 
-levelOne::levelOne(QGraphicsScene *theScene)
+LevelOne::LevelOne(QGraphicsScene *theScene)
 {
     xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;
     yPos = -630 + (BOUNDHEIGHT)/4;
@@ -44,7 +39,6 @@ levelOne::levelOne(QGraphicsScene *theScene)
             else
             {
                 detColor = generateRandomNumber(0,5);
-                qDebug() << i << j;
                 if(detColor == 0)
                 {
                     block[i][j] = new MonoBlock;
@@ -80,23 +74,19 @@ levelOne::levelOne(QGraphicsScene *theScene)
                 xPos += BLOCKW + SPACE;
                 theScene->addItem(block[i][j]);
             }
-
         }
 
         yPos += BLOCKH + SPACE;
         xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;;
-
     }
 }
 
-QRectF levelOne::boundingRect() const
+QRectF LevelOne::boundingRect() const
 {
     return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
 }
 
-void levelOne::paint(QPainter *painter,
-                     const QStyleOptionGraphicsItem *option,
-                     QWidget *widget)
+void LevelOne::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
@@ -105,7 +95,7 @@ void levelOne::paint(QPainter *painter,
 
 // Given a min and a max, generate a random number between
 // this range
-int levelOne::generateRandomNumber(int min, int max)
+int LevelOne::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;
 }

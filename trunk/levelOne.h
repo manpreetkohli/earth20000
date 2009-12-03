@@ -10,22 +10,19 @@ Author: Natraj Subramanian
 #ifndef LEVELONE_H
 #define LEVELONE_H
 
-#include <QGraphicsItem>
-#include <QtGui>
 #include "block.h"
 
-
-class levelOne: public QGraphicsItem
+class LevelOne: public QGraphicsItem
 {
-    public:
+    private:
         int xPos, yPos;
         Block *block[6][16];
-        levelOne(QGraphicsScene *theScene);
         QRectF boundingRect() const;
-        void levelOne::paint(QPainter *painter,
-                             const QStyleOptionGraphicsItem *option,
-                             QWidget *widget = 0);
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
         int generateRandomNumber(int min, int max);
+
+    public:
+        LevelOne(QGraphicsScene *theScene);
 };
 
 #endif // LEVELONE_H

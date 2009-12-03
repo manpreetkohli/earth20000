@@ -11,19 +11,21 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include <QGraphicsScene>
+#include <QtGui>
 
 class Board
 {
-    private slots:
-        void advance();
+    private:
+        QTimer *scoreTimer;
+        void displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font);
 
     public:
-        QGraphicsScene *scene;
-        QTimer *scoreTimer;
         Board(QGraphicsView *view);
+        QGraphicsScene *scene;
         void connectTimerToBall();
-        void connectTimerToScore();
-        void displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font);
+
+    private slots:
+        void advance();
 };
+
 #endif // BOARD_H

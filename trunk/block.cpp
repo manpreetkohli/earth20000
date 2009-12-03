@@ -8,9 +8,14 @@ Author: Natraj Subramanian
 
   **/
 
-#include <QtGui>
 #include "block.h"
 #include "constants.h"
+
+// Added by Manpreet Kohli
+// initialize statics that get used
+QVector<QPointF> Constants::positions;
+QVector<int> Constants::colors;
+int SingleBlock::colorSelected = 7;
 
 QColor colors[8] = {QColor(Qt::white), QColor(Qt::black), QColor(Qt::red), QColor(Qt::green),
                     QColor(Qt::blue), QColor(Qt::magenta), QColor(Qt::yellow), QColor(Qt::transparent)};
@@ -55,65 +60,52 @@ void SingleBlock::paint(QPainter *painter,
 }
 
 // Added by Manpreet Kohli
-QVector<QPointF> Constants::positions;
-QVector<int> Constants::colors;
-int SingleBlock::colorSelected = 7;
-
-// Added by Manpreet Kohli
+// defines what happens when the user clicks on blocks in the level editor
 void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     if (Constants::levelNumber == 0)
     {
+        // if the block clicked on is inside the small items window on the right hand side
         if (this->scene()->width() < Constants::itemsWindowViewWidth)
         {
             colorSelected = this->color2;
             this->scene()->removeItem(Constants::currentBlock);
             delete Constants::currentBlock;
 
+            // modify the "current selection" block
             switch(colorSelected)
             {
                 case 0:
-                    qDebug() << "color set to 0";
                     Constants::currentBlock = new MonoBlock();
                     break;
-
                 case 2:
-                    qDebug() << "color set to 2";
                     Constants::currentBlock = new RedBlock();
                     break;
-
                 case 3:
-                    qDebug() << "color set to 3";
                     Constants::currentBlock = new GreenBlock();
                     break;
-
                 case 4:
-                    qDebug() << "color set to 4";
                     Constants::currentBlock = new BlueBlock();
                     break;
-
                 case 5:
-                    qDebug() << "color set to 5";
                     Constants::currentBlock = new MagentaBlock();
                     break;
-
                 case 6:
-                    qDebug() << "color set to 6";
                     Constants::currentBlock = new YellowBlock();
                     break;
-
                 case 7:
-                    qDebug() << "color set to 7";
                     Constants::currentBlock = new EmptyBlock();
                     break;
             }
 
+            // update the current selection block inside the scene
             this->scene()->addItem(Constants::currentBlock);
             Constants::currentBlock->setXPos(-274);
             Constants::currentBlock->setYPos(-225);
             Constants::currentBlock->setPos(-274, -225);
         }
 
+        // if the block selected was inside the main view window
         else
         {
             if (colorSelected == 7)
@@ -121,6 +113,8 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
             else
                 this->setColor1(1);
 
+            // if the block clicked on was not transparent, remove the previous selection of the block
+            // from the two vectors
             if (this->getColor2() != 7)
             {
                 int tempIndex = Constants::positions.indexOf(this->scenePos());
@@ -131,12 +125,15 @@ void SingleBlock::mousePressEvent(QGraphicsSceneMouseEvent* event)
             this->setOpacity(2.0);
             this->setColor2(colorSelected);
 
+            // if a transparent block was not clicked, push the new block position and color into 
+            // the two vectors
             if (colorSelected != 7)
             {
                 Constants::positions.push_back(this->scenePos());
                 Constants::colors.push_back(this->getColor2());
             }
 
+            // update the blocks
             update(this->boundingRect());
             update(this->sceneBoundingRect());
         }
@@ -224,8 +221,7 @@ QRectF Block::boundingRect() const
     return QRectF();
 }
 
-void Block::paint(QPainter *painter,
-                  const QStyleOptionGraphicsItem *option, QWidget *widget)
+void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
@@ -246,8 +242,7 @@ QRectF MonoBlock::boundingRect() const
     return QRectF();
 }
 
-void MonoBlock::paint(QPainter *painter,
-                  const QStyleOptionGraphicsItem *option, QWidget *widget)
+void MonoBlock::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
@@ -271,8 +266,7 @@ QRectF EmptyBlock::boundingRect() const
 }
 
 // Added by Manpreet Kohli
-void EmptyBlock::paint(QPainter *painter,
-                     const QStyleOptionGraphicsItem *option, QWidget *widget)
+void EmptyBlock::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
@@ -293,14 +287,12 @@ QRectF RedBlock::boundingRect() const
     return QRectF();
 }
 
-void RedBlock::paint(QPainter *painter,
-                     const QStyleOptionGraphicsItem *option, QWidget *widget)
+void RedBlock::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
-
 
 GreenBlock::GreenBlock()
 {
@@ -316,14 +308,12 @@ QRectF GreenBlock::boundingRect() const
     return QRectF();
 }
 
-void GreenBlock::paint(QPainter *painter,
-                     const QStyleOptionGraphicsItem *option, QWidget *widget)
+void GreenBlock::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
-
 
 BlueBlock::BlueBlock()
 {
@@ -339,9 +329,7 @@ QRectF BlueBlock::boundingRect() const
     return QRectF();
 }
 
-
-void BlueBlock::paint(QPainter *painter,
-                     const QStyleOptionGraphicsItem *option, QWidget *widget)
+void BlueBlock::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
@@ -362,8 +350,7 @@ QRectF MagentaBlock::boundingRect() const
     return QRectF();
 }
 
-void MagentaBlock::paint(QPainter *painter,
-                     const QStyleOptionGraphicsItem *option, QWidget *widget)
+void MagentaBlock::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);
@@ -384,8 +371,7 @@ QRectF YellowBlock::boundingRect() const
     return QRectF();
 }
 
-void YellowBlock::paint(QPainter *painter,
-                     const QStyleOptionGraphicsItem *option, QWidget *widget)
+void YellowBlock::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(painter);
     Q_UNUSED(option);

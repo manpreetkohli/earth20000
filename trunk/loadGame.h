@@ -13,15 +13,13 @@
 
 class LoadGame
 {
-    public:
-        LoadGame(QGraphicsScene *theScene, QGraphicsView *view);
-
-    private:
+   private:
         int xPos, yPos;
         QRectF boundingRect() const;
-        void paint(QPainter *painter,
-                   const QStyleOptionGraphicsItem *option,
-                   QWidget *widget);
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+    public:
+        LoadGame(QGraphicsScene *theScene, QGraphicsView *view);
 };
 
 
