@@ -341,8 +341,6 @@ void Form::loadLevel4()
   */
 void Form::on_levelEditor_clicked()
 {
-    saveBackground("");         // to make sure a new file always gets created
-
     // call function to hide all the elements (QButtons and QLabels) of the splash screen
     hideElements(m_ui);
 
