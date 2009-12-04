@@ -42,6 +42,8 @@ public:
 
     void fire();
 
+    int getAlienShipHit();
+
 };
 
 #endif // ALIENSPACESHIP_H

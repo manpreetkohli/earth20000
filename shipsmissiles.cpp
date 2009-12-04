@@ -64,19 +64,22 @@ void ShipsMissiles::advance(int phase)
     {
         if (listOfCollidingItems.first()->type() == BLOCKID)
          {
-            qDebug() << "MISSILE HIT A BLOCK";
+            // qDebug() << "MISSILE HIT A BLOCK";
+            positionX += 700;
             this->scene()->removeItem(this);
          }
 
          else if (listOfCollidingItems.first()->type() == ID_MOTHERSHIP)
          {
-             qDebug() << "HITTING MOTHER SHITTT";
+             //qDebug() << "HITTING MOTHER SHITTT";
+             positionX += 700;
              this->scene()->removeItem(this);
          }
 
          else if (listOfCollidingItems.first()->type() == ID_SPACESHIPMISSILE)
          {
              qDebug() << " SHITTT";
+             positionX += 700;
              this->scene()->removeItem(this);
          }
     }

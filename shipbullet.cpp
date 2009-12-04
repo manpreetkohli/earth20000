@@ -66,19 +66,21 @@ void ShipBullet::advance(int phase)
          if(listOfCollidingItems.first()->type() == BLOCKID)
          {
             qDebug() << "BULLET HIT A BLOCK";
-            //directionY = 4;
+            directionY = 4;
          }
 
          else if (listOfCollidingItems.first()->type() == ID_SPACESHIP)
          {
             qDebug() << "BULLET HIT spaceShip";
+            positionX += 700;
             this->scene()->removeItem(this);
          }
 
          else if (listOfCollidingItems.first()->type() == ID_ALIENSPACESHIP)
          {
-          qDebug() << "HITTING Alien SHITTT";
-          this->scene()->removeItem(this);//   positionX += 700;
+             qDebug() << "HITTING Alien SHITTT";
+             positionX += 700;
+             this->scene()->removeItem(this);
          }
     }
 

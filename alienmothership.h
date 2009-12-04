@@ -44,6 +44,9 @@ class AlienMotherShip : public QGraphicsItem
 
         // public slots:
         void fire();
+
+        int getShipHit();
+
 };
 
 #endif // ALIENMOTHERSHIP_H
