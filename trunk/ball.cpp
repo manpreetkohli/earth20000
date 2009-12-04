@@ -605,7 +605,6 @@ void Ball::advance(int phase)
         {
             // add game over logic
             QGraphicsView *temp  = this->scene()->views().at(0);
-            this->scene()->deleteLater();
             QGraphicsScene *gameOverScene = new QGraphicsScene;
             temp->setScene(gameOverScene);
             gameOverScene->setSceneRect(0, 0, temp->geometry().width() - 5, temp->geometry().height() - 5);       // set dimensions of the scene
