@@ -19,7 +19,7 @@ AlienMotherShip::AlienMotherShip()
     height = 240; //60
     left = 170;  //325
     top = 200;   //620
-    alienMotherShipHit = 0;
+    alienMotherShipHit = 20;
     qDebug() << "Alien MotherShip Constructor" ;
   //  setPos(0, 0);
     timer = new QTimer();       // create a new QTimer() instance
@@ -47,12 +47,12 @@ void AlienMotherShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *
         if(listOfCollidingItems.first()->type() == ID_SPACESHIPMISSILE)
         {
             qDebug() << "MY ALIEN MOTHER SHIP GOT HIT";
-            ++alienMotherShipHit;
+            alienMotherShipHit--;
             qDebug() << alienMotherShipHit;
             update();
         }
     }
-    if (alienMotherShipHit == 20) // if alienMotherShipHit is 5 ship destoryed and game WON!!!!
+    if (alienMotherShipHit == 0) // if alienMotherShipHit is 5 ship destoryed and game WON!!!!
     {
         qDebug() << "MY ALIEN SHIP GOT Destroyed";
         shipsImage.load(":fire.png");
@@ -95,4 +95,9 @@ void AlienMotherShip::fire()
     QSound *alienShipFireFX = new QSound("laser_1.wav", 0);
     alienShipFireFX->setLoops(1);
     alienShipFireFX->play();
+}
+
+int AlienMotherShip::getShipHit()
+{
+       return alienMotherShipHit;
 }

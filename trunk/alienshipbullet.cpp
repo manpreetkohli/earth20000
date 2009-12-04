@@ -13,8 +13,7 @@ AlienShipBullet::AlienShipBullet()
     positionY = 0;                          // initial Y coordinate of the ball
     width = 20;
     height = 20;
-    qDebug() << "Alien bullet Constructor" ;
-  //  setPos(positionX, positionY);           // set initial position of the ball
+    //qDebug() << "Alien bullet Constructor" ;
 }
 
 AlienShipBullet::~AlienShipBullet()
@@ -57,7 +56,6 @@ void AlienShipBullet::advance(int phase)
     {
         if(listOfCollidingItems.first()->type() == ID_SPACESHIP)
         {
-            qDebug() << "HITTING SPACE SHIP";
             this->scene()->removeItem(this);
         }
     }
@@ -69,7 +67,6 @@ void AlienShipBullet::advance(int phase)
 
    if (positionY > 1050)
     {
-       qDebug() << " GONE";
         this->scene()->removeItem(this);
     }
 }

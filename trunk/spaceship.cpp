@@ -1,10 +1,8 @@
-/**
-/ Author: Ivan Collazo
-/ File: spaceship.cpp
-/ Date: 10/05/2009
-/   This class is a super class for space ships in earth20000
-/
-/
+/*!
+* Author: Ivan Collazo
+* File: spaceship.cpp
+* Date: 10/05/2009
+*   This class is a super class for space ships in earth20000
 */
 
 #include "spaceship.h"
@@ -19,17 +17,18 @@
 #include "alienshipbullet.h"
 #include "constants.h"
 
-
-
 //MoveBehavior shipMoving;
 //ShotBehavior shipShooting;
 
-using namespace std;
+//using namespace std;
 
 int static leftDirection = 1;
 int static rightDirection = 2;
 
-// constructor
+
+/*!
+* constructor
+*/
 SpaceShip::SpaceShip()
 {
     shipsImage.load(":X-Wing-icon-1.png");
@@ -37,18 +36,23 @@ SpaceShip::SpaceShip()
     height = 0; //60
     left = 0;  //325
     top = 0;   //620
-    shipHit = 0;
+    shipHit = 4;
    // color = (Qt::red);
     qDebug() << "Space Ship Constructor" ;
     setPos(0, 0);
 }
 
-// destructor
+/*!
+* destructor
+*/
 SpaceShip::~SpaceShip()
 {
-    qDebug() << "Space Ship Destructor" ;
+   // qDebug() << "Space Ship Destructor" ;
 }
 
+/*!
+* destructor
+*/
 // called whenever the spaceShip needs to be drawn
 void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
@@ -59,8 +63,8 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
     {
         if ((listOfCollidingItems.first()->type() == ID_MOTHERSHIPBULLET) || (listOfCollidingItems.first()->type() == ID_ALIENSHIPBULLET))
         {
-            qDebug() << "SPACE SHIP GOT HIT BY MOTHER SHIP BULLET";
-            shipHit++;
+          //  qDebug() << "SPACE SHIP GOT HIT BY MOTHER SHIP BULLET";
+            shipHit--;
             qDebug() << shipHit;
 
             if (Constants::count == 3)
@@ -202,9 +206,8 @@ void SpaceShip::setShipDirection(int direction)
 
 
 int SpaceShip::getShipHit()
-{
-    return Constants::count + 1;
-    //return  shipHit;
+{  
+       return shipHit;
 }
 //void SpaceShip::performShipMovement()
 //{

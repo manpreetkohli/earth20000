@@ -30,7 +30,8 @@ Block *Constants::blocks[20][27];
 int Constants::levelNumber;
 QPushButton *Constants::cont;
 QPushButton *skipIntro;
-
+QTimer *timer3 = new QTimer();
+QTimer *timer4 = new QTimer();
 // added by Manpreet Kohli
 // constructor sets up the graphics item
 Form::Form(QWidget *parent) :  QWidget(parent), m_ui(new Ui::Form)
@@ -277,7 +278,7 @@ void Form::setupLevel(int levelNumber)
         else if (playersShip->getShipHit() > 0)
         {
             qDebug() << "GAME ON";
-            QTimer *timer3 = new QTimer();
+            //QTimer *timer3 = new QTimer();
             QObject::connect(timer3, SIGNAL(timeout()), this, SLOT(alienFire()));
             timer3->start(2000);
         }
@@ -288,9 +289,8 @@ void Form::setupLevel(int levelNumber)
         motherShip = new AlienMotherShip ();    // Ivan Collazo
         board->scene->addItem(motherShip);      // Ivan Collazo
 
-        QTimer *timer = new QTimer();
-        QObject::connect(timer, SIGNAL(timeout()), this, SLOT(motherFire()));
-        timer->start(3000);
+        QObject::connect(timer4, SIGNAL(timeout()), this, SLOT(motherFire()));
+        timer4->start(3000);
     }
 
     ball = new Ball(playersShip);                  // create an instance of the ball
@@ -692,6 +692,10 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
                 }
                 else
                 {
+                    QSound *shipMovingFX = new QSound("zipper.wav", 0);
+                    shipMovingFX->setLoops(1);
+                    shipMovingFX->play();
+
                     playersShip->moveBy(-30, 0);
                     playersShip->setShipPosX(-30);
                     ball->moveBy(-30, 0);
@@ -705,6 +709,10 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
                     playersShip->moveBy(0, 0);
                 else
                 {
+                    QSound *shipMovingFX = new QSound("zipper.wav", 0);
+                    shipMovingFX->setLoops(1);
+                    shipMovingFX->play();
+
                     playersShip->moveBy(-30,0);
                     playersShip->setShipPosX(-30);
                     ball->setShipPositon(playersShip->getShipPosX());
@@ -720,6 +728,10 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
 
                 else
                 {
+                    QSound *shipMovingFX = new QSound("zipper.wav", 0);
+                    shipMovingFX->setLoops(1);
+                    shipMovingFX->play();
+
                     playersShip->moveBy(30,0);
                     playersShip->setShipPosX(30);
                     ball->moveBy(30, 0);
@@ -734,6 +746,10 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
                     playersShip->moveBy(0, 0);
                 else
                 {
+                    QSound *shipMovingFX = new QSound("zipper.wav", 0);
+                    shipMovingFX->setLoops(1);
+                    shipMovingFX->play();
+
                     playersShip->moveBy(30,0);
                     playersShip->setShipPosX(30);
                     ball->setShipPositon(playersShip->getShipPosX());
@@ -792,17 +808,67 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
 // added by Ivan Collazo
 void Form::motherFire()
 {
-    motherShip->fire();
+    // stops mother ship firing when player loses game
+    if (Constants::count == 0)
+    {
+        qDebug() << "STOP SHOOTING game over";
+        timer4->disconnect(board->scene, SLOT(motherFire()));
+        timer4->stop();
+    }
+
+    // stops mothership firing when game is won
+    if (Constants::levelNumber == 5)
+    {
+        qDebug() << "STOP SHOOTING game won";
+        timer4->disconnect(board->scene, SLOT(motherFire()));
+        timer4->stop();
+    }
+
+    // stops mother ship firing when mother ship is destoryed
+    else if (motherShip->getShipHit() <= 0)
+    {
+        qDebug() << "STOP SHOOTING when mother ship destroyed";
+        timer4->disconnect(board->scene, SLOT(motherFire()));
+        timer4->stop();
+    }
+
+    else
+    {
+        motherShip->fire();
+    }
 }
 
 // added by Ivan Collazo
 void Form::alienFire()
 {
-    if (playersShip->getShipHit() == 0)
+    // stops alien ship firing when player loses game
+    if (Constants::count == 0 )
     {
-        qDebug() << "GAME OVER CAUSE OF ALIEN FIRE";
-        qDebug() << playersShip->getShipHit();
+            qDebug() << "STOP SHOOTING game over";
+            timer3->disconnect(board->scene, SLOT(alienFire()));
+            timer3->stop();
     }
+
+    // stops alien ship firing when level is won
+    else if (Constants::levelNumber == 4)
+    {
+        qDebug() << "STOP SHOOTING level won";
+        timer3->disconnect(board->scene, SLOT(alienFire()));
+        timer3->stop();
+    }
+
+    // stops alien ship firing when alien ship is destoryed
+    else if (alienShip->getAlienShipHit() == 0)
+    {
+        qDebug() << "STOP SHOOTING when alien ship destroyed";
+        timer3->disconnect(board->scene, SLOT(alienFire()));
+        timer3->stop();
+    }
+
+    // keeps firing alien bullets
     else
+    {
+        qDebug() << "sFIRRRRIn";
         alienShip->fire();
+    }
 }
