@@ -120,7 +120,14 @@ Board::Board(QGraphicsView *view)
 void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
 {
     Constants::levelInfo = scene->addText(levelNumber, *font);
-    Constants::levelInfo->setDefaultTextColor(Qt::white);
+    if (Constants::levelNumber == 0 || Constants::levelNumber == 6)
+    {
+        Constants::levelInfo->setDefaultTextColor(Qt::black);
+    }
+    else
+    {
+        Constants::levelInfo->setDefaultTextColor(Qt::white);
+    }
     Constants::levelInfo->setOpacity(0.6);
     Constants::levelInfo->setPos(15, 0);
 }
