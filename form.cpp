@@ -924,7 +924,7 @@ void Form::alienFire()
 
 void Form::on_controls_clicked()
 {
- /*   hideElements(m_ui);
+    hideElements(m_ui);
 
     QLabel *a = new QLabel(this);
     a->setText("<font color = RED> A: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Move Left </font>");
@@ -934,25 +934,25 @@ void Form::on_controls_clicked()
     QLabel *d = new QLabel(this);
     d->setText("<font color = RED> D: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Move Right </font>");
     d->show();
-    d->setGeometry(QRect(200, 80, 700, 70));
+    d->setGeometry(QRect(200, 80, 1000, 70));
 
     QLabel *enter = new QLabel(this);
     enter->setText("<font color = RED> Enter: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Release ball </font>");
     enter->show();
-    enter->setGeometry(QRect(75, 130, 700, 70));
+    enter->setGeometry(QRect(75, 130, 1000, 70));
 
     QLabel *space = new QLabel(this);
     space->setText("<font color = RED> SPACE BAR: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fire bullets or missiles (only activated in level 3 and 4) </font>");
     space->show();
-    space->setGeometry(QRect(40, 180, 700, 70));
+    space->setGeometry(QRect(40, 180, 1000, 70));
 
     QLabel *period = new QLabel(this);
     period->setText("<font color = RED> Period (.): &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Activate cheat mode (skip to next level) </font>");
     period->show();
-    period->setGeometry(QRect(40, 230, 700, 70));
+    period->setGeometry(QRect(40, 230, 1000, 70));
 
     QFont font;
-    font.setPointSize(10);
+    font.setPointSize(20);
     font.setBold(true);
     font.setWeight(75);
 
@@ -962,15 +962,13 @@ void Form::on_controls_clicked()
     space->setFont(font);
     period->setFont(font);
 
-    QPushButton *back = new QPushButton();
+    font.setPointSize(13);
+
+    QPushButton *back = new QPushButton(this);
     back->setText("BACK");
-    back->setGeometry(200, 500, 50, 50);
+    back->setGeometry(340, 550, 100, 50);
+    back->setFont(font);
+    back->show();
+    back->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
 
-
-    Constants::cont->setFont(*font);
-    Constants::cont->show();
-    Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
-
-
-*/
 }
