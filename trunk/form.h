@@ -34,6 +34,7 @@ class Form : public QWidget
     Q_OBJECT
 
     private:
+        int bgNo;
         Ui::Form *m_ui;
         Board *board;
         QSound *intro;

@@ -32,6 +32,7 @@ Form::Form(QWidget *parent) :  QWidget(parent), m_ui(new Ui::Form)
     t = new SleeperThread();
     timer3 = new QTimer();
     timer4 = new QTimer();
+    bgNo = 0;
 }
 
 /*!
@@ -340,6 +341,8 @@ void Form::loadLevel4()
   */
 void Form::on_levelEditor_clicked()
 {
+    saveBackground("");         // to make sure a new file always gets created
+
     // call function to hide all the elements (QButtons and QLabels) of the splash screen
     hideElements(m_ui);
 
@@ -508,8 +511,8 @@ void Form::saveBackground(QString bg)
 void Form::backgroundOne_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
-    saveBackground(":universe4.jpg");
-}
+    bgNo = 1;
+    }
 
 /*!
   added by Manpreet Kohli
@@ -518,8 +521,8 @@ void Form::backgroundOne_clicked()
 void Form::backgroundTwo_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg2.jpg"));
-    saveBackground(":bg2.jpg");
-}
+    bgNo = 2;
+    }
 
 /*!
   added by Manpreet Kohli
@@ -528,7 +531,7 @@ void Form::backgroundTwo_clicked()
 void Form::backgroundThree_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg3.jpg"));
-    saveBackground(":bg3.jpg");
+    bgNo = 3;
 }
 
 /*!
@@ -538,6 +541,7 @@ void Form::backgroundThree_clicked()
 void Form::backgroundFour_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg4.jpg"));
+    bgNo = 4;
     saveBackground(":bg4.jpg");
 }
 
@@ -610,7 +614,16 @@ void Form::reset_clicked()
   */
 void Form::save_clicked()
 {
-    saveBackground("");         // to make sure a new file always gets created
+    if (bgNo == 0)
+        saveBackground("");         // to make sure a new file always gets created
+    else if (bgNo == 1)
+        saveBackground(":universe4.jpg");
+    else if (bgNo == 2)
+        saveBackground(":bg2.jpg");
+    else if (bgNo == 3)
+        saveBackground(":bg3.jpg");
+    else if (bgNo == 4)
+        m_ui->view->setBackgroundBrush(QPixmap(":bg4.jpg"));
 
     // open file for writing
     QFile file("levels.txt");
@@ -912,25 +925,52 @@ void Form::alienFire()
 void Form::on_controls_clicked()
 {
  /*   hideElements(m_ui);
-    QLabel *a = new QLabel(this);
-    a->setText("<font color = RED> A &nbsp; &nbsp; &nbsp; &nbsp; Move Left </font>");
-    a->setGeometry(QRect(25, 30, 500, 70));
 
+    QLabel *a = new QLabel(this);
+    a->setText("<font color = RED> A: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Move Left </font>");
+    a->setGeometry(QRect(200, 30, 700, 70));
     a->show();
 
     QLabel *d = new QLabel(this);
-    d->setText("<font color = RED> D &nbsp &nbsp &nbsp &nbsp Move Right </font>");
+    d->setText("<font color = RED> D: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Move Right </font>");
     d->show();
-    d->setGeometry(QRect(130, 120, 500, 70));
+    d->setGeometry(QRect(200, 80, 700, 70));
 
+    QLabel *enter = new QLabel(this);
+    enter->setText("<font color = RED> Enter: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Release ball </font>");
+    enter->show();
+    enter->setGeometry(QRect(75, 130, 700, 70));
+
+    QLabel *space = new QLabel(this);
+    space->setText("<font color = RED> SPACE BAR: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fire bullets or missiles (only activated in level 3 and 4) </font>");
+    space->show();
+    space->setGeometry(QRect(40, 180, 700, 70));
+
+    QLabel *period = new QLabel(this);
+    period->setText("<font color = RED> Period (.): &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Activate cheat mode (skip to next level) </font>");
+    period->show();
+    period->setGeometry(QRect(40, 230, 700, 70));
 
     QFont font;
-    font.setPointSize(25);
+    font.setPointSize(10);
     font.setBold(true);
     font.setWeight(75);
-    a->setFont(font);
-   // d->setAlignment(Qt::AlignCenter);
 
+    a->setFont(font);
     d->setFont(font);
+    enter->setFont(font);
+    space->setFont(font);
+    period->setFont(font);
+
+    QPushButton *back = new QPushButton();
+    back->setText("BACK");
+    back->setGeometry(200, 500, 50, 50);
+
+
+    Constants::cont->setFont(*font);
+    Constants::cont->show();
+    Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+
+
 */
 }
