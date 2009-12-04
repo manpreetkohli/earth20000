@@ -21,13 +21,17 @@ AlienSpaceShip::AlienSpaceShip()
     qDebug() << "Alien Ship Constructor" ;
 }
 
-// destructor
+/*!
+  destructor
+  */
 AlienSpaceShip::~AlienSpaceShip()
 {
     qDebug() << "Alien Space Ship Destructor" ;
 }
 
-// called whenever the spaceShip needs to be drawn
+/*!
+  called whenever the spaceShip needs to be drawn
+  */
 void AlienSpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     // can later traverse to examine what collided with the character.
@@ -45,10 +49,8 @@ void AlienSpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *o
             {
                // qDebug() << "ALIEN SHIP IS ALREADY BLOWED";
             }
-
             else
             {
-                //qDebug() << "ALIEN SHIP getting hit";
                 --alienShipHit;
             }
         }
@@ -56,37 +58,39 @@ void AlienSpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *o
 
     if (alienShipHit == 0)
     {
-       //qDebug() << "MY ALIEN SHIP GOT Destroyed";
        shipsImage.load(":fire.png");
        painter->drawPixmap(355, 100, 80, 40, shipsImage);
 
        QSound *shipExplosionFX = new QSound("explosion_2.wav", 0);
        shipExplosionFX->setLoops(1);
        shipExplosionFX->play();
-       // the bounding rectangle of the object for collision detection
        update();
-      // alienShipHit = 1;
     }
 }
 
-// the bounding rectangle of the object for collision detection
+/*!
+  the bounding rectangle of the object for collision detection
+  */
 QRectF AlienSpaceShip::boundingRect() const
 {
     return QRectF(355, 100, 80, 40);
 }
-//
-// gets Ships horizontal position
-int AlienSpaceShip::getShipPosX()
+
+/*!
+  gets Ships horizontal position
+  */
+qreal AlienSpaceShip::getShipPosX()
 {
     return left;
 }
-//
-//// gets Ships horizontal position
-int AlienSpaceShip::getShipPosY()
+
+/*!
+  gets Ships horizontal position
+  */
+qreal AlienSpaceShip::getShipPosY()
 {
     return top;
 }
-
 
 void AlienSpaceShip::fire()
 {
@@ -101,9 +105,7 @@ void AlienSpaceShip::fire()
     alienShipFireFX->play();
 }
 
-
-int AlienSpaceShip::getAlienShipHit()
+qreal AlienSpaceShip::getAlienShipHit()
 {
     return alienShipHit;
 }
-

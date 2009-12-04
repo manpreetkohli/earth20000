@@ -34,15 +34,15 @@ public:
     // called whenever the spaceShip needs to be drawn
     void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-    int getShipPosX();
+    qreal getShipPosX();
 
-    int getShipPosY();
+    qreal getShipPosY();
 
     virtual int type() const {return ID_ALIENSPACESHIP; }
 
     void fire();
 
-    int getAlienShipHit();
+    qreal getAlienShipHit();
 
 };
 

@@ -1,10 +1,3 @@
-/**
-/ Author: Ivan Collazo
-/ File: shipbullet.cpp
-/ Date: 10/20/2009
-/
-*/
-
 #include "shipbullet.h"
 #include <QPainter>
 #include <QDebug>
@@ -49,12 +42,14 @@ void ShipBullet::setShipPosition (int pos)
     positionX = shipXPosition;
 }
 
-int ShipBullet::getShipBulletYPosition ()
+qreal ShipBullet::getShipBulletYPosition ()
 {
     return positionY;
 }
 
-// function to add motion to the ball inside the board
+/*!
+  function to add motion to the ball inside the board
+  */
 void ShipBullet::advance(int phase)
 {
     if(!phase) return;
@@ -83,7 +78,6 @@ void ShipBullet::advance(int phase)
              this->scene()->removeItem(this);
          }
     }
-
     positionY+=directionY;
 
     // set the new position of the ball

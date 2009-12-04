@@ -2,8 +2,12 @@
  * Manpreet Kohli
  * CS 340, Fall 2009
  *
- * Form.h: the header file for the class that draws the main graphics item window
+ * Form.cpp: the source file for the main graphics item window. This
+ * class does a lot of stuff including taking care of button presses
+ * on the splash screen, level transitions, level editor logic, and
+ * key press logic.
  *
+ * Storyline graphics and slides created by Natraj Subramanian
  */
 
 #ifndef FORM_H
@@ -64,6 +68,9 @@ class Form : public QWidget
         ShipBullet *bullets;                    // Ivan Collazo
         ShipsMissiles *missiles;                //Ivan Collazo
         QTimer *timer;
+        QTimer *timer3;
+        QPushButton *skipIntro;
+        QTimer *timer4;
 
         void hideElements(Ui::Form *m_ui);
         void setupLevel(int levelNumber);
@@ -78,6 +85,7 @@ class Form : public QWidget
         void keyPressEvent(QKeyEvent *);        // Ivan Collazo
 
     private slots:
+        void on_controls_clicked();
         void on_load_clicked();
         void on_levelEditor_clicked();
         void on_newGame_clicked();

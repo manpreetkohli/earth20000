@@ -1,12 +1,3 @@
-/**
- * Manpreet Kohli
- * CS 340, Fall 2009
- *
- * loadGame.cpp: creates the design for the saved game. Reads in the saved file,
- * and based on the input, creates the blocks for the board
- *
- */
-
 #include <QtGui>
 #include "loadGame.h"
 #include "block.h"

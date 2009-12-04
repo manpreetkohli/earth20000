@@ -4,7 +4,9 @@
 #include <iostream>
 #include "constants.h"
 
-// constructor
+/*!
+  constructor
+  */
 MotherShipBullet::MotherShipBullet()
 {
     qDebug() << "Mother Ship Bullet constructor";
@@ -18,24 +20,28 @@ MotherShipBullet::MotherShipBullet()
     setPos(positionX, positionY);           // set initial position of the ball
 }
 
-// destructor
+/*!
+  destructor
+  */
 MotherShipBullet::~MotherShipBullet()
 {
     qDebug() << "Mother Ship Bullet Destructor";
 }
 
-// creates the mother ship bullet
+/*!
+  creates the mother ship bullet
+  */
 void MotherShipBullet::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->drawPixmap(325, -110, width, height, bulletImage);
 }
 
-// Define the bounding rectangle of the object for collision detection
+/*!
+  Define the bounding rectangle of the object for collision detection
+  */
 QRectF MotherShipBullet::boundingRect() const
 {
   return QRectF(325,-110, width,height);
-    
-//    return QRectF(325, -50, width, height);
 }
 
 void MotherShipBullet::setBulletPosition (int posX, int posY)
@@ -44,13 +50,14 @@ void MotherShipBullet::setBulletPosition (int posX, int posY)
     positionY = posY;
 }
 
-// function to add motion to the bullet inside the board
+/*!
+  function to add motion to the bullet inside the board
+  */
 void MotherShipBullet::advance(int phase)
 {
     if(!phase) return;
 
     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();//ivan
-
 
     if (!listOfCollidingItems.isEmpty())
     {
@@ -66,16 +73,9 @@ void MotherShipBullet::advance(int phase)
     // set the new position of the ball
     setPos(positionX,positionY);
 
-
     if (positionY > 800)
     {
         qDebug() << "mother bullet gone";
         this->scene()->removeItem(this);
     }
-//    this->
 }
-
-
-
-
-

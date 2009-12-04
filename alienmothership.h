@@ -35,18 +35,17 @@ class AlienMotherShip : public QGraphicsItem
         void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
         // gets Alien MotherShip X Position
-        int getShipPosX();
+        qreal getShipPosX();
 
         // gets Alien MotherShip Y Position
-        int getShipPosY();
+        qreal getShipPosY();
 
         virtual int type() const {return ID_MOTHERSHIP; }
 
         // public slots:
         void fire();
 
-        int getShipHit();
-
+        qreal getShipHit();
 };
 
 #endif // ALIENMOTHERSHIP_H

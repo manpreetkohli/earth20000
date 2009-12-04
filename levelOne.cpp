@@ -1,14 +1,3 @@
-/**
- levelOne.cpp
-
-Creates the design for the first level. Uses the polymorphism feature
-of the block.cpp class and randomly generates blocks of different colors
-and places them in a pre-defined layout.
-
-Author: Natraj Subramanian
-
-  **/
-
 #include <QtGui>
 #include "levelOne.h"
 
@@ -93,8 +82,10 @@ void LevelOne::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     Q_UNUSED(widget);
 }
 
-// Given a min and a max, generate a random number between
-// this range
+/*!
+  Given a min and a max, generate a random number between
+  this range
+  */
 int LevelOne::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;

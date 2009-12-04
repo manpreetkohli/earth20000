@@ -1,11 +1,13 @@
 /**
- powerup.h
-
-Contains prototypes for the powerup.cpp class.
-
-Author: Natraj Subramanian
-
-  **/
+ * powerup.cpp
+ *
+ * Creates an instance of a powerup, and when called upon
+ * the advance method, it travels down the Y-axis checking for
+ * collisions with the player ship.
+ *
+ * Author: Natraj Subramanian
+ *
+ */
 
 #ifndef POWERUP_H
 #define POWERUP_H

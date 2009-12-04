@@ -1,9 +1,9 @@
 /**
-/ Author: Ivan Collazo
-/ File: shipmissiles.h
-/ Date: 10/20/2009
-/
-*/
+ * Author: Ivan Collazo
+ * File: shipmissiles.h
+ * Date: 10/20/2009
+ *
+ */
 
 #ifndef SHIPSMISSILES_H
 #define SHIPSMISSILES_H
@@ -14,7 +14,6 @@
 
 class ShipsMissiles : public QGraphicsItem
 {
-
     private:
         QPixmap missileImage;
         qreal directionX, directionY, positionX, positionY;
@@ -27,11 +26,8 @@ class ShipsMissiles : public QGraphicsItem
 
     public:
         ShipsMissiles();
-
         ~ShipsMissiles();
-
         virtual int type() const {return ID_SPACESHIPMISSILE; }
-
         void setShipPosition (int pos);
 };
 

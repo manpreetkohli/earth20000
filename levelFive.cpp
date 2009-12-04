@@ -1,15 +1,3 @@
-/**
- levelFive.cpp
-
-Creates the design for the fifth level. Uses the polymorphism feature
-of the block.cpp class and randomly generates blocks of different colors
-and places them in a pre-defined layout. Also places the mothership
-in the layout as part of the boss battle
-
-Author: Natraj Subramanian
-
-  **/
-
 #include <QtGui>
 #include "levelFive.h"
 
@@ -93,8 +81,10 @@ void LevelFive::paint(QPainter *painter,
     Q_UNUSED(widget);
 }
 
-// Given a min and a max, generate a random number between
-// this range
+/*!
+  Given a min and a max, generate a random number between
+  this range
+  */
 int LevelFive::generateRandomNumber(int min, int max)
 {
     return rand() % (max - min + 1) + min;

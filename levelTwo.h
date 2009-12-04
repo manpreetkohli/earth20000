@@ -1,11 +1,15 @@
 /**
- levelTwo.h
-
-Contains prototypes for the levelTwo.cpp class.
-
-Author: Natraj Subramanian
-
-  **/
+ * levelTwo.cpp
+ *
+ * Creates the design for the second level. Uses the polymorphism feature
+ * of the block.cpp class and randomly generates blocks of different colors
+ * and places them in a pre-defined layout.
+ *
+ * This level contains powerups
+ *
+ * Author: Natraj Subramanian
+ *
+ */
 
 #ifndef LEVELTWO_H
 #define LEVELTWO_H

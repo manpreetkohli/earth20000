@@ -1,11 +1,13 @@
 /**
- levelTwo.h
-
-Contains prototypes for the levelThree.cpp class.
-
-Author: Natraj Subramanian
-
-  **/
+ * levelThree.cpp
+ *
+ * Creates the design for the second level. Uses the polymorphism feature
+ * of the block.cpp class and randomly generates blocks of different colors
+ * and places them in a pre-defined layout.
+ *
+ * Author: Natraj Subramanian
+ *
+ */
 
 #ifndef LEVELTHREE_H
 #define LEVELTHREE_H
