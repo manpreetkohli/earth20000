@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading ui file 'form.ui'
 **
-** Created: Sun Nov 15 23:58:27 2009
-**      by: Qt User Interface Compiler version 4.5.2
+** Created: Thu Dec 3 16:16:20 2009
+**      by: Qt User Interface Compiler version 4.5.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
 ********************************************************************************/
@@ -30,8 +30,7 @@ public:
     QPushButton *newGame;
     QPushButton *levelEditor;
     QPushButton *load;
-    QPushButton *highScores;
-    QPushButton *credits;
+    QPushButton *controls;
     QPushButton *exit;
 
     void setupUi(QWidget *Form)
@@ -61,7 +60,7 @@ public:
         title->setAlignment(Qt::AlignCenter);
         newGame = new QPushButton(Form);
         newGame->setObjectName(QString::fromUtf8("newGame"));
-        newGame->setGeometry(QRect(180, 275, 400, 70));
+        newGame->setGeometry(QRect(180, 300, 400, 71));
         QFont font1;
         font1.setPointSize(15);
         font1.setBold(true);
@@ -69,23 +68,19 @@ public:
         newGame->setFont(font1);
         levelEditor = new QPushButton(Form);
         levelEditor->setObjectName(QString::fromUtf8("levelEditor"));
-        levelEditor->setGeometry(QRect(180, 350, 400, 70));
+        levelEditor->setGeometry(QRect(180, 379, 400, 71));
         levelEditor->setFont(font1);
         load = new QPushButton(Form);
         load->setObjectName(QString::fromUtf8("load"));
-        load->setGeometry(QRect(180, 425, 400, 70));
+        load->setGeometry(QRect(180, 459, 400, 71));
         load->setFont(font1);
-        highScores = new QPushButton(Form);
-        highScores->setObjectName(QString::fromUtf8("highScores"));
-        highScores->setGeometry(QRect(180, 500, 400, 70));
-        highScores->setFont(font1);
-        credits = new QPushButton(Form);
-        credits->setObjectName(QString::fromUtf8("credits"));
-        credits->setGeometry(QRect(180, 575, 400, 70));
-        credits->setFont(font1);
+        controls = new QPushButton(Form);
+        controls->setObjectName(QString::fromUtf8("controls"));
+        controls->setGeometry(QRect(180, 540, 400, 71));
+        controls->setFont(font1);
         exit = new QPushButton(Form);
         exit->setObjectName(QString::fromUtf8("exit"));
-        exit->setGeometry(QRect(180, 650, 400, 70));
+        exit->setGeometry(QRect(180, 620, 400, 71));
         exit->setFont(font1);
 
         retranslateUi(Form);
@@ -107,10 +102,8 @@ public:
         levelEditor->setText(QApplication::translate("Form", "LEVEL EDITOR", 0, QApplication::UnicodeUTF8));
         load->setStyleSheet(QApplication::translate("Form", "background-color: rgba(255, 255, 255, 100);", 0, QApplication::UnicodeUTF8));
         load->setText(QApplication::translate("Form", "SAVED GAMES", 0, QApplication::UnicodeUTF8));
-        highScores->setStyleSheet(QApplication::translate("Form", "background-color: rgba(255, 255, 255, 100);", 0, QApplication::UnicodeUTF8));
-        highScores->setText(QApplication::translate("Form", "HIGH SCORES", 0, QApplication::UnicodeUTF8));
-        credits->setStyleSheet(QApplication::translate("Form", "background-color: rgba(255, 255, 255, 100);", 0, QApplication::UnicodeUTF8));
-        credits->setText(QApplication::translate("Form", "CREDITS", 0, QApplication::UnicodeUTF8));
+        controls->setStyleSheet(QApplication::translate("Form", "background-color: rgba(255, 255, 255, 100);", 0, QApplication::UnicodeUTF8));
+        controls->setText(QApplication::translate("Form", "CONTROLS", 0, QApplication::UnicodeUTF8));
         exit->setStyleSheet(QApplication::translate("Form", "background-color: rgba(255, 255, 255, 100);", 0, QApplication::UnicodeUTF8));
         exit->setText(QApplication::translate("Form", "EXIT", 0, QApplication::UnicodeUTF8));
         Q_UNUSED(Form);

@@ -1,14 +1,3 @@
-/**
- powerup.cpp
-
-Creates an instance of a powerup, and when called upon
-the advance method, it travels down the Y-axis checking for
-collisions with the player ship.
-
-Author: Natraj Subramanian
-
-  **/
-
 #include <QPainter>
 #include <QStyleOption>
 #include "powerup.h"
@@ -40,15 +29,16 @@ void Powerup::setPosition(int x, int y)
     yPos = y;
 }
 
-// Set the type of the powerup i.e. either slow down
-// or speed up
+/*!
+  Set the type of the powerup i.e. either slow down
+  or speed up
+  */
 void Powerup::setType(int type)
 {
     int *typePtr;
     typePtr = &powerupType;
     *typePtr = type;
 }
-
 
 QRectF Powerup::boundingRect() const
 {
@@ -60,7 +50,6 @@ void Powerup::paint(QPainter *painter,
 {
     painter->drawPixmap(375, 625, 27, 27, powerupImage);
 }
-
 
 void Powerup::advance(int phase)
 {
@@ -104,9 +93,7 @@ void Powerup::advance(int phase)
                         Constants::powerup = 2;
                     }
                 }
-
             }
-
         }
 
         // Move the ball down the Y Axis by directionY
@@ -120,10 +107,4 @@ void Powerup::advance(int phase)
         Constants::powerup = 0;
         this->scene()->removeItem(this);
     }
-
 }
-
-
-
-
-

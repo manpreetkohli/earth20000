@@ -1,19 +1,14 @@
-/**
-/ Author: Ivan Collazo
-/ File: spaceship.h
-/ Date: 10/05/2009
-/ This is the hearder file for the class super class spaceship in earth:20000
-/
-/
-*/
+/*!
+ * Author: Ivan Collazo
+ * File: spaceship.cpp
+ * Date: 10/05/2009
+ *   This class is a super class for space ships in earth20000
+ */
 
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
-//#include "MoveBehavior.h"
-//#include "ShotBehavior.h"
 
 #include "sleeperthread.h"
-
 
 // Added by Natraj
 #define ID_SPACESHIP    256
@@ -23,7 +18,6 @@
 class SpaceShip : public QGraphicsItem
 {
     private:
-
         // variables for the position and dimension of ship
         qreal left;
         qreal top;
@@ -41,10 +35,6 @@ class SpaceShip : public QGraphicsItem
         QPixmap shipsImage;
 
     public:
-        // declare two reference var for behavior interface types
-        // MoveBehavior shipMoving;
-        //  ShotBehavior shipShooting;
-
         // constructor
         SpaceShip();
 
@@ -61,21 +51,12 @@ class SpaceShip : public QGraphicsItem
         void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
         int getShipPosX();
-
         int getShipPosY();
-
         int getShipDirection();
-
         int getShipHit();
-
         void setShipPosX(int xPos);
-
         void setShipPosY(int yPos);
-
         void setShipDirection(int direction);
-
-        //void performShipMovement();
-        //  void performShootingMovement();
 };
 
 #endif // SPACESHIP_H

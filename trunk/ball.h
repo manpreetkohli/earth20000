@@ -2,13 +2,18 @@
  * Manpreet Kohli
  * CS 340, Fall 2009
  *
- * Ball.h: header file for the Ball class that creates the ball that bounces around inside the level
+ * Ball.cpp: creates the ball that bounces around inside the level
+ *
+ * Ball motion originally coded by Manpreet Kohli and Ivan Collazo.
+ * Later modified by Natraj Subramanian for the use of powerups
+ *
+ * Block collision detection and reactive movement coded by Natraj
+ * Subramanian
+ *
+ * Powerups by Natraj Subramanian
  *
  */
 
-/**
-  * Cleaned up December 02, 2009 by Natraj Subramanian
-  */
 
 #ifndef BALL_H
 #define BALL_H
@@ -50,7 +55,6 @@ class Ball : public QGraphicsItem
         void setPositionX(qreal pos);
         void setShipPositon (int pos);
         void setSkip(bool value);
-
 };
 
 #endif // BALL_H

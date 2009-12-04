@@ -1,13 +1,14 @@
 /**
-  block.h
-  
-  Header file for block.cpp
-  
-  Contains the prototypes for the methods used in the block.cpp class.
-300
-  Author: Natraj Subramanian
-      
-  **/
+ * block.cpp
+ *
+ * Creates an instance of a single block. Involves polymorphism for creating blocks
+ * of different colors.
+ *
+ * Contains the prototypes for the methods used in the block.cpp class.
+ *
+ * Author: Natraj Subramanian
+ *
+ */
 
 #ifndef BLOCK_H
 #define BLOCK_H

@@ -1,16 +1,3 @@
-/************************************************************************************
- * Manpreet Kohli
- * CS 340, Fall 2009
- *
- * Form.cpp: the source file for the main graphics item window
- *
- ************************************************************************************/
-
-/**
- Storyline graphics and slides created by Natraj Subramanian
-
-  **/
-
 // include necessary files
 #include "sleeperthread.h"
 #include "ui_form.h"
@@ -29,11 +16,11 @@ Block *Constants::currentBlock;
 Block *Constants::blocks[20][27];
 int Constants::levelNumber;
 QPushButton *Constants::cont;
-QPushButton *skipIntro;
-QTimer *timer3 = new QTimer();
-QTimer *timer4 = new QTimer();
-// added by Manpreet Kohli
-// constructor sets up the graphics item
+
+/*!
+  added by Manpreet Kohli
+  constructor sets up the graphics item
+  */
 Form::Form(QWidget *parent) :  QWidget(parent), m_ui(new Ui::Form)
 {
     m_ui->setupUi(this);
@@ -43,9 +30,13 @@ Form::Form(QWidget *parent) :  QWidget(parent), m_ui(new Ui::Form)
     font = new QFont();
     storyText = new QLabel(this);
     t = new SleeperThread();
+    timer3 = new QTimer();
+    timer4 = new QTimer();
 }
 
-// destructor to delete the instance
+/*!
+  destructor to delete the instance
+  */
 Form::~Form()
 {
     delete m_ui;
@@ -64,38 +55,42 @@ void Form::changeEvent(QEvent *e)
     }
 }
 
-// added by Manpreet Kohli
-// exit the program if the exit button is clicked
+/*!
+  added by Manpreet Kohli
+  exit the program if the exit button is clicked
+  */
 void Form::on_exit_clicked()
 {
     exit(1);
 }
 
-// added by Manpreet Kohli
-// hide and deletes all the elements (QButtons and QLabels) of the splash screen
+/*!
+  added by Manpreet Kohli
+  hide and deletes all the elements (QButtons and QLabels) of the splash screen
+  */
 void Form::hideElements(Ui::Form *m_ui)
 {
     m_ui->title->hide();
     m_ui->newGame->hide();
     m_ui->levelEditor->hide();
     m_ui->load->hide();
-    m_ui->highScores->hide();
-    m_ui->credits->hide();
+    m_ui->controls->hide();
     m_ui->exit->hide();
 
     delete m_ui->title;
     delete m_ui->newGame;
     delete m_ui->levelEditor;
     delete m_ui->load;
-    delete m_ui->highScores;
-    delete m_ui->credits;
+    delete m_ui->controls;
     delete m_ui->exit;
 }
 
-// added by Manpreet Kohli
-// function called when the "New Game" button is clicked on the splash screen
-// hides all the elements of the splash screen and displays the first page of the story line
-// Storyline slides added by Natraj Subramanian
+/*!
+  added by Manpreet Kohli
+  function called when the "New Game" button is clicked on the splash screen
+  hides all the elements of the splash screen and displays the first page of the story line
+  Storyline slides added by Natraj Subramanian
+  */
 void Form::on_newGame_clicked()
 {
     // call function to hide all the elements (QButtons and QLabels) of the splash screen
@@ -127,10 +122,12 @@ void Form::on_newGame_clicked()
     QObject::connect(skipIntro, SIGNAL(clicked()), this, SLOT(loadStoryScreen9()));
 }
 
-// added by Manpreet Kohli
-// function to display the second screen of the story line
-// hides first screen of the story line and loads the second screen
-// Storyline slides added by Natraj Subramanian
+/*!
+  added by Manpreet Kohli
+  function to display the second screen of the story line
+  hides first screen of the story line and loads the second screen
+  Storyline slides added by Natraj Subramanian
+  */
 void Form::loadStoryScreen2()
 {
     // disconnect previous connection for the continue button
@@ -214,8 +211,10 @@ void Form::loadStoryScreen9()
     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadLevel1()));
 }
 
-// added by Manpreet Kohli, modified by Ivan Collazo
-// sets up the level including board, ship, and ball
+/*!
+  added by Manpreet Kohli, modified by Ivan Collazo
+  sets up the level including board, ship, and ball
+  */
 void Form::setupLevel(int levelNumber)
 {
     if (levelNumber == 1)
@@ -286,6 +285,8 @@ void Form::setupLevel(int levelNumber)
 
     if (levelNumber == 4)
     {
+        timer3->disconnect(board->scene, SLOT(alienFire()));
+        timer3->stop();
         motherShip = new AlienMotherShip ();    // Ivan Collazo
         board->scene->addItem(motherShip);      // Ivan Collazo
 
@@ -297,36 +298,46 @@ void Form::setupLevel(int levelNumber)
     board->scene->addItem(ball);                   // add the ball to the board
 }
 
-// added by Manpreet Kohli
-// function to start the first level of the game after the story screens
+/*!
+  added by Manpreet Kohli
+  function to start the first level of the game after the story screens
+  */
 void Form::loadLevel1()
 {
     setupLevel(1);
 }
 
-// added by Manpreet Kohli
-// function to start the second level of the game after the story screens
+/*!
+  added by Manpreet Kohli
+  function to start the second level of the game after the story screens
+  */
 void Form::loadLevel2()
 {
     setupLevel(2);
 }
 
-// added by Manpreet Kohli
-// function to start the third level of the game after the story screens
+/*!
+  added by Manpreet Kohli
+  function to start the third level of the game after the story screens
+  */
 void Form::loadLevel3()
 {
    setupLevel(3);
 }
 
-// added by Manpreet Kohli
-// function to start the final level of the game after the story screens
+/*!
+  added by Manpreet Kohli
+  function to start the final level of the game after the story screens
+  */
 void Form::loadLevel4()
 {
     setupLevel(4);
 }
 
-// added by Manpreet Kohli
-// function called when the "Level Editor" button is clicked on the splash screen
+/*!
+  added by Manpreet Kohli
+  function called when the "Level Editor" button is clicked on the splash screen
+  */
 void Form::on_levelEditor_clicked()
 {
     // call function to hide all the elements (QButtons and QLabels) of the splash screen
@@ -465,8 +476,10 @@ void Form::on_levelEditor_clicked()
     itemsWindow->show();            // display the new view
 }
 
-// added by Manpreet Kohli
-// saves the background selected by the user to a file
+/*!
+  added by Manpreet Kohli
+  saves the background selected by the user to a file
+  */
 void Form::saveBackground(QString bg)
 {
     // open file for writing
@@ -488,40 +501,50 @@ void Form::saveBackground(QString bg)
     out << bg;
 }
 
-// added by Manpreet Kohli
-// slot to load background 1 for the level editor
+/*!
+  added by Manpreet Kohli
+  slot to load background 1 for the level editor
+  */
 void Form::backgroundOne_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
     saveBackground(":universe4.jpg");
 }
 
-// added by Manpreet Kohli
-// slot to load background 2 for the level editor
+/*!
+  added by Manpreet Kohli
+  slot to load background 2 for the level editor
+  */
 void Form::backgroundTwo_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg2.jpg"));
     saveBackground(":bg2.jpg");
 }
 
-// added by Manpreet Kohli
-// slot to load background 3 for the level editor
+/*!
+  added by Manpreet Kohli
+  slot to load background 3 for the level editor
+  */
 void Form::backgroundThree_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg3.jpg"));
     saveBackground(":bg3.jpg");
 }
 
-// added by Manpreet Kohli
-// slot to load background 4 for the level editor
+/*!
+  added by Manpreet Kohli
+  slot to load background 4 for the level editor
+  */
 void Form::backgroundFour_clicked()
 {
     m_ui->view->setBackgroundBrush(QPixmap(":bg4.jpg"));
     saveBackground(":bg4.jpg");
 }
 
-// added by Manpreet Kohli
-// if the done button is clicked in the level editor
+/*!
+  added by Manpreet Kohli
+  if the done button is clicked in the level editor
+  */
 void Form::done_clicked()
 {
     // play the level start music
@@ -566,8 +589,10 @@ void Form::done_clicked()
     m_ui->view->scene()->addItem(ball);
 }
 
-// added by Manpreet Kohli
-// if the reset button gets clicked
+/*!
+  added by Manpreet Kohli
+  if the reset button gets clicked
+  */
 void Form::reset_clicked()
 {
     // clear the positions and colors vectors so that the previously clicked blocks don't get drawn
@@ -579,8 +604,10 @@ void Form::reset_clicked()
     board = new Board(m_ui->view);
 }
 
-// added by Manpreet Kohli
-// if the save button gets clicked
+/*!
+  added by Manpreet Kohli
+  if the save button gets clicked
+  */
 void Form::save_clicked()
 {
     saveBackground("");         // to make sure a new file always gets created
@@ -640,8 +667,10 @@ void Form::save_clicked()
     }
 }
 
-// added by Manpreet Kohli
-// if load game is clicked on the splash screen
+/*!
+  added by Manpreet Kohli
+  if load game is clicked on the splash screen
+  */
 void Form::on_load_clicked()
 {
     // open the file for reading
@@ -676,8 +705,10 @@ void Form::on_load_clicked()
     }
 }
 
-// added by Ivan Collazo, modified by Manpreet Kohli
-// function that gets called when a key is pressed during the game
+/*!
+  added by Ivan Collazo, modified by Manpreet Kohli
+  function that gets called when a key is pressed during the game
+  */
 void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
 {
     switch(event->key())
@@ -805,7 +836,9 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
     }
 }
 
-// added by Ivan Collazo
+/*!
+  added by Ivan Collazo
+  */
 void Form::motherFire()
 {
     // stops mother ship firing when player loses game
@@ -838,7 +871,9 @@ void Form::motherFire()
     }
 }
 
-// added by Ivan Collazo
+/*!
+  added by Ivan Collazo
+  */
 void Form::alienFire()
 {
     // stops alien ship firing when player loses game
@@ -871,4 +906,31 @@ void Form::alienFire()
         qDebug() << "sFIRRRRIn";
         alienShip->fire();
     }
+}
+
+
+void Form::on_controls_clicked()
+{
+ /*   hideElements(m_ui);
+    QLabel *a = new QLabel(this);
+    a->setText("<font color = RED> A &nbsp; &nbsp; &nbsp; &nbsp; Move Left </font>");
+    a->setGeometry(QRect(25, 30, 500, 70));
+
+    a->show();
+
+    QLabel *d = new QLabel(this);
+    d->setText("<font color = RED> D &nbsp &nbsp &nbsp &nbsp Move Right </font>");
+    d->show();
+    d->setGeometry(QRect(130, 120, 500, 70));
+
+
+    QFont font;
+    font.setPointSize(25);
+    font.setBold(true);
+    font.setWeight(75);
+    a->setFont(font);
+   // d->setAlignment(Qt::AlignCenter);
+
+    d->setFont(font);
+*/
 }

@@ -84,9 +84,9 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>275</y>
+     <y>300</y>
      <width>400</width>
-     <height>70</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
@@ -107,9 +107,9 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>350</y>
+     <y>379</y>
      <width>400</width>
-     <height>70</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
@@ -130,9 +130,9 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>425</y>
+     <y>459</y>
      <width>400</width>
-     <height>70</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
@@ -149,13 +149,13 @@ p, li { white-space: pre-wrap; }
     <string>SAVED GAMES</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="highScores">
+  <widget class="QPushButton" name="controls">
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>500</y>
+     <y>540</y>
      <width>400</width>
-     <height>70</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
@@ -169,39 +169,16 @@ p, li { white-space: pre-wrap; }
     <string>background-color: rgba(255, 255, 255, 100);</string>
    </property>
    <property name="text">
-    <string>HIGH SCORES</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="credits">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>575</y>
-     <width>400</width>
-     <height>70</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string>background-color: rgba(255, 255, 255, 100);</string>
-   </property>
-   <property name="text">
-    <string>CREDITS</string>
+    <string>CONTROLS</string>
    </property>
   </widget>
   <widget class="QPushButton" name="exit">
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>650</y>
+     <y>620</y>
      <width>400</width>
-     <height>70</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">

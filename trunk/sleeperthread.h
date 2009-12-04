@@ -1,3 +1,11 @@
+/**
+ * Manpreet Kohli
+ * CS 340, Fall 2009
+ *
+ * SleeperThread.cpp: file to utilize the sleep functionality of QThread.
+ *
+ */
+
 #ifndef SLEEPERTHREAD_H
 #define SLEEPERTHREAD_H
 

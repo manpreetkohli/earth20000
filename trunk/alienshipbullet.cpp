@@ -27,7 +27,9 @@ void AlienShipBullet::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     painter->drawPixmap(360, -340, width, height, bulletImage);
 }
 
-// Define the bounding rectangle of the object for collision detection
+/*!
+  Define the bounding rectangle of the object for collision detection
+  */
 QRectF AlienShipBullet::boundingRect() const
 {
   return QRectF(360, -340, width, height);
@@ -45,7 +47,9 @@ void AlienShipBullet::setBulletPosition (int posX, int posY)
     positionY = posY;
 }
 
-// function to add motion to the ball inside the board
+/*!
+  function to add motion to the ball inside the board
+  */
 void AlienShipBullet::advance(int phase)
 {
     if(!phase) return;
@@ -65,7 +69,7 @@ void AlienShipBullet::advance(int phase)
     // set the new position of the ball
     setPos(positionX,positionY);
 
-   if (positionY > 1050)
+    if (positionY > 1050)
     {
         this->scene()->removeItem(this);
     }

@@ -1,9 +1,9 @@
 /**
-/ Author: Ivan Collazo
-/ File: shipbullet.h
-/ Date: 10/20/2009
-/
-*/
+ * Author: Ivan Collazo
+ * File: shipbullet.h
+ * Date: 10/20/2009
+ *
+ */
 
 #ifndef SHIPBULLET_H
 #define SHIPBULLET_H
@@ -25,15 +25,10 @@ class ShipBullet : public QGraphicsItem
 
     public:
         ShipBullet();
-
         ~ShipBullet();
-
         void setShipPosition (int pos);
-
         virtual int type() const {return ID_SPACESHIPBULLET; }
-
-        int getShipBulletYPosition();
-
+        qreal getShipBulletYPosition();
     };
 
 #endif // SHIPBULLET_H

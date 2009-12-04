@@ -1,16 +1,3 @@
-/**
- * Manpreet Kohli
- * CS 340, Fall 2009
- *
- * board.cpp: sets up the board for the game- adds a scene to a view, and then adds the various
- * QGraphicsItems to the board
- *
- */
-
-/**
-  HUD slightly modified by Natraj Subramanian
-  **/
-
 // include the header file for this class
 #include "board.h"
 #include "constants.h"
@@ -34,8 +21,10 @@ SpaceShip *Constants::life2;
 SpaceShip *Constants::life3;
 QTimer *Constants::timer;
 
-// added by Manpreet Kohli
-// constructor
+/*!
+  added by Manpreet Kohli
+  constructor
+  */
 Board::Board(QGraphicsView *view)
 {
     scene = new QGraphicsScene();                   // create a new scene
@@ -124,8 +113,10 @@ Board::Board(QGraphicsView *view)
     Constants::timer = new QTimer();            // create a new QTimer() instance
 }
 
-// added by Manpreet Kohli
-// function to display level info in the HUD
+/*!
+  added by Manpreet Kohli
+  function to display level info in the HUD
+  */
 void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *font)
 {
     Constants::levelInfo = scene->addText(levelNumber, *font);
@@ -134,8 +125,10 @@ void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *f
     Constants::levelInfo->setPos(15, 0);
 }
 
-// added by Manpreet Kohli
-// method to connect the timer to the ball inside the board
+/*!
+  added by Manpreet Kohli
+  method to connect the timer to the ball inside the board
+  */
 void Board::connectTimerToBall()
 {
     // connect the timer to the advance method inside the Ball class

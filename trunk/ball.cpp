@@ -1,22 +1,3 @@
-/**
- * Manpreet Kohli
- * CS 340, Fall 2009
- *
- * Ball.cpp: creates the ball that bounces around inside the level
- *
- * Ball motion originally coded by Manpreet Kohli and Ivan Collazo.
- * Later modified by Natraj Subramanian for the use of powerups
- *
- * Block collision detection and reactive movement coded by Natraj
- * Subramanian
- *
- * Powerups by Natraj Subramanian
- *
- *
- *
- *
- */
-
 // include necessary files
 #include <QPainter>
 #include <QDebug>
@@ -35,7 +16,9 @@
 
 int Ball::scoreCount = 0;
 
-// constructor
+/*!
+  constructor
+ */
 Ball::Ball(SpaceShip *ship)
 {
     playersShip = ship;
@@ -56,14 +39,20 @@ Ball::Ball(SpaceShip *ship)
     skip = false;
 }
 
-// destructor
-Ball::~Ball() //Ivan
+/*!
+  destructor
+  by Ivan
+ */
+Ball::~Ball()
 {
     qDebug() << "Destructor";
+    delete this;
 }
 
-// added by Manpreet Kohli
-// displays the score in the HUD
+/*!
+  added by Manpreet Kohli.
+  displays the score in the HUD
+ */
 void Ball::initializeScore()
 {
     scoreFont ->setFamily("SansSerif");
@@ -76,28 +65,36 @@ void Ball::initializeScore()
     scoreDisplay->show();
 }
 
-// added by Manpreet Kohli
-// function that paints the ball below the loaded image
+/*!
+  added by Manpreet Kohli.
+  function that paints the ball below the loaded image
+ */
 void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->drawPixmap(375, 622, 20, 20, ballImage);
 }
 
-// added by Manpreet Kohli
-// Define the bounding rectangle of the object for collision detection
+/*!
+  added by Manpreet Kohli
+  Define the bounding rectangle of the object for collision detection
+ */
 QRectF Ball::boundingRect() const
 {
     return QRectF(375, 622, 20, 20);
 }
 
-// function set the players Ship position to be used in the physics portion in the advance function
+/*!
+  function set the players Ship position to be used in the physics portion in the advance function
+ */
 void Ball::setShipPositon(int pos)
 {
     shipXPosition = pos;
 }
 
-// added by Manpreet Kohli
-// generic function to load story screen right before level starts
+/*!
+  added by Manpreet Kohli
+  generic function to load story screen right before level starts
+ */
 void Ball::loadStory(int levelNumber)
 {
     if (levelNumber == 1)
@@ -115,15 +112,19 @@ void Ball::loadStory(int levelNumber)
     counter = 0;
 }
 
-// added by Manpreet Kohli
-// calls if the user has pressed period for cheat mode to skip to the next level
+/*!
+  added by Manpreet Kohli
+  calls if the user has pressed period for cheat mode to skip to the next level
+ */
 void Ball::setSkip(bool value)
 {
     skip = value;
 }
 
-// added by Manpreet Kohli
-// returns the variable skip
+/*!
+  added by Manpreet Kohli
+  returns the variable skip
+ */
 bool Ball::getSkip()
 {
     return skip;
@@ -134,8 +135,10 @@ void Ball::setPositionX(qreal pos)
     positionX += pos;
 }
 
-// added by Manpreet Kohli
-// function that removes a spawn from the HUD and sleeps for 3 secs to finish playing the respawning music
+/*!
+  added by Manpreet Kohli
+  function that removes a spawn from the HUD and sleeps for 3 secs to finish playing the respawning music
+ */
 void Ball::removeSpawn(int currentLives)
 {
     if (currentLives == 3)
@@ -154,10 +157,12 @@ void Ball::removeSpawn(int currentLives)
     t->msleep(3000);                                        // sleep for 3 secs
 }
 
-// created and modified by all 3 of us
-// function to add motion to the ball inside the board, check for cheat mode,
-// check for collisions, check for powerups, and to check if the ball went
-// beyond the bottom of the screen to respawn
+/*!
+  created and modified by all 3 of us
+  function to add motion to the ball inside the board, check for cheat mode,
+  check for collisions, check for powerups, and to check if the ball went
+  beyond the bottom of the screen to respawn
+ */
 void Ball::advance(int phase)
 {
     // added by Manpreet Kohli
@@ -220,7 +225,7 @@ void Ball::advance(int phase)
     {
         if(hits.first()->type() == ID_SPACESHIP)
         {           
-                 /********************************
+                 /*!******************************
                    BEGIN SPACESHIP COLLISION RULES
                   ********************************/
             // physics when the ball collides with top of Ship
@@ -340,7 +345,7 @@ void Ball::advance(int phase)
                 }
             }
 
-                 /**********************************
+                 /*!********************************
                     END SPACESHIP COLLISION RULES
                   **********************************/
         }
@@ -360,7 +365,7 @@ void Ball::advance(int phase)
                 blockX = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getXPos();
                 blockY = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getYPos();
                 
-                /********************************
+                /*!******************************
                    BEGIN BLOCK COLLISION RULES
                  ********************************/
                 if(((Block *)(hits.at(0)))->getColor2() != 0)
@@ -517,7 +522,7 @@ void Ball::advance(int phase)
                     }
                 }
 
-                      /**********************************
+                      /*!********************************
                              END BLOCK COLLISION RULES
                        **********************************/
             }
@@ -660,8 +665,10 @@ void Ball::advance(int phase)
     setPos(positionX,positionY);
 }
 
-// added by Manpreet Kohli
-// function to hide the HUD and other info and load screen right before the level starts
+/*!
+  added by Manpreet Kohli
+  function to hide the HUD and other info and load screen right before the level starts
+ */
 void Ball::loadStoryScreen(QGraphicsScene *scene, int level, QString levelNumber)
 {
     // hide the spawns remaining

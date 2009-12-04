@@ -228,7 +228,6 @@ EnemyShip::EnemyShip()
 
 }
 
-
 EnemyShip::~EnemyShip()
 {
     delete timeline;
