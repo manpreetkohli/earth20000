@@ -1,0 +1,74 @@
+.TH "EmptyBlock" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EmptyBlock \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <block.h>\fP
+.PP
+Inherits \fBBlock\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEmptyBlock\fP ()"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 75 of file block.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "EmptyBlock::EmptyBlock ()"Added by Manpreet Kohli prototype for transparent block 
+.PP
+Definition at line 268 of file block.cpp.
+.PP
+.nf
+269 {
+270     //Set color to transparent
+271     setColor1(7);
+272     setColor2(7);
+273 
+274     QGraphicsItem *oneBlock = new SingleBlock(this);
+275 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF EmptyBlock::boundingRect () const"Added by Manpreet Kohli 
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 280 of file block.cpp.
+.PP
+.nf
+281 {
+282     return QRectF();
+283 }
+.fi
+.SS "void EmptyBlock::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"Added by Manpreet Kohli 
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 288 of file block.cpp.
+.PP
+.nf
+289 {
+290     Q_UNUSED(painter);
+291     Q_UNUSED(option);
+292     Q_UNUSED(widget);
+293 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

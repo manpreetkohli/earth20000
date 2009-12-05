@@ -1,0 +1,93 @@
+\hypertarget{class_yellow_block}{
+\section{YellowBlock Class Reference}
+\label{class_yellow_block}\index{YellowBlock@{YellowBlock}}
+}
+
+
+{\ttfamily \#include $<$block.h$>$}Inheritance diagram for YellowBlock::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_yellow_block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_yellow_block_aa3f2f6edd668e62cdc6c97255e9854e7}{YellowBlock} ()
+\item 
+QRectF \hyperlink{class_yellow_block_a05f341c5d1b859d8c7b909a5cfee7601}{boundingRect} () const 
+\item 
+void \hyperlink{class_yellow_block_a37c29857cc065cab86a81bcfdd6c3f63}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 115 of file block.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_yellow_block_aa3f2f6edd668e62cdc6c97255e9854e7}{
+\index{YellowBlock@{YellowBlock}!YellowBlock@{YellowBlock}}
+\index{YellowBlock@{YellowBlock}!YellowBlock@{YellowBlock}}
+\subsubsection[{YellowBlock}]{\setlength{\rightskip}{0pt plus 5cm}YellowBlock::YellowBlock ()}}
+\label{class_yellow_block_aa3f2f6edd668e62cdc6c97255e9854e7}
+
+
+Definition at line 379 of file block.cpp.
+
+
+\begin{DoxyCode}
+380 {
+381     //Set color to yellow
+382     setColor1(1);
+383     setColor2(6);
+384 
+385     QGraphicsItem *oneBlock = new SingleBlock(this);
+386 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_yellow_block_a05f341c5d1b859d8c7b909a5cfee7601}{
+\index{YellowBlock@{YellowBlock}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!YellowBlock@{YellowBlock}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF YellowBlock::boundingRect () const}}
+\label{class_yellow_block_a05f341c5d1b859d8c7b909a5cfee7601}
+
+
+Reimplemented from \hyperlink{class_block_aee4444b92a82f5a8080e9019ef1e554d}{Block}.
+
+Definition at line 388 of file block.cpp.
+
+
+\begin{DoxyCode}
+389 {
+390     return QRectF();
+391 }
+\end{DoxyCode}
+\hypertarget{class_yellow_block_a37c29857cc065cab86a81bcfdd6c3f63}{
+\index{YellowBlock@{YellowBlock}!paint@{paint}}
+\index{paint@{paint}!YellowBlock@{YellowBlock}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void YellowBlock::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_yellow_block_a37c29857cc065cab86a81bcfdd6c3f63}
+
+
+Reimplemented from \hyperlink{class_block_a36791d086b6fad1a2203bfef6fdbaa0a}{Block}.
+
+Definition at line 393 of file block.cpp.
+
+
+\begin{DoxyCode}
+394 {
+395     Q_UNUSED(painter);
+396     Q_UNUSED(option);
+397     Q_UNUSED(widget);
+398 }
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8h}{block.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8cpp}{block.cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,220 @@
+.TH "AlienShipBullet" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AlienShipBullet \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <alienshipbullet.h>\fP
+.PP
+Inherits \fBAmmo\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAlienShipBullet\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~AlienShipBullet\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetBulletPosition\fP (int posX, int posY)"
+.br
+.ti -1c
+.RI "virtual int \fBtype\fP () const "
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBadvance\fP (int phase)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QPixmap \fBbulletImage\fP"
+.br
+.ti -1c
+.RI "qreal \fBdirectionX\fP"
+.br
+.ti -1c
+.RI "qreal \fBdirectionY\fP"
+.br
+.ti -1c
+.RI "qreal \fBpositionX\fP"
+.br
+.ti -1c
+.RI "qreal \fBpositionY\fP"
+.br
+.ti -1c
+.RI "qreal \fBwidth\fP"
+.br
+.ti -1c
+.RI "qreal \fBheight\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipXPosition\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class creates alienshipbullets and advances the bullet for earth:20000 
+.PP
+Definition at line 17 of file alienshipbullet.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "AlienShipBullet::AlienShipBullet ()"Author: Ivan Collazo File: \fBalienshipbullet.cpp\fP Date: 10/20/2009 This is .cpp file for alien ships bullets in earth20000
+.PP
+constructor 
+.PP
+Definition at line 15 of file alienshipbullet.cpp.
+.PP
+.nf
+16 {
+17     bulletImage.load(':motherShipBullet.png');
+18     directionX = 0;                             // set the X-axis increment for the movement
+19     directionY = 0.25;                          // set the Y-axis increment for the movement
+20     positionX = 0;                              // initial X coordinate of the bullet
+21     positionY = 0;                              // initial Y coordinate of the bullet
+22     width = 20;                                 // width of the bullet
+23     height = 20;                                // height of the bullet
+24 }
+.fi
+.SS "AlienShipBullet::~AlienShipBullet ()\fC [virtual]\fP"destructor 
+.PP
+Definition at line 29 of file alienshipbullet.cpp.
+.PP
+.nf
+30 {
+31 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "void AlienShipBullet::advance (int phase)\fC [private, virtual]\fP"this method adds motion to the alienshipbullet 
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 61 of file alienshipbullet.cpp.
+.PP
+.nf
+62 {
+63     if(!phase) return;
+64 
+65     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
+66 
+67     // checks if there is a collision
+68     if (!listOfCollidingItems.isEmpty())
+69     {
+70         // if collision occurs with a space ship then alien ship bullet is removed from the scene
+71         if(listOfCollidingItems.first()->type() == ID_SPACESHIP)
+72         {
+73             this->scene()->removeItem(this);
+74         }
+75     }
+76 
+77     positionY+=directionY;
+78 
+79     // set the new position of the alien ship bullet
+80     setPos(positionX,positionY);
+81 
+82     // if position of the alien ship bullet is greater than 800 the mother ship bullet is removed from scene
+83     if (positionY > 1050)
+84     {
+85         this->scene()->removeItem(this);
+86     }
+87 }
+.fi
+.SS "QRectF AlienShipBullet::boundingRect () const\fC [private, virtual]\fP"this method does the bounding rectangle of the object for collision detection 
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 44 of file alienshipbullet.cpp.
+.PP
+.nf
+45 {
+46   return QRectF(360, -340, width, height);
+47 }
+.fi
+.SS "void AlienShipBullet::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)\fC [private, virtual]\fP"this method is called whenever the alienshipbullet needs to be drawn 
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 36 of file alienshipbullet.cpp.
+.PP
+.nf
+37 {
+38     painter->drawPixmap(360, -340, width, height, bulletImage);
+39 }
+.fi
+.SS "void AlienShipBullet::setBulletPosition (int posX, int posY)"this method sets alienshipbullet position 
+.PP
+Definition at line 52 of file alienshipbullet.cpp.
+.PP
+.nf
+53 {
+54     positionX = posX;
+55     positionY = posY;
+56 }
+.fi
+.SS "virtual int AlienShipBullet::type () const\fC [inline, virtual]\fP"
+.PP
+Definition at line 47 of file alienshipbullet.h.
+.PP
+.nf
+47 {return ID_ALIENSHIPBULLET;}
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "QPixmap \fBAlienShipBullet::bulletImage\fP\fC [private]\fP"
+.PP
+Definition at line 21 of file alienshipbullet.h.
+.SS "qreal \fBAlienShipBullet::directionX\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file alienshipbullet.h.
+.SS "qreal \fBAlienShipBullet::directionY\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file alienshipbullet.h.
+.SS "qreal \fBAlienShipBullet::height\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 25 of file alienshipbullet.h.
+.SS "qreal \fBAlienShipBullet::positionX\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file alienshipbullet.h.
+.SS "qreal \fBAlienShipBullet::positionY\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file alienshipbullet.h.
+.SS "qreal \fBAlienShipBullet::shipXPosition\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 25 of file alienshipbullet.h.
+.SS "qreal \fBAlienShipBullet::width\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 25 of file alienshipbullet.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

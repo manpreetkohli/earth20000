@@ -1,0 +1,138 @@
+.TH "EnemyShip" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EnemyShip \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <enemyShip.h>\fP
+.PP
+Inherits \fBEnemyShipPart\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEnemyShip\fP ()"
+.br
+.ti -1c
+.RI "\fB~EnemyShip\fP ()"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QTimeLine * \fBtimeline\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 60 of file enemyShip.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "EnemyShip::EnemyShip ()"
+.PP
+Definition at line 177 of file enemyShip.cpp.
+.PP
+.nf
+178 {
+179     QGraphicsItem *spaceshipTail = new EnemyShipTail(this);
+180     QGraphicsItem *oneWing = new EnemyShipWing1(this);
+181     QGraphicsItem *secondWing = new EnemyShipWing2(this);
+182     QGraphicsItem *spaceshipBody = new EnemyShipBody(this);
+183     QGraphicsItem *spaceshipWindow = new EnemyShipWindow(this);
+184 
+185     spaceshipTail->setPos(602, 293);
+186     oneWing->setPos(565, 310);
+187     secondWing->setPos(623, 310);
+188     spaceshipBody->setPos(600, 300);
+189     spaceshipWindow->setPos(607, 332);
+190 
+191     timeline = new QTimeLine;
+192 
+193     QGraphicsItemAnimation *tailAnim = new QGraphicsItemAnimation;
+194     tailAnim->setItem(spaceshipTail);
+195     tailAnim->setTimeLine(timeline);
+196     tailAnim->setTranslationAt(0, 20, 0);
+197     tailAnim->setTranslationAt(1, -20, 0);
+198 
+199     QGraphicsItemAnimation *oneWingAnim = new QGraphicsItemAnimation;
+200     oneWingAnim->setItem(oneWing);
+201     oneWingAnim->setTimeLine(timeline);
+202     oneWingAnim->setTranslationAt(0, 20, 0);
+203     oneWingAnim->setTranslationAt(1, -20, 0);
+204 
+205     QGraphicsItemAnimation *secondWingAnim = new QGraphicsItemAnimation;
+206     secondWingAnim->setItem(secondWing);
+207     secondWingAnim->setTimeLine(timeline);
+208     secondWingAnim->setTranslationAt(0, 20, 0);
+209     secondWingAnim->setTranslationAt(1, -20, 0);
+210 
+211     QGraphicsItemAnimation *bodyAnim = new QGraphicsItemAnimation;
+212     bodyAnim->setItem(spaceshipBody);
+213     bodyAnim->setTimeLine(timeline);
+214     bodyAnim->setTranslationAt(0, 20, 0);
+215     bodyAnim->setTranslationAt(1, -20, 0);
+216 
+217     QGraphicsItemAnimation *windowAnim = new QGraphicsItemAnimation;
+218     windowAnim->setItem(spaceshipWindow);
+219     windowAnim->setTimeLine(timeline);
+220     windowAnim->setTranslationAt(0, 20, 0);
+221     windowAnim->setTranslationAt(1, -20, 0);
+222 
+223     timeline->setUpdateInterval(1000/25);
+224     timeline->setCurveShape(QTimeLine::SineCurve);
+225     timeline->setLoopCount(0);
+226     timeline->setDuration(2000);
+227     timeline->start();
+228 
+229 }
+.fi
+.SS "EnemyShip::~EnemyShip ()"
+.PP
+Definition at line 231 of file enemyShip.cpp.
+.PP
+.nf
+232 {
+233     delete timeline;
+234 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF EnemyShip::boundingRect () const"
+.PP
+Definition at line 236 of file enemyShip.cpp.
+.PP
+.nf
+237 {
+238     return QRectF();
+239 }
+.fi
+.SS "void EnemyShip::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Definition at line 241 of file enemyShip.cpp.
+.PP
+.nf
+243 {
+244     Q_UNUSED(painter);
+245     Q_UNUSED(option);
+246     Q_UNUSED(widget);
+247 }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "QTimeLine* \fBEnemyShip::timeline\fP\fC [private]\fP"
+.PP
+Definition at line 68 of file enemyShip.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

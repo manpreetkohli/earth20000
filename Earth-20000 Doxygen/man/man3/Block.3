@@ -1,0 +1,75 @@
+.TH "Block" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Block \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <block.h>\fP
+.PP
+Inherits \fBSingleBlock\fP.
+.PP
+Inherited by \fBBlueBlock\fP, \fBEmptyBlock\fP, \fBGreenBlock\fP, \fBMagentaBlock\fP, \fBMonoBlock\fP, \fBRedBlock\fP, and \fBYellowBlock\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBlock\fP ()"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 59 of file block.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Block::Block ()"
+.PP
+Definition at line 227 of file block.cpp.
+.PP
+.nf
+228 {
+229 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF Block::boundingRect () const"
+.PP
+Reimplemented from \fBSingleBlock\fP.
+.PP
+Reimplemented in \fBMonoBlock\fP, \fBEmptyBlock\fP, \fBRedBlock\fP, \fBGreenBlock\fP, \fBBlueBlock\fP, \fBMagentaBlock\fP, and \fBYellowBlock\fP.
+.PP
+Definition at line 231 of file block.cpp.
+.PP
+.nf
+232 {
+233     return QRectF();
+234 }
+.fi
+.SS "void Block::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Reimplemented from \fBSingleBlock\fP.
+.PP
+Reimplemented in \fBMonoBlock\fP, \fBEmptyBlock\fP, \fBRedBlock\fP, \fBGreenBlock\fP, \fBBlueBlock\fP, \fBMagentaBlock\fP, and \fBYellowBlock\fP.
+.PP
+Definition at line 236 of file block.cpp.
+.PP
+.nf
+237 {
+238     Q_UNUSED(painter);
+239     Q_UNUSED(option);
+240     Q_UNUSED(widget);
+241 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

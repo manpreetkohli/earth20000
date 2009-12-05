@@ -1,0 +1,74 @@
+.TH "YellowBlock" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+YellowBlock \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <block.h>\fP
+.PP
+Inherits \fBBlock\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBYellowBlock\fP ()"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 115 of file block.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "YellowBlock::YellowBlock ()"
+.PP
+Definition at line 379 of file block.cpp.
+.PP
+.nf
+380 {
+381     //Set color to yellow
+382     setColor1(1);
+383     setColor2(6);
+384 
+385     QGraphicsItem *oneBlock = new SingleBlock(this);
+386 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF YellowBlock::boundingRect () const"
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 388 of file block.cpp.
+.PP
+.nf
+389 {
+390     return QRectF();
+391 }
+.fi
+.SS "void YellowBlock::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 393 of file block.cpp.
+.PP
+.nf
+394 {
+395     Q_UNUSED(painter);
+396     Q_UNUSED(option);
+397     Q_UNUSED(widget);
+398 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

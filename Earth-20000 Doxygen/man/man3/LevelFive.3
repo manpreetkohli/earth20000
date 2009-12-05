@@ -1,0 +1,170 @@
+.TH "LevelFive" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LevelFive \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <levelFive.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLevelFive\fP (QGraphicsScene *theScene)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.ti -1c
+.RI "int \fBgenerateRandomNumber\fP (int min, int max)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBxPos\fP"
+.br
+.ti -1c
+.RI "int \fByPos\fP"
+.br
+.ti -1c
+.RI "\fBBlock\fP * \fBblock\fP [10][25]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBlevelFive.cpp\fP
+.PP
+Creates the design for the fifth level. Uses the polymorphism feature of the \fBblock.cpp\fP class and randomly generates blocks of different colors and places them in a pre-defined layout. Also places the mothership in the layout as part of the boss battle
+.PP
+Author: Natraj Subramanian 
+.PP
+Definition at line 18 of file levelFive.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LevelFive::LevelFive (QGraphicsScene * theScene)"
+.PP
+Definition at line 4 of file levelFive.cpp.
+.PP
+.nf
+5 {
+6     xPos = -380 + (BOUNDWIDTH - 25 * OUTLINEW)/4;
+7     yPos = -630 + (BOUNDHEIGHT)/4;
+8 
+9     // Declare variable to hold seconds in clock
+10     time_t seconds;
+11     // Get value from system clock and place in seconds variable
+12     time(&seconds);
+13     // Convert seconds to a unsigned integer
+14     srand((unsigned int) seconds);
+15 
+16     int detColor;
+17 
+18     // Create the layout for the level
+19     for(int i = 0; i < 10; i++)
+20     {
+21         for(int j = 0; j < 25; j++)
+22         {
+23             if( (i > 1 && i < 8) && ( j > 3 && j < 21) )
+24             {
+25                  xPos += BLOCKW + SPACE;
+26             }
+27             else
+28             {
+29                 detColor = generateRandomNumber(0,5);
+30 
+31                 if(detColor == 0)
+32                 {
+33                     block[i][j] = new MonoBlock;
+34                 }
+35                 if(detColor == 1)
+36                 {
+37                     block[i][j] = new RedBlock;
+38                 }
+39                 if(detColor == 2)
+40                 {
+41                     block[i][j] = new GreenBlock;
+42                 }
+43                 if(detColor == 3)
+44                 {
+45                     block[i][j] = new BlueBlock;
+46                 }
+47                 if(detColor == 4)
+48                 {
+49                     block[i][j] = new MagentaBlock;
+50                 }
+51                 if(detColor == 5)
+52                 {
+53                     block[i][j] = new YellowBlock;
+54                 }
+55 
+56                 block[i][j]->setXPos(xPos);
+57                 block[i][j]->setYPos(yPos);
+58                 block[i][j]->scale(1.0, 1.0);
+59                 block[i][j]->setPos(xPos, yPos);
+60                 xPos += BLOCKW + SPACE;
+61                 theScene->addItem(block[i][j]);
+62             }
+63         }
+64 
+65         yPos += BLOCKH + SPACE;
+66         xPos = -380 + (BOUNDWIDTH - 25 * OUTLINEW)/4;
+67     }
+68 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF LevelFive::boundingRect () const\fC [private]\fP"
+.PP
+Definition at line 70 of file levelFive.cpp.
+.PP
+.nf
+71 {
+72     return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
+73 }
+.fi
+.SS "int LevelFive::generateRandomNumber (int min, int max)\fC [private]\fP"Given a min and a max, generate a random number between this range 
+.PP
+Definition at line 88 of file levelFive.cpp.
+.PP
+.nf
+89 {
+90     return rand() % (max - min + 1) + min;
+91 }
+.fi
+.SS "void LevelFive::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)\fC [private]\fP"
+.PP
+Definition at line 75 of file levelFive.cpp.
+.PP
+.nf
+78 {
+79     Q_UNUSED(painter);
+80     Q_UNUSED(option);
+81     Q_UNUSED(widget);
+82 }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBBlock\fP* \fBLevelFive::block\fP[10][25]\fC [private]\fP"
+.PP
+Definition at line 22 of file levelFive.h.
+.SS "int \fBLevelFive::xPos\fP\fC [private]\fP"
+.PP
+Definition at line 21 of file levelFive.h.
+.SS "int \fBLevelFive::yPos\fP\fC [private]\fP"
+.PP
+Definition at line 21 of file levelFive.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

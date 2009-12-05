@@ -1,0 +1,464 @@
+\hypertarget{class_single_block}{
+\section{SingleBlock Class Reference}
+\label{class_single_block}\index{SingleBlock@{SingleBlock}}
+}
+
+
+{\ttfamily \#include $<$block.h$>$}Inheritance diagram for SingleBlock::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.4cm]{class_single_block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_single_block_a7b317497065c067dde1c034ef8f3e0ee}{SingleBlock} (QGraphicsItem $\ast$parent)
+\item 
+QRectF \hyperlink{class_single_block_a96b8d4a017cce8eaf08a09632e7f9907}{boundingRect} () const 
+\item 
+void \hyperlink{class_single_block_a397006b22a2f8dc67e27660f67546880}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\item 
+void \hyperlink{class_single_block_a9616ca814fe8e82b0ec9c7448d5b2415}{mousePressEvent} (QGraphicsSceneMouseEvent $\ast$event)
+\item 
+virtual void \hyperlink{class_single_block_a9a3f135aaaf56aa7765dad47f6bb8f36}{setColor1} (int theColor)
+\item 
+virtual void \hyperlink{class_single_block_ad59aa2654804afcc4035695765399fc1}{setColor2} (int theColor)
+\item 
+virtual void \hyperlink{class_single_block_af53a21a1faae0876aa63c907ab6ddc23}{setXPos} (int thePos)
+\item 
+virtual void \hyperlink{class_single_block_a0de6704830cc075cabdf40b5894e7fa9}{setYPos} (int thePos)
+\item 
+virtual void \hyperlink{class_single_block_a6d5eeb09997cf10a0518f8c8fdb1cd7c}{setPowerup} (int value)
+\item 
+virtual int \hyperlink{class_single_block_a1ee84715ceaa1c72cc5ad5d627f1ec67}{type} () const 
+\item 
+int \hyperlink{class_single_block_aa46aacef2ede822289499a2a41f00054}{getColor1} ()
+\item 
+int \hyperlink{class_single_block_a6438d2e49ace6f57711ee53f75b02734}{getColor2} ()
+\item 
+int \hyperlink{class_single_block_aafaab9f0e0f348572a805d01a5d1a5eb}{getXPos} ()
+\item 
+int \hyperlink{class_single_block_a73a4ed9e378d1afe20d3451f74b61d93}{getYPos} ()
+\item 
+int \hyperlink{class_single_block_a126f70ebd4ac107f8d9b770f157afdf0}{getPowerup} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_single_block_a750ddf3283bb57511c76688c9465b0c9}{color1}
+\item 
+int \hyperlink{class_single_block_a7a5875f9554dd6de80abcdaf056d0e28}{color2}
+\item 
+int \hyperlink{class_single_block_ac542150d68ae2ca631d0bfb6a30ef31b}{xPos}
+\item 
+int \hyperlink{class_single_block_aa57935921db04eb8d4971a6b1351d4d8}{yPos}
+\item 
+int \hyperlink{class_single_block_a98b56c58cfbb12b6e7dbcc744d006082}{hasPowerup}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{class_single_block_a2982e7fec926fadd304d275ea37f819b}{colorSelected} = 7
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 33 of file block.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_single_block_a7b317497065c067dde1c034ef8f3e0ee}{
+\index{SingleBlock@{SingleBlock}!SingleBlock@{SingleBlock}}
+\index{SingleBlock@{SingleBlock}!SingleBlock@{SingleBlock}}
+\subsubsection[{SingleBlock}]{\setlength{\rightskip}{0pt plus 5cm}SingleBlock::SingleBlock (QGraphicsItem $\ast$ {\em parent} = {\ttfamily 0})}}
+\label{class_single_block_a7b317497065c067dde1c034ef8f3e0ee}
+
+
+Definition at line 13 of file block.cpp.
+
+
+\begin{DoxyCode}
+14         :QGraphicsItem(parent)
+15 {
+16     if(parent != NULL)
+17     {
+18         color1 = ((SingleBlock *)parent)->getColor1();
+19         color2 = ((SingleBlock *)parent)->getColor2();
+20         xPos = ((SingleBlock *)parent)->getXPos();
+21         yPos = ((SingleBlock *)parent)->getYPos();
+22         hasPowerup = ((SingleBlock *)parent)->getPowerup();
+23     }
+24 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_single_block_a96b8d4a017cce8eaf08a09632e7f9907}{
+\index{SingleBlock@{SingleBlock}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!SingleBlock@{SingleBlock}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF SingleBlock::boundingRect () const}}
+\label{class_single_block_a96b8d4a017cce8eaf08a09632e7f9907}
+
+
+Reimplemented in \hyperlink{class_block_aee4444b92a82f5a8080e9019ef1e554d}{Block}, \hyperlink{class_mono_block_ae85adc70af0318603a03c2daf768c145}{MonoBlock}, \hyperlink{class_empty_block_a1984fabb510aba7e14f460845faf881c}{EmptyBlock}, \hyperlink{class_red_block_a31036897a1451c6140ce9f368e461fb0}{RedBlock}, \hyperlink{class_green_block_a302d2bfd76e7f40196c699ae52607175}{GreenBlock}, \hyperlink{class_blue_block_ae83a63d0611bc918f93d7019b4b27056}{BlueBlock}, \hyperlink{class_magenta_block_aec892d6118a5a5030d767a5ccfc56929}{MagentaBlock}, and \hyperlink{class_yellow_block_a05f341c5d1b859d8c7b909a5cfee7601}{YellowBlock}.
+
+Definition at line 26 of file block.cpp.
+
+
+\begin{DoxyCode}
+27 {
+28     return QRectF(OUTLINEX, OUTLINEY, OUTLINEW, OUTLINEH);
+29 }
+\end{DoxyCode}
+\hypertarget{class_single_block_aa46aacef2ede822289499a2a41f00054}{
+\index{SingleBlock@{SingleBlock}!getColor1@{getColor1}}
+\index{getColor1@{getColor1}!SingleBlock@{SingleBlock}}
+\subsubsection[{getColor1}]{\setlength{\rightskip}{0pt plus 5cm}int SingleBlock::getColor1 ()}}
+\label{class_single_block_aa46aacef2ede822289499a2a41f00054}
+Returns color 1 
+
+Definition at line 190 of file block.cpp.
+
+
+\begin{DoxyCode}
+191 {
+192     return color1;
+193 }
+\end{DoxyCode}
+\hypertarget{class_single_block_a6438d2e49ace6f57711ee53f75b02734}{
+\index{SingleBlock@{SingleBlock}!getColor2@{getColor2}}
+\index{getColor2@{getColor2}!SingleBlock@{SingleBlock}}
+\subsubsection[{getColor2}]{\setlength{\rightskip}{0pt plus 5cm}int SingleBlock::getColor2 ()}}
+\label{class_single_block_a6438d2e49ace6f57711ee53f75b02734}
+Returns color 2 
+
+Definition at line 198 of file block.cpp.
+
+
+\begin{DoxyCode}
+199 {
+200     return color2;
+201 }
+\end{DoxyCode}
+\hypertarget{class_single_block_a126f70ebd4ac107f8d9b770f157afdf0}{
+\index{SingleBlock@{SingleBlock}!getPowerup@{getPowerup}}
+\index{getPowerup@{getPowerup}!SingleBlock@{SingleBlock}}
+\subsubsection[{getPowerup}]{\setlength{\rightskip}{0pt plus 5cm}int SingleBlock::getPowerup ()}}
+\label{class_single_block_a126f70ebd4ac107f8d9b770f157afdf0}
+Returns powerup value 
+
+Definition at line 222 of file block.cpp.
+
+
+\begin{DoxyCode}
+223 {
+224     return hasPowerup;
+225 }
+\end{DoxyCode}
+\hypertarget{class_single_block_aafaab9f0e0f348572a805d01a5d1a5eb}{
+\index{SingleBlock@{SingleBlock}!getXPos@{getXPos}}
+\index{getXPos@{getXPos}!SingleBlock@{SingleBlock}}
+\subsubsection[{getXPos}]{\setlength{\rightskip}{0pt plus 5cm}int SingleBlock::getXPos ()}}
+\label{class_single_block_aafaab9f0e0f348572a805d01a5d1a5eb}
+Returns xPos 
+
+Definition at line 206 of file block.cpp.
+
+
+\begin{DoxyCode}
+207 {
+208     return xPos;
+209 }
+\end{DoxyCode}
+\hypertarget{class_single_block_a73a4ed9e378d1afe20d3451f74b61d93}{
+\index{SingleBlock@{SingleBlock}!getYPos@{getYPos}}
+\index{getYPos@{getYPos}!SingleBlock@{SingleBlock}}
+\subsubsection[{getYPos}]{\setlength{\rightskip}{0pt plus 5cm}int SingleBlock::getYPos ()}}
+\label{class_single_block_a73a4ed9e378d1afe20d3451f74b61d93}
+Returns yPos 
+
+Definition at line 214 of file block.cpp.
+
+
+\begin{DoxyCode}
+215 {
+216     return yPos;
+217 }
+\end{DoxyCode}
+\hypertarget{class_single_block_a9616ca814fe8e82b0ec9c7448d5b2415}{
+\index{SingleBlock@{SingleBlock}!mousePressEvent@{mousePressEvent}}
+\index{mousePressEvent@{mousePressEvent}!SingleBlock@{SingleBlock}}
+\subsubsection[{mousePressEvent}]{\setlength{\rightskip}{0pt plus 5cm}void SingleBlock::mousePressEvent (QGraphicsSceneMouseEvent $\ast$ {\em event})}}
+\label{class_single_block_a9616ca814fe8e82b0ec9c7448d5b2415}
+Added by Manpreet Kohli defines what happens when the user clicks on blocks in the level editor 
+
+Definition at line 56 of file block.cpp.
+
+
+\begin{DoxyCode}
+57 {
+58     if (Constants::levelNumber == 0)
+59     {
+60         // if the block clicked on is inside the small items window on the right 
+      hand side
+61         if (this->scene()->width() < Constants::itemsWindowViewWidth)
+62         {
+63             colorSelected = this->color2;
+64             this->scene()->removeItem(Constants::currentBlock);
+65             delete Constants::currentBlock;
+66 
+67             // modify the "current selection" block
+68             switch(colorSelected)
+69             {
+70                 case 0:
+71                     Constants::currentBlock = new MonoBlock();
+72                     break;
+73                 case 2:
+74                     Constants::currentBlock = new RedBlock();
+75                     break;
+76                 case 3:
+77                     Constants::currentBlock = new GreenBlock();
+78                     break;
+79                 case 4:
+80                     Constants::currentBlock = new BlueBlock();
+81                     break;
+82                 case 5:
+83                     Constants::currentBlock = new MagentaBlock();
+84                     break;
+85                 case 6:
+86                     Constants::currentBlock = new YellowBlock();
+87                     break;
+88                 case 7:
+89                     Constants::currentBlock = new EmptyBlock();
+90                     break;
+91             }
+92 
+93             // update the current selection block inside the scene
+94             this->scene()->addItem(Constants::currentBlock);
+95             Constants::currentBlock->setXPos(-274);
+96             Constants::currentBlock->setYPos(-225);
+97             Constants::currentBlock->setPos(-274, -225);
+98         }
+99 
+100         // if the block selected was inside the main view window
+101         else
+102         {
+103             if (colorSelected == 7)
+104                 this->setColor1(7);
+105             else
+106                 this->setColor1(1);
+107 
+108             // if the block clicked on was not transparent, remove the previous s
+      election of the block
+109             // from the two vectors
+110             if (this->getColor2() != 7)
+111             {
+112                 int tempIndex = Constants::positions.indexOf(this->scenePos());
+113                 Constants::positions.remove(tempIndex);
+114                 Constants::colors.remove(tempIndex);
+115             }
+116 
+117             this->setOpacity(2.0);
+118             this->setColor2(colorSelected);
+119 
+120             // if a transparent block was not clicked, push the new block positio
+      n and color into 
+121             // the two vectors
+122             if (colorSelected != 7)
+123             {
+124                 Constants::positions.push_back(this->scenePos());
+125                 Constants::colors.push_back(this->getColor2());
+126             }
+127 
+128             // update the blocks
+129             update(this->boundingRect());
+130             update(this->sceneBoundingRect());
+131         }
+132     }
+133 }
+\end{DoxyCode}
+\hypertarget{class_single_block_a397006b22a2f8dc67e27660f67546880}{
+\index{SingleBlock@{SingleBlock}!paint@{paint}}
+\index{paint@{paint}!SingleBlock@{SingleBlock}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void SingleBlock::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_single_block_a397006b22a2f8dc67e27660f67546880}
+
+
+Reimplemented in \hyperlink{class_block_a36791d086b6fad1a2203bfef6fdbaa0a}{Block}, \hyperlink{class_mono_block_a8c2d5b6508508633c4c3234790945c51}{MonoBlock}, \hyperlink{class_empty_block_a1cec09fdef31d4404857dd22151a1834}{EmptyBlock}, \hyperlink{class_red_block_a78013615dbc11158d47eb38cc3d416cd}{RedBlock}, \hyperlink{class_green_block_a8ca48ce5449a83de5287d13d99bf2df1}{GreenBlock}, \hyperlink{class_blue_block_adc28e68ba0fa2c578815b77dde03ebdb}{BlueBlock}, \hyperlink{class_magenta_block_ac48f5303ee031233918abfa460dd7066}{MagentaBlock}, and \hyperlink{class_yellow_block_a37c29857cc065cab86a81bcfdd6c3f63}{YellowBlock}.
+
+Definition at line 31 of file block.cpp.
+
+
+\begin{DoxyCode}
+33 {
+34     Q_UNUSED(option);
+35     Q_UNUSED(widget);
+36 
+37     painter->setPen(QPen(Qt::black, 0));
+38     painter->setBrush(Qt::white);
+39     painter->drawRoundedRect(OUTLINEX, OUTLINEY, OUTLINEW, OUTLINEH, XRADIUS, 
+      YRADIUS, Qt::RelativeSize);
+40 
+41     QLinearGradient gradient(0, 20, 0, 4);
+42     gradient.setSpread(QGradient::ReflectSpread);
+43 
+44     gradient.setColorAt(0, colors[color1]);
+45     gradient.setColorAt(1, colors[color2]);
+46 
+47     painter->setBrush(gradient);
+48     painter->setPen(QPen(Qt::black, 0));
+49     painter->drawRoundedRect(BLOCKX, BLOCKY, BLOCKW, BLOCKH, XRADIUS, YRADIUS, Qt
+      ::RelativeSize);
+50 }
+\end{DoxyCode}
+\hypertarget{class_single_block_a9a3f135aaaf56aa7765dad47f6bb8f36}{
+\index{SingleBlock@{SingleBlock}!setColor1@{setColor1}}
+\index{setColor1@{setColor1}!SingleBlock@{SingleBlock}}
+\subsubsection[{setColor1}]{\setlength{\rightskip}{0pt plus 5cm}void SingleBlock::setColor1 (int {\em theColor})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_single_block_a9a3f135aaaf56aa7765dad47f6bb8f36}
+Set color 1 of this block 
+
+Definition at line 138 of file block.cpp.
+
+
+\begin{DoxyCode}
+139 {
+140     int *colorPtr;
+141     colorPtr = &color1;
+142     *colorPtr= theColor;
+143 }
+\end{DoxyCode}
+\hypertarget{class_single_block_ad59aa2654804afcc4035695765399fc1}{
+\index{SingleBlock@{SingleBlock}!setColor2@{setColor2}}
+\index{setColor2@{setColor2}!SingleBlock@{SingleBlock}}
+\subsubsection[{setColor2}]{\setlength{\rightskip}{0pt plus 5cm}void SingleBlock::setColor2 (int {\em theColor})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_single_block_ad59aa2654804afcc4035695765399fc1}
+Set color 2 of this block 
+
+Definition at line 148 of file block.cpp.
+
+
+\begin{DoxyCode}
+149 {
+150     int *colorPtr;
+151     colorPtr = &color2;
+152     *colorPtr= theColor;
+153 }
+\end{DoxyCode}
+\hypertarget{class_single_block_a6d5eeb09997cf10a0518f8c8fdb1cd7c}{
+\index{SingleBlock@{SingleBlock}!setPowerup@{setPowerup}}
+\index{setPowerup@{setPowerup}!SingleBlock@{SingleBlock}}
+\subsubsection[{setPowerup}]{\setlength{\rightskip}{0pt plus 5cm}void SingleBlock::setPowerup (int {\em value})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_single_block_a6d5eeb09997cf10a0518f8c8fdb1cd7c}
+Turn powerup on 
+
+Definition at line 180 of file block.cpp.
+
+
+\begin{DoxyCode}
+181 {
+182     int *valuePtr;
+183     valuePtr = &hasPowerup;
+184     *valuePtr = value;
+185 }
+\end{DoxyCode}
+\hypertarget{class_single_block_af53a21a1faae0876aa63c907ab6ddc23}{
+\index{SingleBlock@{SingleBlock}!setXPos@{setXPos}}
+\index{setXPos@{setXPos}!SingleBlock@{SingleBlock}}
+\subsubsection[{setXPos}]{\setlength{\rightskip}{0pt plus 5cm}void SingleBlock::setXPos (int {\em thePos})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_single_block_af53a21a1faae0876aa63c907ab6ddc23}
+In order for the ball class to be able to access the individual X and Y coordinates of this block 
+
+Definition at line 159 of file block.cpp.
+
+
+\begin{DoxyCode}
+160 {
+161     int *posPtr;
+162     posPtr = &xPos;
+163     *posPtr= thePos;
+164 }
+\end{DoxyCode}
+\hypertarget{class_single_block_a0de6704830cc075cabdf40b5894e7fa9}{
+\index{SingleBlock@{SingleBlock}!setYPos@{setYPos}}
+\index{setYPos@{setYPos}!SingleBlock@{SingleBlock}}
+\subsubsection[{setYPos}]{\setlength{\rightskip}{0pt plus 5cm}void SingleBlock::setYPos (int {\em thePos})\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_single_block_a0de6704830cc075cabdf40b5894e7fa9}
+In order for the ball class to be able to access the individual X and Y coordinates of this block 
+
+Definition at line 170 of file block.cpp.
+
+
+\begin{DoxyCode}
+171 {
+172     int *posPtr;
+173     posPtr = &yPos;
+174     *posPtr= thePos;
+175 }
+\end{DoxyCode}
+\hypertarget{class_single_block_a1ee84715ceaa1c72cc5ad5d627f1ec67}{
+\index{SingleBlock@{SingleBlock}!type@{type}}
+\index{type@{type}!SingleBlock@{SingleBlock}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}virtual int SingleBlock::type () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_single_block_a1ee84715ceaa1c72cc5ad5d627f1ec67}
+
+
+Definition at line 51 of file block.h.
+
+
+\begin{DoxyCode}
+51 {return BLOCKID; }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_single_block_a750ddf3283bb57511c76688c9465b0c9}{
+\index{SingleBlock@{SingleBlock}!color1@{color1}}
+\index{color1@{color1}!SingleBlock@{SingleBlock}}
+\subsubsection[{color1}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf SingleBlock::color1}}}
+\label{class_single_block_a750ddf3283bb57511c76688c9465b0c9}
+
+
+Definition at line 39 of file block.h.\hypertarget{class_single_block_a7a5875f9554dd6de80abcdaf056d0e28}{
+\index{SingleBlock@{SingleBlock}!color2@{color2}}
+\index{color2@{color2}!SingleBlock@{SingleBlock}}
+\subsubsection[{color2}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf SingleBlock::color2}}}
+\label{class_single_block_a7a5875f9554dd6de80abcdaf056d0e28}
+
+
+Definition at line 40 of file block.h.\hypertarget{class_single_block_a2982e7fec926fadd304d275ea37f819b}{
+\index{SingleBlock@{SingleBlock}!colorSelected@{colorSelected}}
+\index{colorSelected@{colorSelected}!SingleBlock@{SingleBlock}}
+\subsubsection[{colorSelected}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf SingleBlock::colorSelected} = 7\hspace{0.3cm}{\ttfamily  \mbox{[}static, private\mbox{]}}}}
+\label{class_single_block_a2982e7fec926fadd304d275ea37f819b}
+
+
+Definition at line 36 of file block.h.\hypertarget{class_single_block_a98b56c58cfbb12b6e7dbcc744d006082}{
+\index{SingleBlock@{SingleBlock}!hasPowerup@{hasPowerup}}
+\index{hasPowerup@{hasPowerup}!SingleBlock@{SingleBlock}}
+\subsubsection[{hasPowerup}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf SingleBlock::hasPowerup}}}
+\label{class_single_block_a98b56c58cfbb12b6e7dbcc744d006082}
+
+
+Definition at line 41 of file block.h.\hypertarget{class_single_block_ac542150d68ae2ca631d0bfb6a30ef31b}{
+\index{SingleBlock@{SingleBlock}!xPos@{xPos}}
+\index{xPos@{xPos}!SingleBlock@{SingleBlock}}
+\subsubsection[{xPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf SingleBlock::xPos}}}
+\label{class_single_block_ac542150d68ae2ca631d0bfb6a30ef31b}
+
+
+Definition at line 41 of file block.h.\hypertarget{class_single_block_aa57935921db04eb8d4971a6b1351d4d8}{
+\index{SingleBlock@{SingleBlock}!yPos@{yPos}}
+\index{yPos@{yPos}!SingleBlock@{SingleBlock}}
+\subsubsection[{yPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf SingleBlock::yPos}}}
+\label{class_single_block_aa57935921db04eb8d4971a6b1351d4d8}
+
+
+Definition at line 41 of file block.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8h}{block.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8cpp}{block.cpp}\end{DoxyCompactItemize}

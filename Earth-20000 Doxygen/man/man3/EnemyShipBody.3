@@ -1,0 +1,88 @@
+.TH "EnemyShipBody" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EnemyShipBody \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <enemyShip.h>\fP
+.PP
+Inherits \fBEnemyShipPart\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEnemyShipBody\fP (QGraphicsItem *parent=0)"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 19 of file enemyShip.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "EnemyShipBody::EnemyShipBody (QGraphicsItem * parent = \fC0\fP)"
+.PP
+Definition at line 11 of file enemyShip.cpp.
+.PP
+.nf
+12         :EnemyShipPart(parent)
+13 {
+14 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF EnemyShipBody::boundingRect () const"
+.PP
+Definition at line 16 of file enemyShip.cpp.
+.PP
+.nf
+17 {
+18     return QRectF(0, 0, 100, 100);
+19 }
+.fi
+.SS "void EnemyShipBody::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Definition at line 21 of file enemyShip.cpp.
+.PP
+.nf
+23 {
+24     Q_UNUSED(option);
+25     Q_UNUSED(widget);
+26     QPointF vertices[13] = {QPointF(0.0, 2.0),
+27                             QPointF(1.0, 1.0),
+28                             QPointF(2.0, 0.0),
+29                             QPointF(22.0, 0.0),
+30                             QPointF(23.0, 1.0),
+31                             QPointF(24.0, 2.0),
+32                             QPointF(24.0, 40.0),
+33                             QPointF(14.0, 48.0),
+34                             QPointF(13.0, 49.0),
+35                             QPointF(12.0, 50.0),
+36                             QPointF(11.0, 49.0),
+37                             QPointF(10.0, 48.0),
+38                             QPointF(0.0, 40.0)};
+39     
+40     painter->setPen(QPen(Qt::black, 0));
+41 
+42     QLinearGradient gradient(12, 0, 23, 0);
+43     gradient.setSpread(QGradient::ReflectSpread);
+44     gradient.setColorAt(0, Qt::lightGray);
+45     gradient.setColorAt(1, Qt::black);
+46 
+47     painter->setBrush(gradient);
+48     painter->drawPolygon(vertices, 13);
+49 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

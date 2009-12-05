@@ -1,0 +1,74 @@
+.TH "MonoBlock" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MonoBlock \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <block.h>\fP
+.PP
+Inherits \fBBlock\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMonoBlock\fP ()"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 67 of file block.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "MonoBlock::MonoBlock ()"
+.PP
+Definition at line 243 of file block.cpp.
+.PP
+.nf
+244 {
+245     //Set color to black
+246     setColor1(1);
+247     setColor2(0);
+248 
+249     QGraphicsItem *oneBlock = new SingleBlock(this);
+250 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF MonoBlock::boundingRect () const"
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 252 of file block.cpp.
+.PP
+.nf
+253 {
+254     return QRectF();
+255 }
+.fi
+.SS "void MonoBlock::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 257 of file block.cpp.
+.PP
+.nf
+258 {
+259     Q_UNUSED(painter);
+260     Q_UNUSED(option);
+261     Q_UNUSED(widget);
+262 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

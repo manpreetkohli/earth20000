@@ -1,0 +1,166 @@
+\hypertarget{class_load_game}{
+\section{LoadGame Class Reference}
+\label{class_load_game}\index{LoadGame@{LoadGame}}
+}
+
+
+{\ttfamily \#include $<$loadGame.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_load_game_a23098f270c37e5a7eb6796068cad5965}{LoadGame} (QGraphicsScene $\ast$theScene, QGraphicsView $\ast$view)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+QRectF \hyperlink{class_load_game_a0bea88d2a8f433f8f632b60bec679191}{boundingRect} () const 
+\item 
+void \hyperlink{class_load_game_a5a33efb42771cf6a0dfacaab5c2e64a8}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_load_game_ada8b1081dcfe3ce73dcf7f02bc9eb824}{xPos}
+\item 
+int \hyperlink{class_load_game_a074a34ee4e6924d306030caaaefadc74}{yPos}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manpreet Kohli CS 340, Fall 2009
+
+\hyperlink{load_game_8cpp}{loadGame.cpp}: creates the design for the saved game. Reads in the saved file, and based on the input, creates the blocks for the board. Also reads in the background (if any) that got saved when saving the level configuration 
+
+Definition at line 15 of file loadGame.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_load_game_a23098f270c37e5a7eb6796068cad5965}{
+\index{LoadGame@{LoadGame}!LoadGame@{LoadGame}}
+\index{LoadGame@{LoadGame}!LoadGame@{LoadGame}}
+\subsubsection[{LoadGame}]{\setlength{\rightskip}{0pt plus 5cm}LoadGame::LoadGame (QGraphicsScene $\ast$ {\em theScene}, \/  QGraphicsView $\ast$ {\em view})}}
+\label{class_load_game_a23098f270c37e5a7eb6796068cad5965}
+
+
+Definition at line 6 of file loadGame.cpp.
+
+
+\begin{DoxyCode}
+7 {
+8     xPos = -375;
+9     yPos = -590;
+10 
+11     QFile file("levels.txt");
+12     QFile bgFile("bgs.txt");
+13 
+14     if (!file.open(QIODevice::ReadOnly))
+15     {
+16         qDebug() << "Cannot open file for reading ";
+17     }
+18     
+19      if (!bgFile.open(QIODevice::ReadOnly))
+20     {
+21         qDebug() << "Cannot open file for reading ";
+22     }
+23 
+24     QTextStream in(&file);
+25     QTextStream in2(&bgFile);
+26     QChar c;
+27     QString bg;
+28     
+29     in2 >> bg;              // read in the background saved into the string bg
+30     view->setBackgroundBrush(QPixmap(bg));
+31 
+32     // draw all the transparent blocks for the level editor window
+33     for (int i = 0; i < 20; i++)
+34     {
+35         for (int j = 0; j < 27; j++)
+36         {
+37             in >> c;
+38             if (c == 'w')
+39                 Constants::blocks[i][j] = new MonoBlock();
+40             else if (c == 'r')
+41                 Constants::blocks[i][j] = new RedBlock();
+42             else if (c == 'g')
+43                 Constants::blocks[i][j] = new GreenBlock();
+44             else if (c == 'b')
+45                 Constants::blocks[i][j] = new BlueBlock();
+46             else if (c == 'm')
+47                 Constants::blocks[i][j] = new MagentaBlock();
+48             else if (c == 'y')
+49                 Constants::blocks[i][j] = new YellowBlock();
+50             else
+51             {
+52                 xPos+=OUTLINEW;
+53                 continue;
+54             }
+55             theScene->addItem(Constants::blocks[i][j]);
+56             Constants::blocks[i][j]->setXPos(xPos);
+57             Constants::blocks[i][j]->setYPos(yPos);
+58             Constants::blocks[i][j]->setPos(xPos, yPos);
+59             Constants::blocks[i][j]->show();
+60             xPos+=OUTLINEW;
+61         }
+62         in >> c;
+63         in >> c;
+64         yPos += OUTLINEH;
+65         xPos = -375;
+66     }
+67 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_load_game_a0bea88d2a8f433f8f632b60bec679191}{
+\index{LoadGame@{LoadGame}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!LoadGame@{LoadGame}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF LoadGame::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_load_game_a0bea88d2a8f433f8f632b60bec679191}
+
+
+Definition at line 69 of file loadGame.cpp.
+
+
+\begin{DoxyCode}
+70 {
+71     return QRectF(0, 0, 27 * OUTLINEW, 20 * OUTLINEH);
+72 }
+\end{DoxyCode}
+\hypertarget{class_load_game_a5a33efb42771cf6a0dfacaab5c2e64a8}{
+\index{LoadGame@{LoadGame}!paint@{paint}}
+\index{paint@{paint}!LoadGame@{LoadGame}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void LoadGame::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_load_game_a5a33efb42771cf6a0dfacaab5c2e64a8}
+
+
+Definition at line 74 of file loadGame.cpp.
+
+
+\begin{DoxyCode}
+75 {
+76     Q_UNUSED(painter);
+77     Q_UNUSED(option);
+78     Q_UNUSED(widget);
+79 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_load_game_ada8b1081dcfe3ce73dcf7f02bc9eb824}{
+\index{LoadGame@{LoadGame}!xPos@{xPos}}
+\index{xPos@{xPos}!LoadGame@{LoadGame}}
+\subsubsection[{xPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LoadGame::xPos}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_load_game_ada8b1081dcfe3ce73dcf7f02bc9eb824}
+
+
+Definition at line 18 of file loadGame.h.\hypertarget{class_load_game_a074a34ee4e6924d306030caaaefadc74}{
+\index{LoadGame@{LoadGame}!yPos@{yPos}}
+\index{yPos@{yPos}!LoadGame@{LoadGame}}
+\subsubsection[{yPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LoadGame::yPos}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_load_game_a074a34ee4e6924d306030caaaefadc74}
+
+
+Definition at line 18 of file loadGame.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{load_game_8h}{loadGame.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{load_game_8cpp}{loadGame.cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,115 @@
+.TH "Constants" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Constants \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <constants.h>\fP
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static int \fBitemsWindowViewWidth\fP = 238"
+.br
+.ti -1c
+.RI "static \fBBlock\fP * \fBcurrentBlock\fP"
+.br
+.ti -1c
+.RI "static \fBBlock\fP * \fBblocks\fP [20][27]"
+.br
+.ti -1c
+.RI "static QPushButton * \fBcont\fP"
+.br
+.ti -1c
+.RI "static int \fBlevelNumber\fP"
+.br
+.ti -1c
+.RI "static int \fBcount\fP"
+.br
+.ti -1c
+.RI "static QVector< QPointF > \fBpositions\fP"
+.br
+.ti -1c
+.RI "static QVector< int > \fBcolors\fP"
+.br
+.ti -1c
+.RI "static \fBSpaceShip\fP * \fBlife1\fP"
+.br
+.ti -1c
+.RI "static \fBSpaceShip\fP * \fBlife2\fP"
+.br
+.ti -1c
+.RI "static \fBSpaceShip\fP * \fBlife3\fP"
+.br
+.ti -1c
+.RI "static QGraphicsTextItem * \fBlevelInfo\fP"
+.br
+.ti -1c
+.RI "static QGraphicsTextItem * \fBlives\fP"
+.br
+.ti -1c
+.RI "static int \fBpowerup\fP"
+.br
+.ti -1c
+.RI "static QTimer * \fBtimer\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBConstants.h\fP: entails all the static variables that get used in the whole program. These were implemented because without them, the coding becomes a lot more harder and tedious as the variables are needed back and forth in a bunch of classes. If need be, they can be changed so that they get passed as arguments to functions in various classes; however, doing so would make life more miserable than it already is. 
+.PP
+Definition at line 16 of file constants.h.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBBlock\fP * \fBConstants::blocks\fP\fC [static]\fP"
+.PP
+Definition at line 21 of file constants.h.
+.SS "QVector< int > \fBConstants::colors\fP\fC [static]\fP"
+.PP
+Definition at line 26 of file constants.h.
+.SS "QPushButton * \fBConstants::cont\fP\fC [static]\fP"
+.PP
+Definition at line 22 of file constants.h.
+.SS "int \fBConstants::count\fP\fC [static]\fP"
+.PP
+Definition at line 24 of file constants.h.
+.SS "\fBBlock\fP * \fBConstants::currentBlock\fP\fC [static]\fP"
+.PP
+Definition at line 20 of file constants.h.
+.SS "int \fBConstants::itemsWindowViewWidth\fP = 238\fC [static]\fP"
+.PP
+Definition at line 19 of file constants.h.
+.SS "QGraphicsTextItem * \fBConstants::levelInfo\fP\fC [static]\fP"
+.PP
+Definition at line 30 of file constants.h.
+.SS "int \fBConstants::levelNumber\fP\fC [static]\fP"
+.PP
+Definition at line 23 of file constants.h.
+.SS "\fBSpaceShip\fP * \fBConstants::life1\fP\fC [static]\fP"
+.PP
+Definition at line 27 of file constants.h.
+.SS "\fBSpaceShip\fP * \fBConstants::life2\fP\fC [static]\fP"
+.PP
+Definition at line 28 of file constants.h.
+.SS "\fBSpaceShip\fP * \fBConstants::life3\fP\fC [static]\fP"
+.PP
+Definition at line 29 of file constants.h.
+.SS "QGraphicsTextItem * \fBConstants::lives\fP\fC [static]\fP"
+.PP
+Definition at line 31 of file constants.h.
+.SS "QVector< QPointF > \fBConstants::positions\fP\fC [static]\fP"
+.PP
+Definition at line 25 of file constants.h.
+.SS "int \fBConstants::powerup\fP\fC [static]\fP"
+.PP
+Definition at line 32 of file constants.h.
+.SS "QTimer * \fBConstants::timer\fP\fC [static]\fP"
+.PP
+Definition at line 33 of file constants.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

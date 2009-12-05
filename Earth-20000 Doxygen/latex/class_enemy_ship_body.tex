@@ -1,0 +1,107 @@
+\hypertarget{class_enemy_ship_body}{
+\section{EnemyShipBody Class Reference}
+\label{class_enemy_ship_body}\index{EnemyShipBody@{EnemyShipBody}}
+}
+
+
+{\ttfamily \#include $<$enemyShip.h$>$}Inheritance diagram for EnemyShipBody::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_enemy_ship_body}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_enemy_ship_body_ad7c7f90300c36f0fc7280bca93c5ee4f}{EnemyShipBody} (QGraphicsItem $\ast$parent=0)
+\item 
+QRectF \hyperlink{class_enemy_ship_body_a71c7c2e11c0fbb94d7fa9a7bc049e61e}{boundingRect} () const 
+\item 
+void \hyperlink{class_enemy_ship_body_a0b951ebac49d2fcdff2e460b050bd82e}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 19 of file enemyShip.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_enemy_ship_body_ad7c7f90300c36f0fc7280bca93c5ee4f}{
+\index{EnemyShipBody@{EnemyShipBody}!EnemyShipBody@{EnemyShipBody}}
+\index{EnemyShipBody@{EnemyShipBody}!EnemyShipBody@{EnemyShipBody}}
+\subsubsection[{EnemyShipBody}]{\setlength{\rightskip}{0pt plus 5cm}EnemyShipBody::EnemyShipBody (QGraphicsItem $\ast$ {\em parent} = {\ttfamily 0})}}
+\label{class_enemy_ship_body_ad7c7f90300c36f0fc7280bca93c5ee4f}
+
+
+Definition at line 11 of file enemyShip.cpp.
+
+
+\begin{DoxyCode}
+12         :EnemyShipPart(parent)
+13 {
+14 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_enemy_ship_body_a71c7c2e11c0fbb94d7fa9a7bc049e61e}{
+\index{EnemyShipBody@{EnemyShipBody}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!EnemyShipBody@{EnemyShipBody}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF EnemyShipBody::boundingRect () const}}
+\label{class_enemy_ship_body_a71c7c2e11c0fbb94d7fa9a7bc049e61e}
+
+
+Definition at line 16 of file enemyShip.cpp.
+
+
+\begin{DoxyCode}
+17 {
+18     return QRectF(0, 0, 100, 100);
+19 }
+\end{DoxyCode}
+\hypertarget{class_enemy_ship_body_a0b951ebac49d2fcdff2e460b050bd82e}{
+\index{EnemyShipBody@{EnemyShipBody}!paint@{paint}}
+\index{paint@{paint}!EnemyShipBody@{EnemyShipBody}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void EnemyShipBody::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_enemy_ship_body_a0b951ebac49d2fcdff2e460b050bd82e}
+
+
+Definition at line 21 of file enemyShip.cpp.
+
+
+\begin{DoxyCode}
+23 {
+24     Q_UNUSED(option);
+25     Q_UNUSED(widget);
+26     QPointF vertices[13] = {QPointF(0.0, 2.0),
+27                             QPointF(1.0, 1.0),
+28                             QPointF(2.0, 0.0),
+29                             QPointF(22.0, 0.0),
+30                             QPointF(23.0, 1.0),
+31                             QPointF(24.0, 2.0),
+32                             QPointF(24.0, 40.0),
+33                             QPointF(14.0, 48.0),
+34                             QPointF(13.0, 49.0),
+35                             QPointF(12.0, 50.0),
+36                             QPointF(11.0, 49.0),
+37                             QPointF(10.0, 48.0),
+38                             QPointF(0.0, 40.0)};
+39     
+40     painter->setPen(QPen(Qt::black, 0));
+41 
+42     QLinearGradient gradient(12, 0, 23, 0);
+43     gradient.setSpread(QGradient::ReflectSpread);
+44     gradient.setColorAt(0, Qt::lightGray);
+45     gradient.setColorAt(1, Qt::black);
+46 
+47     painter->setBrush(gradient);
+48     painter->drawPolygon(vertices, 13);
+49 }
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{enemy_ship_8h}{enemyShip.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{enemy_ship_8cpp}{enemyShip.cpp}\end{DoxyCompactItemize}

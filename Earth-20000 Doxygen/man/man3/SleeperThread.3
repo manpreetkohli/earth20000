@@ -1,0 +1,40 @@
+.TH "SleeperThread" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SleeperThread \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <sleeperthread.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBmsleep\fP (unsigned long msecs)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Manpreet Kohli CS 340, Fall 2009
+.PP
+\fBSleeperThread.cpp\fP: file to utilize the sleep functionality of QThread. 
+.PP
+Definition at line 14 of file sleeperthread.h.
+.SH "Member Function Documentation"
+.PP 
+.SS "void SleeperThread::msleep (unsigned long msecs)"implement sleep functionality of QThread The function exposes the protected function inside QThread to implement it 
+.PP
+Definition at line 7 of file sleeperthread.cpp.
+.PP
+.nf
+8 {
+9     QThread::msleep(msecs);
+10 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

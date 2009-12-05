@@ -1,0 +1,173 @@
+.TH "Ammo" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Ammo \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ammo.h>\fP
+.PP
+Inherited by \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAmmo\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~Ammo\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)"
+.br
+.ti -1c
+.RI "virtual QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "virtual void \fBadvance\fP (int phase)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QPixmap \fBshipsImage\fP"
+.br
+.ti -1c
+.RI "qreal \fBdirectionX\fP"
+.br
+.ti -1c
+.RI "qreal \fBdirectionY\fP"
+.br
+.ti -1c
+.RI "qreal \fBpositionX\fP"
+.br
+.ti -1c
+.RI "qreal \fBpositionY\fP"
+.br
+.ti -1c
+.RI "qreal \fBwidth\fP"
+.br
+.ti -1c
+.RI "qreal \fBheight\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipXPosition\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Author: Ivan Collazo File: \fBship.cpp\fP Date: 10/05/2009 This class is a super class for ammo in earth:20000
+.PP
+creates a super class of ammo 
+.PP
+Definition at line 16 of file ammo.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Ammo::Ammo ()"Author: Ivan Collazo File: \fBammo.cpp\fP Date: 10/20/2009 This is .cpp file for space ships bullets in earth20000
+.PP
+constructor 
+.PP
+Definition at line 14 of file ammo.cpp.
+.PP
+.nf
+15 {
+16     directionX = 0;                         // set the X-axis increment for the movement
+17     directionY = 0;                        // set the Y-axis increment for the movement
+18     width = 0;                             // width of the bullet
+19     height = 0;                            // height of the bullet
+20 }
+.fi
+.SS "Ammo::~Ammo ()\fC [virtual]\fP"destructor 
+.PP
+Definition at line 25 of file ammo.cpp.
+.PP
+.nf
+26 {
+27 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "void Ammo::advance (int phase)\fC [private, virtual]\fP"this method adds motion to the shipsbullet 
+.PP
+Reimplemented in \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.PP
+Definition at line 48 of file ammo.cpp.
+.PP
+.nf
+49 {
+50     setPos(positionX,positionY);
+51 }
+.fi
+.SS "QRectF Ammo::boundingRect () const\fC [private, virtual]\fP"this method does the bounding rectangle of the object for collision detection 
+.PP
+Reimplemented in \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.PP
+Definition at line 40 of file ammo.cpp.
+.PP
+.nf
+41 {
+42   return QRectF(positionX,positionY,width,height);
+43 }
+.fi
+.SS "void Ammo::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)\fC [private, virtual]\fP"this method is called whenever the ammo needs to be drawn 
+.PP
+Reimplemented in \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.PP
+Definition at line 32 of file ammo.cpp.
+.PP
+.nf
+33 {
+34     painter->drawRect(positionX,positionY,width,height);
+35 }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "qreal \fBAmmo::directionX\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.PP
+Definition at line 23 of file ammo.h.
+.SS "qreal \fBAmmo::directionY\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.PP
+Definition at line 23 of file ammo.h.
+.SS "qreal \fBAmmo::height\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.PP
+Definition at line 24 of file ammo.h.
+.SS "qreal \fBAmmo::positionX\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.PP
+Definition at line 23 of file ammo.h.
+.SS "qreal \fBAmmo::positionY\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.PP
+Definition at line 23 of file ammo.h.
+.SS "QPixmap \fBAmmo::shipsImage\fP\fC [private]\fP"
+.PP
+Definition at line 20 of file ammo.h.
+.SS "qreal \fBAmmo::shipXPosition\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.PP
+Definition at line 24 of file ammo.h.
+.SS "qreal \fBAmmo::width\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienShipBullet\fP, \fBMotherShipBullet\fP, \fBShipBullet\fP, and \fBShipsMissiles\fP.
+.PP
+Definition at line 24 of file ammo.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

@@ -1,0 +1,1092 @@
+\hypertarget{class_ball}{
+\section{Ball Class Reference}
+\label{class_ball}\index{Ball@{Ball}}
+}
+
+
+{\ttfamily \#include $<$ball.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_ball_a30e61563c2285136d241396826967ca5}{Ball} (\hyperlink{class_space_ship}{SpaceShip} $\ast$ship)
+\item 
+\hyperlink{class_ball_a20f2f6ac0bf648f406a8e12e63429fcd}{$\sim$Ball} ()
+\item 
+void \hyperlink{class_ball_aacd6dd3f04beb5d6cb7b09b3b8b42dda}{setPositionX} (qreal pos)
+\item 
+void \hyperlink{class_ball_abcff8feb2c1c83085e07155a8aea088e}{setShipPositon} (int pos)
+\item 
+void \hyperlink{class_ball_af0419f8ca126be79df52185f51bec278}{setSkip} (bool value)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_ball_a016c7ea71cd5b999189b814dab4b96a3}{getSkip} ()
+\item 
+void \hyperlink{class_ball_a269f58ffac3a2ec3ad18be40df079816}{initializeScore} ()
+\item 
+void \hyperlink{class_ball_ac61500d8ef7bbb595175da04c323949c}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget)
+\item 
+QRectF \hyperlink{class_ball_ae68484e656a6c7a195e41185c06e9e8f}{boundingRect} () const 
+\item 
+void \hyperlink{class_ball_adc25aa6b771ad0bf296d10db4ebcd158}{advance} (int phase)
+\item 
+void \hyperlink{class_ball_a9da8ae4c7a2bd29919b8eae1ad5a3b1c}{removeSpawn} (int currentLives)
+\item 
+void \hyperlink{class_ball_a83e89d3d0787c7bb339014be48f6ff03}{loadStory} (int levelNumber)
+\item 
+void \hyperlink{class_ball_ad6e9abee09d5e6f9834071bd2045e312}{loadStoryScreen} (QGraphicsScene $\ast$scene, int level, QString levelNumber)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QGraphicsTextItem $\ast$ \hyperlink{class_ball_a7b47b0a7d1ff7ea193a1035b399abeaf}{scoreDisplay}
+\item 
+qreal \hyperlink{class_ball_a2442b2ceb1bdab9cb1d829cc35fb6aa4}{directionX}
+\item 
+qreal \hyperlink{class_ball_aed25c719861fb4a6cc245d4792576fb9}{directionY}
+\item 
+qreal \hyperlink{class_ball_a0337f9f0526bac5d34b8ead4d4b1abca}{positionX}
+\item 
+qreal \hyperlink{class_ball_abfd862991526b1acef79f3651e3056e1}{positionY}
+\item 
+qreal \hyperlink{class_ball_a94c4804af675557bf6f59c9db0426eb4}{ballDirection}
+\item 
+qreal \hyperlink{class_ball_a3d1c8506eef7e0fbac97df090d320cfd}{shipXPosition}
+\item 
+bool \hyperlink{class_ball_a41ecbffc5befc38ab013c41fe86cda41}{skip}
+\item 
+QFont $\ast$ \hyperlink{class_ball_a7e1772c390324066ab62d42f18dbd04d}{scoreFont}
+\item 
+QPixmap \hyperlink{class_ball_a45214a2a52bbb8d2635e2233d7be8d91}{ballImage}
+\item 
+int \hyperlink{class_ball_a4228ca7d0e514c7a5396756301a451e6}{counter}
+\item 
+\hyperlink{class_space_ship}{SpaceShip} $\ast$ \hyperlink{class_ball_a056866440103518774a90e7c037e660d}{playersShip}
+\item 
+QGraphicsTextItem $\ast$ \hyperlink{class_ball_a0c03dcd274f553cc049ed0ede546b33f}{storyText}
+\item 
+\hyperlink{class_sleeper_thread}{SleeperThread} $\ast$ \hyperlink{class_ball_a5129c6e48575e4599ad1d5aba6e26e2b}{t}
+\item 
+long \hyperlink{class_ball_a51083e10e55e81e79491670c42525bfa}{timer}
+\item 
+double \hyperlink{class_ball_a230382eb75790548b8c504c511449a77}{factor}
+\item 
+bool \hyperlink{class_ball_a8b651526e7ac08c042a1aac5e287556d}{posXDir}
+\item 
+bool \hyperlink{class_ball_a2711040c89603b039982eb1c48c7d56c}{posYDir}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{class_ball_a8f5ad3bbfeffac57949439217f806ac7}{scoreCount} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manpreet Kohli CS 340, Fall 2009
+
+\hyperlink{ball_8cpp}{Ball.cpp}: creates the ball that bounces around inside the level
+
+\hyperlink{class_ball}{Ball} motion originally coded by Manpreet Kohli and Ivan Collazo. Later modified by Natraj Subramanian for the use of powerups
+
+\hyperlink{class_block}{Block} collision detection and reactive movement coded by Natraj Subramanian
+
+Powerups by Natraj Subramanian 
+
+Definition at line 24 of file ball.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_ball_a30e61563c2285136d241396826967ca5}{
+\index{Ball@{Ball}!Ball@{Ball}}
+\index{Ball@{Ball}!Ball@{Ball}}
+\subsubsection[{Ball}]{\setlength{\rightskip}{0pt plus 5cm}Ball::Ball ({\bf SpaceShip} $\ast$ {\em ship})}}
+\label{class_ball_a30e61563c2285136d241396826967ca5}
+constructor 
+
+Definition at line 22 of file ball.cpp.
+
+
+\begin{DoxyCode}
+23 {
+24     playersShip = ship;
+25     ballImage.load(":soccer.png");            // load an image for the ball
+26     ballImage.load(":cricketball.png");       // load an image for the ball
+27     factor = 0.25;
+28     directionX = 1.0;                         // set the X-axis increment for the
+       movement
+29     directionY = -1.0;                        // set the Y-axis increment for the
+       movement
+30     positionX = 0;                            // initial X coordinate of the ball
+      
+31     positionY = 0;                            // initial Y coordinate of the ball
+      
+32     posXDir = true;
+33     posYDir = true;
+34     setPos(positionX, positionY);             // set initial position of the ball
+      
+35     counter = 0;                              // to keep track of the no. of bloc
+      ks that have been destroyed
+36     t = new SleeperThread();
+37     scoreFont = new QFont();
+38     initializeScore();
+39     skip = false;
+40 }
+\end{DoxyCode}
+\hypertarget{class_ball_a20f2f6ac0bf648f406a8e12e63429fcd}{
+\index{Ball@{Ball}!$\sim$Ball@{$\sim$Ball}}
+\index{$\sim$Ball@{$\sim$Ball}!Ball@{Ball}}
+\subsubsection[{$\sim$Ball}]{\setlength{\rightskip}{0pt plus 5cm}Ball::$\sim$Ball ()}}
+\label{class_ball_a20f2f6ac0bf648f406a8e12e63429fcd}
+destructor by Ivan 
+
+Definition at line 46 of file ball.cpp.
+
+
+\begin{DoxyCode}
+47 {
+48     qDebug() << "Destructor";
+49     delete this;
+50 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ball_adc25aa6b771ad0bf296d10db4ebcd158}{
+\index{Ball@{Ball}!advance@{advance}}
+\index{advance@{advance}!Ball@{Ball}}
+\subsubsection[{advance}]{\setlength{\rightskip}{0pt plus 5cm}void Ball::advance (int {\em phase})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_adc25aa6b771ad0bf296d10db4ebcd158}
+created and modified by all 3 of us function to add motion to the ball inside the board, check for cheat mode, check for collisions, check for powerups, and to check if the ball went beyond the bottom of the screen to respawn 
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ BEGIN SPACESHIP COLLISION RULES
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ END SPACESHIP COLLISION RULES
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ BEGIN BLOCK COLLISION RULES
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ END BLOCK COLLISION RULES
+
+Definition at line 166 of file ball.cpp.
+
+
+\begin{DoxyCode}
+167 {
+168     // added by Manpreet Kohli
+169     // check if cheat mode got activated, and if so, skip to the next level
+170     if (getSkip())
+171     {
+172         setSkip(false);
+173         if (Constants::levelNumber == 1)
+174             loadStory(1);
+175         else if (Constants::levelNumber == 2)
+176             loadStory(2);
+177         else if (Constants::levelNumber == 3)
+178             loadStory(3);
+179         else if (Constants::levelNumber == 4)
+180             loadStory(4);
+181     }
+182 
+183     int blockX, blockY;
+184     if (!phase) return;
+185     QList<QGraphicsItem *> hits = this->collidingItems(Qt::IntersectsItemBounding
+      Rect);
+186     
+187     // Power up i.e. decrease the speed of the ball
+188     // Natraj Subramanian
+189     if(Constants::powerup == 1 && timer != 0)
+190     {
+191         Constants::timer->stop();
+192         Constants::timer->start(3);
+193         timer = timer + 10;
+194     }
+195     // Power down i.e. increase the speed of the ball
+196     // Natraj Subramanian
+197     if(Constants::powerup == 2 && timer != 0)
+198     {
+199         factor = 0.75;
+200         timer = timer + 10;
+201     }
+202 
+203     // Timer for how long each powerup should stay in effect
+204     // Once that timer value has been exceeded, reset the speed
+205     // back to normal
+206     // Natraj Subramanian
+207     if(Constants::powerup == 1 && timer > 25000)
+208     {
+209         factor = 0.25;
+210         Constants::timer->stop();
+211         Constants::timer->start(1);
+212         timer = 0;
+213     }
+214     if(Constants::powerup == 2 && timer > 10000)
+215     {
+216         factor = 0.25;
+217         Constants::timer->stop();
+218         Constants::timer->start(1);
+219         timer = 0;
+220     }
+221 
+222     // Ivan Collazo
+223     // checks to see if ball collides with something then does ball physics
+224     if (!hits.isEmpty())
+225     {
+226         if(hits.first()->type() == ID_SPACESHIP)
+227         {           
+228                  /*!******************************
+229                    BEGIN SPACESHIP COLLISION RULES
+230                   ********************************/
+231             // physics when the ball collides with top of Ship
+232             // Ivan Collazo
+233             if (positionY == 0)
+234             {                
+235                 // Manpreet Kohli
+236                 // play ship hit sound effect
+237                 QSound *shipHit = new QSound("paddle.wav", 0);
+238                 shipHit->setLoops(1);
+239                 shipHit->play();
+240 
+241                 if (ballDirection == 4)     //Ball traveling SE
+242                 {
+243                     // physics for when the ball hits left most quarter portion o
+      f the ship
+244                     if ((positionX >= shipXPosition - 60) && (positionX <= 
+      shipXPosition - 21))
+245                     {
+246                         directionX = 1;     //directionX;
+247                         directionY = -1;    //-directionY;
+248                     }
+249 
+250                     // physics for when the ball hits left quarter portion of the
+       ship
+251                     else if ((positionX >= shipXPosition - 20) && (positionX <= 
+      shipXPosition))
+252                     {
+253                         directionX = 1;     //directionX;
+254                         directionY = -2;    //-directionY;
+255                     }
+256 
+257                     // physics for when the ball hits right quarter portion of th
+      e ship
+258                     else if ((positionX >= shipXPosition) && (positionX <= 
+      shipXPosition + 20))
+259                     {
+260                         directionX = 1;     //directionX;
+261                         directionY = -2;    //-directionY;
+262                     }
+263 
+264                     // physics for when the ball hits right most quarter portion 
+      of the ship
+265                     else if ((positionX >= shipXPosition + 21) && (positionX <= 
+      shipXPosition + 60))
+266                     {
+267                         directionX = 2;     // directionX + 1;
+268                         directionY = -1;    //-directionY;
+269                     }
+270                 }
+271                 else if (ballDirection == 3) //Ball traveling SW
+272                 {
+273                     // physics for when the ball hits left most quarter portion o
+      f the ship
+274                     if ((positionX >= shipXPosition - 60) && (positionX <= 
+      shipXPosition - 21))
+275                     {
+276                         directionX = -2;    //directionX;
+277                         directionY = -1;    //directionY;
+278                     }
+279 
+280                     // physics for when the ball hits left quarter portion of the
+       ship
+281                     else if ((positionX >= shipXPosition - 20) && (positionX <= 
+      shipXPosition))
+282                     {
+283                         directionX = -1;    //directionX;
+284                         directionY = -2;    //directionY;
+285                     }
+286 
+287                     // physics for when the ball hits right quarter portion of th
+      e ship
+288                     else if ((positionX >= shipXPosition) && (positionX <= 
+      shipXPosition + 20))
+289                     {
+290                         directionX = -1;    //directionX;
+291                         directionY = -2;    //-directionY;
+292                     }
+293 
+294                     // physics for when the ball hits right most quarter portion 
+      of the ship
+295                     else if ((positionX >= shipXPosition + 21) && (positionX <= 
+      shipXPosition + 60))
+296                     {
+297                         directionX = -1;    //directionX;
+298                         directionY = -1;    //-directionY;
+299                     }
+300                 }
+301             }
+302             // physics when the ball collides portion near the event horizons of 
+      the ship
+303             // Ivan Collazo
+304             else if ((positionY <= 15) && (positionY >= 1) && ((positionX <= 
+      shipXPosition - 40) || (positionX >= shipXPosition - 40)))
+305             {
+306                 // Manpreet Kohli
+307                 // play ship hit sound effect
+308                 QSound *shipHit = new QSound("paddle.wav", 0);
+309                 shipHit->setLoops(1);
+310                 shipHit->play();
+311 
+312                 if (ballDirection == 4)     //Ball traveling SE
+313                 {
+314                     directionX = -3;        //directionX;
+315                     directionY = -1;        //-directionY;
+316                 }
+317 
+318                 else if (ballDirection == 3) //Ball traveling SW
+319                 {
+320                     directionX = 3;         //directionX;
+321                     directionY = -1;        //-directionY;
+322                 }
+323             }
+324 
+325             // physics when the ball collides with the event horizon of ship
+326             // Ivan Collazo
+327             else if ((positionY > 15) && ((positionX == shipXPosition - 40) || (
+      positionX == shipXPosition + 40)))
+328             {
+329                 // Manpreet Kohli
+330                 // play ship hit sound effect
+331                 QSound *shipHit = new QSound("paddle.wav", 0);
+332                 shipHit->setLoops(1);
+333                 shipHit->play();
+334 
+335                 if (ballDirection == 4)     //Ball traveling SE
+336                 {
+337                     directionX = -6;
+338                     directionY = 6;
+339                 }
+340 
+341                 else if (ballDirection == 3) //Ball traveling SW
+342                 {
+343                     directionX = 6;
+344                     directionY = 6;
+345                 }
+346             }
+347 
+348                  /*!********************************
+349                     END SPACESHIP COLLISION RULES
+350                   **********************************/
+351         }
+352         else
+353         {
+354             if(hits.first()->type() == BLOCKID)
+355             {
+356                 // Manpreet Kohli
+357                 // play block collision sound effect
+358                 QSound *blockHit = new QSound("brick.wav", 0);
+359                 blockHit->setLoops(1);
+360                 blockHit->play();
+361 
+362                 // Get the x and y parameters of the block that the ball just
+363                 // collided with and use it for calculating movement after
+364                 // collision
+365                 blockX = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getX
+      Pos();
+366                 blockY = ((Block *)(((Block *)(hits.at(0)))->parentItem()))->getY
+      Pos();
+367                 
+368                 /*!******************************
+369                    BEGIN BLOCK COLLISION RULES
+370                  ********************************/
+371                 if(((Block *)(hits.at(0)))->getColor2() != 0)
+372                 {
+373                     ((Block *)(hits.at(0)))->setVisible(false);
+374                     ((Block *)(hits.at(0)))->setColor1(1);
+375 
+376                     switch(((Block *)(hits.at(0)))->getColor2())
+377                     {
+378                     case 6:
+379                         ((Block *)(hits.at(0)))->setColor2(5);
+380                         scoreCount+=5;
+381                         break;
+382                     case 5:
+383                         ((Block *)(hits.at(0)))->setColor2(4);
+384                         scoreCount+=6;
+385                         break;
+386                     case 4:
+387                         ((Block *)(hits.at(0)))->setColor2(3);
+388                         scoreCount+=7;
+389                         break;
+390                     case 3:
+391                         ((Block *)(hits.at(0)))->setColor2(2);
+392                         scoreCount+=8;
+393                         break;
+394                     case 2:
+395                         ((Block *)(hits.at(0)))->setColor2(0);
+396                         scoreCount+=9;
+397                         break;
+398                     }
+399 
+400                     scoreDisplay->setPlainText(QString::number(scoreCount, 10));
+401                     ((Block *)(hits.at(0)))->show();                    
+402                 }
+403                 else
+404                 {
+405                     ((Block *)(hits.at(0)))->setVisible(false);
+406                     scoreCount+=10;
+407                     scoreDisplay->setPlainText(QString::number(scoreCount, 10));
+408 
+409                     if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPow
+      erup() == 1)
+410                     {                        
+411                         Powerup *oneup = new Powerup;
+412                         oneup->setPosition(blockX, blockY);
+413                         oneup->setType(1);
+414                         oneup->setVisible(true);
+415                         this->scene()->addItem(oneup);
+416                         timer = 10;
+417                     }
+418                     if(((Block *)(((Block *)(hits.at(0)))->parentItem()))->getPow
+      erup() == 2)
+419                     {
+420                         Powerup *anotherup = new Powerup;
+421                         anotherup->setPosition(blockX, blockY);
+422                         anotherup->setType(2);
+423                         anotherup->setVisible(true);
+424                         this->scene()->addItem(anotherup);
+425                         timer = 10;
+426                     }
+427                     counter++;
+428                 }
+429                                 
+430                 // When the point of impact is on the BOTTOM
+431                 // end of the block. Y > blockY simply because the
+432                 // Y axes is inverted in the scope of the game board
+433                 // and hence, in reality, it is checking if the ball has
+434                 // hit the bottom side of the block.
+435                 if((positionX >= blockX - 19 &&
+436                     positionX <= blockX + 27) &&
+437                    positionY >= blockY + 25)
+438                 {
+439                     if(posXDir == true && posYDir == true)
+440                     {
+441                         directionX = directionX;
+442                         directionY = -directionY;
+443                         posXDir = true;
+444                         posYDir = false;
+445                     }
+446                     if(posXDir == false && posYDir == true)
+447                     {
+448                         directionX = directionX;
+449                         directionY = -directionY;
+450                         posXDir = false;
+451                         posYDir = false;
+452                     }
+453 
+454                 }
+455                 // If the ball hit the RIGHT SIDE of the block
+456                 // Ball positionX is at the farther right end
+457                 // and ball positionY is at the lower end of the block
+458                 if(positionX >= blockX + 25 &&
+459                    (positionY <= blockY + 27 &&
+460                     positionY >= blockY - 21))
+461                 {
+462                     if(posXDir == false && posYDir == true)
+463                     {
+464                         directionX = -directionX;
+465                         directionY = directionY;
+466                         posXDir = true;
+467                         posYDir = true;
+468                     }
+469                     if(posXDir == false && posYDir == false)
+470                     {
+471                         directionX = -directionX;
+472                         directionY = directionY;
+473                         posXDir = true;
+474                         posYDir = false;
+475                     }
+476                 }
+477                 // If the ball hit the LEFT SIDE of the block
+478                 // Ball positionX is at the farther right end
+479                 // and ball positionY is at the lower end of the block
+480                 if((positionX >= blockX - 21 &&
+481                     positionX <= blockX - 16) &&
+482                    (positionY <= blockY + 27 &&
+483                     positionY >= blockY - 21))
+484                 {
+485                     if(posXDir == true && posYDir == true)
+486                     {
+487                         directionX = -directionX;
+488                         directionY = directionY;
+489                         posXDir = false;
+490                         posYDir = true;
+491                     }
+492                     if(posXDir == true && posYDir == false)
+493                     {
+494                         directionX = -directionX;
+495                         directionY = directionY;
+496                         posXDir = false;
+497                         posYDir = false;
+498                     }
+499                 }
+500                 // If the ball hits the TOP side of the block
+501                 // PositionY is calculated in such a way that there
+502                 // is a bit of a standard deviation involved with the
+503                 // actual impact point
+504                 if((positionX >= blockX - 19 &&
+505                     positionX <= blockX + 27) &&
+506                    (positionY >= blockY - 21 &&
+507                     positionY <= blockY - 16))
+508                 {
+509                     if(posXDir == true && posYDir == false)
+510                     {
+511                         directionX = directionX;
+512                         directionY = -directionY;
+513                         posXDir = true;
+514                         posYDir = true;
+515                     }
+516                     if(posXDir == false && posYDir == false)
+517                     {
+518                         directionX = directionX;
+519                         directionY = -directionY;
+520                         posXDir = false;
+521                         posYDir = true;
+522                     }
+523                 }
+524 
+525                       /*!********************************
+526                              END BLOCK COLLISION RULES
+527                        **********************************/
+528             }
+529 
+530             // Manpreet Kohli
+531             // check to see how many blocks have been eliminated in each level,
+532             // and skip to the next level if all of them are done
+533             if (Constants::levelNumber == 1 && counter == 84)             // shou
+      ld be 84 for level 1
+534                 loadStory(1);
+535             else if (Constants::levelNumber == 2 && counter == 132)       // shou
+      ld be 132 for level 2
+536                 loadStory(2);
+537             else if (Constants::levelNumber == 3 && counter == 162)       // shou
+      ld be 162 for level 3
+538                 loadStory(3);
+539             else if (Constants::levelNumber == 4 && counter == 148)       // shou
+      ld be 148 for level 4
+540                 loadStory(4);
+541         }
+542     }
+543 
+544     // direction of ball (NE) // Ivan Collazo
+545     if ((directionX > 0) && (directionY < 0))
+546     {
+547         ballDirection = 1;
+548         posXDir = true;
+549         posYDir = true;
+550     }
+551     // direction of ball (NW) // Ivan Collazo
+552     else if ((directionX < 0) && (directionY < 0) )
+553     {
+554         ballDirection = 2;
+555         posXDir = false;
+556         posYDir = true;
+557     }
+558     // direction of ball (SW) // Ivan Collazo
+559     else if ((directionX < 0) && (directionY > 0))
+560     {
+561         ballDirection = 3;
+562         posXDir = false;
+563         posYDir = false;
+564     }
+565     // direction of ball (SE) // Ivan Collazo
+566     else if ((directionX > 0) && (directionY > 0))
+567     {
+568         ballDirection = 4;
+569         posXDir = true;
+570         posYDir = false;
+571     }
+572 
+573     // Set the position parameters
+574     positionX += directionX * factor;
+575     positionY += directionY * factor;
+576 
+577     // ball bounces off the left and right side of the screen
+578     if ((positionX >= 360) || (positionX <= -380))
+579     {
+580         directionX = -directionX;
+581         posXDir = !(posXDir);
+582     }
+583 
+584     // ball bounces off the top part of the screen
+585     if (positionY <= -630)
+586     {
+587         directionY = -directionY;
+588         posYDir = !(posYDir);
+589     }
+590 
+591     // added by Manpreet Kohli
+592     // if the ball went beyond the bottom of the screen
+593     if (positionY >= 95)
+594     {
+595         // call function to remove a spawn if spawns remain
+596         if (Constants::count == 3)
+597             removeSpawn(3);
+598         else if (Constants::count == 2)
+599             removeSpawn(2);
+600         else if (Constants::count == 1)
+601             removeSpawn(1);
+602 
+603         // otherwise end the game
+604         else if (Constants::count == 0)
+605         {
+606             // add game over logic
+607             QGraphicsView *temp  = this->scene()->views().at(0);
+608             QGraphicsScene *gameOverScene = new QGraphicsScene;
+609             temp->setScene(gameOverScene);
+610             gameOverScene->setSceneRect(0, 0, temp->geometry().width() - 5, temp-
+      >geometry().height() - 5);       // set dimensions of the scene
+611 
+612             QFont *font = new QFont();
+613             font->setBold(true);
+614             font->setPointSize(60);
+615 
+616             // play game over music
+617             QSound *gameover = new QSound("gameover.wav", 0);
+618             gameover->setLoops(1);
+619             gameover->play();
+620 
+621             // display game over message
+622             QGraphicsTextItem *gameOver = gameOverScene->addText(QString("GAME OV
+      ER"), *font);
+623             gameOver->setDefaultTextColor(Qt::cyan);
+624             gameOver->setOpacity(0.8);
+625             gameOver->setPos(150, 200);
+626 
+627             font->setPointSize(13);
+628             font->setWeight(75);
+629 
+630             // display an exit button
+631             QPushButton *exit = new QPushButton(temp->parentWidget());
+632             exit->setText("EXIT");
+633             exit->setGeometry(300, 600, 150, 40);
+634             exit->setFont(*font);
+635             exit->show();
+636             exit->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+637 
+638             Constants::timer->disconnect(this->scene(), SLOT(advance()));
+639             Constants::timer->stop();
+640 
+641             QObject::connect(exit, SIGNAL(clicked()), temp->parentWidget(), SLOT(
+      close()));
+642         }
+643 
+644         // Reset all the values and parameters of the ball and disconnect
+645         // it from the timer so that it doesn't start moving immediately
+646         // after respawning
+647         positionX = playersShip->x();             // reset X coordinate to 0
+648         positionY = playersShip->y();             // reset Y coordinate to 0
+649         setPos(positionX, positionY);             // set the coordinates to initi
+      al position
+650         factor = 0.25;
+651         directionX = 1.0;                         // set the X-axis increment for
+       the movement
+652         directionY = -1.0;                        // set the Y-axis increment for
+       the movement
+653         Constants::powerup = 0;                   // Reset the powerup value
+654         posXDir = true;
+655         posYDir = true;
+656 
+657         // Manpreet Kohli
+658         // disconnect the timer with the ball and stop it
+659         Constants::timer->disconnect(this->scene(), SIGNAL(advance()));
+660         Constants::timer->stop();
+661     }
+662 
+663     // set the new position of the ball
+664     setPos(positionX,positionY);
+665 }
+\end{DoxyCode}
+\hypertarget{class_ball_ae68484e656a6c7a195e41185c06e9e8f}{
+\index{Ball@{Ball}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!Ball@{Ball}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF Ball::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_ae68484e656a6c7a195e41185c06e9e8f}
+added by Manpreet Kohli Define the bounding rectangle of the object for collision detection 
+
+Definition at line 81 of file ball.cpp.
+
+
+\begin{DoxyCode}
+82 {
+83     return QRectF(375, 622, 20, 20);
+84 }
+\end{DoxyCode}
+\hypertarget{class_ball_a016c7ea71cd5b999189b814dab4b96a3}{
+\index{Ball@{Ball}!getSkip@{getSkip}}
+\index{getSkip@{getSkip}!Ball@{Ball}}
+\subsubsection[{getSkip}]{\setlength{\rightskip}{0pt plus 5cm}bool Ball::getSkip ()\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a016c7ea71cd5b999189b814dab4b96a3}
+added by Manpreet Kohli returns the variable skip 
+
+Definition at line 128 of file ball.cpp.
+
+
+\begin{DoxyCode}
+129 {
+130     return skip;
+131 }
+\end{DoxyCode}
+\hypertarget{class_ball_a269f58ffac3a2ec3ad18be40df079816}{
+\index{Ball@{Ball}!initializeScore@{initializeScore}}
+\index{initializeScore@{initializeScore}!Ball@{Ball}}
+\subsubsection[{initializeScore}]{\setlength{\rightskip}{0pt plus 5cm}void Ball::initializeScore ()\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a269f58ffac3a2ec3ad18be40df079816}
+added by Manpreet Kohli. displays the score in the HUD 
+
+Definition at line 56 of file ball.cpp.
+
+
+\begin{DoxyCode}
+57 {
+58     scoreFont ->setFamily("SansSerif");
+59     scoreFont ->setBold(true);
+60     scoreFont ->setPointSize(24);
+61     scoreDisplay = playersShip->scene()->addText(QString::number(scoreCount, 10),
+       *scoreFont);
+62     scoreDisplay->setDefaultTextColor(Qt::cyan);
+63     scoreDisplay->setOpacity(1.0);
+64     scoreDisplay->setPos(330, -10);
+65     scoreDisplay->show();
+66 }
+\end{DoxyCode}
+\hypertarget{class_ball_a83e89d3d0787c7bb339014be48f6ff03}{
+\index{Ball@{Ball}!loadStory@{loadStory}}
+\index{loadStory@{loadStory}!Ball@{Ball}}
+\subsubsection[{loadStory}]{\setlength{\rightskip}{0pt plus 5cm}void Ball::loadStory (int {\em levelNumber})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a83e89d3d0787c7bb339014be48f6ff03}
+added by Manpreet Kohli generic function to load story screen right before level starts 
+
+Definition at line 98 of file ball.cpp.
+
+
+\begin{DoxyCode}
+99 {
+100     if (levelNumber == 1)
+101         loadStoryScreen(this->scene(), 2, "    LEVEL 2");     // call function to
+       load the level 2 story screen
+102     else if (levelNumber == 2)
+103         loadStoryScreen(this->scene(), 3, "    LEVEL 3");
+104     else if (levelNumber == 3)
+105         loadStoryScreen(this->scene(), 4, "FINAL LEVEL");
+106     else if (levelNumber == 4)
+107         loadStoryScreen(this->scene(), 5, "HOW THE FUCK DID YOU BEAT THIS GAME?")
+      ;
+108 
+109     this->hide();                           // hide the ball
+110     this->scene()->removeItem(this);        // remove the ball from the scene
+111     playersShip->hide();                    // hide the spaceship
+112     counter = 0;
+113 }
+\end{DoxyCode}
+\hypertarget{class_ball_ad6e9abee09d5e6f9834071bd2045e312}{
+\index{Ball@{Ball}!loadStoryScreen@{loadStoryScreen}}
+\index{loadStoryScreen@{loadStoryScreen}!Ball@{Ball}}
+\subsubsection[{loadStoryScreen}]{\setlength{\rightskip}{0pt plus 5cm}void Ball::loadStoryScreen (QGraphicsScene $\ast$ {\em scene}, \/  int {\em level}, \/  QString {\em levelNumber})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_ad6e9abee09d5e6f9834071bd2045e312}
+added by Manpreet Kohli function to hide the HUD and other info and load screen right before the level starts 
+
+Definition at line 671 of file ball.cpp.
+
+
+\begin{DoxyCode}
+672 {
+673     // hide the spawns remaining
+674     if (Constants::life1 != NULL)
+675         Constants::life1->hide();
+676     if (Constants::life2 != NULL)
+677         Constants::life2->hide();
+678     if (Constants::life3 != NULL)
+679         Constants::life3->hide();
+680 
+681     Constants::levelInfo->hide();       // hide the HUD level info
+682 
+683     QFont *font = new QFont();
+684     font->setBold(true);
+685     font->setPointSize(80);
+686     if (level == 5)
+687         font->setPointSize(23);
+688 
+689     storyText = scene->addText(levelNumber, *font);
+690 
+691     storyText->setDefaultTextColor(Qt::blue);
+692     storyText->setPos(40, 70);
+693     storyText->show();
+694 
+695     // play the start level music
+696     QSound *intro = new QSound("intro.wav", 0);
+697     intro->setLoops(1);
+698     intro->play();
+699 
+700     Constants::lives->hide();
+701 
+702     font->setPointSize(13);
+703     font->setBold(true);
+704     font->setWeight(75);
+705 
+706     Constants::cont = new QPushButton(scene->views().at(0)->parentWidget());
+707     Constants::cont->setText("CONTINUE");
+708     if (level == 5)
+709         Constants::cont->setText("EXIT");
+710     Constants::cont->setGeometry(300, 600, 150, 40);
+711     Constants::cont->setFont(*font);
+712     Constants::cont->show();
+713     Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);")
+      ;
+714 
+715     // if the continue button is clicked on the screen, load the next level
+716     if (level == 2)
+717         QObject::connect(Constants::cont, SIGNAL(clicked()), this->scene()->views
+      ().at(0)->parentWidget(), SLOT(loadLevel2()));
+718     else if (level == 3)
+719         QObject::connect(Constants::cont, SIGNAL(clicked()), this->scene()->views
+      ().at(0)->parentWidget(), SLOT(loadLevel3()));
+720     else if (level == 4)
+721         QObject::connect(Constants::cont, SIGNAL(clicked()), this->scene()->views
+      ().at(0)->parentWidget(), SLOT(loadLevel4()));
+722     else if (level == 5)
+723         QObject::connect(Constants::cont, SIGNAL(clicked()), this->scene()->views
+      ().at(0)->parentWidget(), SLOT(close()));
+724 }
+\end{DoxyCode}
+\hypertarget{class_ball_ac61500d8ef7bbb595175da04c323949c}{
+\index{Ball@{Ball}!paint@{paint}}
+\index{paint@{paint}!Ball@{Ball}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void Ball::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_ac61500d8ef7bbb595175da04c323949c}
+added by Manpreet Kohli. function that paints the ball below the loaded image 
+
+Definition at line 72 of file ball.cpp.
+
+
+\begin{DoxyCode}
+73 {
+74     painter->drawPixmap(375, 622, 20, 20, ballImage);
+75 }
+\end{DoxyCode}
+\hypertarget{class_ball_a9da8ae4c7a2bd29919b8eae1ad5a3b1c}{
+\index{Ball@{Ball}!removeSpawn@{removeSpawn}}
+\index{removeSpawn@{removeSpawn}!Ball@{Ball}}
+\subsubsection[{removeSpawn}]{\setlength{\rightskip}{0pt plus 5cm}void Ball::removeSpawn (int {\em currentLives})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a9da8ae4c7a2bd29919b8eae1ad5a3b1c}
+added by Manpreet Kohli function that removes a spawn from the HUD and sleeps for 3 secs to finish playing the respawning music 
+
+Definition at line 142 of file ball.cpp.
+
+
+\begin{DoxyCode}
+143 {
+144     if (currentLives == 3)
+145         this->scene()->removeItem(Constants::life3);        // remove a spawn fro
+      m the HUD
+146     else if (currentLives == 2)
+147         this->scene()->removeItem(Constants::life2);        // remove a spawn fro
+      m the HUD
+148     else if (currentLives == 1)
+149         this->scene()->removeItem(Constants::life1);        // remove a spawn fro
+      m the HUD
+150 
+151     // play respawn music
+152     QSound *spawnSound = new QSound("start.wav", 0);
+153     spawnSound->setLoops(1);
+154     spawnSound->play();
+155 
+156     Constants::count--;                                     // decrement no. of l
+      ives remaining
+157     t->msleep(3000);                                        // sleep for 3 secs
+158 }
+\end{DoxyCode}
+\hypertarget{class_ball_aacd6dd3f04beb5d6cb7b09b3b8b42dda}{
+\index{Ball@{Ball}!setPositionX@{setPositionX}}
+\index{setPositionX@{setPositionX}!Ball@{Ball}}
+\subsubsection[{setPositionX}]{\setlength{\rightskip}{0pt plus 5cm}void Ball::setPositionX (qreal {\em pos})}}
+\label{class_ball_aacd6dd3f04beb5d6cb7b09b3b8b42dda}
+
+
+Definition at line 133 of file ball.cpp.
+
+
+\begin{DoxyCode}
+134 {
+135     positionX += pos;
+136 }
+\end{DoxyCode}
+\hypertarget{class_ball_abcff8feb2c1c83085e07155a8aea088e}{
+\index{Ball@{Ball}!setShipPositon@{setShipPositon}}
+\index{setShipPositon@{setShipPositon}!Ball@{Ball}}
+\subsubsection[{setShipPositon}]{\setlength{\rightskip}{0pt plus 5cm}void Ball::setShipPositon (int {\em pos})}}
+\label{class_ball_abcff8feb2c1c83085e07155a8aea088e}
+function set the players \hyperlink{class_ship}{Ship} position to be used in the physics portion in the advance function 
+
+Definition at line 89 of file ball.cpp.
+
+
+\begin{DoxyCode}
+90 {
+91     shipXPosition = pos;
+92 }
+\end{DoxyCode}
+\hypertarget{class_ball_af0419f8ca126be79df52185f51bec278}{
+\index{Ball@{Ball}!setSkip@{setSkip}}
+\index{setSkip@{setSkip}!Ball@{Ball}}
+\subsubsection[{setSkip}]{\setlength{\rightskip}{0pt plus 5cm}void Ball::setSkip (bool {\em value})}}
+\label{class_ball_af0419f8ca126be79df52185f51bec278}
+added by Manpreet Kohli calls if the user has pressed period for cheat mode to skip to the next level 
+
+Definition at line 119 of file ball.cpp.
+
+
+\begin{DoxyCode}
+120 {
+121     skip = value;
+122 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_ball_a94c4804af675557bf6f59c9db0426eb4}{
+\index{Ball@{Ball}!ballDirection@{ballDirection}}
+\index{ballDirection@{ballDirection}!Ball@{Ball}}
+\subsubsection[{ballDirection}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ball::ballDirection}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a94c4804af675557bf6f59c9db0426eb4}
+
+
+Definition at line 28 of file ball.h.\hypertarget{class_ball_a45214a2a52bbb8d2635e2233d7be8d91}{
+\index{Ball@{Ball}!ballImage@{ballImage}}
+\index{ballImage@{ballImage}!Ball@{Ball}}
+\subsubsection[{ballImage}]{\setlength{\rightskip}{0pt plus 5cm}QPixmap {\bf Ball::ballImage}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a45214a2a52bbb8d2635e2233d7be8d91}
+
+
+Definition at line 34 of file ball.h.\hypertarget{class_ball_a4228ca7d0e514c7a5396756301a451e6}{
+\index{Ball@{Ball}!counter@{counter}}
+\index{counter@{counter}!Ball@{Ball}}
+\subsubsection[{counter}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Ball::counter}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a4228ca7d0e514c7a5396756301a451e6}
+
+
+Definition at line 35 of file ball.h.\hypertarget{class_ball_a2442b2ceb1bdab9cb1d829cc35fb6aa4}{
+\index{Ball@{Ball}!directionX@{directionX}}
+\index{directionX@{directionX}!Ball@{Ball}}
+\subsubsection[{directionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ball::directionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a2442b2ceb1bdab9cb1d829cc35fb6aa4}
+
+
+Definition at line 28 of file ball.h.\hypertarget{class_ball_aed25c719861fb4a6cc245d4792576fb9}{
+\index{Ball@{Ball}!directionY@{directionY}}
+\index{directionY@{directionY}!Ball@{Ball}}
+\subsubsection[{directionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ball::directionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_aed25c719861fb4a6cc245d4792576fb9}
+
+
+Definition at line 28 of file ball.h.\hypertarget{class_ball_a230382eb75790548b8c504c511449a77}{
+\index{Ball@{Ball}!factor@{factor}}
+\index{factor@{factor}!Ball@{Ball}}
+\subsubsection[{factor}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf Ball::factor}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a230382eb75790548b8c504c511449a77}
+
+
+Definition at line 40 of file ball.h.\hypertarget{class_ball_a056866440103518774a90e7c037e660d}{
+\index{Ball@{Ball}!playersShip@{playersShip}}
+\index{playersShip@{playersShip}!Ball@{Ball}}
+\subsubsection[{playersShip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SpaceShip}$\ast$ {\bf Ball::playersShip}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a056866440103518774a90e7c037e660d}
+
+
+Definition at line 36 of file ball.h.\hypertarget{class_ball_a0337f9f0526bac5d34b8ead4d4b1abca}{
+\index{Ball@{Ball}!positionX@{positionX}}
+\index{positionX@{positionX}!Ball@{Ball}}
+\subsubsection[{positionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ball::positionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a0337f9f0526bac5d34b8ead4d4b1abca}
+
+
+Definition at line 28 of file ball.h.\hypertarget{class_ball_abfd862991526b1acef79f3651e3056e1}{
+\index{Ball@{Ball}!positionY@{positionY}}
+\index{positionY@{positionY}!Ball@{Ball}}
+\subsubsection[{positionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ball::positionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_abfd862991526b1acef79f3651e3056e1}
+
+
+Definition at line 28 of file ball.h.\hypertarget{class_ball_a8b651526e7ac08c042a1aac5e287556d}{
+\index{Ball@{Ball}!posXDir@{posXDir}}
+\index{posXDir@{posXDir}!Ball@{Ball}}
+\subsubsection[{posXDir}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Ball::posXDir}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a8b651526e7ac08c042a1aac5e287556d}
+
+
+Definition at line 41 of file ball.h.\hypertarget{class_ball_a2711040c89603b039982eb1c48c7d56c}{
+\index{Ball@{Ball}!posYDir@{posYDir}}
+\index{posYDir@{posYDir}!Ball@{Ball}}
+\subsubsection[{posYDir}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Ball::posYDir}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a2711040c89603b039982eb1c48c7d56c}
+
+
+Definition at line 42 of file ball.h.\hypertarget{class_ball_a8f5ad3bbfeffac57949439217f806ac7}{
+\index{Ball@{Ball}!scoreCount@{scoreCount}}
+\index{scoreCount@{scoreCount}!Ball@{Ball}}
+\subsubsection[{scoreCount}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Ball::scoreCount} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}static, private\mbox{]}}}}
+\label{class_ball_a8f5ad3bbfeffac57949439217f806ac7}
+
+
+Definition at line 30 of file ball.h.\hypertarget{class_ball_a7b47b0a7d1ff7ea193a1035b399abeaf}{
+\index{Ball@{Ball}!scoreDisplay@{scoreDisplay}}
+\index{scoreDisplay@{scoreDisplay}!Ball@{Ball}}
+\subsubsection[{scoreDisplay}]{\setlength{\rightskip}{0pt plus 5cm}QGraphicsTextItem$\ast$ {\bf Ball::scoreDisplay}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a7b47b0a7d1ff7ea193a1035b399abeaf}
+
+
+Definition at line 27 of file ball.h.\hypertarget{class_ball_a7e1772c390324066ab62d42f18dbd04d}{
+\index{Ball@{Ball}!scoreFont@{scoreFont}}
+\index{scoreFont@{scoreFont}!Ball@{Ball}}
+\subsubsection[{scoreFont}]{\setlength{\rightskip}{0pt plus 5cm}QFont$\ast$ {\bf Ball::scoreFont}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a7e1772c390324066ab62d42f18dbd04d}
+
+
+Definition at line 33 of file ball.h.\hypertarget{class_ball_a3d1c8506eef7e0fbac97df090d320cfd}{
+\index{Ball@{Ball}!shipXPosition@{shipXPosition}}
+\index{shipXPosition@{shipXPosition}!Ball@{Ball}}
+\subsubsection[{shipXPosition}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ball::shipXPosition}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a3d1c8506eef7e0fbac97df090d320cfd}
+
+
+Definition at line 29 of file ball.h.\hypertarget{class_ball_a41ecbffc5befc38ab013c41fe86cda41}{
+\index{Ball@{Ball}!skip@{skip}}
+\index{skip@{skip}!Ball@{Ball}}
+\subsubsection[{skip}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Ball::skip}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a41ecbffc5befc38ab013c41fe86cda41}
+
+
+Definition at line 31 of file ball.h.\hypertarget{class_ball_a0c03dcd274f553cc049ed0ede546b33f}{
+\index{Ball@{Ball}!storyText@{storyText}}
+\index{storyText@{storyText}!Ball@{Ball}}
+\subsubsection[{storyText}]{\setlength{\rightskip}{0pt plus 5cm}QGraphicsTextItem$\ast$ {\bf Ball::storyText}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a0c03dcd274f553cc049ed0ede546b33f}
+
+
+Definition at line 37 of file ball.h.\hypertarget{class_ball_a5129c6e48575e4599ad1d5aba6e26e2b}{
+\index{Ball@{Ball}!t@{t}}
+\index{t@{t}!Ball@{Ball}}
+\subsubsection[{t}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SleeperThread}$\ast$ {\bf Ball::t}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a5129c6e48575e4599ad1d5aba6e26e2b}
+
+
+Definition at line 38 of file ball.h.\hypertarget{class_ball_a51083e10e55e81e79491670c42525bfa}{
+\index{Ball@{Ball}!timer@{timer}}
+\index{timer@{timer}!Ball@{Ball}}
+\subsubsection[{timer}]{\setlength{\rightskip}{0pt plus 5cm}long {\bf Ball::timer}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ball_a51083e10e55e81e79491670c42525bfa}
+
+
+Definition at line 39 of file ball.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{ball_8h}{ball.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{ball_8cpp}{ball.cpp}\end{DoxyCompactItemize}

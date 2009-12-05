@@ -1,0 +1,42 @@
+\hypertarget{class_sleeper_thread}{
+\section{SleeperThread Class Reference}
+\label{class_sleeper_thread}\index{SleeperThread@{SleeperThread}}
+}
+
+
+{\ttfamily \#include $<$sleeperthread.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_sleeper_thread_a437d8fa09d1cbc68c78bae1ffbd9b8c5}{msleep} (unsigned long msecs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manpreet Kohli CS 340, Fall 2009
+
+\hyperlink{sleeperthread_8cpp}{SleeperThread.cpp}: file to utilize the sleep functionality of QThread. 
+
+Definition at line 14 of file sleeperthread.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{class_sleeper_thread_a437d8fa09d1cbc68c78bae1ffbd9b8c5}{
+\index{SleeperThread@{SleeperThread}!msleep@{msleep}}
+\index{msleep@{msleep}!SleeperThread@{SleeperThread}}
+\subsubsection[{msleep}]{\setlength{\rightskip}{0pt plus 5cm}void SleeperThread::msleep (unsigned long {\em msecs})}}
+\label{class_sleeper_thread_a437d8fa09d1cbc68c78bae1ffbd9b8c5}
+implement sleep functionality of QThread The function exposes the protected function inside QThread to implement it 
+
+Definition at line 7 of file sleeperthread.cpp.
+
+
+\begin{DoxyCode}
+8 {
+9     QThread::msleep(msecs);
+10 }
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{sleeperthread_8h}{sleeperthread.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{sleeperthread_8cpp}{sleeperthread.cpp}\end{DoxyCompactItemize}

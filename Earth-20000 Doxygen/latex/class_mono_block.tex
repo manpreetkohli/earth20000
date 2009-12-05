@@ -1,0 +1,93 @@
+\hypertarget{class_mono_block}{
+\section{MonoBlock Class Reference}
+\label{class_mono_block}\index{MonoBlock@{MonoBlock}}
+}
+
+
+{\ttfamily \#include $<$block.h$>$}Inheritance diagram for MonoBlock::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_mono_block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_mono_block_a0595d5f49cc46f09803fe4d41eaa9d68}{MonoBlock} ()
+\item 
+QRectF \hyperlink{class_mono_block_ae85adc70af0318603a03c2daf768c145}{boundingRect} () const 
+\item 
+void \hyperlink{class_mono_block_a8c2d5b6508508633c4c3234790945c51}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 67 of file block.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_mono_block_a0595d5f49cc46f09803fe4d41eaa9d68}{
+\index{MonoBlock@{MonoBlock}!MonoBlock@{MonoBlock}}
+\index{MonoBlock@{MonoBlock}!MonoBlock@{MonoBlock}}
+\subsubsection[{MonoBlock}]{\setlength{\rightskip}{0pt plus 5cm}MonoBlock::MonoBlock ()}}
+\label{class_mono_block_a0595d5f49cc46f09803fe4d41eaa9d68}
+
+
+Definition at line 243 of file block.cpp.
+
+
+\begin{DoxyCode}
+244 {
+245     //Set color to black
+246     setColor1(1);
+247     setColor2(0);
+248 
+249     QGraphicsItem *oneBlock = new SingleBlock(this);
+250 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_mono_block_ae85adc70af0318603a03c2daf768c145}{
+\index{MonoBlock@{MonoBlock}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!MonoBlock@{MonoBlock}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF MonoBlock::boundingRect () const}}
+\label{class_mono_block_ae85adc70af0318603a03c2daf768c145}
+
+
+Reimplemented from \hyperlink{class_block_aee4444b92a82f5a8080e9019ef1e554d}{Block}.
+
+Definition at line 252 of file block.cpp.
+
+
+\begin{DoxyCode}
+253 {
+254     return QRectF();
+255 }
+\end{DoxyCode}
+\hypertarget{class_mono_block_a8c2d5b6508508633c4c3234790945c51}{
+\index{MonoBlock@{MonoBlock}!paint@{paint}}
+\index{paint@{paint}!MonoBlock@{MonoBlock}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void MonoBlock::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_mono_block_a8c2d5b6508508633c4c3234790945c51}
+
+
+Reimplemented from \hyperlink{class_block_a36791d086b6fad1a2203bfef6fdbaa0a}{Block}.
+
+Definition at line 257 of file block.cpp.
+
+
+\begin{DoxyCode}
+258 {
+259     Q_UNUSED(painter);
+260     Q_UNUSED(option);
+261     Q_UNUSED(widget);
+262 }
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8h}{block.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8cpp}{block.cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,223 @@
+.TH "AlienSpaceShip" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AlienSpaceShip \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <alienspaceship.h>\fP
+.PP
+Inherits \fBShip\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAlienSpaceShip\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~AlienSpaceShip\fP ()"
+.br
+.ti -1c
+.RI "virtual int \fBtype\fP () const "
+.br
+.ti -1c
+.RI "int \fBgetShipHit\fP ()"
+.br
+.ti -1c
+.RI "void \fBfire\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QPixmap \fBshipsImage\fP"
+.br
+.ti -1c
+.RI "qreal \fBxPosition\fP"
+.br
+.ti -1c
+.RI "qreal \fByPosition\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipWidth\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipHeight\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipHit\fP"
+.br
+.ti -1c
+.RI "\fBAlienShipBullet\fP * \fBalienBullet\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class creates aliemspaceship for earth:20000 
+.PP
+Definition at line 19 of file alienspaceship.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "AlienSpaceShip::AlienSpaceShip ()"Author: Ivan Collazo File: \fBalienspaceship.cpp\fP Date: 10/05/2009 This is .cpp file for alienspaceship in earth20000
+.PP
+constructor 
+.PP
+Definition at line 17 of file alienspaceship.cpp.
+.PP
+.nf
+18 {
+19     shipsImage.load(':TieFighter-icon.png');
+20     xPosition = 0;
+21     yPosition = 0;
+22     shipWidth = 80;
+23     shipHeight = 40;
+24     shipHit = 5;
+25 }
+.fi
+.SS "AlienSpaceShip::~AlienSpaceShip ()\fC [virtual]\fP"destructor 
+.PP
+Definition at line 30 of file alienspaceship.cpp.
+.PP
+.nf
+31 {
+32 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF AlienSpaceShip::boundingRect () const\fC [private, virtual]\fP"this method does the bounding rectangle of the object for collision detection 
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 75 of file alienspaceship.cpp.
+.PP
+.nf
+76 {
+77     return QRectF(355, 100, 80, 40);
+78 }
+.fi
+.SS "void AlienSpaceShip::fire ()"this method fires the alien space ship bullets 
+.PP
+Definition at line 91 of file alienspaceship.cpp.
+.PP
+.nf
+92 {
+93     alienBullet = new AlienShipBullet ();
+94     alienBullet->setBulletPosition(25, 480);
+95     this->scene()->addItem(alienBullet);
+96 
+97     QSound *alienShipFireFX = new QSound('bomb.wav', 0);
+98     alienShipFireFX->setLoops(1);
+99     alienShipFireFX->play();
+100 }
+.fi
+.SS "int AlienSpaceShip::getShipHit ()\fC [virtual]\fP"this method gets the amount of times alien ship has been hit 
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 83 of file alienspaceship.cpp.
+.PP
+.nf
+84 {
+85     return shipHit;
+86 }
+.fi
+.SS "void AlienSpaceShip::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)\fC [private, virtual]\fP"this method is called whenever the alienspaceship needs to be drawn 
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 37 of file alienspaceship.cpp.
+.PP
+.nf
+38 {
+39     // can traverse to examine what collided with alienspaceship
+40     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
+41 
+42     // paints the alienspaceship image
+43     painter->drawPixmap(355, 100, shipWidth, shipHeight, shipsImage);
+44 
+45     // checks to see if collisions occurs
+46     if (!listOfCollidingItems.isEmpty())
+47     {
+48         // if collision occurs with spaceshipbullet then decrements alienShipHit
+49         if(listOfCollidingItems.first()->type() == ID_SPACESHIPBULLET)
+50         {
+51             if (shipHit > 0)
+52             {
+53                --shipHit;
+54             }
+55         }
+56     }
+57 
+58     // if alienShipHit is 0 ship destoryed then changes alien motherships image and has ship explosion FX
+59     if (shipHit == 0)
+60     {
+61        shipsImage.load(':fire.png');
+62        painter->drawPixmap(355, 100, shipWidth, shipHeight, shipsImage);
+63 
+64        QSound *shipExplosionFX = new QSound('explosion_2.wav', 0);
+65        shipExplosionFX->setLoops(1);
+66        shipExplosionFX->play();
+67 
+68        update(); 
+69     }
+70 }
+.fi
+.SS "virtual int AlienSpaceShip::type () const\fC [inline, virtual]\fP"
+.PP
+Definition at line 49 of file alienspaceship.h.
+.PP
+.nf
+49 {return ID_ALIENSPACESHIP; }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBAlienShipBullet\fP* \fBAlienSpaceShip::alienBullet\fP\fC [private]\fP"
+.PP
+Definition at line 33 of file alienspaceship.h.
+.SS "qreal \fBAlienSpaceShip::shipHeight\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 29 of file alienspaceship.h.
+.SS "qreal \fBAlienSpaceShip::shipHit\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 30 of file alienspaceship.h.
+.SS "QPixmap \fBAlienSpaceShip::shipsImage\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 23 of file alienspaceship.h.
+.SS "qreal \fBAlienSpaceShip::shipWidth\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 28 of file alienspaceship.h.
+.SS "qreal \fBAlienSpaceShip::xPosition\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 26 of file alienspaceship.h.
+.SS "qreal \fBAlienSpaceShip::yPosition\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 27 of file alienspaceship.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

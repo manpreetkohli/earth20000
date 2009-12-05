@@ -1,0 +1,108 @@
+.TH "LevelEditor" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LevelEditor \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <leveleditor.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLevelEditor\fP (QGraphicsScene *theScene)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBxPos\fP"
+.br
+.ti -1c
+.RI "int \fByPos\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Manpreet Kohli CS 340, Fall 2009
+.PP
+\fBleveleditor.cpp\fP: creates the design for the level editor by creating 20 * 27 semi-transparent blocks 
+.PP
+Definition at line 13 of file leveleditor.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LevelEditor::LevelEditor (QGraphicsScene * theScene)"
+.PP
+Definition at line 6 of file leveleditor.cpp.
+.PP
+.nf
+7 {
+8     xPos = -375;
+9     yPos = -590;
+10 
+11     // draw all the transparent blocks for the level editor window
+12     for (int i = 0; i < 20; i++)
+13     {
+14         for (int j = 0; j < 27; j++)
+15         {
+16             Constants::blocks[i][j] = new EmptyBlock();
+17             theScene->addItem(Constants::blocks[i][j]);
+18             Constants::blocks[i][j]->setXPos(xPos);
+19             Constants::blocks[i][j]->setYPos(yPos);
+20             Constants::blocks[i][j]->setPos(xPos, yPos);
+21             Constants::blocks[i][j]->setOpacity(0.4);
+22             Constants::blocks[i][j]->show();
+23             xPos+=OUTLINEW;
+24         }
+25         yPos += OUTLINEH;
+26         xPos = -375;
+27     }
+28 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF LevelEditor::boundingRect () const\fC [private]\fP"
+.PP
+Definition at line 30 of file leveleditor.cpp.
+.PP
+.nf
+31 {
+32     return QRectF(0, 0, 27 * OUTLINEW, 20 * OUTLINEH);
+33 }
+.fi
+.SS "void LevelEditor::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)\fC [private]\fP"
+.PP
+Definition at line 35 of file leveleditor.cpp.
+.PP
+.nf
+36 {
+37     Q_UNUSED(painter);
+38     Q_UNUSED(option);
+39     Q_UNUSED(widget);
+40 }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBLevelEditor::xPos\fP\fC [private]\fP"
+.PP
+Definition at line 16 of file leveleditor.h.
+.SS "int \fBLevelEditor::yPos\fP\fC [private]\fP"
+.PP
+Definition at line 16 of file leveleditor.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

@@ -1,0 +1,83 @@
+.TH "EnemyShipTail" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EnemyShipTail \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <enemyShip.h>\fP
+.PP
+Inherits \fBEnemyShipPart\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEnemyShipTail\fP (QGraphicsItem *parent=0)"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 27 of file enemyShip.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "EnemyShipTail::EnemyShipTail (QGraphicsItem * parent = \fC0\fP)"
+.PP
+Definition at line 51 of file enemyShip.cpp.
+.PP
+.nf
+52         :EnemyShipPart(parent)
+53 {
+54 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF EnemyShipTail::boundingRect () const"
+.PP
+Definition at line 56 of file enemyShip.cpp.
+.PP
+.nf
+57 {
+58     return QRectF(0, 0, 100, 100);
+59 }
+.fi
+.SS "void EnemyShipTail::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Definition at line 61 of file enemyShip.cpp.
+.PP
+.nf
+63 {
+64     Q_UNUSED(option);
+65     Q_UNUSED(widget);
+66 
+67     QPointF vertices[8] = {QPointF(0.0, 0.0),
+68                                      QPointF(20.0, 0.0),
+69                                      QPointF(18.0, 5.0),
+70                                      QPointF(17.0, 6.0),
+71                                      QPointF(16.0, 7.0),
+72                                      QPointF(4.0, 7.0),
+73                                      QPointF(3.0, 6.0),
+74                                      QPointF(2.0, 5.0)};
+75     
+76     painter->setPen(QPen(Qt::black, 0));
+77     QLinearGradient gradient(10, 0, 21, 0);
+78     gradient.setSpread(QGradient::ReflectSpread);
+79     gradient.setColorAt(0, Qt::lightGray);
+80     gradient.setColorAt(1, Qt::black);
+81     
+82     painter->setBrush(gradient);
+83     painter->drawPolygon(vertices, 8);
+84 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

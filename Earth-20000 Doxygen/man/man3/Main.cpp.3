@@ -1,0 +1,44 @@
+.TH "C:/Users/Kohli/Desktop/Earth-20000/Main.cpp" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Kohli/Desktop/Earth-20000/Main.cpp \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'form.h'\fP
+.br
+\fC#include <QApplication>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBmain\fP (int argc, char **argv)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int main (int argc, char ** argv)"Manpreet Kohli CS 340, Fall 2009
+.PP
+\fBMain.cpp\fP: creates an app and an object of type \fBForm\fP 
+.PP
+Definition at line 15 of file Main.cpp.
+.PP
+.nf
+16 {
+17     QApplication app(argc, argv);
+18     Form form;      // create an object of type Form
+19 
+20     // set the dimensions of the graphics window
+21     form.setGeometry(250, 40, 800, 725);
+22 
+23     form.show();    // now actually display the window
+24 
+25     return app.exec();
+26 }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

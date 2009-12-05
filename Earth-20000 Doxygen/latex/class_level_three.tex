@@ -1,0 +1,204 @@
+\hypertarget{class_level_three}{
+\section{LevelThree Class Reference}
+\label{class_level_three}\index{LevelThree@{LevelThree}}
+}
+
+
+{\ttfamily \#include $<$levelThree.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_level_three_a75bf86c7d294935953252f89586fb1d5}{LevelThree} (QGraphicsScene $\ast$theScene)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+QRectF \hyperlink{class_level_three_a6c6267a96819454c27eb39c0b5ea8393}{boundingRect} () const 
+\item 
+void \hyperlink{class_level_three_ae0252fbf12113d716253572d25292e28}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\item 
+int \hyperlink{class_level_three_aa24bdff687183528fa201cdcbf191e33}{generateRandomNumber} (int min, int max)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_level_three_aaa81170987ff08168cb526f05bfb6c3c}{xPos}
+\item 
+int \hyperlink{class_level_three_ab7a05706e5bfa2fc595b1fc27a9da64d}{yPos}
+\item 
+\hyperlink{class_block}{Block} $\ast$ \hyperlink{class_level_three_a937d4711d32721bf7b0a6d30b9766368}{block} \mbox{[}11\mbox{]}\mbox{[}20\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{level_three_8cpp}{levelThree.cpp}
+
+Creates the design for the second level. Uses the polymorphism feature of the \hyperlink{block_8cpp}{block.cpp} class and randomly generates blocks of different colors and places them in a pre-\/defined layout.
+
+Author: Natraj Subramanian 
+
+Definition at line 17 of file levelThree.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_level_three_a75bf86c7d294935953252f89586fb1d5}{
+\index{LevelThree@{LevelThree}!LevelThree@{LevelThree}}
+\index{LevelThree@{LevelThree}!LevelThree@{LevelThree}}
+\subsubsection[{LevelThree}]{\setlength{\rightskip}{0pt plus 5cm}LevelThree::LevelThree (QGraphicsScene $\ast$ {\em theScene})}}
+\label{class_level_three_a75bf86c7d294935953252f89586fb1d5}
+
+
+Definition at line 4 of file levelThree.cpp.
+
+
+\begin{DoxyCode}
+5 {
+6     xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;
+7     yPos = -630 + (BOUNDHEIGHT)/(8);
+8 
+9     // Declare variable to hold seconds in clock
+10     time_t seconds;
+11 
+12     // Get value from system clock and place in seconds variable
+13     time(&seconds);
+14 
+15     // Convert seconds to a unsigned integer
+16     srand((unsigned int) seconds);
+17 
+18     int detColor;
+19 
+20     for(int i = 0; i < 11; i++)
+21     {
+22         for(int j = 0; j < 20; j++)
+23         {
+24             if(((i == 0 || i == 1 || i == 2 || i == 3 || i == 5 || i == 5 || i ==
+       7
+25                  || i == 9) && (j == 0 || ( j > 6 && j < 13 ) || j == 19) ) ||
+26                  (i == 3 || i == 4) && (j == 0 || j == 19))
+27             {
+28                 xPos += BLOCKW + SPACE;
+29             }
+30             else
+31             {
+32                 detColor = generateRandomNumber(0,5);
+33 
+34                 if(detColor == 0)
+35                 {
+36                     block[i][j] = new MonoBlock;
+37                 }
+38                 if(detColor == 1)
+39                 {
+40                     block[i][j] = new RedBlock;
+41                 }
+42                 if(detColor == 2)
+43                 {
+44                     block[i][j] = new GreenBlock;
+45                 }
+46                 if(detColor == 3)
+47                 {
+48                     block[i][j] = new BlueBlock;
+49                 }
+50                 if(detColor == 4)
+51                 {
+52                     block[i][j] = new MagentaBlock;
+53                 }
+54                 if(detColor == 5)
+55                 {
+56                     block[i][j] = new YellowBlock;
+57                 }
+58 
+59                 // setXPos and setYPos are used to assist the ball with its block
+      
+60                 // collision detection
+61                 block[i][j]->setXPos(xPos);
+62                 block[i][j]->setYPos(yPos);
+63                 block[i][j]->scale(1.0, 1.0);
+64                 block[i][j]->setPos(xPos, yPos);
+65                 xPos += BLOCKW + SPACE;
+66                 theScene->addItem(block[i][j]);
+67             }
+68         }
+69 
+70         yPos += BLOCKH + SPACE;
+71         xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;
+72     }
+73 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_level_three_a6c6267a96819454c27eb39c0b5ea8393}{
+\index{LevelThree@{LevelThree}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!LevelThree@{LevelThree}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF LevelThree::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_three_a6c6267a96819454c27eb39c0b5ea8393}
+
+
+Definition at line 75 of file levelThree.cpp.
+
+
+\begin{DoxyCode}
+76 {
+77     return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
+78 }
+\end{DoxyCode}
+\hypertarget{class_level_three_aa24bdff687183528fa201cdcbf191e33}{
+\index{LevelThree@{LevelThree}!generateRandomNumber@{generateRandomNumber}}
+\index{generateRandomNumber@{generateRandomNumber}!LevelThree@{LevelThree}}
+\subsubsection[{generateRandomNumber}]{\setlength{\rightskip}{0pt plus 5cm}int LevelThree::generateRandomNumber (int {\em min}, \/  int {\em max})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_three_aa24bdff687183528fa201cdcbf191e33}
+Given a min and a max, generate a random number between this range 
+
+Definition at line 91 of file levelThree.cpp.
+
+
+\begin{DoxyCode}
+92 {
+93     return rand() % (max - min + 1) + min;
+94 }
+\end{DoxyCode}
+\hypertarget{class_level_three_ae0252fbf12113d716253572d25292e28}{
+\index{LevelThree@{LevelThree}!paint@{paint}}
+\index{paint@{paint}!LevelThree@{LevelThree}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void LevelThree::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_three_ae0252fbf12113d716253572d25292e28}
+
+
+Definition at line 80 of file levelThree.cpp.
+
+
+\begin{DoxyCode}
+81 {
+82     Q_UNUSED(painter);
+83     Q_UNUSED(option);
+84     Q_UNUSED(widget);
+85 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_level_three_a937d4711d32721bf7b0a6d30b9766368}{
+\index{LevelThree@{LevelThree}!block@{block}}
+\index{block@{block}!LevelThree@{LevelThree}}
+\subsubsection[{block}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block}$\ast$ {\bf LevelThree::block}\mbox{[}11\mbox{]}\mbox{[}20\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_three_a937d4711d32721bf7b0a6d30b9766368}
+
+
+Definition at line 21 of file levelThree.h.\hypertarget{class_level_three_aaa81170987ff08168cb526f05bfb6c3c}{
+\index{LevelThree@{LevelThree}!xPos@{xPos}}
+\index{xPos@{xPos}!LevelThree@{LevelThree}}
+\subsubsection[{xPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LevelThree::xPos}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_three_aaa81170987ff08168cb526f05bfb6c3c}
+
+
+Definition at line 20 of file levelThree.h.\hypertarget{class_level_three_ab7a05706e5bfa2fc595b1fc27a9da64d}{
+\index{LevelThree@{LevelThree}!yPos@{yPos}}
+\index{yPos@{yPos}!LevelThree@{LevelThree}}
+\subsubsection[{yPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LevelThree::yPos}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_three_ab7a05706e5bfa2fc595b1fc27a9da64d}
+
+
+Definition at line 20 of file levelThree.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{level_three_8h}{levelThree.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{level_three_8cpp}{levelThree.cpp}\end{DoxyCompactItemize}

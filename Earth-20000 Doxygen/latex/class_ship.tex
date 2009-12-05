@@ -1,0 +1,273 @@
+\hypertarget{class_ship}{
+\section{Ship Class Reference}
+\label{class_ship}\index{Ship@{Ship}}
+}
+
+
+{\ttfamily \#include $<$ship.h$>$}Inheritance diagram for Ship::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_ship}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_ship_ab7608fcfc4d27c678aacaf9bfd68a462}{Ship} ()
+\item 
+virtual \hyperlink{class_ship_a43cd6eeaffc11b49239b091621963a65}{$\sim$Ship} ()
+\item 
+int \hyperlink{class_ship_a32927e82496a210417b18e0910748878}{getShipPosX} ()
+\item 
+void \hyperlink{class_ship_a04c11ab00c916c3a1b32f5ad468f867b}{setShipPosX} (int xPos)
+\item 
+int \hyperlink{class_ship_a554008262afb114d9360a8d80fd9c2c9}{getShipPosY} ()
+\item 
+void \hyperlink{class_ship_add87a9ada3b93bce7b5962e1192b496c}{setShipPosY} (int yPos)
+\item 
+virtual int \hyperlink{class_ship_ab8efcfc8f38e0b231b99585846e676c5}{getShipHit} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual QRectF \hyperlink{class_ship_a40856df827844b4045eb97345f401995}{boundingRect} () const 
+\item 
+virtual void \hyperlink{class_ship_a1dad980a3b84bb77c63da853ec13477d}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QPixmap \hyperlink{class_ship_a3e61137191ddd959a57e0cd8928b4873}{shipsImage}
+\item 
+qreal \hyperlink{class_ship_a6ccec9a60696c66ede61af7397c73b3c}{xPosition}
+\item 
+qreal \hyperlink{class_ship_a5964ed05737d3b6722c7af5e0f173475}{yPosition}
+\item 
+qreal \hyperlink{class_ship_ae57e882cf6611414d239b241f6711ba6}{shipWidth}
+\item 
+qreal \hyperlink{class_ship_a16205aae21b89c3fb57960a70be931a2}{shipHeight}
+\item 
+qreal \hyperlink{class_ship_a1fd726a67e6b11d5ce19f4657db40237}{shipHit}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Author: Ivan Collazo File: \hyperlink{ship_8cpp}{ship.cpp} Date: 10/05/2009 This class is the super class for ships in earth:20000
+
+creates a super class of ships 
+
+Definition at line 16 of file ship.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_ship_ab7608fcfc4d27c678aacaf9bfd68a462}{
+\index{Ship@{Ship}!Ship@{Ship}}
+\index{Ship@{Ship}!Ship@{Ship}}
+\subsubsection[{Ship}]{\setlength{\rightskip}{0pt plus 5cm}Ship::Ship ()}}
+\label{class_ship_ab7608fcfc4d27c678aacaf9bfd68a462}
+Author: Ivan Collazo File: \hyperlink{ship_8cpp}{ship.cpp} Date: 10/05/2009 This is the .cpp file for the super class for ships in earth20000
+
+constructor 
+
+Definition at line 14 of file ship.cpp.
+
+
+\begin{DoxyCode}
+15 {
+16     xPosition = 0;
+17     yPosition = 0;
+18     shipWidth = 0;
+19     shipHeight = 0;
+20    // shipHit = 0;
+21 }
+\end{DoxyCode}
+\hypertarget{class_ship_a43cd6eeaffc11b49239b091621963a65}{
+\index{Ship@{Ship}!$\sim$Ship@{$\sim$Ship}}
+\index{$\sim$Ship@{$\sim$Ship}!Ship@{Ship}}
+\subsubsection[{$\sim$Ship}]{\setlength{\rightskip}{0pt plus 5cm}Ship::$\sim$Ship ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_ship_a43cd6eeaffc11b49239b091621963a65}
+destructor 
+
+Definition at line 26 of file ship.cpp.
+
+
+\begin{DoxyCode}
+27 {
+28 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ship_a40856df827844b4045eb97345f401995}{
+\index{Ship@{Ship}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!Ship@{Ship}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF Ship::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ship_a40856df827844b4045eb97345f401995}
+this method is the bounding rectangle of the object for collision detection 
+
+Reimplemented in \hyperlink{class_alien_mother_ship_a19b3012b5de609d1b3aeb853bc45489f}{AlienMotherShip}, \hyperlink{class_alien_space_ship_ab99ad296ecc69ab1b84bf692eaeb775e}{AlienSpaceShip}, and \hyperlink{class_space_ship_a209b405c57298a7fd22edcf609d9ab36}{SpaceShip}.
+
+Definition at line 33 of file ship.cpp.
+
+
+\begin{DoxyCode}
+34 {
+35     return QRectF(xPosition, yPosition, shipWidth, shipHeight);
+36 }
+\end{DoxyCode}
+\hypertarget{class_ship_ab8efcfc8f38e0b231b99585846e676c5}{
+\index{Ship@{Ship}!getShipHit@{getShipHit}}
+\index{getShipHit@{getShipHit}!Ship@{Ship}}
+\subsubsection[{getShipHit}]{\setlength{\rightskip}{0pt plus 5cm}int Ship::getShipHit ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_ship_ab8efcfc8f38e0b231b99585846e676c5}
+this method gets the amount of times ship has been hit 
+
+Reimplemented in \hyperlink{class_alien_space_ship_ab6ff56db6d322e2023611315e53c4895}{AlienSpaceShip}.
+
+Definition at line 81 of file ship.cpp.
+
+
+\begin{DoxyCode}
+82 {
+83        return shipHit;
+84 }
+\end{DoxyCode}
+\hypertarget{class_ship_a32927e82496a210417b18e0910748878}{
+\index{Ship@{Ship}!getShipPosX@{getShipPosX}}
+\index{getShipPosX@{getShipPosX}!Ship@{Ship}}
+\subsubsection[{getShipPosX}]{\setlength{\rightskip}{0pt plus 5cm}int Ship::getShipPosX ()}}
+\label{class_ship_a32927e82496a210417b18e0910748878}
+this method gets ships x position 
+
+Definition at line 49 of file ship.cpp.
+
+
+\begin{DoxyCode}
+50 {
+51     return xPosition;
+52 }
+\end{DoxyCode}
+\hypertarget{class_ship_a554008262afb114d9360a8d80fd9c2c9}{
+\index{Ship@{Ship}!getShipPosY@{getShipPosY}}
+\index{getShipPosY@{getShipPosY}!Ship@{Ship}}
+\subsubsection[{getShipPosY}]{\setlength{\rightskip}{0pt plus 5cm}int Ship::getShipPosY ()}}
+\label{class_ship_a554008262afb114d9360a8d80fd9c2c9}
+this method gets ships y position 
+
+Definition at line 65 of file ship.cpp.
+
+
+\begin{DoxyCode}
+66 {
+67     return yPosition;
+68 }
+\end{DoxyCode}
+\hypertarget{class_ship_a1dad980a3b84bb77c63da853ec13477d}{
+\index{Ship@{Ship}!paint@{paint}}
+\index{paint@{paint}!Ship@{Ship}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void Ship::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ship_a1dad980a3b84bb77c63da853ec13477d}
+this method is called whenever the ship needs to be drawn 
+
+Reimplemented in \hyperlink{class_alien_mother_ship_a9d504befceb130b6c833550f6f6a0b53}{AlienMotherShip}, \hyperlink{class_alien_space_ship_a463eea8a3dfe340539766da746e168b5}{AlienSpaceShip}, and \hyperlink{class_space_ship_adfc89b9201d546c24ca0bd7b59b44d24}{SpaceShip}.
+
+Definition at line 41 of file ship.cpp.
+
+
+\begin{DoxyCode}
+42 {
+43 
+44 }
+\end{DoxyCode}
+\hypertarget{class_ship_a04c11ab00c916c3a1b32f5ad468f867b}{
+\index{Ship@{Ship}!setShipPosX@{setShipPosX}}
+\index{setShipPosX@{setShipPosX}!Ship@{Ship}}
+\subsubsection[{setShipPosX}]{\setlength{\rightskip}{0pt plus 5cm}void Ship::setShipPosX (int {\em xPos})}}
+\label{class_ship_a04c11ab00c916c3a1b32f5ad468f867b}
+this method sets ships x position 
+
+Definition at line 57 of file ship.cpp.
+
+
+\begin{DoxyCode}
+58 {
+59     xPosition += xPos;
+60 }
+\end{DoxyCode}
+\hypertarget{class_ship_add87a9ada3b93bce7b5962e1192b496c}{
+\index{Ship@{Ship}!setShipPosY@{setShipPosY}}
+\index{setShipPosY@{setShipPosY}!Ship@{Ship}}
+\subsubsection[{setShipPosY}]{\setlength{\rightskip}{0pt plus 5cm}void Ship::setShipPosY (int {\em yPos})}}
+\label{class_ship_add87a9ada3b93bce7b5962e1192b496c}
+this method sets ships y position 
+
+Definition at line 73 of file ship.cpp.
+
+
+\begin{DoxyCode}
+74 {
+75     yPosition += yPos;
+76 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_ship_a16205aae21b89c3fb57960a70be931a2}{
+\index{Ship@{Ship}!shipHeight@{shipHeight}}
+\index{shipHeight@{shipHeight}!Ship@{Ship}}
+\subsubsection[{shipHeight}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ship::shipHeight}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_a16205aae21b89c3fb57960a70be931a2}
+
+
+Reimplemented in \hyperlink{class_alien_mother_ship_acbf3b27133d490435d13650da53da1b0}{AlienMotherShip}, \hyperlink{class_alien_space_ship_a2d4ed13f6240af32719ffcaa25d6586b}{AlienSpaceShip}, and \hyperlink{class_space_ship_a344d1e5b92d9286103aef6e1c27f0a76}{SpaceShip}.
+
+Definition at line 26 of file ship.h.\hypertarget{class_ship_a1fd726a67e6b11d5ce19f4657db40237}{
+\index{Ship@{Ship}!shipHit@{shipHit}}
+\index{shipHit@{shipHit}!Ship@{Ship}}
+\subsubsection[{shipHit}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ship::shipHit}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_a1fd726a67e6b11d5ce19f4657db40237}
+
+
+Reimplemented in \hyperlink{class_alien_mother_ship_a06db4da9779e6346e7f05d3b39a8af0c}{AlienMotherShip}, \hyperlink{class_alien_space_ship_a1834c3be5efc26ca49451a3b04ec8785}{AlienSpaceShip}, and \hyperlink{class_space_ship_a53bc0fb5aa0a9b0c0d7fc70a76e1feda}{SpaceShip}.
+
+Definition at line 27 of file ship.h.\hypertarget{class_ship_a3e61137191ddd959a57e0cd8928b4873}{
+\index{Ship@{Ship}!shipsImage@{shipsImage}}
+\index{shipsImage@{shipsImage}!Ship@{Ship}}
+\subsubsection[{shipsImage}]{\setlength{\rightskip}{0pt plus 5cm}QPixmap {\bf Ship::shipsImage}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_a3e61137191ddd959a57e0cd8928b4873}
+
+
+Reimplemented in \hyperlink{class_alien_mother_ship_a61fef30fd35cb950ff5c23463da32adf}{AlienMotherShip}, \hyperlink{class_alien_space_ship_abab065a55af3cfac98529eeec94190f8}{AlienSpaceShip}, and \hyperlink{class_space_ship_a5bdb581da7eafb13095e97666ebe83bc}{SpaceShip}.
+
+Definition at line 20 of file ship.h.\hypertarget{class_ship_ae57e882cf6611414d239b241f6711ba6}{
+\index{Ship@{Ship}!shipWidth@{shipWidth}}
+\index{shipWidth@{shipWidth}!Ship@{Ship}}
+\subsubsection[{shipWidth}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ship::shipWidth}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_ae57e882cf6611414d239b241f6711ba6}
+
+
+Reimplemented in \hyperlink{class_alien_mother_ship_af38d6c7fb520033527b5012f0ae60654}{AlienMotherShip}, \hyperlink{class_alien_space_ship_a752697ea2f71e8d4675c694ac242e6f9}{AlienSpaceShip}, and \hyperlink{class_space_ship_a842854c644480d337e52fa125a838cce}{SpaceShip}.
+
+Definition at line 25 of file ship.h.\hypertarget{class_ship_a6ccec9a60696c66ede61af7397c73b3c}{
+\index{Ship@{Ship}!xPosition@{xPosition}}
+\index{xPosition@{xPosition}!Ship@{Ship}}
+\subsubsection[{xPosition}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ship::xPosition}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_a6ccec9a60696c66ede61af7397c73b3c}
+
+
+Reimplemented in \hyperlink{class_alien_mother_ship_a7c7c0ac12f0eb3add61f5d7a47fe93ee}{AlienMotherShip}, \hyperlink{class_alien_space_ship_a4539a2e1dba8598cbc42fa262f586acd}{AlienSpaceShip}, and \hyperlink{class_space_ship_a4f960ec3383ec268c7db8c97b97a5c7d}{SpaceShip}.
+
+Definition at line 23 of file ship.h.\hypertarget{class_ship_a5964ed05737d3b6722c7af5e0f173475}{
+\index{Ship@{Ship}!yPosition@{yPosition}}
+\index{yPosition@{yPosition}!Ship@{Ship}}
+\subsubsection[{yPosition}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ship::yPosition}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_a5964ed05737d3b6722c7af5e0f173475}
+
+
+Reimplemented in \hyperlink{class_alien_mother_ship_af3b24eae146d655107298345d577d96d}{AlienMotherShip}, \hyperlink{class_alien_space_ship_acb7a7bbfb71e3673768212f9239ea3b3}{AlienSpaceShip}, and \hyperlink{class_space_ship_a01360fa6f81ff5c448d68142293f578b}{SpaceShip}.
+
+Definition at line 24 of file ship.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{ship_8h}{ship.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{ship_8cpp}{ship.cpp}\end{DoxyCompactItemize}

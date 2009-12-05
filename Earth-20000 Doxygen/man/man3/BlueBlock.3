@@ -1,0 +1,74 @@
+.TH "BlueBlock" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BlueBlock \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <block.h>\fP
+.PP
+Inherits \fBBlock\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBlueBlock\fP ()"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 99 of file block.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "BlueBlock::BlueBlock ()"
+.PP
+Definition at line 337 of file block.cpp.
+.PP
+.nf
+338 {
+339     //Set color to blue
+340     setColor1(1);
+341     setColor2(4);
+342 
+343     QGraphicsItem *oneBlock = new SingleBlock(this);
+344 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF BlueBlock::boundingRect () const"
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 346 of file block.cpp.
+.PP
+.nf
+347 {
+348     return QRectF();
+349 }
+.fi
+.SS "void BlueBlock::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 351 of file block.cpp.
+.PP
+.nf
+352 {
+353     Q_UNUSED(painter);
+354     Q_UNUSED(option);
+355     Q_UNUSED(widget);
+356 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.
