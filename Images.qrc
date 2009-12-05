@@ -30,5 +30,6 @@
         <file>motherShipBullet.png</file>
         <file>X-Wing-icon-1.png</file>
         <file>TieFighter-icon.png</file>
+        <file>controls.jpg</file>
     </qresource>
 </RCC>
