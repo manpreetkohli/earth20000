@@ -122,7 +122,7 @@ void Board::displayHUDLevel(QGraphicsScene *scene, QString levelNumber, QFont *f
     Constants::levelInfo = scene->addText(levelNumber, *font);
     if (Constants::levelNumber == 0 || Constants::levelNumber == 6)
     {
-        Constants::levelInfo->setDefaultTextColor(Qt::black);
+        Constants::levelInfo->setDefaultTextColor(Qt::darkGray);
     }
     else
     {
