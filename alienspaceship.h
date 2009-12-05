@@ -1,49 +1,58 @@
+/*!
+*   Author: Ivan Collazo
+*   File: alienspaceship.cpp
+*   Date: 10/05/2009
+*   This class is to creat an alienspaceship in earth:20000
+*/
+
 #ifndef ALIENSPACESHIP_H
 #define ALIENSPACESHIP_H
-
-#include <QGraphicsItem>
-
 #define ID_ALIENSPACESHIP   32
 
-class AlienSpaceShip : public QGraphicsItem
+#include <QGraphicsItem>
+#include "alienshipbullet.h"
+#include "ship.h"
+
+/*!
+    This class creates aliemspaceship for earth:20000
+*/
+class AlienSpaceShip : public Ship
 {
     private:
-        // variables for the position and dimension of ship
-        qreal left;
-        qreal top;
-        qreal width;
-        qreal height;
-        qreal alienShipHit;
-
-      //  QTimer *timer;
-
-        // Color of the character,
-        QColor color;
-
-        // for image of th ship that will be place on the object.
+        // for image of the ship that will be place on the object.
         QPixmap shipsImage;
 
-public:
-    AlienSpaceShip();
+        // variables for the position and dimension of ship
+        qreal xPosition;
+        qreal yPosition;
+        qreal shipWidth;
+        qreal shipHeight;
+        qreal shipHit;
 
-    ~AlienSpaceShip();
+        // instance of AlienShipBullet for fire method
+        AlienShipBullet *alienBullet;
 
-    // the bounding rectangle of the object for collision detection
-    QRectF boundingRect () const;
+        // this method does the bounding rectangle of the object for collision detection
+        QRectF boundingRect () const;
 
-    // called whenever the spaceShip needs to be drawn
-    void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+        // this method is called whenever the alienspaceship needs to be drawn
+        void paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-    qreal getShipPosX();
+    public:
+        // constructor
+        AlienSpaceShip();
 
-    qreal getShipPosY();
+        // destructor
+        virtual ~AlienSpaceShip();
 
-    virtual int type() const {return ID_ALIENSPACESHIP; }
+        // this method helps ID the ship for collision detection
+        virtual int type() const {return ID_ALIENSPACESHIP; }
 
-    void fire();
+        // this method gets the amount of times alienspaceship has been hit
+        int getShipHit();
 
-    qreal getAlienShipHit();
-
+        // this method fires the alienspaceship bullets
+        void fire();
 };
 
 #endif // ALIENSPACESHIP_H

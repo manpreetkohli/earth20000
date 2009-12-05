@@ -1,49 +1,56 @@
+/*!
+*   Author: Ivan Collazo
+*   File: mothershipbullet.cpp
+*   Date: 10/20/2009
+*   This is .cpp file for mother ships bullets in earth20000
+*/
+
 #include "mothershipbullet.h"
-#include <QPainter>
-#include <QDebug>
-#include <iostream>
+#include "spaceship.h"
 #include "constants.h"
 
 /*!
-  constructor
-  */
+    constructor
+*/
+
 MotherShipBullet::MotherShipBullet()
 {
-    qDebug() << "Mother Ship Bullet constructor";
     bulletImage.load(":enemyBullet.png");
     directionX = 0;                         // set the X-axis increment for the movement
-    directionY = 2;                        // set the Y-axis increment for the movement
-    positionX = 0;                          // initial X coordinate of the ball
-    positionY = 0;                          // initial Y coordinate of the ball
-    width = 30;
-    height = 30;
-    setPos(positionX, positionY);           // set initial position of the ball
+    directionY = 2;                         // set the Y-axis increment for the movement
+    positionX = 0;                          // initial X coordinate of the bullet
+    positionY = 0;                          // initial Y coordinate of the bullet
+    width = 30;                             // width of the bullet
+    height = 30;                            // height of the bullet
+    setPos(positionX, positionY);           // set initial position of the bullet
 }
 
 /*!
-  destructor
-  */
+    destructor
+*/
 MotherShipBullet::~MotherShipBullet()
 {
-    qDebug() << "Mother Ship Bullet Destructor";
 }
 
 /*!
-  creates the mother ship bullet
-  */
+    this method is called whenever the mothershipbullet needs to be drawn
+*/
 void MotherShipBullet::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->drawPixmap(325, -110, width, height, bulletImage);
 }
 
 /*!
-  Define the bounding rectangle of the object for collision detection
-  */
+    this method does the bounding rectangle of the object for collision detection
+*/
 QRectF MotherShipBullet::boundingRect() const
 {
   return QRectF(325,-110, width,height);
 }
 
+/*!
+    this method sets mothershipbullet position
+*/
 void MotherShipBullet::setBulletPosition (int posX, int posY)
 {
     positionX = posX;
@@ -51,31 +58,32 @@ void MotherShipBullet::setBulletPosition (int posX, int posY)
 }
 
 /*!
-  function to add motion to the bullet inside the board
-  */
+    this method adds motion to the mothershipbullet
+*/
 void MotherShipBullet::advance(int phase)
 {
     if(!phase) return;
 
-    QList<QGraphicsItem*> listOfCollidingItems = collidingItems();//ivan
+    QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
 
+    // checks if there is a collision
     if (!listOfCollidingItems.isEmpty())
     {
+        // if collision occurs with a space ship then mother ship bullet is removed from the scene
         if(listOfCollidingItems.first()->type() == ID_SPACESHIP)
         {
-            qDebug() << "HITTING SPACE SHIP";
             this->scene()->removeItem(this);
         }
     }
 
     positionY+=directionY;
 
-    // set the new position of the ball
+    // set the new position of the mothership bullet
     setPos(positionX,positionY);
 
+    // if position of the mother ship bullet is greater than 800 the mother ship bullet is removed from scene
     if (positionY > 800)
     {
-        qDebug() << "mother bullet gone";
         this->scene()->removeItem(this);
     }
 }
