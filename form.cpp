@@ -16,6 +16,9 @@ Block *Constants::currentBlock;
 Block *Constants::blocks[20][27];
 int Constants::levelNumber;
 QPushButton *Constants::cont;
+QPushButton *skipIntro;
+QTimer *timer3 = new QTimer();  // Ivan Collazo
+QTimer *timer4 = new QTimer();  // Ivan Collazo
 
 /*!
   added by Manpreet Kohli
@@ -266,32 +269,23 @@ void Form::setupLevel(int levelNumber)
     // add the player's spaceship to the board
     board->scene->addItem(playersShip);     // Ivan Collazo
 
+    // Ivan Collazo
     if (levelNumber == 3)
     {
         alienShip = new AlienSpaceShip ();  // Ivan Collazo
-        board->scene->addItem(alienShip);   // Ivan Collazo
-
-        if (playersShip->getShipHit() == 0)
-        {
-             qDebug() << "GAME OVER";
-        }
-        else if (playersShip->getShipHit() > 0)
-        {
-            qDebug() << "GAME ON";
-            //QTimer *timer3 = new QTimer();
-            QObject::connect(timer3, SIGNAL(timeout()), this, SLOT(alienFire()));
-            timer3->start(2000);
-        }
+        board->scene->addItem(alienShip);   // Ivan Collazo     
+        QObject::connect(timer3, SIGNAL(timeout()), this, SLOT(alienFire()));   // connect to start alien firing
+        timer3->start(2000);
     }
 
+    // Ivan Collazo
     if (levelNumber == 4)
     {
         timer3->disconnect(board->scene, SLOT(alienFire()));
         timer3->stop();
         motherShip = new AlienMotherShip ();    // Ivan Collazo
         board->scene->addItem(motherShip);      // Ivan Collazo
-
-        QObject::connect(timer4, SIGNAL(timeout()), this, SLOT(motherFire()));
+        QObject::connect(timer4, SIGNAL(timeout()), this, SLOT(motherFire()));  // connect to start mother ship firing
         timer4->start(3000);
     }
 
@@ -724,7 +718,7 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
 {
     switch(event->key())
     {
-        case Qt::Key_A:
+        case Qt::Key_A: // move space ship to the left
             if (!Constants::timer->isActive())
             {
                 if (playersShip->getShipPosX() <= -330)
@@ -734,10 +728,6 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
                 }
                 else
                 {
-                    QSound *shipMovingFX = new QSound("zipper.wav", 0);
-                    shipMovingFX->setLoops(1);
-                    shipMovingFX->play();
-
                     playersShip->moveBy(-30, 0);
                     playersShip->setShipPosX(-30);
                     ball->moveBy(-30, 0);
@@ -751,10 +741,6 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
                     playersShip->moveBy(0, 0);
                 else
                 {
-                    QSound *shipMovingFX = new QSound("zipper.wav", 0);
-                    shipMovingFX->setLoops(1);
-                    shipMovingFX->play();
-
                     playersShip->moveBy(-30,0);
                     playersShip->setShipPosX(-30);
                     ball->setShipPositon(playersShip->getShipPosX());
@@ -762,7 +748,7 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
             }
             break;
 
-        case Qt::Key_D:
+        case Qt::Key_D: // move space ship to the right
             if (!Constants::timer->isActive())
             {
                 if (playersShip->getShipPosX() >= 330)
@@ -770,10 +756,6 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
 
                 else
                 {
-                    QSound *shipMovingFX = new QSound("zipper.wav", 0);
-                    shipMovingFX->setLoops(1);
-                    shipMovingFX->play();
-
                     playersShip->moveBy(30,0);
                     playersShip->setShipPosX(30);
                     ball->moveBy(30, 0);
@@ -788,10 +770,6 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
                     playersShip->moveBy(0, 0);
                 else
                 {
-                    QSound *shipMovingFX = new QSound("zipper.wav", 0);
-                    shipMovingFX->setLoops(1);
-                    shipMovingFX->play();
-
                     playersShip->moveBy(30,0);
                     playersShip->setShipPosX(30);
                     ball->setShipPositon(playersShip->getShipPosX());
@@ -804,30 +782,21 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
         case Qt::Key_Space:
              if ((Constants::levelNumber == 1) || (Constants::levelNumber == 2)) // Levels with no weapons fired
              {
-                 qDebug() << "NO WEAPONS";
+
              }
              else if (Constants::levelNumber == 4) // Level with Missiles Fired
-             {
-                 ShipsMissiles *missiles = new ShipsMissiles(); // Ivan Collazo
-                 missiles->setShipPosition(playersShip->getShipPosX());
+             {  
+                 missiles = new ShipsMissiles(); // Ivan Collazo
+                 missiles->setShipMissilesXPosition(playersShip->getShipPosX()); // Ivan Collazo
                  board->scene->addItem(missiles); // Ivan Collazo
-                 qDebug() << "FIRE MISSILES";
-
-                 QSound *missileFireFX = new QSound("missile.wav", 0);
-                 missileFireFX->setLoops(1);
-                 missileFireFX->play();
-
+                 playersShip->fireMissiles()    ; // Ivan Collazo
              }
              else // Level with Bullets Fired
              {
                  bullets = new ShipBullet(); // Ivan Collazo
-                 bullets->setShipPosition(playersShip->getShipPosX());
+                 bullets->setShipBulletXPosition(playersShip->getShipPosX()); // Ivan Collazo
                  board->scene->addItem(bullets); // Ivan Collazo
-                 qDebug() << "FIRE";
-
-                 QSound *gunFireFX = new QSound("44magnum.wav", 0);
-                 gunFireFX->setLoops(1);
-                 gunFireFX->play();
+                 playersShip->fireBullets(); // Ivan Collazo
              }
              break;
 
@@ -847,15 +816,15 @@ void Form::keyPressEvent(QKeyEvent *event)          // Ivan Collazo
     }
 }
 
+
 /*!
-  added by Ivan Collazo
+  this method creates and stop mothership firing added by Ivan Collazo
   */
 void Form::motherFire()
 {
     // stops mother ship firing when player loses game
     if (Constants::count == 0)
     {
-        qDebug() << "STOP SHOOTING game over";
         timer4->disconnect(board->scene, SLOT(motherFire()));
         timer4->stop();
     }
@@ -863,34 +832,33 @@ void Form::motherFire()
     // stops mothership firing when game is won
     if (Constants::levelNumber == 5)
     {
-        qDebug() << "STOP SHOOTING game won";
         timer4->disconnect(board->scene, SLOT(motherFire()));
         timer4->stop();
     }
 
     // stops mother ship firing when mother ship is destoryed
-    else if (motherShip->getShipHit() <= 0)
+    else if (motherShip->getShipHit() == 5)
     {
-        qDebug() << "STOP SHOOTING when mother ship destroyed";
         timer4->disconnect(board->scene, SLOT(motherFire()));
         timer4->stop();
     }
 
+    // keeps firing mother ship bullets
     else
     {
-        motherShip->fire();
+        motherShip->fire();;
     }
 }
 
 /*!
-  added by Ivan Collazo
+  this method creates and stop alien ship firing added by Ivan Collazo
   */
+
 void Form::alienFire()
 {
     // stops alien ship firing when player loses game
     if (Constants::count == 0 )
     {
-            qDebug() << "STOP SHOOTING game over";
             timer3->disconnect(board->scene, SLOT(alienFire()));
             timer3->stop();
     }
@@ -898,15 +866,13 @@ void Form::alienFire()
     // stops alien ship firing when level is won
     else if (Constants::levelNumber == 4)
     {
-        qDebug() << "STOP SHOOTING level won";
         timer3->disconnect(board->scene, SLOT(alienFire()));
         timer3->stop();
     }
 
     // stops alien ship firing when alien ship is destoryed
-    else if (alienShip->getAlienShipHit() == 0)
+    else if (alienShip->getShipHit() == 0)
     {
-        qDebug() << "STOP SHOOTING when alien ship destroyed";
         timer3->disconnect(board->scene, SLOT(alienFire()));
         timer3->stop();
     }
@@ -914,7 +880,6 @@ void Form::alienFire()
     // keeps firing alien bullets
     else
     {
-        qDebug() << "sFIRRRRIn";
         alienShip->fire();
     }
 }
