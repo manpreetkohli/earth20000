@@ -59,7 +59,7 @@ void Ball::initializeScore()
     scoreFont ->setBold(true);
     scoreFont ->setPointSize(24);
     scoreDisplay = playersShip->scene()->addText(QString::number(scoreCount, 10), *scoreFont);
-    scoreDisplay->setDefaultTextColor(Qt::white);
+    scoreDisplay->setDefaultTextColor(Qt::cyan);
     scoreDisplay->setOpacity(1.0);
     scoreDisplay->setPos(330, -10);
     scoreDisplay->show();
