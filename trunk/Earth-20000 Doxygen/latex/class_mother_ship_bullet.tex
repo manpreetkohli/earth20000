@@ -1,0 +1,289 @@
+\hypertarget{class_mother_ship_bullet}{
+\section{MotherShipBullet Class Reference}
+\label{class_mother_ship_bullet}\index{MotherShipBullet@{MotherShipBullet}}
+}
+
+
+{\ttfamily \#include $<$mothershipbullet.h$>$}Inheritance diagram for MotherShipBullet::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_mother_ship_bullet}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_mother_ship_bullet_a95e5f5a708ca1ce2f609c7119eab8c4e}{MotherShipBullet} ()
+\item 
+virtual \hyperlink{class_mother_ship_bullet_a9753e8ee030255e1edd263e00fc890e5}{$\sim$MotherShipBullet} ()
+\item 
+void \hyperlink{class_mother_ship_bullet_ac2165443de035034133f7f215939ef92}{setBulletPosition} (int posX, int posY)
+\item 
+virtual int \hyperlink{class_mother_ship_bullet_a7042b4539bd9465cf1cb9e5b9a56ddce}{type} () const 
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_mother_ship_bullet_a931472c711d67537e8579ff36e6c5d0c}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget)
+\item 
+QRectF \hyperlink{class_mother_ship_bullet_a994d08ae215b526f3bf8ccb63c6efabd}{boundingRect} () const 
+\item 
+void \hyperlink{class_mother_ship_bullet_a56d988809fe0613e31c09bfb73d3ba0e}{advance} (int phase)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QPixmap \hyperlink{class_mother_ship_bullet_a9c582124220ad9aa63f7dbbf690a0743}{bulletImage}
+\item 
+qreal \hyperlink{class_mother_ship_bullet_a7595f4bddbfe83bb5467adc3d06b24a7}{directionX}
+\item 
+qreal \hyperlink{class_mother_ship_bullet_a886c10db617ba9341d34487514ffd79f}{directionY}
+\item 
+qreal \hyperlink{class_mother_ship_bullet_a5a9173af31257e18fa08bcb1b30afe11}{positionX}
+\item 
+qreal \hyperlink{class_mother_ship_bullet_ac20e2e77d3cbac30f2189495fbdce88d}{positionY}
+\item 
+qreal \hyperlink{class_mother_ship_bullet_ab81cbaea7101d4c9f8ac0c0fbba5fe8a}{width}
+\item 
+qreal \hyperlink{class_mother_ship_bullet_a76e8ce486a76094373b5afacfc754b8a}{height}
+\item 
+qreal \hyperlink{class_mother_ship_bullet_af8b80672b755f96fa75b0eb4786fc1a0}{shipXPosition}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class creates mothers ship bullets and advance the bullet for earth:20000 
+
+Definition at line 17 of file mothershipbullet.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_mother_ship_bullet_a95e5f5a708ca1ce2f609c7119eab8c4e}{
+\index{MotherShipBullet@{MotherShipBullet}!MotherShipBullet@{MotherShipBullet}}
+\index{MotherShipBullet@{MotherShipBullet}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{MotherShipBullet}]{\setlength{\rightskip}{0pt plus 5cm}MotherShipBullet::MotherShipBullet ()}}
+\label{class_mother_ship_bullet_a95e5f5a708ca1ce2f609c7119eab8c4e}
+Author: Ivan Collazo File: \hyperlink{mothershipbullet_8cpp}{mothershipbullet.cpp} Date: 10/20/2009 This is .cpp file for mother ships bullets in earth20000
+
+constructor 
+
+Definition at line 16 of file mothershipbullet.cpp.
+
+
+\begin{DoxyCode}
+17 {
+18     bulletImage.load(":enemyBullet.png");
+19     directionX = 0;                         // set the X-axis increment for the m
+      ovement
+20     directionY = 2;                         // set the Y-axis increment for the m
+      ovement
+21     positionX = 0;                          // initial X coordinate of the bullet
+      
+22     positionY = 0;                          // initial Y coordinate of the bullet
+      
+23     width = 30;                             // width of the bullet
+24     height = 30;                            // height of the bullet
+25     setPos(positionX, positionY);           // set initial position of the bullet
+      
+26 }
+\end{DoxyCode}
+\hypertarget{class_mother_ship_bullet_a9753e8ee030255e1edd263e00fc890e5}{
+\index{MotherShipBullet@{MotherShipBullet}!$\sim$MotherShipBullet@{$\sim$MotherShipBullet}}
+\index{$\sim$MotherShipBullet@{$\sim$MotherShipBullet}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{$\sim$MotherShipBullet}]{\setlength{\rightskip}{0pt plus 5cm}MotherShipBullet::$\sim$MotherShipBullet ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_mother_ship_bullet_a9753e8ee030255e1edd263e00fc890e5}
+destructor 
+
+Definition at line 31 of file mothershipbullet.cpp.
+
+
+\begin{DoxyCode}
+32 {
+33 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_mother_ship_bullet_a56d988809fe0613e31c09bfb73d3ba0e}{
+\index{MotherShipBullet@{MotherShipBullet}!advance@{advance}}
+\index{advance@{advance}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{advance}]{\setlength{\rightskip}{0pt plus 5cm}void MotherShipBullet::advance (int {\em phase})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_mother_ship_bullet_a56d988809fe0613e31c09bfb73d3ba0e}
+this method adds motion to the mothershipbullet 
+
+Reimplemented from \hyperlink{class_ammo_a257fb0cdbb4302da65b89447fa6caeaa}{Ammo}.
+
+Definition at line 63 of file mothershipbullet.cpp.
+
+
+\begin{DoxyCode}
+64 {
+65     if(!phase) return;
+66 
+67     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
+68 
+69     // checks if there is a collision
+70     if (!listOfCollidingItems.isEmpty())
+71     {
+72         // if collision occurs with a space ship then mother ship bullet is remov
+      ed from the scene
+73         if(listOfCollidingItems.first()->type() == ID_SPACESHIP)
+74         {
+75             this->scene()->removeItem(this);
+76         }
+77     }
+78 
+79     positionY+=directionY;
+80 
+81     // set the new position of the mothership bullet
+82     setPos(positionX,positionY);
+83 
+84     // if position of the mother ship bullet is greater than 800 the mother ship 
+      bullet is removed from scene
+85     if (positionY > 800)
+86     {
+87         this->scene()->removeItem(this);
+88     }
+89 }
+\end{DoxyCode}
+\hypertarget{class_mother_ship_bullet_a994d08ae215b526f3bf8ccb63c6efabd}{
+\index{MotherShipBullet@{MotherShipBullet}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF MotherShipBullet::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_mother_ship_bullet_a994d08ae215b526f3bf8ccb63c6efabd}
+this method does the bounding rectangle of the object for collision detection 
+
+Reimplemented from \hyperlink{class_ammo_a4c5548e35a4599210f0599328ef03f01}{Ammo}.
+
+Definition at line 46 of file mothershipbullet.cpp.
+
+
+\begin{DoxyCode}
+47 {
+48   return QRectF(325,-110, width,height);
+49 }
+\end{DoxyCode}
+\hypertarget{class_mother_ship_bullet_a931472c711d67537e8579ff36e6c5d0c}{
+\index{MotherShipBullet@{MotherShipBullet}!paint@{paint}}
+\index{paint@{paint}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void MotherShipBullet::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_mother_ship_bullet_a931472c711d67537e8579ff36e6c5d0c}
+this method is called whenever the mothershipbullet needs to be drawn 
+
+Reimplemented from \hyperlink{class_ammo_a3f4c8157fab369e46bac4bb88348d8c1}{Ammo}.
+
+Definition at line 38 of file mothershipbullet.cpp.
+
+
+\begin{DoxyCode}
+39 {
+40     painter->drawPixmap(325, -110, width, height, bulletImage);
+41 }
+\end{DoxyCode}
+\hypertarget{class_mother_ship_bullet_ac2165443de035034133f7f215939ef92}{
+\index{MotherShipBullet@{MotherShipBullet}!setBulletPosition@{setBulletPosition}}
+\index{setBulletPosition@{setBulletPosition}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{setBulletPosition}]{\setlength{\rightskip}{0pt plus 5cm}void MotherShipBullet::setBulletPosition (int {\em posX}, \/  int {\em posY})}}
+\label{class_mother_ship_bullet_ac2165443de035034133f7f215939ef92}
+this method sets mothershipbullet position 
+
+Definition at line 54 of file mothershipbullet.cpp.
+
+
+\begin{DoxyCode}
+55 {
+56     positionX = posX;
+57     positionY = posY;
+58 }
+\end{DoxyCode}
+\hypertarget{class_mother_ship_bullet_a7042b4539bd9465cf1cb9e5b9a56ddce}{
+\index{MotherShipBullet@{MotherShipBullet}!type@{type}}
+\index{type@{type}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}virtual int MotherShipBullet::type () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_mother_ship_bullet_a7042b4539bd9465cf1cb9e5b9a56ddce}
+
+
+Definition at line 47 of file mothershipbullet.h.
+
+
+\begin{DoxyCode}
+47 {return ID_MOTHERSHIPBULLET; }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_mother_ship_bullet_a9c582124220ad9aa63f7dbbf690a0743}{
+\index{MotherShipBullet@{MotherShipBullet}!bulletImage@{bulletImage}}
+\index{bulletImage@{bulletImage}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{bulletImage}]{\setlength{\rightskip}{0pt plus 5cm}QPixmap {\bf MotherShipBullet::bulletImage}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_mother_ship_bullet_a9c582124220ad9aa63f7dbbf690a0743}
+
+
+Definition at line 21 of file mothershipbullet.h.\hypertarget{class_mother_ship_bullet_a7595f4bddbfe83bb5467adc3d06b24a7}{
+\index{MotherShipBullet@{MotherShipBullet}!directionX@{directionX}}
+\index{directionX@{directionX}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{directionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf MotherShipBullet::directionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_mother_ship_bullet_a7595f4bddbfe83bb5467adc3d06b24a7}
+
+
+Reimplemented from \hyperlink{class_ammo_a60392d67523d0cf6d46e14b6b3f1ae05}{Ammo}.
+
+Definition at line 24 of file mothershipbullet.h.\hypertarget{class_mother_ship_bullet_a886c10db617ba9341d34487514ffd79f}{
+\index{MotherShipBullet@{MotherShipBullet}!directionY@{directionY}}
+\index{directionY@{directionY}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{directionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf MotherShipBullet::directionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_mother_ship_bullet_a886c10db617ba9341d34487514ffd79f}
+
+
+Reimplemented from \hyperlink{class_ammo_a1156ff1439690bf121841528585aa026}{Ammo}.
+
+Definition at line 24 of file mothershipbullet.h.\hypertarget{class_mother_ship_bullet_a76e8ce486a76094373b5afacfc754b8a}{
+\index{MotherShipBullet@{MotherShipBullet}!height@{height}}
+\index{height@{height}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf MotherShipBullet::height}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_mother_ship_bullet_a76e8ce486a76094373b5afacfc754b8a}
+
+
+Reimplemented from \hyperlink{class_ammo_a7ee07e5c3778fe15aeef8126a5251e3b}{Ammo}.
+
+Definition at line 25 of file mothershipbullet.h.\hypertarget{class_mother_ship_bullet_a5a9173af31257e18fa08bcb1b30afe11}{
+\index{MotherShipBullet@{MotherShipBullet}!positionX@{positionX}}
+\index{positionX@{positionX}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{positionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf MotherShipBullet::positionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_mother_ship_bullet_a5a9173af31257e18fa08bcb1b30afe11}
+
+
+Reimplemented from \hyperlink{class_ammo_a7df8c23c0a3023e013c25e2b3fff5385}{Ammo}.
+
+Definition at line 24 of file mothershipbullet.h.\hypertarget{class_mother_ship_bullet_ac20e2e77d3cbac30f2189495fbdce88d}{
+\index{MotherShipBullet@{MotherShipBullet}!positionY@{positionY}}
+\index{positionY@{positionY}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{positionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf MotherShipBullet::positionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_mother_ship_bullet_ac20e2e77d3cbac30f2189495fbdce88d}
+
+
+Reimplemented from \hyperlink{class_ammo_a71fc5db64ac2f32ca10e22f7a7ff0c88}{Ammo}.
+
+Definition at line 24 of file mothershipbullet.h.\hypertarget{class_mother_ship_bullet_af8b80672b755f96fa75b0eb4786fc1a0}{
+\index{MotherShipBullet@{MotherShipBullet}!shipXPosition@{shipXPosition}}
+\index{shipXPosition@{shipXPosition}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{shipXPosition}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf MotherShipBullet::shipXPosition}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_mother_ship_bullet_af8b80672b755f96fa75b0eb4786fc1a0}
+
+
+Reimplemented from \hyperlink{class_ammo_a86583f8632ca9604ef0ae839d78fe5ef}{Ammo}.
+
+Definition at line 25 of file mothershipbullet.h.\hypertarget{class_mother_ship_bullet_ab81cbaea7101d4c9f8ac0c0fbba5fe8a}{
+\index{MotherShipBullet@{MotherShipBullet}!width@{width}}
+\index{width@{width}!MotherShipBullet@{MotherShipBullet}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf MotherShipBullet::width}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_mother_ship_bullet_ab81cbaea7101d4c9f8ac0c0fbba5fe8a}
+
+
+Reimplemented from \hyperlink{class_ammo_aad7996f9abdcb6ade7e67f7c7f5e5ebe}{Ammo}.
+
+Definition at line 25 of file mothershipbullet.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{mothershipbullet_8h}{mothershipbullet.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{mothershipbullet_8cpp}{mothershipbullet.cpp}\end{DoxyCompactItemize}

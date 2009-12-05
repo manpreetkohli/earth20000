@@ -1,0 +1,93 @@
+\hypertarget{class_red_block}{
+\section{RedBlock Class Reference}
+\label{class_red_block}\index{RedBlock@{RedBlock}}
+}
+
+
+{\ttfamily \#include $<$block.h$>$}Inheritance diagram for RedBlock::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_red_block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_red_block_a48950c740ef6ce1abcaf231a388419e3}{RedBlock} ()
+\item 
+QRectF \hyperlink{class_red_block_a31036897a1451c6140ce9f368e461fb0}{boundingRect} () const 
+\item 
+void \hyperlink{class_red_block_a78013615dbc11158d47eb38cc3d416cd}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 83 of file block.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_red_block_a48950c740ef6ce1abcaf231a388419e3}{
+\index{RedBlock@{RedBlock}!RedBlock@{RedBlock}}
+\index{RedBlock@{RedBlock}!RedBlock@{RedBlock}}
+\subsubsection[{RedBlock}]{\setlength{\rightskip}{0pt plus 5cm}RedBlock::RedBlock ()}}
+\label{class_red_block_a48950c740ef6ce1abcaf231a388419e3}
+
+
+Definition at line 295 of file block.cpp.
+
+
+\begin{DoxyCode}
+296 {
+297     //Set color to red
+298     setColor1(1);
+299     setColor2(2);
+300 
+301     QGraphicsItem *oneBlock = new SingleBlock(this);
+302 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_red_block_a31036897a1451c6140ce9f368e461fb0}{
+\index{RedBlock@{RedBlock}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!RedBlock@{RedBlock}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF RedBlock::boundingRect () const}}
+\label{class_red_block_a31036897a1451c6140ce9f368e461fb0}
+
+
+Reimplemented from \hyperlink{class_block_aee4444b92a82f5a8080e9019ef1e554d}{Block}.
+
+Definition at line 304 of file block.cpp.
+
+
+\begin{DoxyCode}
+305 {
+306     return QRectF();
+307 }
+\end{DoxyCode}
+\hypertarget{class_red_block_a78013615dbc11158d47eb38cc3d416cd}{
+\index{RedBlock@{RedBlock}!paint@{paint}}
+\index{paint@{paint}!RedBlock@{RedBlock}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void RedBlock::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_red_block_a78013615dbc11158d47eb38cc3d416cd}
+
+
+Reimplemented from \hyperlink{class_block_a36791d086b6fad1a2203bfef6fdbaa0a}{Block}.
+
+Definition at line 309 of file block.cpp.
+
+
+\begin{DoxyCode}
+310 {
+311     Q_UNUSED(painter);
+312     Q_UNUSED(option);
+313     Q_UNUSED(widget);
+314 }
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8h}{block.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8cpp}{block.cpp}\end{DoxyCompactItemize}

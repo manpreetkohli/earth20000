@@ -1,0 +1,300 @@
+\hypertarget{class_powerup}{
+\section{Powerup Class Reference}
+\label{class_powerup}\index{Powerup@{Powerup}}
+}
+
+
+{\ttfamily \#include $<$powerup.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_powerup_a20c3efe6b86d6f358a57f8215d157b20}{Powerup} ()
+\item 
+\hyperlink{class_powerup_a2e1c97859d671527885e6f4eb200ca3f}{$\sim$Powerup} ()
+\item 
+void \hyperlink{class_powerup_a2a2f3e03678ec74cfcd0e255508da424}{setPosition} (int x, int y)
+\item 
+void \hyperlink{class_powerup_a61e9a00b5146933a34dec31eeab2bd64}{setType} (int type)
+\item 
+QRectF \hyperlink{class_powerup_aab0164a05e29dd7acad0be68d85d8658}{boundingRect} () const 
+\item 
+void \hyperlink{class_powerup_af9b71984dff4762bd0d5316375a0db36}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\item 
+void \hyperlink{class_powerup_a02fc102081ea4cbbccdbb77f1c4fd00a}{advance} (int phase)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QPixmap \hyperlink{class_powerup_aefad56fdb8d34e9ebda24ffcaff19364}{powerupImage}
+\item 
+int \hyperlink{class_powerup_abd54a06f5c3f0eccf117e3e66ac4eed6}{powerupType}
+\item 
+int \hyperlink{class_powerup_a504173661ebda0dad5527d8da3db112a}{xPos}
+\item 
+int \hyperlink{class_powerup_a5c5ead355eac87687262e9016f771309}{yPos}
+\item 
+int \hyperlink{class_powerup_a5fb53c57a23b61e7d59696eadb9fe7db}{directionX}
+\item 
+int \hyperlink{class_powerup_a2169993d2e076f75b3c236bebc71ab4f}{directionY}
+\item 
+int \hyperlink{class_powerup_a0c32c5cedef96b3fd45c4d9474e1379c}{timer}
+\item 
+QSound $\ast$ \hyperlink{class_powerup_ab5346fff1db496ccf866d51aa30b34fa}{powerupAcquired}
+\item 
+double \hyperlink{class_powerup_a6a5cf33586c92ef4fbd950f108d36ed9}{factor}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{powerup_8cpp}{powerup.cpp}
+
+Creates an instance of a powerup, and when called upon the advance method, it travels down the Y-\/axis checking for collisions with the player ship.
+
+Author: Natraj Subramanian 
+
+Definition at line 21 of file powerup.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_powerup_a20c3efe6b86d6f358a57f8215d157b20}{
+\index{Powerup@{Powerup}!Powerup@{Powerup}}
+\index{Powerup@{Powerup}!Powerup@{Powerup}}
+\subsubsection[{Powerup}]{\setlength{\rightskip}{0pt plus 5cm}Powerup::Powerup ()}}
+\label{class_powerup_a20c3efe6b86d6f358a57f8215d157b20}
+
+
+Definition at line 12 of file powerup.cpp.
+
+
+\begin{DoxyCode}
+13 {
+14     powerupImage.load(":Powerup.png");          // load an image for the ball
+15     directionX = 0;                         // set the X-axis increment for the m
+      ovement
+16     directionY = -1;                        // set the Y-axis increment for the m
+      ovement
+17     xPos = 0;                          // initial X coordinate of the ball
+18     yPos = 0;                          // initial Y coordinate of the ball
+19     setPos(xPos, yPos);
+20 }
+\end{DoxyCode}
+\hypertarget{class_powerup_a2e1c97859d671527885e6f4eb200ca3f}{
+\index{Powerup@{Powerup}!$\sim$Powerup@{$\sim$Powerup}}
+\index{$\sim$Powerup@{$\sim$Powerup}!Powerup@{Powerup}}
+\subsubsection[{$\sim$Powerup}]{\setlength{\rightskip}{0pt plus 5cm}Powerup::$\sim$Powerup ()}}
+\label{class_powerup_a2e1c97859d671527885e6f4eb200ca3f}
+
+
+Definition at line 22 of file powerup.cpp.
+
+
+\begin{DoxyCode}
+23 {
+24 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_powerup_a02fc102081ea4cbbccdbb77f1c4fd00a}{
+\index{Powerup@{Powerup}!advance@{advance}}
+\index{advance@{advance}!Powerup@{Powerup}}
+\subsubsection[{advance}]{\setlength{\rightskip}{0pt plus 5cm}void Powerup::advance (int {\em phase})}}
+\label{class_powerup_a02fc102081ea4cbbccdbb77f1c4fd00a}
+
+
+Definition at line 54 of file powerup.cpp.
+
+
+\begin{DoxyCode}
+55 {
+56     if(!phase) return;
+57 
+58     if(yPos < 95)
+59     {
+60         QList<QGraphicsItem *> hits = this->collidingItems(Qt::IntersectsItemBoun
+      dingRect);
+61 
+62         if(!hits.isEmpty())
+63         {
+64             // Checks if the first item that collidingItems has detected
+65             // has the ID_SPACESHIP as its type and not BLOCKID
+66             // If it does then the powerup icon is set invisible and then
+67             // subsequently removed from the scene.
+68             if(hits.first()->type() == ID_SPACESHIP && hits.first()->type() != 
+      BLOCKID)
+69             {
+70                 powerupAcquired = new QSound("tone2.wav");
+71                 powerupAcquired->setLoops(1);
+72                 powerupAcquired->play();
+73                 this->setVisible(false);
+74                 this->scene()->removeItem(this);
+75 
+76                 // Powerup type 1 specifies a slow down of the ball
+77                 // If powerup type is 1, then set the static variable
+78                 // powerup in the constants class to 1, so that it
+79                 // can be read in by the ball during its next clock
+80                 // cycle.
+81                 // Powerup type 2 specifies a speed up of the ball
+82                 if(this->powerupType == 1)
+83                 {
+84                     if(Constants::powerup != 1)
+85                     {
+86                         Constants::powerup = 1;
+87                     }
+88                 }
+89                 if(this->powerupType == 2)
+90                 {
+91                     if(Constants::powerup != 2)
+92                     {
+93                         Constants::powerup = 2;
+94                     }
+95                 }
+96             }
+97         }
+98 
+99         // Move the ball down the Y Axis by directionY
+100         yPos-=directionY;
+101         setPos(xPos, yPos);
+102     }
+103     else
+104     {
+105         // If the powerup has passed the boundary of the window,
+106         // then remove it from the scene.
+107         Constants::powerup = 0;
+108         this->scene()->removeItem(this);
+109     }
+110 }
+\end{DoxyCode}
+\hypertarget{class_powerup_aab0164a05e29dd7acad0be68d85d8658}{
+\index{Powerup@{Powerup}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!Powerup@{Powerup}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF Powerup::boundingRect () const}}
+\label{class_powerup_aab0164a05e29dd7acad0be68d85d8658}
+
+
+Definition at line 43 of file powerup.cpp.
+
+
+\begin{DoxyCode}
+44 {
+45     return QRectF(375, 625, 27, 27);
+46 }
+\end{DoxyCode}
+\hypertarget{class_powerup_af9b71984dff4762bd0d5316375a0db36}{
+\index{Powerup@{Powerup}!paint@{paint}}
+\index{paint@{paint}!Powerup@{Powerup}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void Powerup::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_powerup_af9b71984dff4762bd0d5316375a0db36}
+
+
+Definition at line 48 of file powerup.cpp.
+
+
+\begin{DoxyCode}
+50 {
+51     painter->drawPixmap(375, 625, 27, 27, powerupImage);
+52 }
+\end{DoxyCode}
+\hypertarget{class_powerup_a2a2f3e03678ec74cfcd0e255508da424}{
+\index{Powerup@{Powerup}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!Powerup@{Powerup}}
+\subsubsection[{setPosition}]{\setlength{\rightskip}{0pt plus 5cm}void Powerup::setPosition (int {\em x}, \/  int {\em y})}}
+\label{class_powerup_a2a2f3e03678ec74cfcd0e255508da424}
+
+
+Definition at line 26 of file powerup.cpp.
+
+
+\begin{DoxyCode}
+27 {
+28     xPos = x;
+29     yPos = y;
+30 }
+\end{DoxyCode}
+\hypertarget{class_powerup_a61e9a00b5146933a34dec31eeab2bd64}{
+\index{Powerup@{Powerup}!setType@{setType}}
+\index{setType@{setType}!Powerup@{Powerup}}
+\subsubsection[{setType}]{\setlength{\rightskip}{0pt plus 5cm}void Powerup::setType (int {\em type})}}
+\label{class_powerup_a61e9a00b5146933a34dec31eeab2bd64}
+Set the type of the powerup i.e. either slow down or speed up 
+
+Definition at line 36 of file powerup.cpp.
+
+
+\begin{DoxyCode}
+37 {
+38     int *typePtr;
+39     typePtr = &powerupType;
+40     *typePtr = type;
+41 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_powerup_a5fb53c57a23b61e7d59696eadb9fe7db}{
+\index{Powerup@{Powerup}!directionX@{directionX}}
+\index{directionX@{directionX}!Powerup@{Powerup}}
+\subsubsection[{directionX}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Powerup::directionX}}}
+\label{class_powerup_a5fb53c57a23b61e7d59696eadb9fe7db}
+
+
+Definition at line 26 of file powerup.h.\hypertarget{class_powerup_a2169993d2e076f75b3c236bebc71ab4f}{
+\index{Powerup@{Powerup}!directionY@{directionY}}
+\index{directionY@{directionY}!Powerup@{Powerup}}
+\subsubsection[{directionY}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Powerup::directionY}}}
+\label{class_powerup_a2169993d2e076f75b3c236bebc71ab4f}
+
+
+Definition at line 26 of file powerup.h.\hypertarget{class_powerup_a6a5cf33586c92ef4fbd950f108d36ed9}{
+\index{Powerup@{Powerup}!factor@{factor}}
+\index{factor@{factor}!Powerup@{Powerup}}
+\subsubsection[{factor}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf Powerup::factor}}}
+\label{class_powerup_a6a5cf33586c92ef4fbd950f108d36ed9}
+
+
+Definition at line 28 of file powerup.h.\hypertarget{class_powerup_ab5346fff1db496ccf866d51aa30b34fa}{
+\index{Powerup@{Powerup}!powerupAcquired@{powerupAcquired}}
+\index{powerupAcquired@{powerupAcquired}!Powerup@{Powerup}}
+\subsubsection[{powerupAcquired}]{\setlength{\rightskip}{0pt plus 5cm}QSound$\ast$ {\bf Powerup::powerupAcquired}}}
+\label{class_powerup_ab5346fff1db496ccf866d51aa30b34fa}
+
+
+Definition at line 27 of file powerup.h.\hypertarget{class_powerup_aefad56fdb8d34e9ebda24ffcaff19364}{
+\index{Powerup@{Powerup}!powerupImage@{powerupImage}}
+\index{powerupImage@{powerupImage}!Powerup@{Powerup}}
+\subsubsection[{powerupImage}]{\setlength{\rightskip}{0pt plus 5cm}QPixmap {\bf Powerup::powerupImage}}}
+\label{class_powerup_aefad56fdb8d34e9ebda24ffcaff19364}
+
+
+Definition at line 24 of file powerup.h.\hypertarget{class_powerup_abd54a06f5c3f0eccf117e3e66ac4eed6}{
+\index{Powerup@{Powerup}!powerupType@{powerupType}}
+\index{powerupType@{powerupType}!Powerup@{Powerup}}
+\subsubsection[{powerupType}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Powerup::powerupType}}}
+\label{class_powerup_abd54a06f5c3f0eccf117e3e66ac4eed6}
+
+
+Definition at line 25 of file powerup.h.\hypertarget{class_powerup_a0c32c5cedef96b3fd45c4d9474e1379c}{
+\index{Powerup@{Powerup}!timer@{timer}}
+\index{timer@{timer}!Powerup@{Powerup}}
+\subsubsection[{timer}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Powerup::timer}}}
+\label{class_powerup_a0c32c5cedef96b3fd45c4d9474e1379c}
+
+
+Definition at line 26 of file powerup.h.\hypertarget{class_powerup_a504173661ebda0dad5527d8da3db112a}{
+\index{Powerup@{Powerup}!xPos@{xPos}}
+\index{xPos@{xPos}!Powerup@{Powerup}}
+\subsubsection[{xPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Powerup::xPos}}}
+\label{class_powerup_a504173661ebda0dad5527d8da3db112a}
+
+
+Definition at line 26 of file powerup.h.\hypertarget{class_powerup_a5c5ead355eac87687262e9016f771309}{
+\index{Powerup@{Powerup}!yPos@{yPos}}
+\index{yPos@{yPos}!Powerup@{Powerup}}
+\subsubsection[{yPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Powerup::yPos}}}
+\label{class_powerup_a5c5ead355eac87687262e9016f771309}
+
+
+Definition at line 26 of file powerup.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{powerup_8h}{powerup.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{powerup_8cpp}{powerup.cpp}\end{DoxyCompactItemize}

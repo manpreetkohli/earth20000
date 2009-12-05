@@ -1,0 +1,127 @@
+\hypertarget{class_level_editor}{
+\section{LevelEditor Class Reference}
+\label{class_level_editor}\index{LevelEditor@{LevelEditor}}
+}
+
+
+{\ttfamily \#include $<$leveleditor.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_level_editor_a1d91bc06c0a93456587434b37fe726b4}{LevelEditor} (QGraphicsScene $\ast$theScene)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+QRectF \hyperlink{class_level_editor_a24ac36387e7530e9b1a1a783657ca36e}{boundingRect} () const 
+\item 
+void \hyperlink{class_level_editor_a95f1903a2fbfd21e3fa60038d8248779}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_level_editor_a39baf685b6e94984721a0df846316bdf}{xPos}
+\item 
+int \hyperlink{class_level_editor_a0d9ec2020a126ae5bdee4f442e1dd628}{yPos}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manpreet Kohli CS 340, Fall 2009
+
+\hyperlink{leveleditor_8cpp}{leveleditor.cpp}: creates the design for the level editor by creating 20 $\ast$ 27 semi-\/transparent blocks 
+
+Definition at line 13 of file leveleditor.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_level_editor_a1d91bc06c0a93456587434b37fe726b4}{
+\index{LevelEditor@{LevelEditor}!LevelEditor@{LevelEditor}}
+\index{LevelEditor@{LevelEditor}!LevelEditor@{LevelEditor}}
+\subsubsection[{LevelEditor}]{\setlength{\rightskip}{0pt plus 5cm}LevelEditor::LevelEditor (QGraphicsScene $\ast$ {\em theScene})}}
+\label{class_level_editor_a1d91bc06c0a93456587434b37fe726b4}
+
+
+Definition at line 6 of file leveleditor.cpp.
+
+
+\begin{DoxyCode}
+7 {
+8     xPos = -375;
+9     yPos = -590;
+10 
+11     // draw all the transparent blocks for the level editor window
+12     for (int i = 0; i < 20; i++)
+13     {
+14         for (int j = 0; j < 27; j++)
+15         {
+16             Constants::blocks[i][j] = new EmptyBlock();
+17             theScene->addItem(Constants::blocks[i][j]);
+18             Constants::blocks[i][j]->setXPos(xPos);
+19             Constants::blocks[i][j]->setYPos(yPos);
+20             Constants::blocks[i][j]->setPos(xPos, yPos);
+21             Constants::blocks[i][j]->setOpacity(0.4);
+22             Constants::blocks[i][j]->show();
+23             xPos+=OUTLINEW;
+24         }
+25         yPos += OUTLINEH;
+26         xPos = -375;
+27     }
+28 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_level_editor_a24ac36387e7530e9b1a1a783657ca36e}{
+\index{LevelEditor@{LevelEditor}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!LevelEditor@{LevelEditor}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF LevelEditor::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_editor_a24ac36387e7530e9b1a1a783657ca36e}
+
+
+Definition at line 30 of file leveleditor.cpp.
+
+
+\begin{DoxyCode}
+31 {
+32     return QRectF(0, 0, 27 * OUTLINEW, 20 * OUTLINEH);
+33 }
+\end{DoxyCode}
+\hypertarget{class_level_editor_a95f1903a2fbfd21e3fa60038d8248779}{
+\index{LevelEditor@{LevelEditor}!paint@{paint}}
+\index{paint@{paint}!LevelEditor@{LevelEditor}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void LevelEditor::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_editor_a95f1903a2fbfd21e3fa60038d8248779}
+
+
+Definition at line 35 of file leveleditor.cpp.
+
+
+\begin{DoxyCode}
+36 {
+37     Q_UNUSED(painter);
+38     Q_UNUSED(option);
+39     Q_UNUSED(widget);
+40 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_level_editor_a39baf685b6e94984721a0df846316bdf}{
+\index{LevelEditor@{LevelEditor}!xPos@{xPos}}
+\index{xPos@{xPos}!LevelEditor@{LevelEditor}}
+\subsubsection[{xPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LevelEditor::xPos}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_editor_a39baf685b6e94984721a0df846316bdf}
+
+
+Definition at line 16 of file leveleditor.h.\hypertarget{class_level_editor_a0d9ec2020a126ae5bdee4f442e1dd628}{
+\index{LevelEditor@{LevelEditor}!yPos@{yPos}}
+\index{yPos@{yPos}!LevelEditor@{LevelEditor}}
+\subsubsection[{yPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LevelEditor::yPos}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_editor_a0d9ec2020a126ae5bdee4f442e1dd628}
+
+
+Definition at line 16 of file leveleditor.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{leveleditor_8h}{leveleditor.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{leveleditor_8cpp}{leveleditor.cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,93 @@
+\hypertarget{class_empty_block}{
+\section{EmptyBlock Class Reference}
+\label{class_empty_block}\index{EmptyBlock@{EmptyBlock}}
+}
+
+
+{\ttfamily \#include $<$block.h$>$}Inheritance diagram for EmptyBlock::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_empty_block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_empty_block_a403cf9179dfc9ccb831700c1c1ce7b34}{EmptyBlock} ()
+\item 
+QRectF \hyperlink{class_empty_block_a1984fabb510aba7e14f460845faf881c}{boundingRect} () const 
+\item 
+void \hyperlink{class_empty_block_a1cec09fdef31d4404857dd22151a1834}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 75 of file block.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_empty_block_a403cf9179dfc9ccb831700c1c1ce7b34}{
+\index{EmptyBlock@{EmptyBlock}!EmptyBlock@{EmptyBlock}}
+\index{EmptyBlock@{EmptyBlock}!EmptyBlock@{EmptyBlock}}
+\subsubsection[{EmptyBlock}]{\setlength{\rightskip}{0pt plus 5cm}EmptyBlock::EmptyBlock ()}}
+\label{class_empty_block_a403cf9179dfc9ccb831700c1c1ce7b34}
+Added by Manpreet Kohli prototype for transparent block 
+
+Definition at line 268 of file block.cpp.
+
+
+\begin{DoxyCode}
+269 {
+270     //Set color to transparent
+271     setColor1(7);
+272     setColor2(7);
+273 
+274     QGraphicsItem *oneBlock = new SingleBlock(this);
+275 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_empty_block_a1984fabb510aba7e14f460845faf881c}{
+\index{EmptyBlock@{EmptyBlock}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!EmptyBlock@{EmptyBlock}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF EmptyBlock::boundingRect () const}}
+\label{class_empty_block_a1984fabb510aba7e14f460845faf881c}
+Added by Manpreet Kohli 
+
+Reimplemented from \hyperlink{class_block_aee4444b92a82f5a8080e9019ef1e554d}{Block}.
+
+Definition at line 280 of file block.cpp.
+
+
+\begin{DoxyCode}
+281 {
+282     return QRectF();
+283 }
+\end{DoxyCode}
+\hypertarget{class_empty_block_a1cec09fdef31d4404857dd22151a1834}{
+\index{EmptyBlock@{EmptyBlock}!paint@{paint}}
+\index{paint@{paint}!EmptyBlock@{EmptyBlock}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void EmptyBlock::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_empty_block_a1cec09fdef31d4404857dd22151a1834}
+Added by Manpreet Kohli 
+
+Reimplemented from \hyperlink{class_block_a36791d086b6fad1a2203bfef6fdbaa0a}{Block}.
+
+Definition at line 288 of file block.cpp.
+
+
+\begin{DoxyCode}
+289 {
+290     Q_UNUSED(painter);
+291     Q_UNUSED(option);
+292     Q_UNUSED(widget);
+293 }
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8h}{block.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8cpp}{block.cpp}\end{DoxyCompactItemize}

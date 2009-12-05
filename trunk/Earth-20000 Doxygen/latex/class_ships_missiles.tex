@@ -1,0 +1,298 @@
+\hypertarget{class_ships_missiles}{
+\section{ShipsMissiles Class Reference}
+\label{class_ships_missiles}\index{ShipsMissiles@{ShipsMissiles}}
+}
+
+
+{\ttfamily \#include $<$shipsmissiles.h$>$}Inheritance diagram for ShipsMissiles::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_ships_missiles}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_ships_missiles_ae2a320ddf054587cd0ebcb64267e0294}{ShipsMissiles} ()
+\item 
+virtual \hyperlink{class_ships_missiles_aff6a5eeef72231cedebb37c1f90e7e36}{$\sim$ShipsMissiles} ()
+\item 
+void \hyperlink{class_ships_missiles_a9a88fe4620fbe0e6cedc6f16188936d1}{setShipMissilesXPosition} (int pos)
+\item 
+virtual int \hyperlink{class_ships_missiles_afe6d8431cee08b306942285f35842eea}{type} () const 
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_ships_missiles_a709bf076bb74b37149907c06ffae942e}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget)
+\item 
+QRectF \hyperlink{class_ships_missiles_a0f26573f2bf4eed4c4320d09b1384c49}{boundingRect} () const 
+\item 
+void \hyperlink{class_ships_missiles_a5ce92a82b6f1259319e92379ab4ee306}{advance} (int phase)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QPixmap \hyperlink{class_ships_missiles_a4c2fdc36a57d2e2cd4676f254aaa84d8}{bulletImage}
+\item 
+qreal \hyperlink{class_ships_missiles_aad45d407d327d29bd616ca336197fe30}{directionX}
+\item 
+qreal \hyperlink{class_ships_missiles_af7e77e3dd68cb9f8d6cb90467a2a3ff0}{directionY}
+\item 
+qreal \hyperlink{class_ships_missiles_ad7c34c9db83c3ed6ecca7ec25c119123}{positionX}
+\item 
+qreal \hyperlink{class_ships_missiles_ace3adf616edc81579fcfd0b2dc76496f}{positionY}
+\item 
+qreal \hyperlink{class_ships_missiles_a335b53cf15200f696ba3c8cdd9b38d85}{width}
+\item 
+qreal \hyperlink{class_ships_missiles_a1a31e013e3e81f518aa8f99bbb684357}{height}
+\item 
+qreal \hyperlink{class_ships_missiles_a728619287aa81ab7bcbdbd034d1c3c8a}{shipXPosition}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class creates missiles and advances the missiles for earth:20000 
+
+Definition at line 17 of file shipsmissiles.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_ships_missiles_ae2a320ddf054587cd0ebcb64267e0294}{
+\index{ShipsMissiles@{ShipsMissiles}!ShipsMissiles@{ShipsMissiles}}
+\index{ShipsMissiles@{ShipsMissiles}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{ShipsMissiles}]{\setlength{\rightskip}{0pt plus 5cm}ShipsMissiles::ShipsMissiles ()}}
+\label{class_ships_missiles_ae2a320ddf054587cd0ebcb64267e0294}
+Author: Ivan Collazo File: \hyperlink{shipsmissiles_8cpp}{shipsmissiles.cpp} Date: 10/20/2009 This is .cpp file for space ships missiles in earth20000
+
+constructor 
+
+Definition at line 16 of file shipsmissiles.cpp.
+
+
+\begin{DoxyCode}
+17 {   
+18     bulletImage.load(":missiles.png");
+19     directionX = 0;                         // set the X-axis increment for the m
+      ovement
+20     directionY = -4;                        // set the Y-axis increment for the m
+      ovement
+21     positionX = -625;                       // initial X coordinate of the missil
+      e
+22     positionY = 0;                          // initial Y coordinate of the missil
+      e
+23     width = 120;                             // width of the missile
+24     height = 120;                            // height of the missile
+25     setPos(positionX, positionY);           // set initial position of the missil
+      e
+26 }
+\end{DoxyCode}
+\hypertarget{class_ships_missiles_aff6a5eeef72231cedebb37c1f90e7e36}{
+\index{ShipsMissiles@{ShipsMissiles}!$\sim$ShipsMissiles@{$\sim$ShipsMissiles}}
+\index{$\sim$ShipsMissiles@{$\sim$ShipsMissiles}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{$\sim$ShipsMissiles}]{\setlength{\rightskip}{0pt plus 5cm}ShipsMissiles::$\sim$ShipsMissiles ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_ships_missiles_aff6a5eeef72231cedebb37c1f90e7e36}
+destructor 
+
+Definition at line 31 of file shipsmissiles.cpp.
+
+
+\begin{DoxyCode}
+32 {
+33 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ships_missiles_a5ce92a82b6f1259319e92379ab4ee306}{
+\index{ShipsMissiles@{ShipsMissiles}!advance@{advance}}
+\index{advance@{advance}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{advance}]{\setlength{\rightskip}{0pt plus 5cm}void ShipsMissiles::advance (int {\em phase})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ships_missiles_a5ce92a82b6f1259319e92379ab4ee306}
+this method adds motion to the shipsbullet 
+
+Reimplemented from \hyperlink{class_ammo_a257fb0cdbb4302da65b89447fa6caeaa}{Ammo}.
+
+Definition at line 64 of file shipsmissiles.cpp.
+
+
+\begin{DoxyCode}
+65 {
+66     if(!phase) return;
+67 
+68     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
+69 
+70     // checks if there is a collision
+71     if (!listOfCollidingItems.isEmpty())
+72     {
+73         // if collision occurs with a block then missles is removed from scene
+74         if (listOfCollidingItems.first()->type() == BLOCKID)
+75         {
+76             positionX += 700;
+77             this->scene()->removeItem(this);
+78         }
+79 
+80         // else if collision occurs with a mothership then missile is removed fro
+      m scene
+81         else if (listOfCollidingItems.first()->type() == ID_MOTHERSHIP)
+82         {
+83             positionX += 700;
+84             this->scene()->removeItem(this);
+85         }
+86 
+87         // else if collision occurs with a itself then missile is removed from sc
+      ene
+88         else if (listOfCollidingItems.first()->type() == ID_SPACESHIPMISSILE)
+89         {
+90             positionX += 700;
+91             this->scene()->removeItem(this);
+92         }
+93     }
+94 
+95     positionY+=directionY;
+96 
+97     // set the new position of the shipsmissiles
+98     setPos(positionX+330, positionY-80);
+99 }
+\end{DoxyCode}
+\hypertarget{class_ships_missiles_a0f26573f2bf4eed4c4320d09b1384c49}{
+\index{ShipsMissiles@{ShipsMissiles}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF ShipsMissiles::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ships_missiles_a0f26573f2bf4eed4c4320d09b1384c49}
+this method does the bounding rectangle of the object for collision detection 
+
+Reimplemented from \hyperlink{class_ammo_a4c5548e35a4599210f0599328ef03f01}{Ammo}.
+
+Definition at line 47 of file shipsmissiles.cpp.
+
+
+\begin{DoxyCode}
+48 {
+49     return QRectF(40, 625, 20, height);
+50 }
+\end{DoxyCode}
+\hypertarget{class_ships_missiles_a709bf076bb74b37149907c06ffae942e}{
+\index{ShipsMissiles@{ShipsMissiles}!paint@{paint}}
+\index{paint@{paint}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void ShipsMissiles::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ships_missiles_a709bf076bb74b37149907c06ffae942e}
+this method is called whenever the shipsmissiles needs to be drawn 
+
+Reimplemented from \hyperlink{class_ammo_a3f4c8157fab369e46bac4bb88348d8c1}{Ammo}.
+
+Definition at line 38 of file shipsmissiles.cpp.
+
+
+\begin{DoxyCode}
+39 {
+40    painter->drawPixmap(-10, 625, width, height, bulletImage);
+41 }
+\end{DoxyCode}
+\hypertarget{class_ships_missiles_a9a88fe4620fbe0e6cedc6f16188936d1}{
+\index{ShipsMissiles@{ShipsMissiles}!setShipMissilesXPosition@{setShipMissilesXPosition}}
+\index{setShipMissilesXPosition@{setShipMissilesXPosition}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{setShipMissilesXPosition}]{\setlength{\rightskip}{0pt plus 5cm}void ShipsMissiles::setShipMissilesXPosition (int {\em pos})}}
+\label{class_ships_missiles_a9a88fe4620fbe0e6cedc6f16188936d1}
+this method sets shipmissiles x position 
+
+Definition at line 55 of file shipsmissiles.cpp.
+
+
+\begin{DoxyCode}
+56 {
+57     shipXPosition = pos;
+58     positionX = shipXPosition;
+59 }
+\end{DoxyCode}
+\hypertarget{class_ships_missiles_afe6d8431cee08b306942285f35842eea}{
+\index{ShipsMissiles@{ShipsMissiles}!type@{type}}
+\index{type@{type}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}virtual int ShipsMissiles::type () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_ships_missiles_afe6d8431cee08b306942285f35842eea}
+
+
+Definition at line 47 of file shipsmissiles.h.
+
+
+\begin{DoxyCode}
+47 {return ID_SPACESHIPMISSILE; }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_ships_missiles_a4c2fdc36a57d2e2cd4676f254aaa84d8}{
+\index{ShipsMissiles@{ShipsMissiles}!bulletImage@{bulletImage}}
+\index{bulletImage@{bulletImage}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{bulletImage}]{\setlength{\rightskip}{0pt plus 5cm}QPixmap {\bf ShipsMissiles::bulletImage}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ships_missiles_a4c2fdc36a57d2e2cd4676f254aaa84d8}
+
+
+Definition at line 21 of file shipsmissiles.h.\hypertarget{class_ships_missiles_aad45d407d327d29bd616ca336197fe30}{
+\index{ShipsMissiles@{ShipsMissiles}!directionX@{directionX}}
+\index{directionX@{directionX}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{directionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipsMissiles::directionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ships_missiles_aad45d407d327d29bd616ca336197fe30}
+
+
+Reimplemented from \hyperlink{class_ammo_a60392d67523d0cf6d46e14b6b3f1ae05}{Ammo}.
+
+Definition at line 24 of file shipsmissiles.h.\hypertarget{class_ships_missiles_af7e77e3dd68cb9f8d6cb90467a2a3ff0}{
+\index{ShipsMissiles@{ShipsMissiles}!directionY@{directionY}}
+\index{directionY@{directionY}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{directionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipsMissiles::directionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ships_missiles_af7e77e3dd68cb9f8d6cb90467a2a3ff0}
+
+
+Reimplemented from \hyperlink{class_ammo_a1156ff1439690bf121841528585aa026}{Ammo}.
+
+Definition at line 24 of file shipsmissiles.h.\hypertarget{class_ships_missiles_a1a31e013e3e81f518aa8f99bbb684357}{
+\index{ShipsMissiles@{ShipsMissiles}!height@{height}}
+\index{height@{height}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipsMissiles::height}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ships_missiles_a1a31e013e3e81f518aa8f99bbb684357}
+
+
+Reimplemented from \hyperlink{class_ammo_a7ee07e5c3778fe15aeef8126a5251e3b}{Ammo}.
+
+Definition at line 25 of file shipsmissiles.h.\hypertarget{class_ships_missiles_ad7c34c9db83c3ed6ecca7ec25c119123}{
+\index{ShipsMissiles@{ShipsMissiles}!positionX@{positionX}}
+\index{positionX@{positionX}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{positionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipsMissiles::positionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ships_missiles_ad7c34c9db83c3ed6ecca7ec25c119123}
+
+
+Reimplemented from \hyperlink{class_ammo_a7df8c23c0a3023e013c25e2b3fff5385}{Ammo}.
+
+Definition at line 24 of file shipsmissiles.h.\hypertarget{class_ships_missiles_ace3adf616edc81579fcfd0b2dc76496f}{
+\index{ShipsMissiles@{ShipsMissiles}!positionY@{positionY}}
+\index{positionY@{positionY}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{positionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipsMissiles::positionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ships_missiles_ace3adf616edc81579fcfd0b2dc76496f}
+
+
+Reimplemented from \hyperlink{class_ammo_a71fc5db64ac2f32ca10e22f7a7ff0c88}{Ammo}.
+
+Definition at line 24 of file shipsmissiles.h.\hypertarget{class_ships_missiles_a728619287aa81ab7bcbdbd034d1c3c8a}{
+\index{ShipsMissiles@{ShipsMissiles}!shipXPosition@{shipXPosition}}
+\index{shipXPosition@{shipXPosition}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{shipXPosition}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipsMissiles::shipXPosition}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ships_missiles_a728619287aa81ab7bcbdbd034d1c3c8a}
+
+
+Reimplemented from \hyperlink{class_ammo_a86583f8632ca9604ef0ae839d78fe5ef}{Ammo}.
+
+Definition at line 25 of file shipsmissiles.h.\hypertarget{class_ships_missiles_a335b53cf15200f696ba3c8cdd9b38d85}{
+\index{ShipsMissiles@{ShipsMissiles}!width@{width}}
+\index{width@{width}!ShipsMissiles@{ShipsMissiles}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipsMissiles::width}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ships_missiles_a335b53cf15200f696ba3c8cdd9b38d85}
+
+
+Reimplemented from \hyperlink{class_ammo_aad7996f9abdcb6ade7e67f7c7f5e5ebe}{Ammo}.
+
+Definition at line 25 of file shipsmissiles.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{shipsmissiles_8h}{shipsmissiles.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{shipsmissiles_8cpp}{shipsmissiles.cpp}\end{DoxyCompactItemize}

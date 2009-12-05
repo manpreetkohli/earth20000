@@ -1,0 +1,93 @@
+\hypertarget{class_blue_block}{
+\section{BlueBlock Class Reference}
+\label{class_blue_block}\index{BlueBlock@{BlueBlock}}
+}
+
+
+{\ttfamily \#include $<$block.h$>$}Inheritance diagram for BlueBlock::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_blue_block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_blue_block_a0c5157557a7f9db9c4916fef56b201bc}{BlueBlock} ()
+\item 
+QRectF \hyperlink{class_blue_block_ae83a63d0611bc918f93d7019b4b27056}{boundingRect} () const 
+\item 
+void \hyperlink{class_blue_block_adc28e68ba0fa2c578815b77dde03ebdb}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 99 of file block.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_blue_block_a0c5157557a7f9db9c4916fef56b201bc}{
+\index{BlueBlock@{BlueBlock}!BlueBlock@{BlueBlock}}
+\index{BlueBlock@{BlueBlock}!BlueBlock@{BlueBlock}}
+\subsubsection[{BlueBlock}]{\setlength{\rightskip}{0pt plus 5cm}BlueBlock::BlueBlock ()}}
+\label{class_blue_block_a0c5157557a7f9db9c4916fef56b201bc}
+
+
+Definition at line 337 of file block.cpp.
+
+
+\begin{DoxyCode}
+338 {
+339     //Set color to blue
+340     setColor1(1);
+341     setColor2(4);
+342 
+343     QGraphicsItem *oneBlock = new SingleBlock(this);
+344 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_blue_block_ae83a63d0611bc918f93d7019b4b27056}{
+\index{BlueBlock@{BlueBlock}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!BlueBlock@{BlueBlock}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF BlueBlock::boundingRect () const}}
+\label{class_blue_block_ae83a63d0611bc918f93d7019b4b27056}
+
+
+Reimplemented from \hyperlink{class_block_aee4444b92a82f5a8080e9019ef1e554d}{Block}.
+
+Definition at line 346 of file block.cpp.
+
+
+\begin{DoxyCode}
+347 {
+348     return QRectF();
+349 }
+\end{DoxyCode}
+\hypertarget{class_blue_block_adc28e68ba0fa2c578815b77dde03ebdb}{
+\index{BlueBlock@{BlueBlock}!paint@{paint}}
+\index{paint@{paint}!BlueBlock@{BlueBlock}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void BlueBlock::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_blue_block_adc28e68ba0fa2c578815b77dde03ebdb}
+
+
+Reimplemented from \hyperlink{class_block_a36791d086b6fad1a2203bfef6fdbaa0a}{Block}.
+
+Definition at line 351 of file block.cpp.
+
+
+\begin{DoxyCode}
+352 {
+353     Q_UNUSED(painter);
+354     Q_UNUSED(option);
+355     Q_UNUSED(widget);
+356 }
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8h}{block.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8cpp}{block.cpp}\end{DoxyCompactItemize}

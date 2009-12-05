@@ -1,0 +1,78 @@
+.TH "EnemyShipWing1" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+EnemyShipWing1 \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <enemyShip.h>\fP
+.PP
+Inherits \fBEnemyShipPart\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEnemyShipWing1\fP (QGraphicsItem *parent=0)"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 35 of file enemyShip.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "EnemyShipWing1::EnemyShipWing1 (QGraphicsItem * parent = \fC0\fP)"
+.PP
+Definition at line 86 of file enemyShip.cpp.
+.PP
+.nf
+87         :EnemyShipPart(parent)
+88 {
+89 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF EnemyShipWing1::boundingRect () const"
+.PP
+Definition at line 91 of file enemyShip.cpp.
+.PP
+.nf
+92 {
+93     return QRectF(0, 0, 100, 100);
+94 }
+.fi
+.SS "void EnemyShipWing1::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Definition at line 96 of file enemyShip.cpp.
+.PP
+.nf
+98 {
+99     Q_UNUSED(option);
+100     Q_UNUSED(widget);
+101 
+102     QPointF vertices[3] = {QPointF(0.0, 0.0),
+103                                      QPointF(35.0, 0.0),
+104                                      QPointF(35.0, 30.0)};
+105 
+106     painter->setPen(QPen(Qt::black, 0));
+107     QLinearGradient gradient(0, 0, -35, 0);
+108     gradient.setSpread(QGradient::ReflectSpread);
+109     gradient.setColorAt(0, Qt::lightGray);
+110     gradient.setColorAt(1, Qt::black);
+111 
+112     painter->setBrush(gradient);
+113     painter->drawPolygon(vertices, 3);
+114 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

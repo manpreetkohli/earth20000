@@ -1,0 +1,97 @@
+\hypertarget{class_enemy_ship_wing1}{
+\section{EnemyShipWing1 Class Reference}
+\label{class_enemy_ship_wing1}\index{EnemyShipWing1@{EnemyShipWing1}}
+}
+
+
+{\ttfamily \#include $<$enemyShip.h$>$}Inheritance diagram for EnemyShipWing1::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_enemy_ship_wing1}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_enemy_ship_wing1_ab4d400555654ad5a17bd6055e2101f8b}{EnemyShipWing1} (QGraphicsItem $\ast$parent=0)
+\item 
+QRectF \hyperlink{class_enemy_ship_wing1_a54d9ca15a2b20458b7a272429ca946c9}{boundingRect} () const 
+\item 
+void \hyperlink{class_enemy_ship_wing1_a1082b635493db40141b28122c56327ea}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 35 of file enemyShip.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_enemy_ship_wing1_ab4d400555654ad5a17bd6055e2101f8b}{
+\index{EnemyShipWing1@{EnemyShipWing1}!EnemyShipWing1@{EnemyShipWing1}}
+\index{EnemyShipWing1@{EnemyShipWing1}!EnemyShipWing1@{EnemyShipWing1}}
+\subsubsection[{EnemyShipWing1}]{\setlength{\rightskip}{0pt plus 5cm}EnemyShipWing1::EnemyShipWing1 (QGraphicsItem $\ast$ {\em parent} = {\ttfamily 0})}}
+\label{class_enemy_ship_wing1_ab4d400555654ad5a17bd6055e2101f8b}
+
+
+Definition at line 86 of file enemyShip.cpp.
+
+
+\begin{DoxyCode}
+87         :EnemyShipPart(parent)
+88 {
+89 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_enemy_ship_wing1_a54d9ca15a2b20458b7a272429ca946c9}{
+\index{EnemyShipWing1@{EnemyShipWing1}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!EnemyShipWing1@{EnemyShipWing1}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF EnemyShipWing1::boundingRect () const}}
+\label{class_enemy_ship_wing1_a54d9ca15a2b20458b7a272429ca946c9}
+
+
+Definition at line 91 of file enemyShip.cpp.
+
+
+\begin{DoxyCode}
+92 {
+93     return QRectF(0, 0, 100, 100);
+94 }
+\end{DoxyCode}
+\hypertarget{class_enemy_ship_wing1_a1082b635493db40141b28122c56327ea}{
+\index{EnemyShipWing1@{EnemyShipWing1}!paint@{paint}}
+\index{paint@{paint}!EnemyShipWing1@{EnemyShipWing1}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void EnemyShipWing1::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_enemy_ship_wing1_a1082b635493db40141b28122c56327ea}
+
+
+Definition at line 96 of file enemyShip.cpp.
+
+
+\begin{DoxyCode}
+98 {
+99     Q_UNUSED(option);
+100     Q_UNUSED(widget);
+101 
+102     QPointF vertices[3] = {QPointF(0.0, 0.0),
+103                                      QPointF(35.0, 0.0),
+104                                      QPointF(35.0, 30.0)};
+105 
+106     painter->setPen(QPen(Qt::black, 0));
+107     QLinearGradient gradient(0, 0, -35, 0);
+108     gradient.setSpread(QGradient::ReflectSpread);
+109     gradient.setColorAt(0, Qt::lightGray);
+110     gradient.setColorAt(1, Qt::black);
+111 
+112     painter->setBrush(gradient);
+113     painter->drawPolygon(vertices, 3);
+114 }
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{enemy_ship_8h}{enemyShip.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{enemy_ship_8cpp}{enemyShip.cpp}\end{DoxyCompactItemize}

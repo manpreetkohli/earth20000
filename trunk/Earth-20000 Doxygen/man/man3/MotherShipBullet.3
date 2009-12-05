@@ -1,0 +1,221 @@
+.TH "MotherShipBullet" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MotherShipBullet \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <mothershipbullet.h>\fP
+.PP
+Inherits \fBAmmo\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMotherShipBullet\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~MotherShipBullet\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetBulletPosition\fP (int posX, int posY)"
+.br
+.ti -1c
+.RI "virtual int \fBtype\fP () const "
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBadvance\fP (int phase)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QPixmap \fBbulletImage\fP"
+.br
+.ti -1c
+.RI "qreal \fBdirectionX\fP"
+.br
+.ti -1c
+.RI "qreal \fBdirectionY\fP"
+.br
+.ti -1c
+.RI "qreal \fBpositionX\fP"
+.br
+.ti -1c
+.RI "qreal \fBpositionY\fP"
+.br
+.ti -1c
+.RI "qreal \fBwidth\fP"
+.br
+.ti -1c
+.RI "qreal \fBheight\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipXPosition\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class creates mothers ship bullets and advance the bullet for earth:20000 
+.PP
+Definition at line 17 of file mothershipbullet.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "MotherShipBullet::MotherShipBullet ()"Author: Ivan Collazo File: \fBmothershipbullet.cpp\fP Date: 10/20/2009 This is .cpp file for mother ships bullets in earth20000
+.PP
+constructor 
+.PP
+Definition at line 16 of file mothershipbullet.cpp.
+.PP
+.nf
+17 {
+18     bulletImage.load(':enemyBullet.png');
+19     directionX = 0;                         // set the X-axis increment for the movement
+20     directionY = 2;                         // set the Y-axis increment for the movement
+21     positionX = 0;                          // initial X coordinate of the bullet
+22     positionY = 0;                          // initial Y coordinate of the bullet
+23     width = 30;                             // width of the bullet
+24     height = 30;                            // height of the bullet
+25     setPos(positionX, positionY);           // set initial position of the bullet
+26 }
+.fi
+.SS "MotherShipBullet::~MotherShipBullet ()\fC [virtual]\fP"destructor 
+.PP
+Definition at line 31 of file mothershipbullet.cpp.
+.PP
+.nf
+32 {
+33 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "void MotherShipBullet::advance (int phase)\fC [private, virtual]\fP"this method adds motion to the mothershipbullet 
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 63 of file mothershipbullet.cpp.
+.PP
+.nf
+64 {
+65     if(!phase) return;
+66 
+67     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
+68 
+69     // checks if there is a collision
+70     if (!listOfCollidingItems.isEmpty())
+71     {
+72         // if collision occurs with a space ship then mother ship bullet is removed from the scene
+73         if(listOfCollidingItems.first()->type() == ID_SPACESHIP)
+74         {
+75             this->scene()->removeItem(this);
+76         }
+77     }
+78 
+79     positionY+=directionY;
+80 
+81     // set the new position of the mothership bullet
+82     setPos(positionX,positionY);
+83 
+84     // if position of the mother ship bullet is greater than 800 the mother ship bullet is removed from scene
+85     if (positionY > 800)
+86     {
+87         this->scene()->removeItem(this);
+88     }
+89 }
+.fi
+.SS "QRectF MotherShipBullet::boundingRect () const\fC [private, virtual]\fP"this method does the bounding rectangle of the object for collision detection 
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 46 of file mothershipbullet.cpp.
+.PP
+.nf
+47 {
+48   return QRectF(325,-110, width,height);
+49 }
+.fi
+.SS "void MotherShipBullet::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)\fC [private, virtual]\fP"this method is called whenever the mothershipbullet needs to be drawn 
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 38 of file mothershipbullet.cpp.
+.PP
+.nf
+39 {
+40     painter->drawPixmap(325, -110, width, height, bulletImage);
+41 }
+.fi
+.SS "void MotherShipBullet::setBulletPosition (int posX, int posY)"this method sets mothershipbullet position 
+.PP
+Definition at line 54 of file mothershipbullet.cpp.
+.PP
+.nf
+55 {
+56     positionX = posX;
+57     positionY = posY;
+58 }
+.fi
+.SS "virtual int MotherShipBullet::type () const\fC [inline, virtual]\fP"
+.PP
+Definition at line 47 of file mothershipbullet.h.
+.PP
+.nf
+47 {return ID_MOTHERSHIPBULLET; }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "QPixmap \fBMotherShipBullet::bulletImage\fP\fC [private]\fP"
+.PP
+Definition at line 21 of file mothershipbullet.h.
+.SS "qreal \fBMotherShipBullet::directionX\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file mothershipbullet.h.
+.SS "qreal \fBMotherShipBullet::directionY\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file mothershipbullet.h.
+.SS "qreal \fBMotherShipBullet::height\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 25 of file mothershipbullet.h.
+.SS "qreal \fBMotherShipBullet::positionX\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file mothershipbullet.h.
+.SS "qreal \fBMotherShipBullet::positionY\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file mothershipbullet.h.
+.SS "qreal \fBMotherShipBullet::shipXPosition\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 25 of file mothershipbullet.h.
+.SS "qreal \fBMotherShipBullet::width\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 25 of file mothershipbullet.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

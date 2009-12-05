@@ -1,0 +1,93 @@
+\hypertarget{class_magenta_block}{
+\section{MagentaBlock Class Reference}
+\label{class_magenta_block}\index{MagentaBlock@{MagentaBlock}}
+}
+
+
+{\ttfamily \#include $<$block.h$>$}Inheritance diagram for MagentaBlock::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_magenta_block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_magenta_block_aa9a37dccb15970e1e23a1e80b6d943d8}{MagentaBlock} ()
+\item 
+QRectF \hyperlink{class_magenta_block_aec892d6118a5a5030d767a5ccfc56929}{boundingRect} () const 
+\item 
+void \hyperlink{class_magenta_block_ac48f5303ee031233918abfa460dd7066}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 107 of file block.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_magenta_block_aa9a37dccb15970e1e23a1e80b6d943d8}{
+\index{MagentaBlock@{MagentaBlock}!MagentaBlock@{MagentaBlock}}
+\index{MagentaBlock@{MagentaBlock}!MagentaBlock@{MagentaBlock}}
+\subsubsection[{MagentaBlock}]{\setlength{\rightskip}{0pt plus 5cm}MagentaBlock::MagentaBlock ()}}
+\label{class_magenta_block_aa9a37dccb15970e1e23a1e80b6d943d8}
+
+
+Definition at line 358 of file block.cpp.
+
+
+\begin{DoxyCode}
+359 {
+360     //Set color to magenta
+361     setColor1(1);
+362     setColor2(5);
+363 
+364     QGraphicsItem *oneBlock = new SingleBlock(this);
+365 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_magenta_block_aec892d6118a5a5030d767a5ccfc56929}{
+\index{MagentaBlock@{MagentaBlock}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!MagentaBlock@{MagentaBlock}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF MagentaBlock::boundingRect () const}}
+\label{class_magenta_block_aec892d6118a5a5030d767a5ccfc56929}
+
+
+Reimplemented from \hyperlink{class_block_aee4444b92a82f5a8080e9019ef1e554d}{Block}.
+
+Definition at line 367 of file block.cpp.
+
+
+\begin{DoxyCode}
+368 {
+369     return QRectF();
+370 }
+\end{DoxyCode}
+\hypertarget{class_magenta_block_ac48f5303ee031233918abfa460dd7066}{
+\index{MagentaBlock@{MagentaBlock}!paint@{paint}}
+\index{paint@{paint}!MagentaBlock@{MagentaBlock}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void MagentaBlock::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_magenta_block_ac48f5303ee031233918abfa460dd7066}
+
+
+Reimplemented from \hyperlink{class_block_a36791d086b6fad1a2203bfef6fdbaa0a}{Block}.
+
+Definition at line 372 of file block.cpp.
+
+
+\begin{DoxyCode}
+373 {
+374     Q_UNUSED(painter);
+375     Q_UNUSED(option);
+376     Q_UNUSED(widget);
+377 }
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8h}{block.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{block_8cpp}{block.cpp}\end{DoxyCompactItemize}

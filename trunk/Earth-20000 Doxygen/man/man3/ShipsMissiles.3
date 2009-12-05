@@ -1,0 +1,230 @@
+.TH "ShipsMissiles" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ShipsMissiles \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <shipsmissiles.h>\fP
+.PP
+Inherits \fBAmmo\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBShipsMissiles\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~ShipsMissiles\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetShipMissilesXPosition\fP (int pos)"
+.br
+.ti -1c
+.RI "virtual int \fBtype\fP () const "
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBadvance\fP (int phase)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QPixmap \fBbulletImage\fP"
+.br
+.ti -1c
+.RI "qreal \fBdirectionX\fP"
+.br
+.ti -1c
+.RI "qreal \fBdirectionY\fP"
+.br
+.ti -1c
+.RI "qreal \fBpositionX\fP"
+.br
+.ti -1c
+.RI "qreal \fBpositionY\fP"
+.br
+.ti -1c
+.RI "qreal \fBwidth\fP"
+.br
+.ti -1c
+.RI "qreal \fBheight\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipXPosition\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class creates missiles and advances the missiles for earth:20000 
+.PP
+Definition at line 17 of file shipsmissiles.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ShipsMissiles::ShipsMissiles ()"Author: Ivan Collazo File: \fBshipsmissiles.cpp\fP Date: 10/20/2009 This is .cpp file for space ships missiles in earth20000
+.PP
+constructor 
+.PP
+Definition at line 16 of file shipsmissiles.cpp.
+.PP
+.nf
+17 {   
+18     bulletImage.load(':missiles.png');
+19     directionX = 0;                         // set the X-axis increment for the movement
+20     directionY = -4;                        // set the Y-axis increment for the movement
+21     positionX = -625;                       // initial X coordinate of the missile
+22     positionY = 0;                          // initial Y coordinate of the missile
+23     width = 120;                             // width of the missile
+24     height = 120;                            // height of the missile
+25     setPos(positionX, positionY);           // set initial position of the missile
+26 }
+.fi
+.SS "ShipsMissiles::~ShipsMissiles ()\fC [virtual]\fP"destructor 
+.PP
+Definition at line 31 of file shipsmissiles.cpp.
+.PP
+.nf
+32 {
+33 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "void ShipsMissiles::advance (int phase)\fC [private, virtual]\fP"this method adds motion to the shipsbullet 
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 64 of file shipsmissiles.cpp.
+.PP
+.nf
+65 {
+66     if(!phase) return;
+67 
+68     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
+69 
+70     // checks if there is a collision
+71     if (!listOfCollidingItems.isEmpty())
+72     {
+73         // if collision occurs with a block then missles is removed from scene
+74         if (listOfCollidingItems.first()->type() == BLOCKID)
+75         {
+76             positionX += 700;
+77             this->scene()->removeItem(this);
+78         }
+79 
+80         // else if collision occurs with a mothership then missile is removed from scene
+81         else if (listOfCollidingItems.first()->type() == ID_MOTHERSHIP)
+82         {
+83             positionX += 700;
+84             this->scene()->removeItem(this);
+85         }
+86 
+87         // else if collision occurs with a itself then missile is removed from scene
+88         else if (listOfCollidingItems.first()->type() == ID_SPACESHIPMISSILE)
+89         {
+90             positionX += 700;
+91             this->scene()->removeItem(this);
+92         }
+93     }
+94 
+95     positionY+=directionY;
+96 
+97     // set the new position of the shipsmissiles
+98     setPos(positionX+330, positionY-80);
+99 }
+.fi
+.SS "QRectF ShipsMissiles::boundingRect () const\fC [private, virtual]\fP"this method does the bounding rectangle of the object for collision detection 
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 47 of file shipsmissiles.cpp.
+.PP
+.nf
+48 {
+49     return QRectF(40, 625, 20, height);
+50 }
+.fi
+.SS "void ShipsMissiles::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)\fC [private, virtual]\fP"this method is called whenever the shipsmissiles needs to be drawn 
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 38 of file shipsmissiles.cpp.
+.PP
+.nf
+39 {
+40    painter->drawPixmap(-10, 625, width, height, bulletImage);
+41 }
+.fi
+.SS "void ShipsMissiles::setShipMissilesXPosition (int pos)"this method sets shipmissiles x position 
+.PP
+Definition at line 55 of file shipsmissiles.cpp.
+.PP
+.nf
+56 {
+57     shipXPosition = pos;
+58     positionX = shipXPosition;
+59 }
+.fi
+.SS "virtual int ShipsMissiles::type () const\fC [inline, virtual]\fP"
+.PP
+Definition at line 47 of file shipsmissiles.h.
+.PP
+.nf
+47 {return ID_SPACESHIPMISSILE; }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "QPixmap \fBShipsMissiles::bulletImage\fP\fC [private]\fP"
+.PP
+Definition at line 21 of file shipsmissiles.h.
+.SS "qreal \fBShipsMissiles::directionX\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file shipsmissiles.h.
+.SS "qreal \fBShipsMissiles::directionY\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file shipsmissiles.h.
+.SS "qreal \fBShipsMissiles::height\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 25 of file shipsmissiles.h.
+.SS "qreal \fBShipsMissiles::positionX\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file shipsmissiles.h.
+.SS "qreal \fBShipsMissiles::positionY\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 24 of file shipsmissiles.h.
+.SS "qreal \fBShipsMissiles::shipXPosition\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 25 of file shipsmissiles.h.
+.SS "qreal \fBShipsMissiles::width\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBAmmo\fP.
+.PP
+Definition at line 25 of file shipsmissiles.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

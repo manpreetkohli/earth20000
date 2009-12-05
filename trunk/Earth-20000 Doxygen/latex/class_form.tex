@@ -1,0 +1,1647 @@
+\hypertarget{class_form}{
+\section{Form Class Reference}
+\label{class_form}\index{Form@{Form}}
+}
+
+
+{\ttfamily \#include $<$form.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_form_a9a921e26a02f23bffdea4330d6795796}{Form} (QWidget $\ast$parent=0)
+\item 
+\hyperlink{class_form_a9cda7cce41e81bfaca51e922d4f9b98f}{$\sim$Form} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_form_a633009d9f1f6700717dccc3e11cb38d9}{changeEvent} (QEvent $\ast$e)
+\item 
+void \hyperlink{class_form_a51af7e40b48b232f7b3a61f2242aa205}{keyPressEvent} (QKeyEvent $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_form_a5d619b8452dcafe406e6143c8de29169}{on\_\-controls\_\-clicked} ()
+\item 
+void \hyperlink{class_form_ad5cfc180c8653247d37045dcd7536f0b}{on\_\-load\_\-clicked} ()
+\item 
+void \hyperlink{class_form_af6626ed5a42cba30ec1e37f991940d58}{on\_\-levelEditor\_\-clicked} ()
+\item 
+void \hyperlink{class_form_af43a16a8fb1b1d955613a5aec4b87eea}{on\_\-newGame\_\-clicked} ()
+\item 
+void \hyperlink{class_form_ac7feff0f4e7f4872f0692b2f3d5854c2}{on\_\-exit\_\-clicked} ()
+\item 
+void \hyperlink{class_form_a5db4ecbdc1a9bc4ff8927b2a5a2da69f}{loadLevel1} ()
+\item 
+void \hyperlink{class_form_a36f1aac890405daee948054d44200149}{loadLevel2} ()
+\item 
+void \hyperlink{class_form_abca8ff816e3230388fe64d31a0ba10be}{loadLevel3} ()
+\item 
+void \hyperlink{class_form_a09242741a8ad563aec44c796dcec5a7c}{loadLevel4} ()
+\item 
+void \hyperlink{class_form_ad606b52ace6c58a2985f52b56ee099fb}{loadStoryScreen9} ()
+\item 
+void \hyperlink{class_form_abeec47265874e8a36c8e0cd0fdf00fc5}{loadStoryScreen8} ()
+\item 
+void \hyperlink{class_form_a8da2b417a6315a6bb664a1cea4389b4c}{loadStoryScreen7} ()
+\item 
+void \hyperlink{class_form_aca7f80e793fae48361bdca6c50c967a7}{loadStoryScreen6} ()
+\item 
+void \hyperlink{class_form_a13b7e32736d16ff41b5b8d9651db21a6}{loadStoryScreen5} ()
+\item 
+void \hyperlink{class_form_aaa5e8fc86af7da56f82ef3ea178ca5b3}{loadStoryScreen4} ()
+\item 
+void \hyperlink{class_form_a2c466a1ae32e4a9c45b2d285ae7abca8}{loadStoryScreen3} ()
+\item 
+void \hyperlink{class_form_a029cb26613cfb1d1ece1f403de8062aa}{loadStoryScreen2} ()
+\item 
+void \hyperlink{class_form_aefe8e4d932a234a6e50e93be2618bac3}{save\_\-clicked} ()
+\item 
+void \hyperlink{class_form_abcca43186cdcf3a8f65576b1f7581eea}{done\_\-clicked} ()
+\item 
+void \hyperlink{class_form_a642d6b971b9ea8e9e1b96c88426ca6f8}{reset\_\-clicked} ()
+\item 
+void \hyperlink{class_form_a5cdef71302be379ec9c2e2fc037f9f2f}{backgroundOne\_\-clicked} ()
+\item 
+void \hyperlink{class_form_a8344660630a52616f758765097813580}{backgroundTwo\_\-clicked} ()
+\item 
+void \hyperlink{class_form_ade0ebe9daab69d9c6cdd2928fb8ce122}{backgroundThree\_\-clicked} ()
+\item 
+void \hyperlink{class_form_af599736098aa8117bb52b18f7a661091}{backgroundFour\_\-clicked} ()
+\item 
+void \hyperlink{class_form_ad699933c3ec2a35b96d9b0eb55c18c14}{alienFire} ()
+\item 
+void \hyperlink{class_form_a9b89dc517d820fdcf314068b40431c77}{motherFire} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_form_ad6c4fa1f020d41dfbd8cda84c1d00ecb}{hideElements} (\hyperlink{class_ui_1_1_form}{Ui::Form} $\ast$\hyperlink{class_form_a719f9ac1c34536d610446a2a8f65656c}{m\_\-ui})
+\item 
+void \hyperlink{class_form_add0aafd8f5b0dd308b526cefb5d13367}{setupLevel} (int levelNumber)
+\item 
+void \hyperlink{class_form_ae852329bf7940d71cf722e412f40b867}{saveBackground} (QString bg)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_form_aec3ab393c4a0660c7b5fc7b7ece67d9a}{bgNo}
+\item 
+\hyperlink{class_ui_1_1_form}{Ui::Form} $\ast$ \hyperlink{class_form_a719f9ac1c34536d610446a2a8f65656c}{m\_\-ui}
+\item 
+\hyperlink{class_board}{Board} $\ast$ \hyperlink{class_form_a465e7b53a888759044031a0de6ede98d}{board}
+\item 
+QSound $\ast$ \hyperlink{class_form_a9a0efcb36e9c6f17a1a8a9b8976dccba}{intro}
+\item 
+\hyperlink{class_sleeper_thread}{SleeperThread} $\ast$ \hyperlink{class_form_ac44e1693a46054cf0ba47b7c03d397f6}{t}
+\item 
+\hyperlink{class_space_ship}{SpaceShip} $\ast$ \hyperlink{class_form_ad209e021a3dbed6ae132c32a642aaf2f}{playersShip}
+\item 
+QGraphicsView $\ast$ \hyperlink{class_form_a51d3d962a2815f75b507506e7ab94e4a}{itemsWindow}
+\item 
+QGraphicsScene $\ast$ \hyperlink{class_form_ad05b2988fa73fab67b1794dae8ebe1b6}{itemsWindowScene}
+\item 
+QLabel $\ast$ \hyperlink{class_form_ab0d3fbc5a7fa42afd081f2dd21dae053}{backgrounds}
+\item 
+QPushButton $\ast$ \hyperlink{class_form_ae5c82e727fbfccafdcc407c86dc93d7a}{backgroundOneButton}
+\item 
+QPushButton $\ast$ \hyperlink{class_form_adbf445820483e664f777256868fd705e}{backgroundTwoButton}
+\item 
+QPushButton $\ast$ \hyperlink{class_form_a8f813fd062201f9f61458446ede57100}{backgroundThreeButton}
+\item 
+QPushButton $\ast$ \hyperlink{class_form_a8457205717f75aacbf589e2bae555f5e}{backgroundFourButton}
+\item 
+QLabel $\ast$ \hyperlink{class_form_a473ac73bbd99b470d340f9c613bfb5a7}{selectBlock}
+\item 
+\hyperlink{class_block}{Block} $\ast$ \hyperlink{class_form_a4bd31a76f382c885ce3d1cb6a19568eb}{emptyBlock}
+\item 
+\hyperlink{class_block}{Block} $\ast$ \hyperlink{class_form_a2eaddff9897b282b0f693d62fa5fb353}{monoBlock}
+\item 
+\hyperlink{class_block}{Block} $\ast$ \hyperlink{class_form_af3d2b490d97327ae579f814e3f620dcb}{redBlock}
+\item 
+\hyperlink{class_block}{Block} $\ast$ \hyperlink{class_form_aec10e23211aa0c2401b1cf9c7db50396}{greenBlock}
+\item 
+\hyperlink{class_block}{Block} $\ast$ \hyperlink{class_form_a4bf88e1480c496d5036499150432dff4}{blueBlock}
+\item 
+\hyperlink{class_block}{Block} $\ast$ \hyperlink{class_form_ae98adaad3d9264c2c76c0977b44943c6}{magentaBlock}
+\item 
+\hyperlink{class_block}{Block} $\ast$ \hyperlink{class_form_a2e1c5906b9ba37321cb7bab858d895fa}{yellowBlock}
+\item 
+QLabel $\ast$ \hyperlink{class_form_abafd6277bf46fc8d802467c4aabea50e}{currentBlockLabel}
+\item 
+QPushButton $\ast$ \hyperlink{class_form_a1bdf42fb82d80d614324a9a0cd7b960e}{save}
+\item 
+QPushButton $\ast$ \hyperlink{class_form_a7c08dcd5710197574486d9ea139de923}{done}
+\item 
+QPushButton $\ast$ \hyperlink{class_form_a651bf23926cdc9be577fa056ef15638f}{reset}
+\item 
+int \hyperlink{class_form_a0f3a6be75fa8dcc00127c1d735f5d650}{windowWidth}
+\item 
+int \hyperlink{class_form_addbe1e71147359d087fa7f66ea4aec50}{windowHeight}
+\item 
+int \hyperlink{class_form_a132aa4e6d4dcdbdde29762fcc6497cac}{mainViewWidth}
+\item 
+\hyperlink{class_alien_mother_ship}{AlienMotherShip} $\ast$ \hyperlink{class_form_a39ad83a17a081174bca47eba9b38f0b9}{motherShip}
+\item 
+\hyperlink{class_alien_space_ship}{AlienSpaceShip} $\ast$ \hyperlink{class_form_a65c28753832fba6be96e0a48396b5c9b}{alienShip}
+\item 
+\hyperlink{class_mother_ship_bullet}{MotherShipBullet} $\ast$ \hyperlink{class_form_ad6ddaf1cdc66b62a9f1b59a32ca818f6}{motherShipBullet}
+\item 
+\hyperlink{class_alien_ship_bullet}{AlienShipBullet} $\ast$ \hyperlink{class_form_aeacd1539514074613bf55a46da8680c9}{alienBullet}
+\item 
+QFont $\ast$ \hyperlink{class_form_afae663257f81258f2f8667d621fe0f48}{font}
+\item 
+QLabel $\ast$ \hyperlink{class_form_a4fda691b1a4b71eb73fe89d055e9b651}{storyText}
+\item 
+\hyperlink{class_ball}{Ball} $\ast$ \hyperlink{class_form_a0e07a371edadd1e19a9e32114a16aa08}{ball}
+\item 
+\hyperlink{class_ship_bullet}{ShipBullet} $\ast$ \hyperlink{class_form_a19e48881d7309cc448166ecde55e1850}{bullets}
+\item 
+\hyperlink{class_ships_missiles}{ShipsMissiles} $\ast$ \hyperlink{class_form_ad2c32c2f532f56f4e3cb5945b8083cf0}{missiles}
+\item 
+QTimer $\ast$ \hyperlink{class_form_a07118dfb7566e4baf43c182ecd378481}{timer}
+\item 
+QTimer $\ast$ \hyperlink{class_form_a9ef80826774356f54f6d056ef48cce52}{timer3}
+\item 
+QPushButton $\ast$ \hyperlink{class_form_af12436143c1da6a3a491fa941aa8924b}{skipIntro}
+\item 
+QTimer $\ast$ \hyperlink{class_form_a9c2c8ccb519f3ad5af95b8f6a47b8c85}{timer4}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 32 of file form.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_form_a9a921e26a02f23bffdea4330d6795796}{
+\index{Form@{Form}!Form@{Form}}
+\index{Form@{Form}!Form@{Form}}
+\subsubsection[{Form}]{\setlength{\rightskip}{0pt plus 5cm}Form::Form (QWidget $\ast$ {\em parent} = {\ttfamily 0})}}
+\label{class_form_a9a921e26a02f23bffdea4330d6795796}
+added by Manpreet Kohli constructor sets up the graphics item 
+
+Definition at line 27 of file form.cpp.
+
+
+\begin{DoxyCode}
+27                           :  QWidget(parent), m_ui(new Ui::Form)
+28 {
+29     m_ui->setupUi(this);
+30     windowWidth = 1000;
+31     windowHeight = 725;
+32     mainViewWidth = 762;
+33     font = new QFont();
+34     storyText = new QLabel(this);
+35     t = new SleeperThread();
+36     timer3 = new QTimer();
+37     timer4 = new QTimer();
+38     bgNo = 0;
+39 }
+\end{DoxyCode}
+\hypertarget{class_form_a9cda7cce41e81bfaca51e922d4f9b98f}{
+\index{Form@{Form}!$\sim$Form@{$\sim$Form}}
+\index{$\sim$Form@{$\sim$Form}!Form@{Form}}
+\subsubsection[{$\sim$Form}]{\setlength{\rightskip}{0pt plus 5cm}Form::$\sim$Form ()}}
+\label{class_form_a9cda7cce41e81bfaca51e922d4f9b98f}
+destructor to delete the instance 
+
+Definition at line 44 of file form.cpp.
+
+
+\begin{DoxyCode}
+45 {
+46     delete m_ui;
+47 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_form_ad699933c3ec2a35b96d9b0eb55c18c14}{
+\index{Form@{Form}!alienFire@{alienFire}}
+\index{alienFire@{alienFire}!Form@{Form}}
+\subsubsection[{alienFire}]{\setlength{\rightskip}{0pt plus 5cm}void Form::alienFire ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_ad699933c3ec2a35b96d9b0eb55c18c14}
+this method creates and stop alien ship firing added by Ivan Collazo 
+
+Definition at line 857 of file form.cpp.
+
+
+\begin{DoxyCode}
+858 {
+859     // stops alien ship firing when player loses game
+860     if (Constants::count == 0 )
+861     {
+862             timer3->disconnect(board->scene, SLOT(alienFire()));
+863             timer3->stop();
+864     }
+865 
+866     // stops alien ship firing when level is won
+867     else if (Constants::levelNumber == 4)
+868     {
+869         timer3->disconnect(board->scene, SLOT(alienFire()));
+870         timer3->stop();
+871     }
+872 
+873     // stops alien ship firing when alien ship is destoryed
+874     else if (alienShip->getShipHit() == 0)
+875     {
+876         timer3->disconnect(board->scene, SLOT(alienFire()));
+877         timer3->stop();
+878     }
+879 
+880     // keeps firing alien bullets
+881     else
+882     {
+883         alienShip->fire();
+884     }
+885 }
+\end{DoxyCode}
+\hypertarget{class_form_af599736098aa8117bb52b18f7a661091}{
+\index{Form@{Form}!backgroundFour\_\-clicked@{backgroundFour\_\-clicked}}
+\index{backgroundFour\_\-clicked@{backgroundFour\_\-clicked}!Form@{Form}}
+\subsubsection[{backgroundFour\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::backgroundFour\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_af599736098aa8117bb52b18f7a661091}
+added by Manpreet Kohli slot to load background 4 for the level editor 
+
+Definition at line 533 of file form.cpp.
+
+
+\begin{DoxyCode}
+534 {
+535     m_ui->view->setBackgroundBrush(QPixmap(":bg4.jpg"));
+536     bgNo = 4;
+537     saveBackground(":bg4.jpg");
+538 }
+\end{DoxyCode}
+\hypertarget{class_form_a5cdef71302be379ec9c2e2fc037f9f2f}{
+\index{Form@{Form}!backgroundOne\_\-clicked@{backgroundOne\_\-clicked}}
+\index{backgroundOne\_\-clicked@{backgroundOne\_\-clicked}!Form@{Form}}
+\subsubsection[{backgroundOne\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::backgroundOne\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a5cdef71302be379ec9c2e2fc037f9f2f}
+added by Manpreet Kohli slot to load background 1 for the level editor 
+
+Definition at line 503 of file form.cpp.
+
+
+\begin{DoxyCode}
+504 {
+505     m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
+506     bgNo = 1;
+507     }
+\end{DoxyCode}
+\hypertarget{class_form_ade0ebe9daab69d9c6cdd2928fb8ce122}{
+\index{Form@{Form}!backgroundThree\_\-clicked@{backgroundThree\_\-clicked}}
+\index{backgroundThree\_\-clicked@{backgroundThree\_\-clicked}!Form@{Form}}
+\subsubsection[{backgroundThree\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::backgroundThree\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_ade0ebe9daab69d9c6cdd2928fb8ce122}
+added by Manpreet Kohli slot to load background 3 for the level editor 
+
+Definition at line 523 of file form.cpp.
+
+
+\begin{DoxyCode}
+524 {
+525     m_ui->view->setBackgroundBrush(QPixmap(":bg3.jpg"));
+526     bgNo = 3;
+527 }
+\end{DoxyCode}
+\hypertarget{class_form_a8344660630a52616f758765097813580}{
+\index{Form@{Form}!backgroundTwo\_\-clicked@{backgroundTwo\_\-clicked}}
+\index{backgroundTwo\_\-clicked@{backgroundTwo\_\-clicked}!Form@{Form}}
+\subsubsection[{backgroundTwo\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::backgroundTwo\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a8344660630a52616f758765097813580}
+added by Manpreet Kohli slot to load background 2 for the level editor 
+
+Definition at line 513 of file form.cpp.
+
+
+\begin{DoxyCode}
+514 {
+515     m_ui->view->setBackgroundBrush(QPixmap(":bg2.jpg"));
+516     bgNo = 2;
+517     }
+\end{DoxyCode}
+\hypertarget{class_form_a633009d9f1f6700717dccc3e11cb38d9}{
+\index{Form@{Form}!changeEvent@{changeEvent}}
+\index{changeEvent@{changeEvent}!Form@{Form}}
+\subsubsection[{changeEvent}]{\setlength{\rightskip}{0pt plus 5cm}void Form::changeEvent (QEvent $\ast$ {\em e})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{class_form_a633009d9f1f6700717dccc3e11cb38d9}
+
+
+Definition at line 49 of file form.cpp.
+
+
+\begin{DoxyCode}
+50 {
+51     QWidget::changeEvent(e);
+52     switch (e->type())
+53     {
+54         case QEvent::LanguageChange:
+55             m_ui->retranslateUi(this);
+56             break;
+57         default:
+58             break;
+59     }
+60 }
+\end{DoxyCode}
+\hypertarget{class_form_abcca43186cdcf3a8f65576b1f7581eea}{
+\index{Form@{Form}!done\_\-clicked@{done\_\-clicked}}
+\index{done\_\-clicked@{done\_\-clicked}!Form@{Form}}
+\subsubsection[{done\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::done\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_abcca43186cdcf3a8f65576b1f7581eea}
+added by Manpreet Kohli if the done button is clicked in the level editor 
+
+Definition at line 544 of file form.cpp.
+
+
+\begin{DoxyCode}
+545 {
+546     // play the level start music
+547     QSound *intro = new QSound("intro.wav", 0);
+548     intro->setLoops(1);
+549     intro->play();
+550 
+551     // sleep for 5 secs so that the intro music can finish playing
+552     t->msleep(5000);
+553 
+554     // remove the transparent "unselected" blocks from the level editor and doubl
+      e
+555     // the transparency for the selected blocks
+556     for (int i = 0; i < 20; i++)
+557     {
+558         for (int j = 0; j < 27; j++)
+559         {
+560             if (!Constants::positions.contains(Constants::blocks[i][j]->pos()))
+561             {
+562                 m_ui->view->scene()->removeItem(Constants::blocks[i][j]);
+563                 delete Constants::blocks[i][j];
+564             }
+565             else
+566             {
+567                 Constants::blocks[i][j]->setOpacity(2.0);
+568             }
+569         }
+570     }
+571 
+572     itemsWindow->deleteLater();
+573 
+574     resize(mainViewWidth, windowHeight);      // expand the window size
+575     setMinimumSize(QSize(mainViewWidth, windowHeight));   // change the minimum s
+      ize of the window
+576     setMaximumSize(QSize(mainViewWidth, windowHeight));   // change the maximum s
+      ize of the window
+577     move(250, 10);                            // relocate the window after it's d
+      imensions change
+578 
+579     m_ui->view->scene()->setSceneRect(0, 0, mainViewWidth - 5, windowHeight - 5);
+             // set dimensions of the scene
+580 
+581     playersShip = new SpaceShip();            // create spaceship in the level ed
+      itor
+582     m_ui->view->scene()->addItem(playersShip);
+583 
+584     ball = new Ball(playersShip);             // create ball in the level editor
+585     m_ui->view->scene()->addItem(ball);
+586 }
+\end{DoxyCode}
+\hypertarget{class_form_ad6c4fa1f020d41dfbd8cda84c1d00ecb}{
+\index{Form@{Form}!hideElements@{hideElements}}
+\index{hideElements@{hideElements}!Form@{Form}}
+\subsubsection[{hideElements}]{\setlength{\rightskip}{0pt plus 5cm}void Form::hideElements ({\bf Ui::Form} $\ast$ {\em m\_\-ui})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_ad6c4fa1f020d41dfbd8cda84c1d00ecb}
+added by Manpreet Kohli hide and deletes all the elements (QButtons and QLabels) of the splash screen 
+
+Definition at line 75 of file form.cpp.
+
+
+\begin{DoxyCode}
+76 {
+77     m_ui->title->hide();
+78     m_ui->newGame->hide();
+79     m_ui->levelEditor->hide();
+80     m_ui->load->hide();
+81     m_ui->controls->hide();
+82     m_ui->exit->hide();
+83 
+84     delete m_ui->title;
+85     delete m_ui->newGame;
+86     delete m_ui->levelEditor;
+87     delete m_ui->load;
+88     delete m_ui->controls;
+89     delete m_ui->exit;
+90 }
+\end{DoxyCode}
+\hypertarget{class_form_a51af7e40b48b232f7b3a61f2242aa205}{
+\index{Form@{Form}!keyPressEvent@{keyPressEvent}}
+\index{keyPressEvent@{keyPressEvent}!Form@{Form}}
+\subsubsection[{keyPressEvent}]{\setlength{\rightskip}{0pt plus 5cm}void Form::keyPressEvent (QKeyEvent $\ast$ {\em event})\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{class_form_a51af7e40b48b232f7b3a61f2242aa205}
+added by Ivan Collazo, modified by Manpreet Kohli function that gets called when a key is pressed during the game 
+
+Definition at line 717 of file form.cpp.
+
+
+\begin{DoxyCode}
+718 {
+719     switch(event->key())
+720     {
+721         case Qt::Key_A: // move space ship to the left
+722             if (!Constants::timer->isActive())
+723             {
+724                 if (playersShip->getShipPosX() <= -330)
+725                 {
+726                     playersShip->moveBy(0, 0);
+727                     ball->moveBy(0, 0);
+728                 }
+729                 else
+730                 {
+731                     playersShip->moveBy(-30, 0);
+732                     playersShip->setShipPosX(-30);
+733                     ball->moveBy(-30, 0);
+734                     ball->setPositionX(-30);
+735                     ball->setShipPositon(playersShip->getShipPosX());
+736                 }
+737             }
+738             else
+739             {
+740                 if (playersShip->getShipPosX() <= -330)
+741                     playersShip->moveBy(0, 0);
+742                 else
+743                 {
+744                     playersShip->moveBy(-30,0);
+745                     playersShip->setShipPosX(-30);
+746                     ball->setShipPositon(playersShip->getShipPosX());
+747                 }
+748             }
+749             break;
+750 
+751         case Qt::Key_D: // move space ship to the right
+752             if (!Constants::timer->isActive())
+753             {
+754                 if (playersShip->getShipPosX() >= 330)
+755                     playersShip->moveBy(0, 0);
+756 
+757                 else
+758                 {
+759                     playersShip->moveBy(30,0);
+760                     playersShip->setShipPosX(30);
+761                     ball->moveBy(30, 0);
+762                     ball->setPositionX(30);
+763                     ball->setShipPositon(playersShip->getShipPosX());
+764                 }
+765             }
+766 
+767             else
+768             {
+769                 if (playersShip->getShipPosX() >= 330)
+770                     playersShip->moveBy(0, 0);
+771                 else
+772                 {
+773                     playersShip->moveBy(30,0);
+774                     playersShip->setShipPosX(30);
+775                     ball->setShipPositon(playersShip->getShipPosX());
+776                 }
+777             }
+778             break;
+779 
+780         // Ivan Collazo
+781         // Case statement when space bar is pressed to fire weapons
+782         case Qt::Key_Space:
+783              if ((Constants::levelNumber == 1) || (Constants::levelNumber == 2)) 
+      // Levels with no weapons fired
+784              {
+785 
+786              }
+787              else if (Constants::levelNumber == 4) // Level with Missiles Fired
+788              {  
+789                  missiles = new ShipsMissiles(); // Ivan Collazo
+790                  missiles->setShipMissilesXPosition(playersShip->getShipPosX()); 
+      // Ivan Collazo
+791                  board->scene->addItem(missiles); // Ivan Collazo
+792                  playersShip->fireMissiles()    ; // Ivan Collazo
+793              }
+794              else // Level with Bullets Fired
+795              {
+796                  bullets = new ShipBullet(); // Ivan Collazo
+797                  bullets->setShipBulletXPosition(playersShip->getShipPosX()); // 
+      Ivan Collazo
+798                  board->scene->addItem(bullets); // Ivan Collazo
+799                  playersShip->fireBullets(); // Ivan Collazo
+800              }
+801              break;
+802 
+803          case Qt::Key_Return:
+804              // added by Natraj Subramanian
+805              if(!Constants::timer->isActive())
+806              {
+807                  board->connectTimerToBall();         // connect the timer to the
+       ball
+808                  break;
+809              }
+810 
+811          case Qt::Key_Period:
+812              // added by Manpreet Kohli
+813              // if period key is pressed, set cheat mode to on
+814              ball->setSkip(true);
+815              break;
+816     }
+817 }
+\end{DoxyCode}
+\hypertarget{class_form_a5db4ecbdc1a9bc4ff8927b2a5a2da69f}{
+\index{Form@{Form}!loadLevel1@{loadLevel1}}
+\index{loadLevel1@{loadLevel1}!Form@{Form}}
+\subsubsection[{loadLevel1}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadLevel1 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a5db4ecbdc1a9bc4ff8927b2a5a2da69f}
+added by Manpreet Kohli function to start the first level of the game after the story screens 
+
+Definition at line 300 of file form.cpp.
+
+
+\begin{DoxyCode}
+301 {
+302     setupLevel(1);
+303 }
+\end{DoxyCode}
+\hypertarget{class_form_a36f1aac890405daee948054d44200149}{
+\index{Form@{Form}!loadLevel2@{loadLevel2}}
+\index{loadLevel2@{loadLevel2}!Form@{Form}}
+\subsubsection[{loadLevel2}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadLevel2 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a36f1aac890405daee948054d44200149}
+added by Manpreet Kohli function to start the second level of the game after the story screens 
+
+Definition at line 309 of file form.cpp.
+
+
+\begin{DoxyCode}
+310 {
+311     setupLevel(2);
+312 }
+\end{DoxyCode}
+\hypertarget{class_form_abca8ff816e3230388fe64d31a0ba10be}{
+\index{Form@{Form}!loadLevel3@{loadLevel3}}
+\index{loadLevel3@{loadLevel3}!Form@{Form}}
+\subsubsection[{loadLevel3}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadLevel3 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_abca8ff816e3230388fe64d31a0ba10be}
+added by Manpreet Kohli function to start the third level of the game after the story screens 
+
+Definition at line 318 of file form.cpp.
+
+
+\begin{DoxyCode}
+319 {
+320    setupLevel(3);
+321 }
+\end{DoxyCode}
+\hypertarget{class_form_a09242741a8ad563aec44c796dcec5a7c}{
+\index{Form@{Form}!loadLevel4@{loadLevel4}}
+\index{loadLevel4@{loadLevel4}!Form@{Form}}
+\subsubsection[{loadLevel4}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadLevel4 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a09242741a8ad563aec44c796dcec5a7c}
+added by Manpreet Kohli function to start the final level of the game after the story screens 
+
+Definition at line 327 of file form.cpp.
+
+
+\begin{DoxyCode}
+328 {
+329     setupLevel(4);
+330 }
+\end{DoxyCode}
+\hypertarget{class_form_a029cb26613cfb1d1ece1f403de8062aa}{
+\index{Form@{Form}!loadStoryScreen2@{loadStoryScreen2}}
+\index{loadStoryScreen2@{loadStoryScreen2}!Form@{Form}}
+\subsubsection[{loadStoryScreen2}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadStoryScreen2 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a029cb26613cfb1d1ece1f403de8062aa}
+added by Manpreet Kohli function to display the second screen of the story line hides first screen of the story line and loads the second screen Storyline slides added by Natraj Subramanian 
+
+Definition at line 135 of file form.cpp.
+
+
+\begin{DoxyCode}
+136 {
+137     // disconnect previous connection for the continue button
+138     Constants::cont->disconnect(this, SLOT(loadStoryScreen2()));
+139     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide2.jpg)");
+140     // if the continue button is clicked on the screen, load the third screen of 
+      the story line
+141     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(
+      loadStoryScreen3()));
+142 }
+\end{DoxyCode}
+\hypertarget{class_form_a2c466a1ae32e4a9c45b2d285ae7abca8}{
+\index{Form@{Form}!loadStoryScreen3@{loadStoryScreen3}}
+\index{loadStoryScreen3@{loadStoryScreen3}!Form@{Form}}
+\subsubsection[{loadStoryScreen3}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadStoryScreen3 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a2c466a1ae32e4a9c45b2d285ae7abca8}
+
+
+Definition at line 144 of file form.cpp.
+
+
+\begin{DoxyCode}
+145 {
+146     // disconnect previous connection for the continue button
+147     Constants::cont->disconnect(this, SLOT(loadStoryScreen3()));
+148     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide3.jpg)");
+149     // if the continue button is clicked on the screen, load the fourth screen of
+       the story line
+150     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(
+      loadStoryScreen4()));
+151 }
+\end{DoxyCode}
+\hypertarget{class_form_aaa5e8fc86af7da56f82ef3ea178ca5b3}{
+\index{Form@{Form}!loadStoryScreen4@{loadStoryScreen4}}
+\index{loadStoryScreen4@{loadStoryScreen4}!Form@{Form}}
+\subsubsection[{loadStoryScreen4}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadStoryScreen4 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_aaa5e8fc86af7da56f82ef3ea178ca5b3}
+
+
+Definition at line 153 of file form.cpp.
+
+
+\begin{DoxyCode}
+154 {
+155     // disconnect previous connection for the continue button
+156     Constants::cont->disconnect(this, SLOT(loadStoryScreen4()));
+157     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide4.jpg)");
+158     // if the continue button is clicked on the screen, load the fifth screen of 
+      the story line
+159     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(
+      loadStoryScreen5()));
+160 }
+\end{DoxyCode}
+\hypertarget{class_form_a13b7e32736d16ff41b5b8d9651db21a6}{
+\index{Form@{Form}!loadStoryScreen5@{loadStoryScreen5}}
+\index{loadStoryScreen5@{loadStoryScreen5}!Form@{Form}}
+\subsubsection[{loadStoryScreen5}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadStoryScreen5 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a13b7e32736d16ff41b5b8d9651db21a6}
+
+
+Definition at line 162 of file form.cpp.
+
+
+\begin{DoxyCode}
+163 {
+164     // disconnect previous connection for the continue button
+165     Constants::cont->disconnect(this, SLOT(loadStoryScreen5()));
+166     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide5.jpg)");
+167     // if the continue button is clicked on the screen, load the sixth screen of 
+      the story line
+168     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(
+      loadStoryScreen6()));
+169 }
+\end{DoxyCode}
+\hypertarget{class_form_aca7f80e793fae48361bdca6c50c967a7}{
+\index{Form@{Form}!loadStoryScreen6@{loadStoryScreen6}}
+\index{loadStoryScreen6@{loadStoryScreen6}!Form@{Form}}
+\subsubsection[{loadStoryScreen6}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadStoryScreen6 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_aca7f80e793fae48361bdca6c50c967a7}
+
+
+Definition at line 171 of file form.cpp.
+
+
+\begin{DoxyCode}
+172 {
+173     // disconnect previous connection for the continue button
+174     Constants::cont->disconnect(this, SLOT(loadStoryScreen6()));
+175     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide6.jpg)");
+176     // if the continue button is clicked on the screen, load the seventh screen o
+      f the story line
+177     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(
+      loadStoryScreen7()));
+178 }
+\end{DoxyCode}
+\hypertarget{class_form_a8da2b417a6315a6bb664a1cea4389b4c}{
+\index{Form@{Form}!loadStoryScreen7@{loadStoryScreen7}}
+\index{loadStoryScreen7@{loadStoryScreen7}!Form@{Form}}
+\subsubsection[{loadStoryScreen7}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadStoryScreen7 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a8da2b417a6315a6bb664a1cea4389b4c}
+
+
+Definition at line 180 of file form.cpp.
+
+
+\begin{DoxyCode}
+181 {
+182     // disconnect previous connection for the continue button
+183     Constants::cont->disconnect(this, SLOT(loadStoryScreen7()));
+184     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide7.jpg)");
+185     // if the continue button is clicked on the screen, load the eighth screen of
+       the story line
+186     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(
+      loadStoryScreen8()));
+187 }
+\end{DoxyCode}
+\hypertarget{class_form_abeec47265874e8a36c8e0cd0fdf00fc5}{
+\index{Form@{Form}!loadStoryScreen8@{loadStoryScreen8}}
+\index{loadStoryScreen8@{loadStoryScreen8}!Form@{Form}}
+\subsubsection[{loadStoryScreen8}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadStoryScreen8 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_abeec47265874e8a36c8e0cd0fdf00fc5}
+
+
+Definition at line 189 of file form.cpp.
+
+
+\begin{DoxyCode}
+190 {
+191     // disconnect previous connection for the continue button
+192     Constants::cont->disconnect(this, SLOT(loadStoryScreen8()));
+193     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide8.jpg)");
+194     // if the continue button is clicked on the screen, load the ninth screen of 
+      the story line
+195     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(
+      loadStoryScreen9()));
+196 }
+\end{DoxyCode}
+\hypertarget{class_form_ad606b52ace6c58a2985f52b56ee099fb}{
+\index{Form@{Form}!loadStoryScreen9@{loadStoryScreen9}}
+\index{loadStoryScreen9@{loadStoryScreen9}!Form@{Form}}
+\subsubsection[{loadStoryScreen9}]{\setlength{\rightskip}{0pt plus 5cm}void Form::loadStoryScreen9 ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_ad606b52ace6c58a2985f52b56ee099fb}
+
+
+Definition at line 198 of file form.cpp.
+
+
+\begin{DoxyCode}
+199 {
+200     Constants::cont->setGeometry(300, 600, 150, 40);
+201 
+202     // disconnect previous connection for the continue button
+203     Constants::cont->disconnect(this, SLOT(loadStoryScreen9()));
+204 
+205     skipIntro->hide();
+206     delete skipIntro;
+207     
+208     // play the start level music
+209     QSound *intro = new QSound("intro.wav", 0);
+210     intro->setLoops(1);
+211     intro->play();
+212 
+213     m_ui->view->setStyleSheet("background-image: url(:/Storyline/level1.jpg)");
+214     // if the continue button is clicked on the screen, load level one
+215     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadLevel1())
+      );
+216 }
+\end{DoxyCode}
+\hypertarget{class_form_a9b89dc517d820fdcf314068b40431c77}{
+\index{Form@{Form}!motherFire@{motherFire}}
+\index{motherFire@{motherFire}!Form@{Form}}
+\subsubsection[{motherFire}]{\setlength{\rightskip}{0pt plus 5cm}void Form::motherFire ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a9b89dc517d820fdcf314068b40431c77}
+this method creates and stop mothership firing added by Ivan Collazo 
+
+Definition at line 823 of file form.cpp.
+
+
+\begin{DoxyCode}
+824 {
+825     // stops mother ship firing when player loses game
+826     if (Constants::count == 0)
+827     {
+828         timer4->disconnect(board->scene, SLOT(motherFire()));
+829         timer4->stop();
+830     }
+831 
+832     // stops mothership firing when game is won
+833     if (Constants::levelNumber == 5)
+834     {
+835         timer4->disconnect(board->scene, SLOT(motherFire()));
+836         timer4->stop();
+837     }
+838 
+839     // stops mother ship firing when mother ship is destoryed
+840     else if (motherShip->getShipHit() == 5)
+841     {
+842         timer4->disconnect(board->scene, SLOT(motherFire()));
+843         timer4->stop();
+844     }
+845 
+846     // keeps firing mother ship bullets
+847     else
+848     {
+849         motherShip->fire();;
+850     }
+851 }
+\end{DoxyCode}
+\hypertarget{class_form_a5d619b8452dcafe406e6143c8de29169}{
+\index{Form@{Form}!on\_\-controls\_\-clicked@{on\_\-controls\_\-clicked}}
+\index{on\_\-controls\_\-clicked@{on\_\-controls\_\-clicked}!Form@{Form}}
+\subsubsection[{on\_\-controls\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::on\_\-controls\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a5d619b8452dcafe406e6143c8de29169}
+
+
+Definition at line 888 of file form.cpp.
+
+
+\begin{DoxyCode}
+889 {
+890     hideElements(m_ui);
+891     m_ui->view->setStyleSheet("background-image: url(:/controls.jpg)");
+892 
+893     QFont font;
+894     font.setBold(true);
+895     font.setWeight(75);
+896     font.setPointSize(13);
+897 
+898     QPushButton *back = new QPushButton(this);
+899     back->setText("BACK");
+900     back->setGeometry(340, 550, 100, 50);
+901     back->setFont(font);
+902     back->show();
+903     back->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+904 
+905 }
+\end{DoxyCode}
+\hypertarget{class_form_ac7feff0f4e7f4872f0692b2f3d5854c2}{
+\index{Form@{Form}!on\_\-exit\_\-clicked@{on\_\-exit\_\-clicked}}
+\index{on\_\-exit\_\-clicked@{on\_\-exit\_\-clicked}!Form@{Form}}
+\subsubsection[{on\_\-exit\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::on\_\-exit\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_ac7feff0f4e7f4872f0692b2f3d5854c2}
+added by Manpreet Kohli exit the program if the exit button is clicked 
+
+Definition at line 66 of file form.cpp.
+
+
+\begin{DoxyCode}
+67 {
+68     exit(1);
+69 }
+\end{DoxyCode}
+\hypertarget{class_form_af6626ed5a42cba30ec1e37f991940d58}{
+\index{Form@{Form}!on\_\-levelEditor\_\-clicked@{on\_\-levelEditor\_\-clicked}}
+\index{on\_\-levelEditor\_\-clicked@{on\_\-levelEditor\_\-clicked}!Form@{Form}}
+\subsubsection[{on\_\-levelEditor\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::on\_\-levelEditor\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_af6626ed5a42cba30ec1e37f991940d58}
+added by Manpreet Kohli function called when the \char`\"{}Level Editor\char`\"{} button is clicked on the splash screen 
+
+Definition at line 336 of file form.cpp.
+
+
+\begin{DoxyCode}
+337 {
+338     // call function to hide all the elements (QButtons and QLabels) of the splas
+      h screen
+339     hideElements(m_ui);
+340 
+341     resize(windowWidth, windowHeight);          // expand the window size
+342     setMinimumSize(QSize(windowWidth, windowHeight));
+343     setMaximumSize(QSize(windowWidth, windowHeight));
+344     move(120, 10);                              // relocate the window after it's
+       dimensions change
+345 
+346     m_ui->view->setGeometry(0, 0, mainViewWidth, windowHeight);    // change the 
+      geometry of the current view
+347 
+348     itemsWindow = new QGraphicsView(this);      // create a new view to place all
+       the user option buttons in
+349     itemsWindow->setGeometry(763, 0, Constants::itemsWindowViewWidth, 
+      windowHeight);     // set the geometry of the new view
+350 
+351     itemsWindowScene = new QGraphicsScene();    // create a new scene for the new
+       view
+352     itemsWindowScene->setSceneRect(0, 0, Constants::itemsWindowViewWidth - 2, 
+      windowHeight - 2);
+353 
+354     Constants::levelNumber = 0;
+355     board = new Board(m_ui->view);
+356 
+357     font->setBold(true);
+358     font->setPointSize(15);
+359 
+360     backgrounds = new QLabel(itemsWindow);
+361     backgrounds->setText("<font color = RED> Select background: <font color/>");
+362     backgrounds->setFont(*font);
+363     backgrounds->show();
+364 
+365     font->setPointSize(10);
+366 
+367     backgroundOneButton = new QPushButton(itemsWindow);
+368     backgroundOneButton->setText("Background one");
+369     backgroundOneButton->setGeometry(5, 45, 225, 40);
+370     backgroundOneButton->setFont(*font);
+371 
+372     backgroundTwoButton  = new QPushButton(itemsWindow);
+373     backgroundTwoButton->setText("Background two");
+374     backgroundTwoButton->setGeometry(5, 85, 225, 40);
+375     backgroundTwoButton->setFont(*font);
+376 
+377     backgroundThreeButton  = new QPushButton(itemsWindow);
+378     backgroundThreeButton->setText("Background three");
+379     backgroundThreeButton->setGeometry(5, 125, 225, 40);
+380     backgroundThreeButton->setFont(*font);
+381 
+382     backgroundFourButton  = new QPushButton(itemsWindow);
+383     backgroundFourButton->setText("Background four");
+384     backgroundFourButton->setGeometry(5, 165, 225, 40);
+385     backgroundFourButton->setFont(*font);
+386 
+387     backgroundOneButton->show();
+388     backgroundTwoButton->show();
+389     backgroundThreeButton->show();
+390     backgroundFourButton->show();
+391 
+392     font->setPointSize(15);
+393 
+394     selectBlock = new QLabel(itemsWindow);
+395     selectBlock->setText("<font color = RED> Select block: <font color/>");
+396     selectBlock->setFont(*font);
+397     selectBlock->show();
+398     selectBlock->setGeometry(0, 235, selectBlock->width(), selectBlock->height())
+      ;
+399 
+400     emptyBlock = new EmptyBlock();
+401     itemsWindowScene->addItem(emptyBlock);
+402     emptyBlock->setPos(-370, -340);
+403 
+404     monoBlock = new MonoBlock();
+405     itemsWindowScene->addItem(monoBlock);
+406     monoBlock->setPos(-338, -340);
+407 
+408     redBlock = new RedBlock();
+409     itemsWindowScene->addItem(redBlock);
+410     redBlock->setPos(-306, -340);
+411 
+412     greenBlock = new GreenBlock();
+413     itemsWindowScene->addItem(greenBlock);
+414     greenBlock->setPos(-274, -340);
+415 
+416     blueBlock = new BlueBlock();
+417     itemsWindowScene->addItem(blueBlock);
+418     blueBlock->setPos(-242, -340);
+419 
+420     magentaBlock = new MagentaBlock();
+421     itemsWindowScene->addItem(magentaBlock);
+422     magentaBlock->setPos(-210, -340);
+423 
+424     yellowBlock = new YellowBlock();
+425     itemsWindowScene->addItem(yellowBlock);
+426     yellowBlock->setPos(-178, -340);
+427 
+428     currentBlockLabel = new QLabel(itemsWindow);
+429     currentBlockLabel->setText("<font color = RED> Current selection: <font color
+      />");
+430     currentBlockLabel->setFont(*font);
+431     currentBlockLabel->show();
+432     currentBlockLabel->setGeometry(0, 360, currentBlockLabel->width(), 
+      currentBlockLabel->height());
+433 
+434     Constants::currentBlock = new EmptyBlock();
+435     itemsWindowScene->addItem(Constants::currentBlock);
+436     Constants::currentBlock->setPos(-274, -225);
+437 
+438     // connect the various background buttons to actual background loading
+439     connect(backgroundOneButton, SIGNAL(clicked()), this, SLOT(
+      backgroundOne_clicked()));
+440     connect(backgroundTwoButton, SIGNAL(clicked()), this, SLOT(
+      backgroundTwo_clicked()));
+441     connect(backgroundThreeButton, SIGNAL(clicked()), this, SLOT(
+      backgroundThree_clicked()));
+442     connect(backgroundFourButton, SIGNAL(clicked()), this, SLOT(
+      backgroundFour_clicked()));
+443 
+444     font->setPointSize(10);
+445 
+446     save = new QPushButton(itemsWindow);
+447     save->setText("Save");
+448     save->setGeometry(65, 500, 100, 25);
+449     save->setFont(*font);
+450     connect(save, SIGNAL(clicked()), this, SLOT(save_clicked()));
+451 
+452     done = new QPushButton(itemsWindow);
+453     done->setText("Done");
+454     done->setGeometry(10, 550, 100, 25);
+455     done->setFont(*font);
+456     connect(done, SIGNAL(clicked()), this, SLOT(done_clicked()));
+457 
+458     reset = new QPushButton(itemsWindow);
+459     reset->setText("Reset");
+460     reset->setGeometry(120, 550, 100, 25);
+461     reset->setFont(*font);
+462     connect(reset, SIGNAL(clicked()), this, SLOT(reset_clicked()));
+463 
+464     save->show();
+465     done->show();
+466     reset->show();
+467 
+468     m_ui->view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+469     itemsWindow->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+470     itemsWindow->setScene(itemsWindowScene);
+471     itemsWindow->show();            // display the new view
+472 }
+\end{DoxyCode}
+\hypertarget{class_form_ad5cfc180c8653247d37045dcd7536f0b}{
+\index{Form@{Form}!on\_\-load\_\-clicked@{on\_\-load\_\-clicked}}
+\index{on\_\-load\_\-clicked@{on\_\-load\_\-clicked}!Form@{Form}}
+\subsubsection[{on\_\-load\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::on\_\-load\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_ad5cfc180c8653247d37045dcd7536f0b}
+added by Manpreet Kohli if load game is clicked on the splash screen 
+
+Definition at line 679 of file form.cpp.
+
+
+\begin{DoxyCode}
+680 {
+681     // open the file for reading
+682     QFile file("levels.txt");
+683     if (!file.open(QIODevice::ReadOnly))
+684     {
+685         qDebug() << "Cannot open file for writing ";
+686         QErrorMessage *err = new QErrorMessage();
+687         err->showMessage("<font size= \"15\"> ERROR!!! File not found! </font>");
+      
+688         err->show();
+689 
+690         QObject::connect(err, SIGNAL(accepted()), err, SLOT(close()));
+691     }
+692 
+693     else
+694     {
+695         hideElements(m_ui);     // hide all the elements on the splash screen
+696 
+697         resize(mainViewWidth, windowHeight);      // expand the window size
+698         setMinimumSize(QSize(mainViewWidth, windowHeight));   // change the minim
+      um size of the window
+699         setMaximumSize(QSize(mainViewWidth, windowHeight));   // change the maxim
+      um size of the window
+700         m_ui->view->setGeometry(0, 0, mainViewWidth, windowHeight);
+701 
+702         Constants::levelNumber = 6;
+703         board = new Board(m_ui->view);
+704 
+705         playersShip = new SpaceShip();
+706         m_ui->view->scene()->addItem(playersShip);
+707 
+708         ball = new Ball(playersShip);
+709         m_ui->view->scene()->addItem(ball);
+710     }
+711 }
+\end{DoxyCode}
+\hypertarget{class_form_af43a16a8fb1b1d955613a5aec4b87eea}{
+\index{Form@{Form}!on\_\-newGame\_\-clicked@{on\_\-newGame\_\-clicked}}
+\index{on\_\-newGame\_\-clicked@{on\_\-newGame\_\-clicked}!Form@{Form}}
+\subsubsection[{on\_\-newGame\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::on\_\-newGame\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_af43a16a8fb1b1d955613a5aec4b87eea}
+added by Manpreet Kohli function called when the \char`\"{}New Game\char`\"{} button is clicked on the splash screen hides all the elements of the splash screen and displays the first page of the story line Storyline slides added by Natraj Subramanian 
+
+Definition at line 98 of file form.cpp.
+
+
+\begin{DoxyCode}
+99 {
+100     // call function to hide all the elements (QButtons and QLabels) of the splas
+      h screen
+101     hideElements(m_ui);
+102     m_ui->view->setStyleSheet("background-image: url(:/Storyline/slide1.jpg)");
+103 
+104     font->setPointSize(13);
+105     font->setWeight(75);
+106 
+107     Constants::cont = new QPushButton(this);
+108     Constants::cont->setText("CONTINUE");
+109     Constants::cont->setGeometry(200, 600, 150, 40);
+110     Constants::cont->setFont(*font);
+111     Constants::cont->show();
+112     Constants::cont->setStyleSheet("background-color: rgba(255, 255, 255, 100);")
+      ;
+113 
+114     // Added by Natraj Subramanian
+115     // Skip the intro and head to the starting level straightaway
+116     skipIntro = new QPushButton(this);
+117     skipIntro->setText("SKIP INTRO");
+118     skipIntro->setGeometry(400, 600, 150, 40);
+119     skipIntro->setFont(*font);
+120     skipIntro->show();
+121     skipIntro->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
+122 
+123     // if the continue button is clicked on the screen, load the second screen of
+       the story line
+124     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(
+      loadStoryScreen2()));
+125     // if the skip intro button is clicked, load the ninth screen of the story li
+      ne
+126     QObject::connect(skipIntro, SIGNAL(clicked()), this, SLOT(loadStoryScreen9())
+      );
+127 }
+\end{DoxyCode}
+\hypertarget{class_form_a642d6b971b9ea8e9e1b96c88426ca6f8}{
+\index{Form@{Form}!reset\_\-clicked@{reset\_\-clicked}}
+\index{reset\_\-clicked@{reset\_\-clicked}!Form@{Form}}
+\subsubsection[{reset\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::reset\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_a642d6b971b9ea8e9e1b96c88426ca6f8}
+added by Manpreet Kohli if the reset button gets clicked 
+
+Definition at line 592 of file form.cpp.
+
+
+\begin{DoxyCode}
+593 {
+594     // clear the positions and colors vectors so that the previously clicked bloc
+      ks don't get drawn
+595     Constants::positions.clear();
+596     Constants::colors.clear();
+597 
+598     // delete the board pointer and create a fresh instance of the board
+599     delete board;
+600     board = new Board(m_ui->view);
+601 }
+\end{DoxyCode}
+\hypertarget{class_form_aefe8e4d932a234a6e50e93be2618bac3}{
+\index{Form@{Form}!save\_\-clicked@{save\_\-clicked}}
+\index{save\_\-clicked@{save\_\-clicked}!Form@{Form}}
+\subsubsection[{save\_\-clicked}]{\setlength{\rightskip}{0pt plus 5cm}void Form::save\_\-clicked ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_form_aefe8e4d932a234a6e50e93be2618bac3}
+added by Manpreet Kohli if the save button gets clicked 
+
+Definition at line 607 of file form.cpp.
+
+
+\begin{DoxyCode}
+608 {
+609     if (bgNo == 0)
+610         saveBackground("");         // to make sure a new file always gets create
+      d
+611     else if (bgNo == 1)
+612         saveBackground(":universe4.jpg");
+613     else if (bgNo == 2)
+614         saveBackground(":bg2.jpg");
+615     else if (bgNo == 3)
+616         saveBackground(":bg3.jpg");
+617     else if (bgNo == 4)
+618         m_ui->view->setBackgroundBrush(QPixmap(":bg4.jpg"));
+619 
+620     // open file for writing
+621     QFile file("levels.txt");
+622     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+623     {
+624         qDebug() << "Cannot open file for writing ";
+625         exit(-1);
+626     }
+627 
+628     QTextStream out(&file);
+629 
+630     // write each block to the file (the color's initial gets written)
+631     for (int i = 0; i < 20; i++)
+632     {
+633         for (int j = 0; j < 27; j++)
+634         {
+635             bool temp = false;
+636             for (int k = 0; k < Constants::positions.size(); k++)
+637             {
+638                 if (Constants::positions.at(k) == Constants::blocks[i][j]->pos())
+      
+639                 {
+640                     switch(Constants::colors.at(k))
+641                     {
+642                         case 0:
+643                             out << "w";
+644                             break;
+645                         case 2:
+646                             out << "r";
+647                             break;
+648                         case 3:
+649                             out << "g";
+650                             break;
+651                         case 4:
+652                             out << "b";
+653                             break;
+654                         case 5:
+655                             out << "m";
+656                             break;
+657                         case 6:
+658                             out << "y";
+659                             break;
+660                         case 7:
+661                             out << "t";
+662                             break;
+663                     }
+664                     temp = true;
+665                     break;
+666                 }
+667             }
+668             if (temp == false)
+669                 out << "t";
+670         }
+671         out << endl;
+672     }
+673 }
+\end{DoxyCode}
+\hypertarget{class_form_ae852329bf7940d71cf722e412f40b867}{
+\index{Form@{Form}!saveBackground@{saveBackground}}
+\index{saveBackground@{saveBackground}!Form@{Form}}
+\subsubsection[{saveBackground}]{\setlength{\rightskip}{0pt plus 5cm}void Form::saveBackground (QString {\em bg})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_ae852329bf7940d71cf722e412f40b867}
+added by Manpreet Kohli saves the background selected by the user to a file 
+
+Definition at line 478 of file form.cpp.
+
+
+\begin{DoxyCode}
+479 {
+480     // open file for writing
+481     QFile file("bgs.txt");
+482     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+483     {
+484         qDebug() << "Cannot open file for writing ";
+485         exit(-1);
+486     }
+487 
+488     if (!file.exists())
+489     {
+490         QErrorMessage *err = new QErrorMessage();
+491         err->showMessage("<font size= \"15\"> ERROR!!! File not found! No saved g
+      ames exist!</font>");
+492         err->show();
+493     }
+494 
+495     QTextStream out(&file);
+496     out << bg;
+497 }
+\end{DoxyCode}
+\hypertarget{class_form_add0aafd8f5b0dd308b526cefb5d13367}{
+\index{Form@{Form}!setupLevel@{setupLevel}}
+\index{setupLevel@{setupLevel}!Form@{Form}}
+\subsubsection[{setupLevel}]{\setlength{\rightskip}{0pt plus 5cm}void Form::setupLevel (int {\em levelNumber})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_add0aafd8f5b0dd308b526cefb5d13367}
+added by Manpreet Kohli, modified by Ivan Collazo sets up the level including board, ship, and ball 
+
+Definition at line 222 of file form.cpp.
+
+
+\begin{DoxyCode}
+223 {
+224     if (levelNumber == 1)
+225     {
+226         storyText->hide();
+227         Constants::cont->hide();
+228         delete Constants::cont;
+229         Constants::levelNumber = 1;
+230         m_ui->view->setBackgroundBrush(QPixmap(":universe4.jpg"));
+231     }
+232     if (levelNumber == 2)
+233     {
+234         Constants::cont->disconnect(this, SLOT(loadLevel2()));
+235         Constants::levelNumber = 2;
+236     }
+237     if (levelNumber == 3)
+238     {
+239         Constants::cont->disconnect(this, SLOT(loadLevel3()));
+240         Constants::levelNumber = 3;
+241     }
+242     if (levelNumber == 4)
+243     {
+244         Constants::cont->disconnect(this, SLOT(loadLevel4()));
+245         Constants::levelNumber = 4;
+246     }
+247 
+248     if (levelNumber == 2 || levelNumber == 3 || levelNumber == 4)
+249     {
+250         Constants::cont->hide();
+251         if (Constants::life1 != NULL)
+252             Constants::life1->show();
+253         if (Constants::life2 != NULL)
+254             Constants::life2->show();
+255         if (Constants::life3 != NULL)
+256             Constants::life3->show();
+257         m_ui->view->setBackgroundBrush(QPixmap(":level3.jpg"));
+258     }
+259 
+260     // sleep for 3 secs so that the intro music can finish playing
+261     t->msleep(3000);
+262 
+263     m_ui->view->setRenderHint(QPainter::Antialiasing);
+264     board = new Board(m_ui->view);                      // add the board to the v
+      iew
+265 
+266     // create an instance of the player's spaceship
+267     playersShip = new SpaceShip();          // Ivan Collazo
+268 
+269     // add the player's spaceship to the board
+270     board->scene->addItem(playersShip);     // Ivan Collazo
+271 
+272     // Ivan Collazo
+273     if (levelNumber == 3)
+274     {
+275         alienShip = new AlienSpaceShip ();  // Ivan Collazo
+276         board->scene->addItem(alienShip);   // Ivan Collazo     
+277         QObject::connect(timer3, SIGNAL(timeout()), this, SLOT(alienFire()));   /
+      / connect to start alien firing
+278         timer3->start(2000);
+279     }
+280 
+281     // Ivan Collazo
+282     if (levelNumber == 4)
+283     {
+284         timer3->disconnect(board->scene, SLOT(alienFire()));
+285         timer3->stop();
+286         motherShip = new AlienMotherShip ();    // Ivan Collazo
+287         board->scene->addItem(motherShip);      // Ivan Collazo
+288         QObject::connect(timer4, SIGNAL(timeout()), this, SLOT(motherFire()));  /
+      / connect to start mother ship firing
+289         timer4->start(3000);
+290     }
+291 
+292     ball = new Ball(playersShip);                  // create an instance of the b
+      all
+293     board->scene->addItem(ball);                   // add the ball to the board
+294 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_form_aeacd1539514074613bf55a46da8680c9}{
+\index{Form@{Form}!alienBullet@{alienBullet}}
+\index{alienBullet@{alienBullet}!Form@{Form}}
+\subsubsection[{alienBullet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AlienShipBullet}$\ast$ {\bf Form::alienBullet}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_aeacd1539514074613bf55a46da8680c9}
+
+
+Definition at line 65 of file form.h.\hypertarget{class_form_a65c28753832fba6be96e0a48396b5c9b}{
+\index{Form@{Form}!alienShip@{alienShip}}
+\index{alienShip@{alienShip}!Form@{Form}}
+\subsubsection[{alienShip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AlienSpaceShip}$\ast$ {\bf Form::alienShip}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a65c28753832fba6be96e0a48396b5c9b}
+
+
+Definition at line 63 of file form.h.\hypertarget{class_form_a8457205717f75aacbf589e2bae555f5e}{
+\index{Form@{Form}!backgroundFourButton@{backgroundFourButton}}
+\index{backgroundFourButton@{backgroundFourButton}!Form@{Form}}
+\subsubsection[{backgroundFourButton}]{\setlength{\rightskip}{0pt plus 5cm}QPushButton $\ast$ {\bf Form::backgroundFourButton}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a8457205717f75aacbf589e2bae555f5e}
+
+
+Definition at line 46 of file form.h.\hypertarget{class_form_ae5c82e727fbfccafdcc407c86dc93d7a}{
+\index{Form@{Form}!backgroundOneButton@{backgroundOneButton}}
+\index{backgroundOneButton@{backgroundOneButton}!Form@{Form}}
+\subsubsection[{backgroundOneButton}]{\setlength{\rightskip}{0pt plus 5cm}QPushButton$\ast$ {\bf Form::backgroundOneButton}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_ae5c82e727fbfccafdcc407c86dc93d7a}
+
+
+Definition at line 46 of file form.h.\hypertarget{class_form_ab0d3fbc5a7fa42afd081f2dd21dae053}{
+\index{Form@{Form}!backgrounds@{backgrounds}}
+\index{backgrounds@{backgrounds}!Form@{Form}}
+\subsubsection[{backgrounds}]{\setlength{\rightskip}{0pt plus 5cm}QLabel$\ast$ {\bf Form::backgrounds}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_ab0d3fbc5a7fa42afd081f2dd21dae053}
+
+
+Definition at line 45 of file form.h.\hypertarget{class_form_a8f813fd062201f9f61458446ede57100}{
+\index{Form@{Form}!backgroundThreeButton@{backgroundThreeButton}}
+\index{backgroundThreeButton@{backgroundThreeButton}!Form@{Form}}
+\subsubsection[{backgroundThreeButton}]{\setlength{\rightskip}{0pt plus 5cm}QPushButton $\ast$ {\bf Form::backgroundThreeButton}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a8f813fd062201f9f61458446ede57100}
+
+
+Definition at line 46 of file form.h.\hypertarget{class_form_adbf445820483e664f777256868fd705e}{
+\index{Form@{Form}!backgroundTwoButton@{backgroundTwoButton}}
+\index{backgroundTwoButton@{backgroundTwoButton}!Form@{Form}}
+\subsubsection[{backgroundTwoButton}]{\setlength{\rightskip}{0pt plus 5cm}QPushButton $\ast$ {\bf Form::backgroundTwoButton}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_adbf445820483e664f777256868fd705e}
+
+
+Definition at line 46 of file form.h.\hypertarget{class_form_a0e07a371edadd1e19a9e32114a16aa08}{
+\index{Form@{Form}!ball@{ball}}
+\index{ball@{ball}!Form@{Form}}
+\subsubsection[{ball}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ball}$\ast$ {\bf Form::ball}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a0e07a371edadd1e19a9e32114a16aa08}
+
+
+Definition at line 68 of file form.h.\hypertarget{class_form_aec3ab393c4a0660c7b5fc7b7ece67d9a}{
+\index{Form@{Form}!bgNo@{bgNo}}
+\index{bgNo@{bgNo}!Form@{Form}}
+\subsubsection[{bgNo}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Form::bgNo}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_aec3ab393c4a0660c7b5fc7b7ece67d9a}
+
+
+Definition at line 37 of file form.h.\hypertarget{class_form_a4bf88e1480c496d5036499150432dff4}{
+\index{Form@{Form}!blueBlock@{blueBlock}}
+\index{blueBlock@{blueBlock}!Form@{Form}}
+\subsubsection[{blueBlock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block}$\ast$ {\bf Form::blueBlock}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a4bf88e1480c496d5036499150432dff4}
+
+
+Definition at line 52 of file form.h.\hypertarget{class_form_a465e7b53a888759044031a0de6ede98d}{
+\index{Form@{Form}!board@{board}}
+\index{board@{board}!Form@{Form}}
+\subsubsection[{board}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Board}$\ast$ {\bf Form::board}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a465e7b53a888759044031a0de6ede98d}
+
+
+Definition at line 39 of file form.h.\hypertarget{class_form_a19e48881d7309cc448166ecde55e1850}{
+\index{Form@{Form}!bullets@{bullets}}
+\index{bullets@{bullets}!Form@{Form}}
+\subsubsection[{bullets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ShipBullet}$\ast$ {\bf Form::bullets}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a19e48881d7309cc448166ecde55e1850}
+
+
+Definition at line 69 of file form.h.\hypertarget{class_form_abafd6277bf46fc8d802467c4aabea50e}{
+\index{Form@{Form}!currentBlockLabel@{currentBlockLabel}}
+\index{currentBlockLabel@{currentBlockLabel}!Form@{Form}}
+\subsubsection[{currentBlockLabel}]{\setlength{\rightskip}{0pt plus 5cm}QLabel$\ast$ {\bf Form::currentBlockLabel}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_abafd6277bf46fc8d802467c4aabea50e}
+
+
+Definition at line 55 of file form.h.\hypertarget{class_form_a7c08dcd5710197574486d9ea139de923}{
+\index{Form@{Form}!done@{done}}
+\index{done@{done}!Form@{Form}}
+\subsubsection[{done}]{\setlength{\rightskip}{0pt plus 5cm}QPushButton$\ast$ {\bf Form::done}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a7c08dcd5710197574486d9ea139de923}
+
+
+Definition at line 57 of file form.h.\hypertarget{class_form_a4bd31a76f382c885ce3d1cb6a19568eb}{
+\index{Form@{Form}!emptyBlock@{emptyBlock}}
+\index{emptyBlock@{emptyBlock}!Form@{Form}}
+\subsubsection[{emptyBlock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block}$\ast$ {\bf Form::emptyBlock}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a4bd31a76f382c885ce3d1cb6a19568eb}
+
+
+Definition at line 48 of file form.h.\hypertarget{class_form_afae663257f81258f2f8667d621fe0f48}{
+\index{Form@{Form}!font@{font}}
+\index{font@{font}!Form@{Form}}
+\subsubsection[{font}]{\setlength{\rightskip}{0pt plus 5cm}QFont$\ast$ {\bf Form::font}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_afae663257f81258f2f8667d621fe0f48}
+
+
+Definition at line 66 of file form.h.\hypertarget{class_form_aec10e23211aa0c2401b1cf9c7db50396}{
+\index{Form@{Form}!greenBlock@{greenBlock}}
+\index{greenBlock@{greenBlock}!Form@{Form}}
+\subsubsection[{greenBlock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block}$\ast$ {\bf Form::greenBlock}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_aec10e23211aa0c2401b1cf9c7db50396}
+
+
+Definition at line 51 of file form.h.\hypertarget{class_form_a9a0efcb36e9c6f17a1a8a9b8976dccba}{
+\index{Form@{Form}!intro@{intro}}
+\index{intro@{intro}!Form@{Form}}
+\subsubsection[{intro}]{\setlength{\rightskip}{0pt plus 5cm}QSound$\ast$ {\bf Form::intro}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a9a0efcb36e9c6f17a1a8a9b8976dccba}
+
+
+Definition at line 40 of file form.h.\hypertarget{class_form_a51d3d962a2815f75b507506e7ab94e4a}{
+\index{Form@{Form}!itemsWindow@{itemsWindow}}
+\index{itemsWindow@{itemsWindow}!Form@{Form}}
+\subsubsection[{itemsWindow}]{\setlength{\rightskip}{0pt plus 5cm}QGraphicsView$\ast$ {\bf Form::itemsWindow}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a51d3d962a2815f75b507506e7ab94e4a}
+
+
+Definition at line 43 of file form.h.\hypertarget{class_form_ad05b2988fa73fab67b1794dae8ebe1b6}{
+\index{Form@{Form}!itemsWindowScene@{itemsWindowScene}}
+\index{itemsWindowScene@{itemsWindowScene}!Form@{Form}}
+\subsubsection[{itemsWindowScene}]{\setlength{\rightskip}{0pt plus 5cm}QGraphicsScene$\ast$ {\bf Form::itemsWindowScene}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_ad05b2988fa73fab67b1794dae8ebe1b6}
+
+
+Definition at line 44 of file form.h.\hypertarget{class_form_a719f9ac1c34536d610446a2a8f65656c}{
+\index{Form@{Form}!m\_\-ui@{m\_\-ui}}
+\index{m\_\-ui@{m\_\-ui}!Form@{Form}}
+\subsubsection[{m\_\-ui}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ui::Form}$\ast$ {\bf Form::m\_\-ui}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a719f9ac1c34536d610446a2a8f65656c}
+
+
+Definition at line 38 of file form.h.\hypertarget{class_form_ae98adaad3d9264c2c76c0977b44943c6}{
+\index{Form@{Form}!magentaBlock@{magentaBlock}}
+\index{magentaBlock@{magentaBlock}!Form@{Form}}
+\subsubsection[{magentaBlock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block}$\ast$ {\bf Form::magentaBlock}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_ae98adaad3d9264c2c76c0977b44943c6}
+
+
+Definition at line 53 of file form.h.\hypertarget{class_form_a132aa4e6d4dcdbdde29762fcc6497cac}{
+\index{Form@{Form}!mainViewWidth@{mainViewWidth}}
+\index{mainViewWidth@{mainViewWidth}!Form@{Form}}
+\subsubsection[{mainViewWidth}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Form::mainViewWidth}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a132aa4e6d4dcdbdde29762fcc6497cac}
+
+
+Definition at line 61 of file form.h.\hypertarget{class_form_ad2c32c2f532f56f4e3cb5945b8083cf0}{
+\index{Form@{Form}!missiles@{missiles}}
+\index{missiles@{missiles}!Form@{Form}}
+\subsubsection[{missiles}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ShipsMissiles}$\ast$ {\bf Form::missiles}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_ad2c32c2f532f56f4e3cb5945b8083cf0}
+
+
+Definition at line 70 of file form.h.\hypertarget{class_form_a2eaddff9897b282b0f693d62fa5fb353}{
+\index{Form@{Form}!monoBlock@{monoBlock}}
+\index{monoBlock@{monoBlock}!Form@{Form}}
+\subsubsection[{monoBlock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block}$\ast$ {\bf Form::monoBlock}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a2eaddff9897b282b0f693d62fa5fb353}
+
+
+Definition at line 49 of file form.h.\hypertarget{class_form_a39ad83a17a081174bca47eba9b38f0b9}{
+\index{Form@{Form}!motherShip@{motherShip}}
+\index{motherShip@{motherShip}!Form@{Form}}
+\subsubsection[{motherShip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AlienMotherShip}$\ast$ {\bf Form::motherShip}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a39ad83a17a081174bca47eba9b38f0b9}
+
+
+Definition at line 62 of file form.h.\hypertarget{class_form_ad6ddaf1cdc66b62a9f1b59a32ca818f6}{
+\index{Form@{Form}!motherShipBullet@{motherShipBullet}}
+\index{motherShipBullet@{motherShipBullet}!Form@{Form}}
+\subsubsection[{motherShipBullet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MotherShipBullet}$\ast$ {\bf Form::motherShipBullet}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_ad6ddaf1cdc66b62a9f1b59a32ca818f6}
+
+
+Definition at line 64 of file form.h.\hypertarget{class_form_ad209e021a3dbed6ae132c32a642aaf2f}{
+\index{Form@{Form}!playersShip@{playersShip}}
+\index{playersShip@{playersShip}!Form@{Form}}
+\subsubsection[{playersShip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SpaceShip}$\ast$ {\bf Form::playersShip}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_ad209e021a3dbed6ae132c32a642aaf2f}
+
+
+Definition at line 42 of file form.h.\hypertarget{class_form_af3d2b490d97327ae579f814e3f620dcb}{
+\index{Form@{Form}!redBlock@{redBlock}}
+\index{redBlock@{redBlock}!Form@{Form}}
+\subsubsection[{redBlock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block}$\ast$ {\bf Form::redBlock}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_af3d2b490d97327ae579f814e3f620dcb}
+
+
+Definition at line 50 of file form.h.\hypertarget{class_form_a651bf23926cdc9be577fa056ef15638f}{
+\index{Form@{Form}!reset@{reset}}
+\index{reset@{reset}!Form@{Form}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}QPushButton$\ast$ {\bf Form::reset}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a651bf23926cdc9be577fa056ef15638f}
+
+
+Definition at line 58 of file form.h.\hypertarget{class_form_a1bdf42fb82d80d614324a9a0cd7b960e}{
+\index{Form@{Form}!save@{save}}
+\index{save@{save}!Form@{Form}}
+\subsubsection[{save}]{\setlength{\rightskip}{0pt plus 5cm}QPushButton$\ast$ {\bf Form::save}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a1bdf42fb82d80d614324a9a0cd7b960e}
+
+
+Definition at line 56 of file form.h.\hypertarget{class_form_a473ac73bbd99b470d340f9c613bfb5a7}{
+\index{Form@{Form}!selectBlock@{selectBlock}}
+\index{selectBlock@{selectBlock}!Form@{Form}}
+\subsubsection[{selectBlock}]{\setlength{\rightskip}{0pt plus 5cm}QLabel$\ast$ {\bf Form::selectBlock}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a473ac73bbd99b470d340f9c613bfb5a7}
+
+
+Definition at line 47 of file form.h.\hypertarget{class_form_af12436143c1da6a3a491fa941aa8924b}{
+\index{Form@{Form}!skipIntro@{skipIntro}}
+\index{skipIntro@{skipIntro}!Form@{Form}}
+\subsubsection[{skipIntro}]{\setlength{\rightskip}{0pt plus 5cm}QPushButton$\ast$ {\bf Form::skipIntro}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_af12436143c1da6a3a491fa941aa8924b}
+
+
+Definition at line 73 of file form.h.\hypertarget{class_form_a4fda691b1a4b71eb73fe89d055e9b651}{
+\index{Form@{Form}!storyText@{storyText}}
+\index{storyText@{storyText}!Form@{Form}}
+\subsubsection[{storyText}]{\setlength{\rightskip}{0pt plus 5cm}QLabel$\ast$ {\bf Form::storyText}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a4fda691b1a4b71eb73fe89d055e9b651}
+
+
+Definition at line 67 of file form.h.\hypertarget{class_form_ac44e1693a46054cf0ba47b7c03d397f6}{
+\index{Form@{Form}!t@{t}}
+\index{t@{t}!Form@{Form}}
+\subsubsection[{t}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SleeperThread}$\ast$ {\bf Form::t}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_ac44e1693a46054cf0ba47b7c03d397f6}
+
+
+Definition at line 41 of file form.h.\hypertarget{class_form_a07118dfb7566e4baf43c182ecd378481}{
+\index{Form@{Form}!timer@{timer}}
+\index{timer@{timer}!Form@{Form}}
+\subsubsection[{timer}]{\setlength{\rightskip}{0pt plus 5cm}QTimer$\ast$ {\bf Form::timer}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a07118dfb7566e4baf43c182ecd378481}
+
+
+Definition at line 71 of file form.h.\hypertarget{class_form_a9ef80826774356f54f6d056ef48cce52}{
+\index{Form@{Form}!timer3@{timer3}}
+\index{timer3@{timer3}!Form@{Form}}
+\subsubsection[{timer3}]{\setlength{\rightskip}{0pt plus 5cm}QTimer$\ast$ {\bf Form::timer3}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a9ef80826774356f54f6d056ef48cce52}
+
+
+Definition at line 72 of file form.h.\hypertarget{class_form_a9c2c8ccb519f3ad5af95b8f6a47b8c85}{
+\index{Form@{Form}!timer4@{timer4}}
+\index{timer4@{timer4}!Form@{Form}}
+\subsubsection[{timer4}]{\setlength{\rightskip}{0pt plus 5cm}QTimer$\ast$ {\bf Form::timer4}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a9c2c8ccb519f3ad5af95b8f6a47b8c85}
+
+
+Definition at line 74 of file form.h.\hypertarget{class_form_addbe1e71147359d087fa7f66ea4aec50}{
+\index{Form@{Form}!windowHeight@{windowHeight}}
+\index{windowHeight@{windowHeight}!Form@{Form}}
+\subsubsection[{windowHeight}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Form::windowHeight}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_addbe1e71147359d087fa7f66ea4aec50}
+
+
+Definition at line 60 of file form.h.\hypertarget{class_form_a0f3a6be75fa8dcc00127c1d735f5d650}{
+\index{Form@{Form}!windowWidth@{windowWidth}}
+\index{windowWidth@{windowWidth}!Form@{Form}}
+\subsubsection[{windowWidth}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Form::windowWidth}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a0f3a6be75fa8dcc00127c1d735f5d650}
+
+
+Definition at line 59 of file form.h.\hypertarget{class_form_a2e1c5906b9ba37321cb7bab858d895fa}{
+\index{Form@{Form}!yellowBlock@{yellowBlock}}
+\index{yellowBlock@{yellowBlock}!Form@{Form}}
+\subsubsection[{yellowBlock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block}$\ast$ {\bf Form::yellowBlock}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_form_a2e1c5906b9ba37321cb7bab858d895fa}
+
+
+Definition at line 54 of file form.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{form_8h}{form.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{form_8cpp}{form.cpp}\end{DoxyCompactItemize}

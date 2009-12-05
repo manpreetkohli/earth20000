@@ -1,0 +1,137 @@
+\hypertarget{class_ui___main_window}{
+\section{Ui\_\-MainWindow Class Reference}
+\label{class_ui___main_window}\index{Ui\_\-MainWindow@{Ui\_\-MainWindow}}
+}
+
+
+{\ttfamily \#include $<$ui\_\-mainwindow.h$>$}Inheritance diagram for Ui\_\-MainWindow::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_ui___main_window}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_ui___main_window_acf4a0872c4c77d8f43a2ec66ed849b58}{setupUi} (QMainWindow $\ast$MainWindow)
+\item 
+void \hyperlink{class_ui___main_window_a097dd160c3534a204904cb374412c618}{retranslateUi} (QMainWindow $\ast$MainWindow)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QWidget $\ast$ \hyperlink{class_ui___main_window_a356f1cf3ebda15f1fac59467ee081b74}{centralwidget}
+\item 
+QGraphicsView $\ast$ \hyperlink{class_ui___main_window_a713d8e541d9de8389ad4292131dc931a}{graphicsView}
+\item 
+QMenuBar $\ast$ \hyperlink{class_ui___main_window_adf43d9a67adaec750aaa956b5e082f09}{menubar}
+\item 
+QStatusBar $\ast$ \hyperlink{class_ui___main_window_a1687cceb1e2787aa1f83e50433943a91}{statusbar}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 26 of file ui\_\-mainwindow.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ui___main_window_a097dd160c3534a204904cb374412c618}{
+\index{Ui\_\-MainWindow@{Ui\_\-MainWindow}!retranslateUi@{retranslateUi}}
+\index{retranslateUi@{retranslateUi}!Ui_MainWindow@{Ui\_\-MainWindow}}
+\subsubsection[{retranslateUi}]{\setlength{\rightskip}{0pt plus 5cm}void Ui\_\-MainWindow::retranslateUi (QMainWindow $\ast$ {\em MainWindow})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_ui___main_window_a097dd160c3534a204904cb374412c618}
+
+
+Definition at line 69 of file ui\_\-mainwindow.h.
+
+
+\begin{DoxyCode}
+70     {
+71         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWin
+      dow", 0, QApplication::UnicodeUTF8));
+72         Q_UNUSED(MainWindow);
+73     } // retranslateUi
+\end{DoxyCode}
+\hypertarget{class_ui___main_window_acf4a0872c4c77d8f43a2ec66ed849b58}{
+\index{Ui\_\-MainWindow@{Ui\_\-MainWindow}!setupUi@{setupUi}}
+\index{setupUi@{setupUi}!Ui_MainWindow@{Ui\_\-MainWindow}}
+\subsubsection[{setupUi}]{\setlength{\rightskip}{0pt plus 5cm}void Ui\_\-MainWindow::setupUi (QMainWindow $\ast$ {\em MainWindow})\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_ui___main_window_acf4a0872c4c77d8f43a2ec66ed849b58}
+
+
+Definition at line 34 of file ui\_\-mainwindow.h.
+
+
+\begin{DoxyCode}
+35     {
+36         if (MainWindow->objectName().isEmpty())
+37             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
+38         MainWindow->resize(750, 725);
+39         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+40         sizePolicy.setHorizontalStretch(0);
+41         sizePolicy.setVerticalStretch(0);
+42         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth()
+      );
+43         MainWindow->setSizePolicy(sizePolicy);
+44         MainWindow->setMinimumSize(QSize(750, 725));
+45         MainWindow->setMaximumSize(QSize(750, 725));
+46         centralwidget = new QWidget(MainWindow);
+47         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+48         graphicsView = new QGraphicsView(centralwidget);
+49         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+50         graphicsView->setGeometry(QRect(0, 0, 750, 725));
+51         graphicsView->setMinimumSize(QSize(750, 725));
+52         graphicsView->setMaximumSize(QSize(750, 725));
+53         graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+54         graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+55         MainWindow->setCentralWidget(centralwidget);
+56         menubar = new QMenuBar(MainWindow);
+57         menubar->setObjectName(QString::fromUtf8("menubar"));
+58         menubar->setGeometry(QRect(0, 0, 750, 22));
+59         MainWindow->setMenuBar(menubar);
+60         statusbar = new QStatusBar(MainWindow);
+61         statusbar->setObjectName(QString::fromUtf8("statusbar"));
+62         MainWindow->setStatusBar(statusbar);
+63 
+64         retranslateUi(MainWindow);
+65 
+66         QMetaObject::connectSlotsByName(MainWindow);
+67     } // setupUi
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_ui___main_window_a356f1cf3ebda15f1fac59467ee081b74}{
+\index{Ui\_\-MainWindow@{Ui\_\-MainWindow}!centralwidget@{centralwidget}}
+\index{centralwidget@{centralwidget}!Ui_MainWindow@{Ui\_\-MainWindow}}
+\subsubsection[{centralwidget}]{\setlength{\rightskip}{0pt plus 5cm}QWidget$\ast$ {\bf Ui\_\-MainWindow::centralwidget}}}
+\label{class_ui___main_window_a356f1cf3ebda15f1fac59467ee081b74}
+
+
+Definition at line 29 of file ui\_\-mainwindow.h.\hypertarget{class_ui___main_window_a713d8e541d9de8389ad4292131dc931a}{
+\index{Ui\_\-MainWindow@{Ui\_\-MainWindow}!graphicsView@{graphicsView}}
+\index{graphicsView@{graphicsView}!Ui_MainWindow@{Ui\_\-MainWindow}}
+\subsubsection[{graphicsView}]{\setlength{\rightskip}{0pt plus 5cm}QGraphicsView$\ast$ {\bf Ui\_\-MainWindow::graphicsView}}}
+\label{class_ui___main_window_a713d8e541d9de8389ad4292131dc931a}
+
+
+Definition at line 30 of file ui\_\-mainwindow.h.\hypertarget{class_ui___main_window_adf43d9a67adaec750aaa956b5e082f09}{
+\index{Ui\_\-MainWindow@{Ui\_\-MainWindow}!menubar@{menubar}}
+\index{menubar@{menubar}!Ui_MainWindow@{Ui\_\-MainWindow}}
+\subsubsection[{menubar}]{\setlength{\rightskip}{0pt plus 5cm}QMenuBar$\ast$ {\bf Ui\_\-MainWindow::menubar}}}
+\label{class_ui___main_window_adf43d9a67adaec750aaa956b5e082f09}
+
+
+Definition at line 31 of file ui\_\-mainwindow.h.\hypertarget{class_ui___main_window_a1687cceb1e2787aa1f83e50433943a91}{
+\index{Ui\_\-MainWindow@{Ui\_\-MainWindow}!statusbar@{statusbar}}
+\index{statusbar@{statusbar}!Ui_MainWindow@{Ui\_\-MainWindow}}
+\subsubsection[{statusbar}]{\setlength{\rightskip}{0pt plus 5cm}QStatusBar$\ast$ {\bf Ui\_\-MainWindow::statusbar}}}
+\label{class_ui___main_window_a1687cceb1e2787aa1f83e50433943a91}
+
+
+Definition at line 32 of file ui\_\-mainwindow.h.
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{ui__mainwindow_8h}{ui\_\-mainwindow.h}\end{DoxyCompactItemize}

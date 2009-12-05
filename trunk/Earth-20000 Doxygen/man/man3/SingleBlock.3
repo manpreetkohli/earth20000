@@ -1,0 +1,362 @@
+.TH "SingleBlock" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SingleBlock \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <block.h>\fP
+.PP
+Inherited by \fBBlock\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSingleBlock\fP (QGraphicsItem *parent)"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.ti -1c
+.RI "void \fBmousePressEvent\fP (QGraphicsSceneMouseEvent *event)"
+.br
+.ti -1c
+.RI "virtual void \fBsetColor1\fP (int theColor)"
+.br
+.ti -1c
+.RI "virtual void \fBsetColor2\fP (int theColor)"
+.br
+.ti -1c
+.RI "virtual void \fBsetXPos\fP (int thePos)"
+.br
+.ti -1c
+.RI "virtual void \fBsetYPos\fP (int thePos)"
+.br
+.ti -1c
+.RI "virtual void \fBsetPowerup\fP (int value)"
+.br
+.ti -1c
+.RI "virtual int \fBtype\fP () const "
+.br
+.ti -1c
+.RI "int \fBgetColor1\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetColor2\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetXPos\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetYPos\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetPowerup\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBcolor1\fP"
+.br
+.ti -1c
+.RI "int \fBcolor2\fP"
+.br
+.ti -1c
+.RI "int \fBxPos\fP"
+.br
+.ti -1c
+.RI "int \fByPos\fP"
+.br
+.ti -1c
+.RI "int \fBhasPowerup\fP"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "static int \fBcolorSelected\fP = 7"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 33 of file block.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SingleBlock::SingleBlock (QGraphicsItem * parent = \fC0\fP)"
+.PP
+Definition at line 13 of file block.cpp.
+.PP
+.nf
+14         :QGraphicsItem(parent)
+15 {
+16     if(parent != NULL)
+17     {
+18         color1 = ((SingleBlock *)parent)->getColor1();
+19         color2 = ((SingleBlock *)parent)->getColor2();
+20         xPos = ((SingleBlock *)parent)->getXPos();
+21         yPos = ((SingleBlock *)parent)->getYPos();
+22         hasPowerup = ((SingleBlock *)parent)->getPowerup();
+23     }
+24 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF SingleBlock::boundingRect () const"
+.PP
+Reimplemented in \fBBlock\fP, \fBMonoBlock\fP, \fBEmptyBlock\fP, \fBRedBlock\fP, \fBGreenBlock\fP, \fBBlueBlock\fP, \fBMagentaBlock\fP, and \fBYellowBlock\fP.
+.PP
+Definition at line 26 of file block.cpp.
+.PP
+.nf
+27 {
+28     return QRectF(OUTLINEX, OUTLINEY, OUTLINEW, OUTLINEH);
+29 }
+.fi
+.SS "int SingleBlock::getColor1 ()"Returns color 1 
+.PP
+Definition at line 190 of file block.cpp.
+.PP
+.nf
+191 {
+192     return color1;
+193 }
+.fi
+.SS "int SingleBlock::getColor2 ()"Returns color 2 
+.PP
+Definition at line 198 of file block.cpp.
+.PP
+.nf
+199 {
+200     return color2;
+201 }
+.fi
+.SS "int SingleBlock::getPowerup ()"Returns powerup value 
+.PP
+Definition at line 222 of file block.cpp.
+.PP
+.nf
+223 {
+224     return hasPowerup;
+225 }
+.fi
+.SS "int SingleBlock::getXPos ()"Returns xPos 
+.PP
+Definition at line 206 of file block.cpp.
+.PP
+.nf
+207 {
+208     return xPos;
+209 }
+.fi
+.SS "int SingleBlock::getYPos ()"Returns yPos 
+.PP
+Definition at line 214 of file block.cpp.
+.PP
+.nf
+215 {
+216     return yPos;
+217 }
+.fi
+.SS "void SingleBlock::mousePressEvent (QGraphicsSceneMouseEvent * event)"Added by Manpreet Kohli defines what happens when the user clicks on blocks in the level editor 
+.PP
+Definition at line 56 of file block.cpp.
+.PP
+.nf
+57 {
+58     if (Constants::levelNumber == 0)
+59     {
+60         // if the block clicked on is inside the small items window on the right hand side
+61         if (this->scene()->width() < Constants::itemsWindowViewWidth)
+62         {
+63             colorSelected = this->color2;
+64             this->scene()->removeItem(Constants::currentBlock);
+65             delete Constants::currentBlock;
+66 
+67             // modify the 'current selection' block
+68             switch(colorSelected)
+69             {
+70                 case 0:
+71                     Constants::currentBlock = new MonoBlock();
+72                     break;
+73                 case 2:
+74                     Constants::currentBlock = new RedBlock();
+75                     break;
+76                 case 3:
+77                     Constants::currentBlock = new GreenBlock();
+78                     break;
+79                 case 4:
+80                     Constants::currentBlock = new BlueBlock();
+81                     break;
+82                 case 5:
+83                     Constants::currentBlock = new MagentaBlock();
+84                     break;
+85                 case 6:
+86                     Constants::currentBlock = new YellowBlock();
+87                     break;
+88                 case 7:
+89                     Constants::currentBlock = new EmptyBlock();
+90                     break;
+91             }
+92 
+93             // update the current selection block inside the scene
+94             this->scene()->addItem(Constants::currentBlock);
+95             Constants::currentBlock->setXPos(-274);
+96             Constants::currentBlock->setYPos(-225);
+97             Constants::currentBlock->setPos(-274, -225);
+98         }
+99 
+100         // if the block selected was inside the main view window
+101         else
+102         {
+103             if (colorSelected == 7)
+104                 this->setColor1(7);
+105             else
+106                 this->setColor1(1);
+107 
+108             // if the block clicked on was not transparent, remove the previous selection of the block
+109             // from the two vectors
+110             if (this->getColor2() != 7)
+111             {
+112                 int tempIndex = Constants::positions.indexOf(this->scenePos());
+113                 Constants::positions.remove(tempIndex);
+114                 Constants::colors.remove(tempIndex);
+115             }
+116 
+117             this->setOpacity(2.0);
+118             this->setColor2(colorSelected);
+119 
+120             // if a transparent block was not clicked, push the new block position and color into 
+121             // the two vectors
+122             if (colorSelected != 7)
+123             {
+124                 Constants::positions.push_back(this->scenePos());
+125                 Constants::colors.push_back(this->getColor2());
+126             }
+127 
+128             // update the blocks
+129             update(this->boundingRect());
+130             update(this->sceneBoundingRect());
+131         }
+132     }
+133 }
+.fi
+.SS "void SingleBlock::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Reimplemented in \fBBlock\fP, \fBMonoBlock\fP, \fBEmptyBlock\fP, \fBRedBlock\fP, \fBGreenBlock\fP, \fBBlueBlock\fP, \fBMagentaBlock\fP, and \fBYellowBlock\fP.
+.PP
+Definition at line 31 of file block.cpp.
+.PP
+.nf
+33 {
+34     Q_UNUSED(option);
+35     Q_UNUSED(widget);
+36 
+37     painter->setPen(QPen(Qt::black, 0));
+38     painter->setBrush(Qt::white);
+39     painter->drawRoundedRect(OUTLINEX, OUTLINEY, OUTLINEW, OUTLINEH, XRADIUS, YRADIUS, Qt::RelativeSize);
+40 
+41     QLinearGradient gradient(0, 20, 0, 4);
+42     gradient.setSpread(QGradient::ReflectSpread);
+43 
+44     gradient.setColorAt(0, colors[color1]);
+45     gradient.setColorAt(1, colors[color2]);
+46 
+47     painter->setBrush(gradient);
+48     painter->setPen(QPen(Qt::black, 0));
+49     painter->drawRoundedRect(BLOCKX, BLOCKY, BLOCKW, BLOCKH, XRADIUS, YRADIUS, Qt::RelativeSize);
+50 }
+.fi
+.SS "void SingleBlock::setColor1 (int theColor)\fC [virtual]\fP"Set color 1 of this block 
+.PP
+Definition at line 138 of file block.cpp.
+.PP
+.nf
+139 {
+140     int *colorPtr;
+141     colorPtr = &color1;
+142     *colorPtr= theColor;
+143 }
+.fi
+.SS "void SingleBlock::setColor2 (int theColor)\fC [virtual]\fP"Set color 2 of this block 
+.PP
+Definition at line 148 of file block.cpp.
+.PP
+.nf
+149 {
+150     int *colorPtr;
+151     colorPtr = &color2;
+152     *colorPtr= theColor;
+153 }
+.fi
+.SS "void SingleBlock::setPowerup (int value)\fC [virtual]\fP"Turn powerup on 
+.PP
+Definition at line 180 of file block.cpp.
+.PP
+.nf
+181 {
+182     int *valuePtr;
+183     valuePtr = &hasPowerup;
+184     *valuePtr = value;
+185 }
+.fi
+.SS "void SingleBlock::setXPos (int thePos)\fC [virtual]\fP"In order for the ball class to be able to access the individual X and Y coordinates of this block 
+.PP
+Definition at line 159 of file block.cpp.
+.PP
+.nf
+160 {
+161     int *posPtr;
+162     posPtr = &xPos;
+163     *posPtr= thePos;
+164 }
+.fi
+.SS "void SingleBlock::setYPos (int thePos)\fC [virtual]\fP"In order for the ball class to be able to access the individual X and Y coordinates of this block 
+.PP
+Definition at line 170 of file block.cpp.
+.PP
+.nf
+171 {
+172     int *posPtr;
+173     posPtr = &yPos;
+174     *posPtr= thePos;
+175 }
+.fi
+.SS "virtual int SingleBlock::type () const\fC [inline, virtual]\fP"
+.PP
+Definition at line 51 of file block.h.
+.PP
+.nf
+51 {return BLOCKID; }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBSingleBlock::color1\fP"
+.PP
+Definition at line 39 of file block.h.
+.SS "int \fBSingleBlock::color2\fP"
+.PP
+Definition at line 40 of file block.h.
+.SS "int \fBSingleBlock::colorSelected\fP = 7\fC [static, private]\fP"
+.PP
+Definition at line 36 of file block.h.
+.SS "int \fBSingleBlock::hasPowerup\fP"
+.PP
+Definition at line 41 of file block.h.
+.SS "int \fBSingleBlock::xPos\fP"
+.PP
+Definition at line 41 of file block.h.
+.SS "int \fBSingleBlock::yPos\fP"
+.PP
+Definition at line 41 of file block.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

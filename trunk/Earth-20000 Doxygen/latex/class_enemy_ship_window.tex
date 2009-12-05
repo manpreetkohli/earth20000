@@ -1,0 +1,98 @@
+\hypertarget{class_enemy_ship_window}{
+\section{EnemyShipWindow Class Reference}
+\label{class_enemy_ship_window}\index{EnemyShipWindow@{EnemyShipWindow}}
+}
+
+
+{\ttfamily \#include $<$enemyShip.h$>$}Inheritance diagram for EnemyShipWindow::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_enemy_ship_window}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_enemy_ship_window_a0e82d166172aa24bd38937f023782c11}{EnemyShipWindow} (QGraphicsItem $\ast$parent=0)
+\item 
+QRectF \hyperlink{class_enemy_ship_window_abd9ffd83f2140b9c1aee4cfa91d49045}{boundingRect} () const 
+\item 
+void \hyperlink{class_enemy_ship_window_a3a95734ffb128eb9a8ef7b7913755453}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 51 of file enemyShip.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_enemy_ship_window_a0e82d166172aa24bd38937f023782c11}{
+\index{EnemyShipWindow@{EnemyShipWindow}!EnemyShipWindow@{EnemyShipWindow}}
+\index{EnemyShipWindow@{EnemyShipWindow}!EnemyShipWindow@{EnemyShipWindow}}
+\subsubsection[{EnemyShipWindow}]{\setlength{\rightskip}{0pt plus 5cm}EnemyShipWindow::EnemyShipWindow (QGraphicsItem $\ast$ {\em parent} = {\ttfamily 0})}}
+\label{class_enemy_ship_window_a0e82d166172aa24bd38937f023782c11}
+
+
+Definition at line 146 of file enemyShip.cpp.
+
+
+\begin{DoxyCode}
+147         :EnemyShipPart(parent)
+148 {
+149 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_enemy_ship_window_abd9ffd83f2140b9c1aee4cfa91d49045}{
+\index{EnemyShipWindow@{EnemyShipWindow}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!EnemyShipWindow@{EnemyShipWindow}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF EnemyShipWindow::boundingRect () const}}
+\label{class_enemy_ship_window_abd9ffd83f2140b9c1aee4cfa91d49045}
+
+
+Definition at line 151 of file enemyShip.cpp.
+
+
+\begin{DoxyCode}
+152 {
+153     return QRectF(0, 0, 100, 100);
+154 }
+\end{DoxyCode}
+\hypertarget{class_enemy_ship_window_a3a95734ffb128eb9a8ef7b7913755453}{
+\index{EnemyShipWindow@{EnemyShipWindow}!paint@{paint}}
+\index{paint@{paint}!EnemyShipWindow@{EnemyShipWindow}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void EnemyShipWindow::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})}}
+\label{class_enemy_ship_window_a3a95734ffb128eb9a8ef7b7913755453}
+
+
+Definition at line 156 of file enemyShip.cpp.
+
+
+\begin{DoxyCode}
+158 {
+159     Q_UNUSED(option);
+160     Q_UNUSED(widget);
+161 
+162     QPointF vertices[4] = {QPointF(0.0, 0.0),
+163                                      QPointF(10.0, 0.0),
+164                                      QPointF(10.0, 6.0),
+165                                      QPointF(0.0, 6.0)};
+166 
+167     painter->setPen(QPen(Qt::black, 0));
+168     QLinearGradient gradient(0, 0, 0, 0);
+169     gradient.setSpread(QGradient::ReflectSpread);
+170     gradient.setColorAt(0, Qt::black);
+171     gradient.setColorAt(1, Qt::black);
+172 
+173     painter->setBrush(gradient);
+174     painter->drawPolygon(vertices, 4);
+175 }
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{enemy_ship_8h}{enemyShip.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{enemy_ship_8cpp}{enemyShip.cpp}\end{DoxyCompactItemize}

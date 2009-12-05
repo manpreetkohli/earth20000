@@ -1,0 +1,226 @@
+\hypertarget{class_level_two}{
+\section{LevelTwo Class Reference}
+\label{class_level_two}\index{LevelTwo@{LevelTwo}}
+}
+
+
+{\ttfamily \#include $<$levelTwo.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_level_two_ab23f2b6ad1caa4b7854545e0e3ff9baf}{LevelTwo} (QGraphicsScene $\ast$theScene)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+QRectF \hyperlink{class_level_two_a561fec1e212f4d26804a366a4cfbd1a0}{boundingRect} () const 
+\item 
+void \hyperlink{class_level_two_a447071bde5f8ea9035148d3e207b543b}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\item 
+int \hyperlink{class_level_two_a8ab22fa3c5b30e4ad12a2e15edc12de8}{generateRandomNumber} (int min, int max)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_level_two_a4987ce2b3abc9e124dfa2a33dd317474}{xPos}
+\item 
+int \hyperlink{class_level_two_ade98d942c5c10cf270c92d918417f0ef}{yPos}
+\item 
+\hyperlink{class_block}{Block} $\ast$ \hyperlink{class_level_two_ae2fcfa7a9a4c9feb00058ed9ab8c72d6}{block} \mbox{[}9\mbox{]}\mbox{[}20\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{level_two_8cpp}{levelTwo.cpp}
+
+Creates the design for the second level. Uses the polymorphism feature of the \hyperlink{block_8cpp}{block.cpp} class and randomly generates blocks of different colors and places them in a pre-\/defined layout.
+
+This level contains powerups
+
+Author: Natraj Subramanian 
+
+Definition at line 19 of file levelTwo.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_level_two_ab23f2b6ad1caa4b7854545e0e3ff9baf}{
+\index{LevelTwo@{LevelTwo}!LevelTwo@{LevelTwo}}
+\index{LevelTwo@{LevelTwo}!LevelTwo@{LevelTwo}}
+\subsubsection[{LevelTwo}]{\setlength{\rightskip}{0pt plus 5cm}LevelTwo::LevelTwo (QGraphicsScene $\ast$ {\em theScene})}}
+\label{class_level_two_ab23f2b6ad1caa4b7854545e0e3ff9baf}
+
+
+Definition at line 4 of file levelTwo.cpp.
+
+
+\begin{DoxyCode}
+5 {
+6     xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;       // 260
+7     yPos = -630 + (BOUNDHEIGHT)/(5);
+8     int randomPowerBlock, powerupCounter;
+9     powerupCounter = 0;
+10 
+11     // Declare variable to hold seconds in clock
+12     time_t seconds;
+13 
+14     // Get value from system clock and place in seconds variable
+15     time(&seconds);
+16 
+17     // Convert seconds to a unsigned integer
+18     srand((unsigned int) seconds);
+19 
+20     int detColor;
+21 
+22     for(int i = 0; i < 9; i++)
+23     {
+24         for(int j = 0; j < 20; j++)
+25         {
+26             if( (i == 0) && ( j > 6 && j < 13 )||
+27                 (i == 1) && ( j == 0 || ( j > 7 && j < 12 )|| j == 19) ||
+28                 (i == 2) && ( j == 0 || j == 1 || j == 9 || j == 10 || j == 18 ||
+       j == 19) ||
+29                 (i == 3) && ( j < 3 || j > 16 ) ||
+30                 (i > 4 && i < 9) && (j == 0 || j == 1 || j == 9 || j == 10 || j =
+      = 18 || j == 19))
+31             {
+32                  xPos += BLOCKW + SPACE;
+33             }
+34             else
+35             {
+36                 detColor = generateRandomNumber(0,5);
+37                 randomPowerBlock = generateRandomNumber(0,1);
+38 
+39                 if(detColor == 0)
+40                 {
+41                     block[i][j] = new MonoBlock;
+42                 }
+43                 if(detColor == 1)
+44                 {
+45                     block[i][j] = new RedBlock;
+46                 }
+47 
+48                 if(detColor == 2)
+49                 {
+50                     block[i][j] = new GreenBlock;
+51                 }
+52                 if(detColor == 3)
+53                 {
+54                     block[i][j] = new BlueBlock;
+55                 }
+56                 if(detColor == 4)
+57                 {
+58                     block[i][j] = new MagentaBlock;
+59                 }
+60                 if(detColor == 5)
+61                 {
+62                     block[i][j] = new YellowBlock;
+63                 }
+64 
+65                 // Randomly set the powerup value for the current block
+66                 // to either 1 or 2.
+67                 if(randomPowerBlock == 1 && powerupCounter < 7)
+68                 {
+69                     block[i][j]->setPowerup(1);
+70                     powerupCounter++;
+71 
+72                     if(powerupCounter % 3 == 0)
+73                     {
+74                         block[i][j]->setPowerup(2);
+75                     }
+76                 }
+77 
+78                 // setXPos and setYPos are used to assist the ball with its block
+      
+79                 // collision detection
+80                 block[i][j]->setXPos(xPos);
+81                 block[i][j]->setYPos(yPos);
+82                 block[i][j]->scale(1.0, 1.0);
+83                 block[i][j]->setPos(xPos, yPos);
+84                 xPos += BLOCKW + SPACE;
+85                 theScene->addItem(block[i][j]);  
+86             }
+87         }
+88 
+89         yPos += BLOCKH + SPACE;
+90         xPos = -380 + (BOUNDWIDTH - 20 * OUTLINEW)/2;
+91     }
+92 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_level_two_a561fec1e212f4d26804a366a4cfbd1a0}{
+\index{LevelTwo@{LevelTwo}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!LevelTwo@{LevelTwo}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF LevelTwo::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_two_a561fec1e212f4d26804a366a4cfbd1a0}
+
+
+Definition at line 94 of file levelTwo.cpp.
+
+
+\begin{DoxyCode}
+95 {
+96     return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
+97 }
+\end{DoxyCode}
+\hypertarget{class_level_two_a8ab22fa3c5b30e4ad12a2e15edc12de8}{
+\index{LevelTwo@{LevelTwo}!generateRandomNumber@{generateRandomNumber}}
+\index{generateRandomNumber@{generateRandomNumber}!LevelTwo@{LevelTwo}}
+\subsubsection[{generateRandomNumber}]{\setlength{\rightskip}{0pt plus 5cm}int LevelTwo::generateRandomNumber (int {\em min}, \/  int {\em max})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_two_a8ab22fa3c5b30e4ad12a2e15edc12de8}
+Given a min and a max, generate a random number between this range 
+
+Definition at line 110 of file levelTwo.cpp.
+
+
+\begin{DoxyCode}
+111 {
+112     return rand() % (max - min + 1) + min;
+113 }
+\end{DoxyCode}
+\hypertarget{class_level_two_a447071bde5f8ea9035148d3e207b543b}{
+\index{LevelTwo@{LevelTwo}!paint@{paint}}
+\index{paint@{paint}!LevelTwo@{LevelTwo}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void LevelTwo::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_two_a447071bde5f8ea9035148d3e207b543b}
+
+
+Definition at line 99 of file levelTwo.cpp.
+
+
+\begin{DoxyCode}
+100 {
+101     Q_UNUSED(painter);
+102     Q_UNUSED(option);
+103     Q_UNUSED(widget);
+104 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_level_two_ae2fcfa7a9a4c9feb00058ed9ab8c72d6}{
+\index{LevelTwo@{LevelTwo}!block@{block}}
+\index{block@{block}!LevelTwo@{LevelTwo}}
+\subsubsection[{block}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block}$\ast$ {\bf LevelTwo::block}\mbox{[}9\mbox{]}\mbox{[}20\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_two_ae2fcfa7a9a4c9feb00058ed9ab8c72d6}
+
+
+Definition at line 23 of file levelTwo.h.\hypertarget{class_level_two_a4987ce2b3abc9e124dfa2a33dd317474}{
+\index{LevelTwo@{LevelTwo}!xPos@{xPos}}
+\index{xPos@{xPos}!LevelTwo@{LevelTwo}}
+\subsubsection[{xPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LevelTwo::xPos}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_two_a4987ce2b3abc9e124dfa2a33dd317474}
+
+
+Definition at line 22 of file levelTwo.h.\hypertarget{class_level_two_ade98d942c5c10cf270c92d918417f0ef}{
+\index{LevelTwo@{LevelTwo}!yPos@{yPos}}
+\index{yPos@{yPos}!LevelTwo@{LevelTwo}}
+\subsubsection[{yPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LevelTwo::yPos}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_two_ade98d942c5c10cf270c92d918417f0ef}
+
+
+Definition at line 22 of file levelTwo.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{level_two_8h}{levelTwo.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{level_two_8cpp}{levelTwo.cpp}\end{DoxyCompactItemize}

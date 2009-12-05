@@ -1,0 +1,74 @@
+.TH "RedBlock" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RedBlock \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <block.h>\fP
+.PP
+Inherits \fBBlock\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRedBlock\fP ()"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 83 of file block.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "RedBlock::RedBlock ()"
+.PP
+Definition at line 295 of file block.cpp.
+.PP
+.nf
+296 {
+297     //Set color to red
+298     setColor1(1);
+299     setColor2(2);
+300 
+301     QGraphicsItem *oneBlock = new SingleBlock(this);
+302 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF RedBlock::boundingRect () const"
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 304 of file block.cpp.
+.PP
+.nf
+305 {
+306     return QRectF();
+307 }
+.fi
+.SS "void RedBlock::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 309 of file block.cpp.
+.PP
+.nf
+310 {
+311     Q_UNUSED(painter);
+312     Q_UNUSED(option);
+313     Q_UNUSED(widget);
+314 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

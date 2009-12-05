@@ -1,0 +1,294 @@
+\hypertarget{class_ship_bullet}{
+\section{ShipBullet Class Reference}
+\label{class_ship_bullet}\index{ShipBullet@{ShipBullet}}
+}
+
+
+{\ttfamily \#include $<$shipbullet.h$>$}Inheritance diagram for ShipBullet::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_ship_bullet}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_ship_bullet_a1cce0c8b6a00a834e18f709b44e787d5}{ShipBullet} ()
+\item 
+virtual \hyperlink{class_ship_bullet_aa315ad339632eabf0121e761084a1d87}{$\sim$ShipBullet} ()
+\item 
+void \hyperlink{class_ship_bullet_a8953a899414d57e0834c8aa98e5d3b70}{setShipBulletXPosition} (int pos)
+\item 
+virtual int \hyperlink{class_ship_bullet_a9645812da4c374f7e759c00c39cb01aa}{type} () const 
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_ship_bullet_a44c9cf7ab35d5fe69402226b341e2593}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget)
+\item 
+QRectF \hyperlink{class_ship_bullet_ab2a2a467deb5546778e5f052705959dd}{boundingRect} () const 
+\item 
+void \hyperlink{class_ship_bullet_ad2b81da446941edb9ec54a7603ed1212}{advance} (int phase)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QPixmap \hyperlink{class_ship_bullet_a22ad763541149d9823794297307b5a63}{bulletImage}
+\item 
+qreal \hyperlink{class_ship_bullet_a5f2086fa76ca48a99e7b6b53592b9ab0}{directionX}
+\item 
+qreal \hyperlink{class_ship_bullet_a091f76850ba260f2a306d5dc7e69bd1b}{directionY}
+\item 
+qreal \hyperlink{class_ship_bullet_a24067ecee3430c3094aeee3a5de4740b}{positionX}
+\item 
+qreal \hyperlink{class_ship_bullet_a65c6f482103ca4c3e90648829e8cac5d}{positionY}
+\item 
+qreal \hyperlink{class_ship_bullet_a13d7785c8b0cb473a16fa5c9e82f3911}{width}
+\item 
+qreal \hyperlink{class_ship_bullet_a481df890ebe98e14a9fed36020a5e265}{height}
+\item 
+qreal \hyperlink{class_ship_bullet_a3af7e87f7c4e261da57f5fe73c41094f}{shipXPosition}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class creates bullets and advances the bullet for earth:20000 
+
+Definition at line 17 of file shipbullet.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_ship_bullet_a1cce0c8b6a00a834e18f709b44e787d5}{
+\index{ShipBullet@{ShipBullet}!ShipBullet@{ShipBullet}}
+\index{ShipBullet@{ShipBullet}!ShipBullet@{ShipBullet}}
+\subsubsection[{ShipBullet}]{\setlength{\rightskip}{0pt plus 5cm}ShipBullet::ShipBullet ()}}
+\label{class_ship_bullet_a1cce0c8b6a00a834e18f709b44e787d5}
+Author: Ivan Collazo File: \hyperlink{shipbullet_8cpp}{shipbullet.cpp} Date: 10/20/2009 This is .cpp file for space ships bullets in earth20000
+
+constructor 
+
+Definition at line 17 of file shipbullet.cpp.
+
+
+\begin{DoxyCode}
+18 {
+19     bulletImage.load(":bullet.png");
+20     directionX = 0;                         // set the X-axis increment for the m
+      ovement
+21     directionY = -4;                        // set the Y-axis increment for the m
+      ovement
+22     positionX = 0;                          // initial X coordinate of the bullet
+      
+23     positionY = 0;                          // initial Y coordinate of the bullet
+      
+24     width = 10;                             // width of the bullet
+25     height = 10;                            // height of the bullet
+26 }
+\end{DoxyCode}
+\hypertarget{class_ship_bullet_aa315ad339632eabf0121e761084a1d87}{
+\index{ShipBullet@{ShipBullet}!$\sim$ShipBullet@{$\sim$ShipBullet}}
+\index{$\sim$ShipBullet@{$\sim$ShipBullet}!ShipBullet@{ShipBullet}}
+\subsubsection[{$\sim$ShipBullet}]{\setlength{\rightskip}{0pt plus 5cm}ShipBullet::$\sim$ShipBullet ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_ship_bullet_aa315ad339632eabf0121e761084a1d87}
+destructor 
+
+Definition at line 31 of file shipbullet.cpp.
+
+
+\begin{DoxyCode}
+32 {
+33 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ship_bullet_ad2b81da446941edb9ec54a7603ed1212}{
+\index{ShipBullet@{ShipBullet}!advance@{advance}}
+\index{advance@{advance}!ShipBullet@{ShipBullet}}
+\subsubsection[{advance}]{\setlength{\rightskip}{0pt plus 5cm}void ShipBullet::advance (int {\em phase})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ship_bullet_ad2b81da446941edb9ec54a7603ed1212}
+this method adds motion to the shipsbullet 
+
+Reimplemented from \hyperlink{class_ammo_a257fb0cdbb4302da65b89447fa6caeaa}{Ammo}.
+
+Definition at line 64 of file shipbullet.cpp.
+
+
+\begin{DoxyCode}
+65 {
+66     if(!phase) return;
+67 
+68     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
+69 
+70     // checks if there is a collision
+71     if (!listOfCollidingItems.isEmpty())
+72     {
+73         // if collision occurs with a block then bullet bounces back
+74         if(listOfCollidingItems.first()->type() == BLOCKID)
+75         {
+76             directionY = 4;
+77         }
+78 
+79         // else if collision occurs with a spaceship then bullet is removed from 
+      scene
+80         else if (listOfCollidingItems.first()->type() == ID_SPACESHIP)
+81         {
+82             positionX += 700;
+83             this->scene()->removeItem(this);
+84         }
+85 
+86         // else if collision occurs with alienspaceship then bullet is removed fr
+      om scene
+87         else if (listOfCollidingItems.first()->type() == ID_ALIENSPACESHIP)
+88         {
+89             positionX += 700;
+90             this->scene()->removeItem(this);
+91         }
+92     }
+93     positionY+=directionY;
+94 
+95     // set the new position of the ships bullet
+96     setPos(positionX+385,positionY);
+97 }
+\end{DoxyCode}
+\hypertarget{class_ship_bullet_ab2a2a467deb5546778e5f052705959dd}{
+\index{ShipBullet@{ShipBullet}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!ShipBullet@{ShipBullet}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF ShipBullet::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ship_bullet_ab2a2a467deb5546778e5f052705959dd}
+this method does the bounding rectangle of the object for collision detection 
+
+Reimplemented from \hyperlink{class_ammo_a4c5548e35a4599210f0599328ef03f01}{Ammo}.
+
+Definition at line 47 of file shipbullet.cpp.
+
+
+\begin{DoxyCode}
+48 {
+49   return QRectF(-10,600, 20,20);
+50 }
+\end{DoxyCode}
+\hypertarget{class_ship_bullet_a44c9cf7ab35d5fe69402226b341e2593}{
+\index{ShipBullet@{ShipBullet}!paint@{paint}}
+\index{paint@{paint}!ShipBullet@{ShipBullet}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void ShipBullet::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ship_bullet_a44c9cf7ab35d5fe69402226b341e2593}
+this method is called whenever the shipbullet needs to be drawn 
+
+Reimplemented from \hyperlink{class_ammo_a3f4c8157fab369e46bac4bb88348d8c1}{Ammo}.
+
+Definition at line 38 of file shipbullet.cpp.
+
+
+\begin{DoxyCode}
+39 {
+40     painter->drawPixmap(-10, 600, width, height, bulletImage);
+41 }
+\end{DoxyCode}
+\hypertarget{class_ship_bullet_a8953a899414d57e0834c8aa98e5d3b70}{
+\index{ShipBullet@{ShipBullet}!setShipBulletXPosition@{setShipBulletXPosition}}
+\index{setShipBulletXPosition@{setShipBulletXPosition}!ShipBullet@{ShipBullet}}
+\subsubsection[{setShipBulletXPosition}]{\setlength{\rightskip}{0pt plus 5cm}void ShipBullet::setShipBulletXPosition (int {\em pos})}}
+\label{class_ship_bullet_a8953a899414d57e0834c8aa98e5d3b70}
+this method sets shipbullet x position 
+
+Definition at line 55 of file shipbullet.cpp.
+
+
+\begin{DoxyCode}
+56 {
+57     shipXPosition = pos;
+58     positionX = shipXPosition;
+59 }
+\end{DoxyCode}
+\hypertarget{class_ship_bullet_a9645812da4c374f7e759c00c39cb01aa}{
+\index{ShipBullet@{ShipBullet}!type@{type}}
+\index{type@{type}!ShipBullet@{ShipBullet}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}virtual int ShipBullet::type () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_ship_bullet_a9645812da4c374f7e759c00c39cb01aa}
+
+
+Definition at line 47 of file shipbullet.h.
+
+
+\begin{DoxyCode}
+47 {return ID_SPACESHIPBULLET; }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_ship_bullet_a22ad763541149d9823794297307b5a63}{
+\index{ShipBullet@{ShipBullet}!bulletImage@{bulletImage}}
+\index{bulletImage@{bulletImage}!ShipBullet@{ShipBullet}}
+\subsubsection[{bulletImage}]{\setlength{\rightskip}{0pt plus 5cm}QPixmap {\bf ShipBullet::bulletImage}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_bullet_a22ad763541149d9823794297307b5a63}
+
+
+Definition at line 21 of file shipbullet.h.\hypertarget{class_ship_bullet_a5f2086fa76ca48a99e7b6b53592b9ab0}{
+\index{ShipBullet@{ShipBullet}!directionX@{directionX}}
+\index{directionX@{directionX}!ShipBullet@{ShipBullet}}
+\subsubsection[{directionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipBullet::directionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_bullet_a5f2086fa76ca48a99e7b6b53592b9ab0}
+
+
+Reimplemented from \hyperlink{class_ammo_a60392d67523d0cf6d46e14b6b3f1ae05}{Ammo}.
+
+Definition at line 24 of file shipbullet.h.\hypertarget{class_ship_bullet_a091f76850ba260f2a306d5dc7e69bd1b}{
+\index{ShipBullet@{ShipBullet}!directionY@{directionY}}
+\index{directionY@{directionY}!ShipBullet@{ShipBullet}}
+\subsubsection[{directionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipBullet::directionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_bullet_a091f76850ba260f2a306d5dc7e69bd1b}
+
+
+Reimplemented from \hyperlink{class_ammo_a1156ff1439690bf121841528585aa026}{Ammo}.
+
+Definition at line 24 of file shipbullet.h.\hypertarget{class_ship_bullet_a481df890ebe98e14a9fed36020a5e265}{
+\index{ShipBullet@{ShipBullet}!height@{height}}
+\index{height@{height}!ShipBullet@{ShipBullet}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipBullet::height}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_bullet_a481df890ebe98e14a9fed36020a5e265}
+
+
+Reimplemented from \hyperlink{class_ammo_a7ee07e5c3778fe15aeef8126a5251e3b}{Ammo}.
+
+Definition at line 25 of file shipbullet.h.\hypertarget{class_ship_bullet_a24067ecee3430c3094aeee3a5de4740b}{
+\index{ShipBullet@{ShipBullet}!positionX@{positionX}}
+\index{positionX@{positionX}!ShipBullet@{ShipBullet}}
+\subsubsection[{positionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipBullet::positionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_bullet_a24067ecee3430c3094aeee3a5de4740b}
+
+
+Reimplemented from \hyperlink{class_ammo_a7df8c23c0a3023e013c25e2b3fff5385}{Ammo}.
+
+Definition at line 24 of file shipbullet.h.\hypertarget{class_ship_bullet_a65c6f482103ca4c3e90648829e8cac5d}{
+\index{ShipBullet@{ShipBullet}!positionY@{positionY}}
+\index{positionY@{positionY}!ShipBullet@{ShipBullet}}
+\subsubsection[{positionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipBullet::positionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_bullet_a65c6f482103ca4c3e90648829e8cac5d}
+
+
+Reimplemented from \hyperlink{class_ammo_a71fc5db64ac2f32ca10e22f7a7ff0c88}{Ammo}.
+
+Definition at line 24 of file shipbullet.h.\hypertarget{class_ship_bullet_a3af7e87f7c4e261da57f5fe73c41094f}{
+\index{ShipBullet@{ShipBullet}!shipXPosition@{shipXPosition}}
+\index{shipXPosition@{shipXPosition}!ShipBullet@{ShipBullet}}
+\subsubsection[{shipXPosition}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipBullet::shipXPosition}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_bullet_a3af7e87f7c4e261da57f5fe73c41094f}
+
+
+Reimplemented from \hyperlink{class_ammo_a86583f8632ca9604ef0ae839d78fe5ef}{Ammo}.
+
+Definition at line 25 of file shipbullet.h.\hypertarget{class_ship_bullet_a13d7785c8b0cb473a16fa5c9e82f3911}{
+\index{ShipBullet@{ShipBullet}!width@{width}}
+\index{width@{width}!ShipBullet@{ShipBullet}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf ShipBullet::width}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ship_bullet_a13d7785c8b0cb473a16fa5c9e82f3911}
+
+
+Reimplemented from \hyperlink{class_ammo_aad7996f9abdcb6ade7e67f7c7f5e5ebe}{Ammo}.
+
+Definition at line 25 of file shipbullet.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{shipbullet_8h}{shipbullet.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{shipbullet_8cpp}{shipbullet.cpp}\end{DoxyCompactItemize}

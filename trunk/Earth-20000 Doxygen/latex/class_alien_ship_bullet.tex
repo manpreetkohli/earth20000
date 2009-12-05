@@ -1,0 +1,287 @@
+\hypertarget{class_alien_ship_bullet}{
+\section{AlienShipBullet Class Reference}
+\label{class_alien_ship_bullet}\index{AlienShipBullet@{AlienShipBullet}}
+}
+
+
+{\ttfamily \#include $<$alienshipbullet.h$>$}Inheritance diagram for AlienShipBullet::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_alien_ship_bullet}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_alien_ship_bullet_a0fa00d03540ce06da0855960709baddb}{AlienShipBullet} ()
+\item 
+virtual \hyperlink{class_alien_ship_bullet_a6af8a67dca6b5da79602a4f1c5d06c7f}{$\sim$AlienShipBullet} ()
+\item 
+void \hyperlink{class_alien_ship_bullet_ad00b6010d2f96d497bc796067aae428b}{setBulletPosition} (int posX, int posY)
+\item 
+virtual int \hyperlink{class_alien_ship_bullet_ab12e8a371cf9565051a3f6e9d7fb54b5}{type} () const 
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_alien_ship_bullet_a24f6404671b0e0ef258a8d7814ead18b}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget)
+\item 
+QRectF \hyperlink{class_alien_ship_bullet_a0a7aa5b5707281f2d204f903650df560}{boundingRect} () const 
+\item 
+void \hyperlink{class_alien_ship_bullet_a29af8ac3011d72e8b845019e76ab203d}{advance} (int phase)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QPixmap \hyperlink{class_alien_ship_bullet_a5a21112fe510acd6175c2c8b71af0f93}{bulletImage}
+\item 
+qreal \hyperlink{class_alien_ship_bullet_ac5b78fb52df900ec79a2c480410dc3ca}{directionX}
+\item 
+qreal \hyperlink{class_alien_ship_bullet_a807486b1f3903b772f6d31294b258edb}{directionY}
+\item 
+qreal \hyperlink{class_alien_ship_bullet_a961d9fe7f586e37bb06f0a1d5f6c5923}{positionX}
+\item 
+qreal \hyperlink{class_alien_ship_bullet_a1315cc85ceb3c3573305d78e651b1330}{positionY}
+\item 
+qreal \hyperlink{class_alien_ship_bullet_a08bb3094350eab416509120e76987df5}{width}
+\item 
+qreal \hyperlink{class_alien_ship_bullet_a6323f9356a3f49ec9d3838203f806702}{height}
+\item 
+qreal \hyperlink{class_alien_ship_bullet_a9fd89e42b168c49956e30a8a6f33304e}{shipXPosition}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class creates alienshipbullets and advances the bullet for earth:20000 
+
+Definition at line 17 of file alienshipbullet.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_alien_ship_bullet_a0fa00d03540ce06da0855960709baddb}{
+\index{AlienShipBullet@{AlienShipBullet}!AlienShipBullet@{AlienShipBullet}}
+\index{AlienShipBullet@{AlienShipBullet}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{AlienShipBullet}]{\setlength{\rightskip}{0pt plus 5cm}AlienShipBullet::AlienShipBullet ()}}
+\label{class_alien_ship_bullet_a0fa00d03540ce06da0855960709baddb}
+Author: Ivan Collazo File: \hyperlink{alienshipbullet_8cpp}{alienshipbullet.cpp} Date: 10/20/2009 This is .cpp file for alien ships bullets in earth20000
+
+constructor 
+
+Definition at line 15 of file alienshipbullet.cpp.
+
+
+\begin{DoxyCode}
+16 {
+17     bulletImage.load(":motherShipBullet.png");
+18     directionX = 0;                             // set the X-axis increment for t
+      he movement
+19     directionY = 0.25;                          // set the Y-axis increment for t
+      he movement
+20     positionX = 0;                              // initial X coordinate of the bu
+      llet
+21     positionY = 0;                              // initial Y coordinate of the bu
+      llet
+22     width = 20;                                 // width of the bullet
+23     height = 20;                                // height of the bullet
+24 }
+\end{DoxyCode}
+\hypertarget{class_alien_ship_bullet_a6af8a67dca6b5da79602a4f1c5d06c7f}{
+\index{AlienShipBullet@{AlienShipBullet}!$\sim$AlienShipBullet@{$\sim$AlienShipBullet}}
+\index{$\sim$AlienShipBullet@{$\sim$AlienShipBullet}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{$\sim$AlienShipBullet}]{\setlength{\rightskip}{0pt plus 5cm}AlienShipBullet::$\sim$AlienShipBullet ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_alien_ship_bullet_a6af8a67dca6b5da79602a4f1c5d06c7f}
+destructor 
+
+Definition at line 29 of file alienshipbullet.cpp.
+
+
+\begin{DoxyCode}
+30 {
+31 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_alien_ship_bullet_a29af8ac3011d72e8b845019e76ab203d}{
+\index{AlienShipBullet@{AlienShipBullet}!advance@{advance}}
+\index{advance@{advance}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{advance}]{\setlength{\rightskip}{0pt plus 5cm}void AlienShipBullet::advance (int {\em phase})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_alien_ship_bullet_a29af8ac3011d72e8b845019e76ab203d}
+this method adds motion to the alienshipbullet 
+
+Reimplemented from \hyperlink{class_ammo_a257fb0cdbb4302da65b89447fa6caeaa}{Ammo}.
+
+Definition at line 61 of file alienshipbullet.cpp.
+
+
+\begin{DoxyCode}
+62 {
+63     if(!phase) return;
+64 
+65     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
+66 
+67     // checks if there is a collision
+68     if (!listOfCollidingItems.isEmpty())
+69     {
+70         // if collision occurs with a space ship then alien ship bullet is remove
+      d from the scene
+71         if(listOfCollidingItems.first()->type() == ID_SPACESHIP)
+72         {
+73             this->scene()->removeItem(this);
+74         }
+75     }
+76 
+77     positionY+=directionY;
+78 
+79     // set the new position of the alien ship bullet
+80     setPos(positionX,positionY);
+81 
+82     // if position of the alien ship bullet is greater than 800 the mother ship b
+      ullet is removed from scene
+83     if (positionY > 1050)
+84     {
+85         this->scene()->removeItem(this);
+86     }
+87 }
+\end{DoxyCode}
+\hypertarget{class_alien_ship_bullet_a0a7aa5b5707281f2d204f903650df560}{
+\index{AlienShipBullet@{AlienShipBullet}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF AlienShipBullet::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_alien_ship_bullet_a0a7aa5b5707281f2d204f903650df560}
+this method does the bounding rectangle of the object for collision detection 
+
+Reimplemented from \hyperlink{class_ammo_a4c5548e35a4599210f0599328ef03f01}{Ammo}.
+
+Definition at line 44 of file alienshipbullet.cpp.
+
+
+\begin{DoxyCode}
+45 {
+46   return QRectF(360, -340, width, height);
+47 }
+\end{DoxyCode}
+\hypertarget{class_alien_ship_bullet_a24f6404671b0e0ef258a8d7814ead18b}{
+\index{AlienShipBullet@{AlienShipBullet}!paint@{paint}}
+\index{paint@{paint}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void AlienShipBullet::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_alien_ship_bullet_a24f6404671b0e0ef258a8d7814ead18b}
+this method is called whenever the alienshipbullet needs to be drawn 
+
+Reimplemented from \hyperlink{class_ammo_a3f4c8157fab369e46bac4bb88348d8c1}{Ammo}.
+
+Definition at line 36 of file alienshipbullet.cpp.
+
+
+\begin{DoxyCode}
+37 {
+38     painter->drawPixmap(360, -340, width, height, bulletImage);
+39 }
+\end{DoxyCode}
+\hypertarget{class_alien_ship_bullet_ad00b6010d2f96d497bc796067aae428b}{
+\index{AlienShipBullet@{AlienShipBullet}!setBulletPosition@{setBulletPosition}}
+\index{setBulletPosition@{setBulletPosition}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{setBulletPosition}]{\setlength{\rightskip}{0pt plus 5cm}void AlienShipBullet::setBulletPosition (int {\em posX}, \/  int {\em posY})}}
+\label{class_alien_ship_bullet_ad00b6010d2f96d497bc796067aae428b}
+this method sets alienshipbullet position 
+
+Definition at line 52 of file alienshipbullet.cpp.
+
+
+\begin{DoxyCode}
+53 {
+54     positionX = posX;
+55     positionY = posY;
+56 }
+\end{DoxyCode}
+\hypertarget{class_alien_ship_bullet_ab12e8a371cf9565051a3f6e9d7fb54b5}{
+\index{AlienShipBullet@{AlienShipBullet}!type@{type}}
+\index{type@{type}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}virtual int AlienShipBullet::type () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_alien_ship_bullet_ab12e8a371cf9565051a3f6e9d7fb54b5}
+
+
+Definition at line 47 of file alienshipbullet.h.
+
+
+\begin{DoxyCode}
+47 {return ID_ALIENSHIPBULLET;}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_alien_ship_bullet_a5a21112fe510acd6175c2c8b71af0f93}{
+\index{AlienShipBullet@{AlienShipBullet}!bulletImage@{bulletImage}}
+\index{bulletImage@{bulletImage}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{bulletImage}]{\setlength{\rightskip}{0pt plus 5cm}QPixmap {\bf AlienShipBullet::bulletImage}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_ship_bullet_a5a21112fe510acd6175c2c8b71af0f93}
+
+
+Definition at line 21 of file alienshipbullet.h.\hypertarget{class_alien_ship_bullet_ac5b78fb52df900ec79a2c480410dc3ca}{
+\index{AlienShipBullet@{AlienShipBullet}!directionX@{directionX}}
+\index{directionX@{directionX}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{directionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienShipBullet::directionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_ship_bullet_ac5b78fb52df900ec79a2c480410dc3ca}
+
+
+Reimplemented from \hyperlink{class_ammo_a60392d67523d0cf6d46e14b6b3f1ae05}{Ammo}.
+
+Definition at line 24 of file alienshipbullet.h.\hypertarget{class_alien_ship_bullet_a807486b1f3903b772f6d31294b258edb}{
+\index{AlienShipBullet@{AlienShipBullet}!directionY@{directionY}}
+\index{directionY@{directionY}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{directionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienShipBullet::directionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_ship_bullet_a807486b1f3903b772f6d31294b258edb}
+
+
+Reimplemented from \hyperlink{class_ammo_a1156ff1439690bf121841528585aa026}{Ammo}.
+
+Definition at line 24 of file alienshipbullet.h.\hypertarget{class_alien_ship_bullet_a6323f9356a3f49ec9d3838203f806702}{
+\index{AlienShipBullet@{AlienShipBullet}!height@{height}}
+\index{height@{height}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienShipBullet::height}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_ship_bullet_a6323f9356a3f49ec9d3838203f806702}
+
+
+Reimplemented from \hyperlink{class_ammo_a7ee07e5c3778fe15aeef8126a5251e3b}{Ammo}.
+
+Definition at line 25 of file alienshipbullet.h.\hypertarget{class_alien_ship_bullet_a961d9fe7f586e37bb06f0a1d5f6c5923}{
+\index{AlienShipBullet@{AlienShipBullet}!positionX@{positionX}}
+\index{positionX@{positionX}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{positionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienShipBullet::positionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_ship_bullet_a961d9fe7f586e37bb06f0a1d5f6c5923}
+
+
+Reimplemented from \hyperlink{class_ammo_a7df8c23c0a3023e013c25e2b3fff5385}{Ammo}.
+
+Definition at line 24 of file alienshipbullet.h.\hypertarget{class_alien_ship_bullet_a1315cc85ceb3c3573305d78e651b1330}{
+\index{AlienShipBullet@{AlienShipBullet}!positionY@{positionY}}
+\index{positionY@{positionY}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{positionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienShipBullet::positionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_ship_bullet_a1315cc85ceb3c3573305d78e651b1330}
+
+
+Reimplemented from \hyperlink{class_ammo_a71fc5db64ac2f32ca10e22f7a7ff0c88}{Ammo}.
+
+Definition at line 24 of file alienshipbullet.h.\hypertarget{class_alien_ship_bullet_a9fd89e42b168c49956e30a8a6f33304e}{
+\index{AlienShipBullet@{AlienShipBullet}!shipXPosition@{shipXPosition}}
+\index{shipXPosition@{shipXPosition}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{shipXPosition}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienShipBullet::shipXPosition}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_ship_bullet_a9fd89e42b168c49956e30a8a6f33304e}
+
+
+Reimplemented from \hyperlink{class_ammo_a86583f8632ca9604ef0ae839d78fe5ef}{Ammo}.
+
+Definition at line 25 of file alienshipbullet.h.\hypertarget{class_alien_ship_bullet_a08bb3094350eab416509120e76987df5}{
+\index{AlienShipBullet@{AlienShipBullet}!width@{width}}
+\index{width@{width}!AlienShipBullet@{AlienShipBullet}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienShipBullet::width}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_ship_bullet_a08bb3094350eab416509120e76987df5}
+
+
+Reimplemented from \hyperlink{class_ammo_aad7996f9abdcb6ade7e67f7c7f5e5ebe}{Ammo}.
+
+Definition at line 25 of file alienshipbullet.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{alienshipbullet_8h}{alienshipbullet.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{alienshipbullet_8cpp}{alienshipbullet.cpp}\end{DoxyCompactItemize}

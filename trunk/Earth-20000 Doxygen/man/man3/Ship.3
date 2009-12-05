@@ -1,0 +1,208 @@
+.TH "Ship" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Ship \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ship.h>\fP
+.PP
+Inherited by \fBAlienMotherShip\fP, \fBAlienSpaceShip\fP, and \fBSpaceShip\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBShip\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~Ship\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetShipPosX\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetShipPosX\fP (int xPos)"
+.br
+.ti -1c
+.RI "int \fBgetShipPosY\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetShipPosY\fP (int yPos)"
+.br
+.ti -1c
+.RI "virtual int \fBgetShipHit\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "virtual void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QPixmap \fBshipsImage\fP"
+.br
+.ti -1c
+.RI "qreal \fBxPosition\fP"
+.br
+.ti -1c
+.RI "qreal \fByPosition\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipWidth\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipHeight\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipHit\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Author: Ivan Collazo File: \fBship.cpp\fP Date: 10/05/2009 This class is the super class for ships in earth:20000
+.PP
+creates a super class of ships 
+.PP
+Definition at line 16 of file ship.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Ship::Ship ()"Author: Ivan Collazo File: \fBship.cpp\fP Date: 10/05/2009 This is the .cpp file for the super class for ships in earth20000
+.PP
+constructor 
+.PP
+Definition at line 14 of file ship.cpp.
+.PP
+.nf
+15 {
+16     xPosition = 0;
+17     yPosition = 0;
+18     shipWidth = 0;
+19     shipHeight = 0;
+20    // shipHit = 0;
+21 }
+.fi
+.SS "Ship::~Ship ()\fC [virtual]\fP"destructor 
+.PP
+Definition at line 26 of file ship.cpp.
+.PP
+.nf
+27 {
+28 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF Ship::boundingRect () const\fC [private, virtual]\fP"this method is the bounding rectangle of the object for collision detection 
+.PP
+Reimplemented in \fBAlienMotherShip\fP, \fBAlienSpaceShip\fP, and \fBSpaceShip\fP.
+.PP
+Definition at line 33 of file ship.cpp.
+.PP
+.nf
+34 {
+35     return QRectF(xPosition, yPosition, shipWidth, shipHeight);
+36 }
+.fi
+.SS "int Ship::getShipHit ()\fC [virtual]\fP"this method gets the amount of times ship has been hit 
+.PP
+Reimplemented in \fBAlienSpaceShip\fP.
+.PP
+Definition at line 81 of file ship.cpp.
+.PP
+.nf
+82 {
+83        return shipHit;
+84 }
+.fi
+.SS "int Ship::getShipPosX ()"this method gets ships x position 
+.PP
+Definition at line 49 of file ship.cpp.
+.PP
+.nf
+50 {
+51     return xPosition;
+52 }
+.fi
+.SS "int Ship::getShipPosY ()"this method gets ships y position 
+.PP
+Definition at line 65 of file ship.cpp.
+.PP
+.nf
+66 {
+67     return yPosition;
+68 }
+.fi
+.SS "void Ship::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)\fC [private, virtual]\fP"this method is called whenever the ship needs to be drawn 
+.PP
+Reimplemented in \fBAlienMotherShip\fP, \fBAlienSpaceShip\fP, and \fBSpaceShip\fP.
+.PP
+Definition at line 41 of file ship.cpp.
+.PP
+.nf
+42 {
+43 
+44 }
+.fi
+.SS "void Ship::setShipPosX (int xPos)"this method sets ships x position 
+.PP
+Definition at line 57 of file ship.cpp.
+.PP
+.nf
+58 {
+59     xPosition += xPos;
+60 }
+.fi
+.SS "void Ship::setShipPosY (int yPos)"this method sets ships y position 
+.PP
+Definition at line 73 of file ship.cpp.
+.PP
+.nf
+74 {
+75     yPosition += yPos;
+76 }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "qreal \fBShip::shipHeight\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienMotherShip\fP, \fBAlienSpaceShip\fP, and \fBSpaceShip\fP.
+.PP
+Definition at line 26 of file ship.h.
+.SS "qreal \fBShip::shipHit\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienMotherShip\fP, \fBAlienSpaceShip\fP, and \fBSpaceShip\fP.
+.PP
+Definition at line 27 of file ship.h.
+.SS "QPixmap \fBShip::shipsImage\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienMotherShip\fP, \fBAlienSpaceShip\fP, and \fBSpaceShip\fP.
+.PP
+Definition at line 20 of file ship.h.
+.SS "qreal \fBShip::shipWidth\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienMotherShip\fP, \fBAlienSpaceShip\fP, and \fBSpaceShip\fP.
+.PP
+Definition at line 25 of file ship.h.
+.SS "qreal \fBShip::xPosition\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienMotherShip\fP, \fBAlienSpaceShip\fP, and \fBSpaceShip\fP.
+.PP
+Definition at line 23 of file ship.h.
+.SS "qreal \fBShip::yPosition\fP\fC [private]\fP"
+.PP
+Reimplemented in \fBAlienMotherShip\fP, \fBAlienSpaceShip\fP, and \fBSpaceShip\fP.
+.PP
+Definition at line 24 of file ship.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

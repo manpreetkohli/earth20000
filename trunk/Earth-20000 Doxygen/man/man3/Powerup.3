@@ -1,0 +1,235 @@
+.TH "Powerup" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Powerup \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <powerup.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPowerup\fP ()"
+.br
+.ti -1c
+.RI "\fB~Powerup\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetPosition\fP (int x, int y)"
+.br
+.ti -1c
+.RI "void \fBsetType\fP (int type)"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.ti -1c
+.RI "void \fBadvance\fP (int phase)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "QPixmap \fBpowerupImage\fP"
+.br
+.ti -1c
+.RI "int \fBpowerupType\fP"
+.br
+.ti -1c
+.RI "int \fBxPos\fP"
+.br
+.ti -1c
+.RI "int \fByPos\fP"
+.br
+.ti -1c
+.RI "int \fBdirectionX\fP"
+.br
+.ti -1c
+.RI "int \fBdirectionY\fP"
+.br
+.ti -1c
+.RI "int \fBtimer\fP"
+.br
+.ti -1c
+.RI "QSound * \fBpowerupAcquired\fP"
+.br
+.ti -1c
+.RI "double \fBfactor\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBpowerup.cpp\fP
+.PP
+Creates an instance of a powerup, and when called upon the advance method, it travels down the Y-axis checking for collisions with the player ship.
+.PP
+Author: Natraj Subramanian 
+.PP
+Definition at line 21 of file powerup.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Powerup::Powerup ()"
+.PP
+Definition at line 12 of file powerup.cpp.
+.PP
+.nf
+13 {
+14     powerupImage.load(':Powerup.png');          // load an image for the ball
+15     directionX = 0;                         // set the X-axis increment for the movement
+16     directionY = -1;                        // set the Y-axis increment for the movement
+17     xPos = 0;                          // initial X coordinate of the ball
+18     yPos = 0;                          // initial Y coordinate of the ball
+19     setPos(xPos, yPos);
+20 }
+.fi
+.SS "Powerup::~Powerup ()"
+.PP
+Definition at line 22 of file powerup.cpp.
+.PP
+.nf
+23 {
+24 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "void Powerup::advance (int phase)"
+.PP
+Definition at line 54 of file powerup.cpp.
+.PP
+.nf
+55 {
+56     if(!phase) return;
+57 
+58     if(yPos < 95)
+59     {
+60         QList<QGraphicsItem *> hits = this->collidingItems(Qt::IntersectsItemBoundingRect);
+61 
+62         if(!hits.isEmpty())
+63         {
+64             // Checks if the first item that collidingItems has detected
+65             // has the ID_SPACESHIP as its type and not BLOCKID
+66             // If it does then the powerup icon is set invisible and then
+67             // subsequently removed from the scene.
+68             if(hits.first()->type() == ID_SPACESHIP && hits.first()->type() != BLOCKID)
+69             {
+70                 powerupAcquired = new QSound('tone2.wav');
+71                 powerupAcquired->setLoops(1);
+72                 powerupAcquired->play();
+73                 this->setVisible(false);
+74                 this->scene()->removeItem(this);
+75 
+76                 // Powerup type 1 specifies a slow down of the ball
+77                 // If powerup type is 1, then set the static variable
+78                 // powerup in the constants class to 1, so that it
+79                 // can be read in by the ball during its next clock
+80                 // cycle.
+81                 // Powerup type 2 specifies a speed up of the ball
+82                 if(this->powerupType == 1)
+83                 {
+84                     if(Constants::powerup != 1)
+85                     {
+86                         Constants::powerup = 1;
+87                     }
+88                 }
+89                 if(this->powerupType == 2)
+90                 {
+91                     if(Constants::powerup != 2)
+92                     {
+93                         Constants::powerup = 2;
+94                     }
+95                 }
+96             }
+97         }
+98 
+99         // Move the ball down the Y Axis by directionY
+100         yPos-=directionY;
+101         setPos(xPos, yPos);
+102     }
+103     else
+104     {
+105         // If the powerup has passed the boundary of the window,
+106         // then remove it from the scene.
+107         Constants::powerup = 0;
+108         this->scene()->removeItem(this);
+109     }
+110 }
+.fi
+.SS "QRectF Powerup::boundingRect () const"
+.PP
+Definition at line 43 of file powerup.cpp.
+.PP
+.nf
+44 {
+45     return QRectF(375, 625, 27, 27);
+46 }
+.fi
+.SS "void Powerup::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Definition at line 48 of file powerup.cpp.
+.PP
+.nf
+50 {
+51     painter->drawPixmap(375, 625, 27, 27, powerupImage);
+52 }
+.fi
+.SS "void Powerup::setPosition (int x, int y)"
+.PP
+Definition at line 26 of file powerup.cpp.
+.PP
+.nf
+27 {
+28     xPos = x;
+29     yPos = y;
+30 }
+.fi
+.SS "void Powerup::setType (int type)"Set the type of the powerup i.e. either slow down or speed up 
+.PP
+Definition at line 36 of file powerup.cpp.
+.PP
+.nf
+37 {
+38     int *typePtr;
+39     typePtr = &powerupType;
+40     *typePtr = type;
+41 }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBPowerup::directionX\fP"
+.PP
+Definition at line 26 of file powerup.h.
+.SS "int \fBPowerup::directionY\fP"
+.PP
+Definition at line 26 of file powerup.h.
+.SS "double \fBPowerup::factor\fP"
+.PP
+Definition at line 28 of file powerup.h.
+.SS "QSound* \fBPowerup::powerupAcquired\fP"
+.PP
+Definition at line 27 of file powerup.h.
+.SS "QPixmap \fBPowerup::powerupImage\fP"
+.PP
+Definition at line 24 of file powerup.h.
+.SS "int \fBPowerup::powerupType\fP"
+.PP
+Definition at line 25 of file powerup.h.
+.SS "int \fBPowerup::timer\fP"
+.PP
+Definition at line 26 of file powerup.h.
+.SS "int \fBPowerup::xPos\fP"
+.PP
+Definition at line 26 of file powerup.h.
+.SS "int \fBPowerup::yPos\fP"
+.PP
+Definition at line 26 of file powerup.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

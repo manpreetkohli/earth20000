@@ -1,0 +1,227 @@
+\hypertarget{class_board}{
+\section{Board Class Reference}
+\label{class_board}\index{Board@{Board}}
+}
+
+
+{\ttfamily \#include $<$board.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_board_a50940feb3a6bf930f03f15cc6347b333}{Board} (QGraphicsView $\ast$view)
+\item 
+void \hyperlink{class_board_acadca09d3bbda3b396b788ec43838dc9}{connectTimerToBall} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QGraphicsScene $\ast$ \hyperlink{class_board_a4e915266f037507fed868719ba3a8ecf}{scene}
+\end{DoxyCompactItemize}
+\subsection*{Private Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_board_ac8cfdf1b82b292e2ed461b49356a4c94}{advance} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_board_a2286843a8e0eba6fba44d81f4e82b635}{displayHUDLevel} (QGraphicsScene $\ast$\hyperlink{class_board_a4e915266f037507fed868719ba3a8ecf}{scene}, QString levelNumber, QFont $\ast$font)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QTimer $\ast$ \hyperlink{class_board_a99a70247c4e08e4bff96cd3cd10c135b}{scoreTimer}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manpreet Kohli CS 340, Fall 2009
+
+\hyperlink{board_8cpp}{board.cpp}: sets up the board for the game-\/ adds a scene to a view, and then adds the various QGraphicsItems to the board
+
+HUD slightly modified by Natraj Subramanian 
+
+Definition at line 17 of file board.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_board_a50940feb3a6bf930f03f15cc6347b333}{
+\index{Board@{Board}!Board@{Board}}
+\index{Board@{Board}!Board@{Board}}
+\subsubsection[{Board}]{\setlength{\rightskip}{0pt plus 5cm}Board::Board (QGraphicsView $\ast$ {\em view})}}
+\label{class_board_a50940feb3a6bf930f03f15cc6347b333}
+added by Manpreet Kohli constructor 
+
+Definition at line 28 of file board.cpp.
+
+
+\begin{DoxyCode}
+29 {
+30     scene = new QGraphicsScene();                   // create a new scene
+31     scene->setSceneRect(0, 0, view->geometry().width() - 5,  view->geometry().hei
+      ght() - 5);       // set dimensions of the scene
+32 
+33     QFont *font = new QFont();
+34     font->setStyleHint(QFont::SansSerif, QFont::PreferAntialias);
+35     font->setLetterSpacing(QFont::PercentageSpacing, 125);
+36     font->setBold(true);
+37     font->setPointSize(14);
+38 
+39     // check which level needs to be displayed and call function to display the c
+      orresponding HUD
+40     if (Constants::levelNumber == 0)
+41     {
+42         Constants::count = 3;
+43         LevelEditor *theLevelEditor = new LevelEditor(scene);
+44         displayHUDLevel(scene, "LEVEL EDITOR MODE", font);
+45     }
+46     else if (Constants::levelNumber == 1)
+47     {
+48         Constants::count = 3;
+49         LevelOne *theFirstLevel = new LevelOne(scene);
+50         displayHUDLevel(scene, "LEVEL 1", font);
+51     }
+52     else if (Constants::levelNumber == 2)
+53     {
+54         LevelTwo *theSecondLevel = new LevelTwo(scene);
+55         displayHUDLevel(scene, "LEVEL 2", font);
+56     }
+57     else if (Constants::levelNumber == 3)
+58     {
+59         LevelThree *theThirdLevel = new LevelThree(scene);
+60         displayHUDLevel(scene, "LEVEL 3", font);
+61     }
+62     else if (Constants::levelNumber == 4)
+63     {
+64         LevelFive *theFifthLevel = new LevelFive(scene);
+65         displayHUDLevel(scene, "FINAL LEVEL", font);
+66     }
+67     else if (Constants::levelNumber == 6)
+68     {
+69         Constants::count = 3;
+70         LoadGame *theSavedGame = new LoadGame(scene, view);
+71         displayHUDLevel(scene, "SAVED GAME", font);
+72     }
+73 
+74     font->setFamily("SansSerif");
+75     font->setBold(true);
+76     font->setPointSize(15);    
+77 
+78     // display the spawns part of the HUD
+79     Constants::lives = scene->addText(QString("SPAWNS: "), *font);
+80     Constants::lives->setDefaultTextColor(Qt::red);
+81     Constants::lives->setOpacity(0.6);
+82     Constants::lives->setPos(485, 0);
+83 
+84     // based on the number of spawns remaining, draw the spawns in the HUD
+85     if (Constants::count >= 1)
+86     {
+87         Constants::life1 = new SpaceShip();
+88         scene->addItem(Constants::life1);
+89         Constants::life1->setPos(435, -310);
+90         Constants::life1->scale(0.5, 0.5);
+91         Constants::life1->setOpacity(0.5);
+92     }
+93     if (Constants::count >= 2)
+94     {
+95         Constants::life2 = new SpaceShip();
+96         scene->addItem(Constants::life2);
+97         Constants::life2->setPos(485, -310);
+98         Constants::life2->scale(0.5, 0.5);
+99         Constants::life2->setOpacity(0.5);
+100     }
+101     if (Constants::count >= 3)
+102     {
+103         Constants::life3 = new SpaceShip();
+104         scene->addItem(Constants::life3);
+105         Constants::life3->setPos(535, -310);
+106         Constants::life3->scale(0.5, 0.5);
+107         Constants::life3->setOpacity(0.5);
+108     }
+109 
+110     view->setRenderHint(QPainter::Antialiasing);
+111     view->setCacheMode(QGraphicsView::CacheBackground);
+112     view->setScene(scene);                      // set the created scene inside t
+      he view
+113     Constants::timer = new QTimer();            // create a new QTimer() instance
+      
+114 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_board_ac8cfdf1b82b292e2ed461b49356a4c94}{
+\index{Board@{Board}!advance@{advance}}
+\index{advance@{advance}!Board@{Board}}
+\subsubsection[{advance}]{\setlength{\rightskip}{0pt plus 5cm}void Board::advance ()\hspace{0.3cm}{\ttfamily  \mbox{[}private, slot\mbox{]}}}}
+\label{class_board_ac8cfdf1b82b292e2ed461b49356a4c94}
+\hypertarget{class_board_acadca09d3bbda3b396b788ec43838dc9}{
+\index{Board@{Board}!connectTimerToBall@{connectTimerToBall}}
+\index{connectTimerToBall@{connectTimerToBall}!Board@{Board}}
+\subsubsection[{connectTimerToBall}]{\setlength{\rightskip}{0pt plus 5cm}void Board::connectTimerToBall ()}}
+\label{class_board_acadca09d3bbda3b396b788ec43838dc9}
+added by Manpreet Kohli method to connect the timer to the ball inside the board 
+
+Definition at line 139 of file board.cpp.
+
+
+\begin{DoxyCode}
+140 {
+141     // connect the timer to the advance method inside the Ball class
+142     QObject::connect(Constants::timer, SIGNAL(timeout()), scene, SLOT(advance()))
+      ;
+143 
+144     // Set the timer to trigger every 1 ms for normal levels, and every  0 ms for
+       the level editor
+145     if (Constants::levelNumber == 0)
+146         Constants::timer->start(0);
+147     else
+148         Constants::timer->start(1);
+149 }
+\end{DoxyCode}
+\hypertarget{class_board_a2286843a8e0eba6fba44d81f4e82b635}{
+\index{Board@{Board}!displayHUDLevel@{displayHUDLevel}}
+\index{displayHUDLevel@{displayHUDLevel}!Board@{Board}}
+\subsubsection[{displayHUDLevel}]{\setlength{\rightskip}{0pt plus 5cm}void Board::displayHUDLevel (QGraphicsScene $\ast$ {\em scene}, \/  QString {\em levelNumber}, \/  QFont $\ast$ {\em font})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_board_a2286843a8e0eba6fba44d81f4e82b635}
+added by Manpreet Kohli function to display level info in the HUD 
+
+Definition at line 120 of file board.cpp.
+
+
+\begin{DoxyCode}
+121 {
+122     Constants::levelInfo = scene->addText(levelNumber, *font);
+123     if (Constants::levelNumber == 0 || Constants::levelNumber == 6)
+124     {
+125         Constants::levelInfo->setDefaultTextColor(Qt::darkGray);
+126     }
+127     else
+128     {
+129         Constants::levelInfo->setDefaultTextColor(Qt::white);
+130     }
+131     Constants::levelInfo->setOpacity(0.6);
+132     Constants::levelInfo->setPos(15, 0);
+133 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_board_a4e915266f037507fed868719ba3a8ecf}{
+\index{Board@{Board}!scene@{scene}}
+\index{scene@{scene}!Board@{Board}}
+\subsubsection[{scene}]{\setlength{\rightskip}{0pt plus 5cm}QGraphicsScene$\ast$ {\bf Board::scene}}}
+\label{class_board_a4e915266f037507fed868719ba3a8ecf}
+
+
+Definition at line 25 of file board.h.\hypertarget{class_board_a99a70247c4e08e4bff96cd3cd10c135b}{
+\index{Board@{Board}!scoreTimer@{scoreTimer}}
+\index{scoreTimer@{scoreTimer}!Board@{Board}}
+\subsubsection[{scoreTimer}]{\setlength{\rightskip}{0pt plus 5cm}QTimer$\ast$ {\bf Board::scoreTimer}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_board_a99a70247c4e08e4bff96cd3cd10c135b}
+
+
+Definition at line 20 of file board.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{board_8h}{board.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{board_8cpp}{board.cpp}\end{DoxyCompactItemize}

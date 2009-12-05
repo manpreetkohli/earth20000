@@ -1,0 +1,201 @@
+.TH "Board" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Board \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <board.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBoard\fP (QGraphicsView *view)"
+.br
+.ti -1c
+.RI "void \fBconnectTimerToBall\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "QGraphicsScene * \fBscene\fP"
+.br
+.in -1c
+.SS "Private Slots"
+
+.in +1c
+.ti -1c
+.RI "void \fBadvance\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBdisplayHUDLevel\fP (QGraphicsScene *\fBscene\fP, QString levelNumber, QFont *font)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QTimer * \fBscoreTimer\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Manpreet Kohli CS 340, Fall 2009
+.PP
+\fBboard.cpp\fP: sets up the board for the game- adds a scene to a view, and then adds the various QGraphicsItems to the board
+.PP
+HUD slightly modified by Natraj Subramanian 
+.PP
+Definition at line 17 of file board.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Board::Board (QGraphicsView * view)"added by Manpreet Kohli constructor 
+.PP
+Definition at line 28 of file board.cpp.
+.PP
+.nf
+29 {
+30     scene = new QGraphicsScene();                   // create a new scene
+31     scene->setSceneRect(0, 0, view->geometry().width() - 5,  view->geometry().height() - 5);       // set dimensions of the scene
+32 
+33     QFont *font = new QFont();
+34     font->setStyleHint(QFont::SansSerif, QFont::PreferAntialias);
+35     font->setLetterSpacing(QFont::PercentageSpacing, 125);
+36     font->setBold(true);
+37     font->setPointSize(14);
+38 
+39     // check which level needs to be displayed and call function to display the corresponding HUD
+40     if (Constants::levelNumber == 0)
+41     {
+42         Constants::count = 3;
+43         LevelEditor *theLevelEditor = new LevelEditor(scene);
+44         displayHUDLevel(scene, 'LEVEL EDITOR MODE', font);
+45     }
+46     else if (Constants::levelNumber == 1)
+47     {
+48         Constants::count = 3;
+49         LevelOne *theFirstLevel = new LevelOne(scene);
+50         displayHUDLevel(scene, 'LEVEL 1', font);
+51     }
+52     else if (Constants::levelNumber == 2)
+53     {
+54         LevelTwo *theSecondLevel = new LevelTwo(scene);
+55         displayHUDLevel(scene, 'LEVEL 2', font);
+56     }
+57     else if (Constants::levelNumber == 3)
+58     {
+59         LevelThree *theThirdLevel = new LevelThree(scene);
+60         displayHUDLevel(scene, 'LEVEL 3', font);
+61     }
+62     else if (Constants::levelNumber == 4)
+63     {
+64         LevelFive *theFifthLevel = new LevelFive(scene);
+65         displayHUDLevel(scene, 'FINAL LEVEL', font);
+66     }
+67     else if (Constants::levelNumber == 6)
+68     {
+69         Constants::count = 3;
+70         LoadGame *theSavedGame = new LoadGame(scene, view);
+71         displayHUDLevel(scene, 'SAVED GAME', font);
+72     }
+73 
+74     font->setFamily('SansSerif');
+75     font->setBold(true);
+76     font->setPointSize(15);    
+77 
+78     // display the spawns part of the HUD
+79     Constants::lives = scene->addText(QString('SPAWNS: '), *font);
+80     Constants::lives->setDefaultTextColor(Qt::red);
+81     Constants::lives->setOpacity(0.6);
+82     Constants::lives->setPos(485, 0);
+83 
+84     // based on the number of spawns remaining, draw the spawns in the HUD
+85     if (Constants::count >= 1)
+86     {
+87         Constants::life1 = new SpaceShip();
+88         scene->addItem(Constants::life1);
+89         Constants::life1->setPos(435, -310);
+90         Constants::life1->scale(0.5, 0.5);
+91         Constants::life1->setOpacity(0.5);
+92     }
+93     if (Constants::count >= 2)
+94     {
+95         Constants::life2 = new SpaceShip();
+96         scene->addItem(Constants::life2);
+97         Constants::life2->setPos(485, -310);
+98         Constants::life2->scale(0.5, 0.5);
+99         Constants::life2->setOpacity(0.5);
+100     }
+101     if (Constants::count >= 3)
+102     {
+103         Constants::life3 = new SpaceShip();
+104         scene->addItem(Constants::life3);
+105         Constants::life3->setPos(535, -310);
+106         Constants::life3->scale(0.5, 0.5);
+107         Constants::life3->setOpacity(0.5);
+108     }
+109 
+110     view->setRenderHint(QPainter::Antialiasing);
+111     view->setCacheMode(QGraphicsView::CacheBackground);
+112     view->setScene(scene);                      // set the created scene inside the view
+113     Constants::timer = new QTimer();            // create a new QTimer() instance
+114 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "void Board::advance ()\fC [private, slot]\fP"
+.SS "void Board::connectTimerToBall ()"added by Manpreet Kohli method to connect the timer to the ball inside the board 
+.PP
+Definition at line 139 of file board.cpp.
+.PP
+.nf
+140 {
+141     // connect the timer to the advance method inside the Ball class
+142     QObject::connect(Constants::timer, SIGNAL(timeout()), scene, SLOT(advance()));
+143 
+144     // Set the timer to trigger every 1 ms for normal levels, and every  0 ms for the level editor
+145     if (Constants::levelNumber == 0)
+146         Constants::timer->start(0);
+147     else
+148         Constants::timer->start(1);
+149 }
+.fi
+.SS "void Board::displayHUDLevel (QGraphicsScene * scene, QString levelNumber, QFont * font)\fC [private]\fP"added by Manpreet Kohli function to display level info in the HUD 
+.PP
+Definition at line 120 of file board.cpp.
+.PP
+.nf
+121 {
+122     Constants::levelInfo = scene->addText(levelNumber, *font);
+123     if (Constants::levelNumber == 0 || Constants::levelNumber == 6)
+124     {
+125         Constants::levelInfo->setDefaultTextColor(Qt::darkGray);
+126     }
+127     else
+128     {
+129         Constants::levelInfo->setDefaultTextColor(Qt::white);
+130     }
+131     Constants::levelInfo->setOpacity(0.6);
+132     Constants::levelInfo->setPos(15, 0);
+133 }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "QGraphicsScene* \fBBoard::scene\fP"
+.PP
+Definition at line 25 of file board.h.
+.SS "QTimer* \fBBoard::scoreTimer\fP\fC [private]\fP"
+.PP
+Definition at line 20 of file board.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

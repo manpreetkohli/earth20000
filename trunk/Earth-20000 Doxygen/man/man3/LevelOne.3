@@ -1,0 +1,173 @@
+.TH "LevelOne" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LevelOne \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <levelOne.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLevelOne\fP (QGraphicsScene *theScene)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.ti -1c
+.RI "int \fBgenerateRandomNumber\fP (int min, int max)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBxPos\fP"
+.br
+.ti -1c
+.RI "int \fByPos\fP"
+.br
+.ti -1c
+.RI "\fBBlock\fP * \fBblock\fP [6][16]"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBlevelOne.cpp\fP
+.PP
+Creates the design for the first level. Uses the polymorphism feature of the \fBblock.cpp\fP class and randomly generates blocks of different colors and places them in a pre-defined layout.
+.PP
+Author: Natraj Subramanian 
+.PP
+Definition at line 17 of file levelOne.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LevelOne::LevelOne (QGraphicsScene * theScene)"
+.PP
+Definition at line 4 of file levelOne.cpp.
+.PP
+.nf
+5 {
+6     xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;
+7     yPos = -630 + (BOUNDHEIGHT)/4;
+8 
+9     // Declare variable to hold seconds in clock
+10     time_t seconds;
+11 
+12     // Get value from system clock and place in seconds variable
+13     time(&seconds);
+14 
+15     // Convert seconds to a unsigned integer
+16     srand((unsigned int) seconds);
+17 
+18     int detColor;
+19 
+20     for(int i = 0; i < 6; i++)
+21     {
+22        for(int j = 0; j < 16; j++)
+23         {
+24             if( (i == 0 || i == 5) && ( j < 3 || j > 12))
+25             {
+26                  xPos += BLOCKW + SPACE;
+27              }
+28             else
+29             {
+30                 detColor = generateRandomNumber(0,5);
+31                 if(detColor == 0)
+32                 {
+33                     block[i][j] = new MonoBlock;
+34                 }
+35                 if(detColor == 1)
+36                 {
+37                     block[i][j] = new RedBlock;
+38                 }
+39                 if(detColor == 2)
+40                 {
+41                     block[i][j] = new GreenBlock;
+42                 }
+43                 if(detColor == 3)
+44                 {
+45                     block[i][j] = new BlueBlock;
+46                 }
+47                 if(detColor == 4)
+48                 {
+49                     block[i][j] = new MagentaBlock;
+50                 }
+51                 if(detColor == 5)
+52                 {
+53                     block[i][j] = new YellowBlock;
+54                 }
+55 
+56                 // setXPos and setYPos are used to assist the ball with its block
+57                 // collision detection
+58                 block[i][j]->setXPos(xPos);
+59                 block[i][j]->setYPos(yPos);
+60                 block[i][j]->scale(1.0, 1.0);
+61                 block[i][j]->setPos(xPos, yPos);
+62                 block[i][j]->setPowerup(0);
+63                 xPos += BLOCKW + SPACE;
+64                 theScene->addItem(block[i][j]);
+65             }
+66         }
+67 
+68         yPos += BLOCKH + SPACE;
+69         xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;;
+70     }
+71 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF LevelOne::boundingRect () const\fC [private]\fP"
+.PP
+Definition at line 73 of file levelOne.cpp.
+.PP
+.nf
+74 {
+75     return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
+76 }
+.fi
+.SS "int LevelOne::generateRandomNumber (int min, int max)\fC [private]\fP"Given a min and a max, generate a random number between this range 
+.PP
+Definition at line 89 of file levelOne.cpp.
+.PP
+.nf
+90 {
+91     return rand() % (max - min + 1) + min;
+92 }
+.fi
+.SS "void LevelOne::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)\fC [private]\fP"
+.PP
+Definition at line 78 of file levelOne.cpp.
+.PP
+.nf
+79 {
+80     Q_UNUSED(painter);
+81     Q_UNUSED(option);
+82     Q_UNUSED(widget);
+83 }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBBlock\fP* \fBLevelOne::block\fP[6][16]\fC [private]\fP"
+.PP
+Definition at line 21 of file levelOne.h.
+.SS "int \fBLevelOne::xPos\fP\fC [private]\fP"
+.PP
+Definition at line 20 of file levelOne.h.
+.SS "int \fBLevelOne::yPos\fP\fC [private]\fP"
+.PP
+Definition at line 20 of file levelOne.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

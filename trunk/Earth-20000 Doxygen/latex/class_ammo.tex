@@ -1,0 +1,226 @@
+\hypertarget{class_ammo}{
+\section{Ammo Class Reference}
+\label{class_ammo}\index{Ammo@{Ammo}}
+}
+
+
+{\ttfamily \#include $<$ammo.h$>$}Inheritance diagram for Ammo::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_ammo}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_ammo_a6745bf955cceda43c50dc15c76157e64}{Ammo} ()
+\item 
+virtual \hyperlink{class_ammo_a90602c6481c6a66d4747306f90a3ebc7}{$\sim$Ammo} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_ammo_a3f4c8157fab369e46bac4bb88348d8c1}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget)
+\item 
+virtual QRectF \hyperlink{class_ammo_a4c5548e35a4599210f0599328ef03f01}{boundingRect} () const 
+\item 
+virtual void \hyperlink{class_ammo_a257fb0cdbb4302da65b89447fa6caeaa}{advance} (int phase)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QPixmap \hyperlink{class_ammo_a605ab79d9b1c76edb5f2d889cbc014f3}{shipsImage}
+\item 
+qreal \hyperlink{class_ammo_a60392d67523d0cf6d46e14b6b3f1ae05}{directionX}
+\item 
+qreal \hyperlink{class_ammo_a1156ff1439690bf121841528585aa026}{directionY}
+\item 
+qreal \hyperlink{class_ammo_a7df8c23c0a3023e013c25e2b3fff5385}{positionX}
+\item 
+qreal \hyperlink{class_ammo_a71fc5db64ac2f32ca10e22f7a7ff0c88}{positionY}
+\item 
+qreal \hyperlink{class_ammo_aad7996f9abdcb6ade7e67f7c7f5e5ebe}{width}
+\item 
+qreal \hyperlink{class_ammo_a7ee07e5c3778fe15aeef8126a5251e3b}{height}
+\item 
+qreal \hyperlink{class_ammo_a86583f8632ca9604ef0ae839d78fe5ef}{shipXPosition}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Author: Ivan Collazo File: \hyperlink{ship_8cpp}{ship.cpp} Date: 10/05/2009 This class is a super class for ammo in earth:20000
+
+creates a super class of ammo 
+
+Definition at line 16 of file ammo.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_ammo_a6745bf955cceda43c50dc15c76157e64}{
+\index{Ammo@{Ammo}!Ammo@{Ammo}}
+\index{Ammo@{Ammo}!Ammo@{Ammo}}
+\subsubsection[{Ammo}]{\setlength{\rightskip}{0pt plus 5cm}Ammo::Ammo ()}}
+\label{class_ammo_a6745bf955cceda43c50dc15c76157e64}
+Author: Ivan Collazo File: \hyperlink{ammo_8cpp}{ammo.cpp} Date: 10/20/2009 This is .cpp file for space ships bullets in earth20000
+
+constructor 
+
+Definition at line 14 of file ammo.cpp.
+
+
+\begin{DoxyCode}
+15 {
+16     directionX = 0;                         // set the X-axis increment for the m
+      ovement
+17     directionY = 0;                        // set the Y-axis increment for the mo
+      vement
+18     width = 0;                             // width of the bullet
+19     height = 0;                            // height of the bullet
+20 }
+\end{DoxyCode}
+\hypertarget{class_ammo_a90602c6481c6a66d4747306f90a3ebc7}{
+\index{Ammo@{Ammo}!$\sim$Ammo@{$\sim$Ammo}}
+\index{$\sim$Ammo@{$\sim$Ammo}!Ammo@{Ammo}}
+\subsubsection[{$\sim$Ammo}]{\setlength{\rightskip}{0pt plus 5cm}Ammo::$\sim$Ammo ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_ammo_a90602c6481c6a66d4747306f90a3ebc7}
+destructor 
+
+Definition at line 25 of file ammo.cpp.
+
+
+\begin{DoxyCode}
+26 {
+27 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ammo_a257fb0cdbb4302da65b89447fa6caeaa}{
+\index{Ammo@{Ammo}!advance@{advance}}
+\index{advance@{advance}!Ammo@{Ammo}}
+\subsubsection[{advance}]{\setlength{\rightskip}{0pt plus 5cm}void Ammo::advance (int {\em phase})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ammo_a257fb0cdbb4302da65b89447fa6caeaa}
+this method adds motion to the shipsbullet 
+
+Reimplemented in \hyperlink{class_alien_ship_bullet_a29af8ac3011d72e8b845019e76ab203d}{AlienShipBullet}, \hyperlink{class_mother_ship_bullet_a56d988809fe0613e31c09bfb73d3ba0e}{MotherShipBullet}, \hyperlink{class_ship_bullet_ad2b81da446941edb9ec54a7603ed1212}{ShipBullet}, and \hyperlink{class_ships_missiles_a5ce92a82b6f1259319e92379ab4ee306}{ShipsMissiles}.
+
+Definition at line 48 of file ammo.cpp.
+
+
+\begin{DoxyCode}
+49 {
+50     setPos(positionX,positionY);
+51 }
+\end{DoxyCode}
+\hypertarget{class_ammo_a4c5548e35a4599210f0599328ef03f01}{
+\index{Ammo@{Ammo}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!Ammo@{Ammo}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF Ammo::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ammo_a4c5548e35a4599210f0599328ef03f01}
+this method does the bounding rectangle of the object for collision detection 
+
+Reimplemented in \hyperlink{class_alien_ship_bullet_a0a7aa5b5707281f2d204f903650df560}{AlienShipBullet}, \hyperlink{class_mother_ship_bullet_a994d08ae215b526f3bf8ccb63c6efabd}{MotherShipBullet}, \hyperlink{class_ship_bullet_ab2a2a467deb5546778e5f052705959dd}{ShipBullet}, and \hyperlink{class_ships_missiles_a0f26573f2bf4eed4c4320d09b1384c49}{ShipsMissiles}.
+
+Definition at line 40 of file ammo.cpp.
+
+
+\begin{DoxyCode}
+41 {
+42   return QRectF(positionX,positionY,width,height);
+43 }
+\end{DoxyCode}
+\hypertarget{class_ammo_a3f4c8157fab369e46bac4bb88348d8c1}{
+\index{Ammo@{Ammo}!paint@{paint}}
+\index{paint@{paint}!Ammo@{Ammo}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void Ammo::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_ammo_a3f4c8157fab369e46bac4bb88348d8c1}
+this method is called whenever the ammo needs to be drawn 
+
+Reimplemented in \hyperlink{class_alien_ship_bullet_a24f6404671b0e0ef258a8d7814ead18b}{AlienShipBullet}, \hyperlink{class_mother_ship_bullet_a931472c711d67537e8579ff36e6c5d0c}{MotherShipBullet}, \hyperlink{class_ship_bullet_a44c9cf7ab35d5fe69402226b341e2593}{ShipBullet}, and \hyperlink{class_ships_missiles_a709bf076bb74b37149907c06ffae942e}{ShipsMissiles}.
+
+Definition at line 32 of file ammo.cpp.
+
+
+\begin{DoxyCode}
+33 {
+34     painter->drawRect(positionX,positionY,width,height);
+35 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_ammo_a60392d67523d0cf6d46e14b6b3f1ae05}{
+\index{Ammo@{Ammo}!directionX@{directionX}}
+\index{directionX@{directionX}!Ammo@{Ammo}}
+\subsubsection[{directionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ammo::directionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ammo_a60392d67523d0cf6d46e14b6b3f1ae05}
+
+
+Reimplemented in \hyperlink{class_alien_ship_bullet_ac5b78fb52df900ec79a2c480410dc3ca}{AlienShipBullet}, \hyperlink{class_mother_ship_bullet_a7595f4bddbfe83bb5467adc3d06b24a7}{MotherShipBullet}, \hyperlink{class_ship_bullet_a5f2086fa76ca48a99e7b6b53592b9ab0}{ShipBullet}, and \hyperlink{class_ships_missiles_aad45d407d327d29bd616ca336197fe30}{ShipsMissiles}.
+
+Definition at line 23 of file ammo.h.\hypertarget{class_ammo_a1156ff1439690bf121841528585aa026}{
+\index{Ammo@{Ammo}!directionY@{directionY}}
+\index{directionY@{directionY}!Ammo@{Ammo}}
+\subsubsection[{directionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ammo::directionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ammo_a1156ff1439690bf121841528585aa026}
+
+
+Reimplemented in \hyperlink{class_alien_ship_bullet_a807486b1f3903b772f6d31294b258edb}{AlienShipBullet}, \hyperlink{class_mother_ship_bullet_a886c10db617ba9341d34487514ffd79f}{MotherShipBullet}, \hyperlink{class_ship_bullet_a091f76850ba260f2a306d5dc7e69bd1b}{ShipBullet}, and \hyperlink{class_ships_missiles_af7e77e3dd68cb9f8d6cb90467a2a3ff0}{ShipsMissiles}.
+
+Definition at line 23 of file ammo.h.\hypertarget{class_ammo_a7ee07e5c3778fe15aeef8126a5251e3b}{
+\index{Ammo@{Ammo}!height@{height}}
+\index{height@{height}!Ammo@{Ammo}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ammo::height}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ammo_a7ee07e5c3778fe15aeef8126a5251e3b}
+
+
+Reimplemented in \hyperlink{class_alien_ship_bullet_a6323f9356a3f49ec9d3838203f806702}{AlienShipBullet}, \hyperlink{class_mother_ship_bullet_a76e8ce486a76094373b5afacfc754b8a}{MotherShipBullet}, \hyperlink{class_ship_bullet_a481df890ebe98e14a9fed36020a5e265}{ShipBullet}, and \hyperlink{class_ships_missiles_a1a31e013e3e81f518aa8f99bbb684357}{ShipsMissiles}.
+
+Definition at line 24 of file ammo.h.\hypertarget{class_ammo_a7df8c23c0a3023e013c25e2b3fff5385}{
+\index{Ammo@{Ammo}!positionX@{positionX}}
+\index{positionX@{positionX}!Ammo@{Ammo}}
+\subsubsection[{positionX}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ammo::positionX}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ammo_a7df8c23c0a3023e013c25e2b3fff5385}
+
+
+Reimplemented in \hyperlink{class_alien_ship_bullet_a961d9fe7f586e37bb06f0a1d5f6c5923}{AlienShipBullet}, \hyperlink{class_mother_ship_bullet_a5a9173af31257e18fa08bcb1b30afe11}{MotherShipBullet}, \hyperlink{class_ship_bullet_a24067ecee3430c3094aeee3a5de4740b}{ShipBullet}, and \hyperlink{class_ships_missiles_ad7c34c9db83c3ed6ecca7ec25c119123}{ShipsMissiles}.
+
+Definition at line 23 of file ammo.h.\hypertarget{class_ammo_a71fc5db64ac2f32ca10e22f7a7ff0c88}{
+\index{Ammo@{Ammo}!positionY@{positionY}}
+\index{positionY@{positionY}!Ammo@{Ammo}}
+\subsubsection[{positionY}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ammo::positionY}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ammo_a71fc5db64ac2f32ca10e22f7a7ff0c88}
+
+
+Reimplemented in \hyperlink{class_alien_ship_bullet_a1315cc85ceb3c3573305d78e651b1330}{AlienShipBullet}, \hyperlink{class_mother_ship_bullet_ac20e2e77d3cbac30f2189495fbdce88d}{MotherShipBullet}, \hyperlink{class_ship_bullet_a65c6f482103ca4c3e90648829e8cac5d}{ShipBullet}, and \hyperlink{class_ships_missiles_ace3adf616edc81579fcfd0b2dc76496f}{ShipsMissiles}.
+
+Definition at line 23 of file ammo.h.\hypertarget{class_ammo_a605ab79d9b1c76edb5f2d889cbc014f3}{
+\index{Ammo@{Ammo}!shipsImage@{shipsImage}}
+\index{shipsImage@{shipsImage}!Ammo@{Ammo}}
+\subsubsection[{shipsImage}]{\setlength{\rightskip}{0pt plus 5cm}QPixmap {\bf Ammo::shipsImage}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ammo_a605ab79d9b1c76edb5f2d889cbc014f3}
+
+
+Definition at line 20 of file ammo.h.\hypertarget{class_ammo_a86583f8632ca9604ef0ae839d78fe5ef}{
+\index{Ammo@{Ammo}!shipXPosition@{shipXPosition}}
+\index{shipXPosition@{shipXPosition}!Ammo@{Ammo}}
+\subsubsection[{shipXPosition}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ammo::shipXPosition}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ammo_a86583f8632ca9604ef0ae839d78fe5ef}
+
+
+Reimplemented in \hyperlink{class_alien_ship_bullet_a9fd89e42b168c49956e30a8a6f33304e}{AlienShipBullet}, \hyperlink{class_mother_ship_bullet_af8b80672b755f96fa75b0eb4786fc1a0}{MotherShipBullet}, \hyperlink{class_ship_bullet_a3af7e87f7c4e261da57f5fe73c41094f}{ShipBullet}, and \hyperlink{class_ships_missiles_a728619287aa81ab7bcbdbd034d1c3c8a}{ShipsMissiles}.
+
+Definition at line 24 of file ammo.h.\hypertarget{class_ammo_aad7996f9abdcb6ade7e67f7c7f5e5ebe}{
+\index{Ammo@{Ammo}!width@{width}}
+\index{width@{width}!Ammo@{Ammo}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf Ammo::width}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_ammo_aad7996f9abdcb6ade7e67f7c7f5e5ebe}
+
+
+Reimplemented in \hyperlink{class_alien_ship_bullet_a08bb3094350eab416509120e76987df5}{AlienShipBullet}, \hyperlink{class_mother_ship_bullet_ab81cbaea7101d4c9f8ac0c0fbba5fe8a}{MotherShipBullet}, \hyperlink{class_ship_bullet_a13d7785c8b0cb473a16fa5c9e82f3911}{ShipBullet}, and \hyperlink{class_ships_missiles_a335b53cf15200f696ba3c8cdd9b38d85}{ShipsMissiles}.
+
+Definition at line 24 of file ammo.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{ammo_8h}{ammo.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{ammo_8cpp}{ammo.cpp}\end{DoxyCompactItemize}

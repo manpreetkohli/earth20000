@@ -1,0 +1,74 @@
+.TH "GreenBlock" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GreenBlock \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <block.h>\fP
+.PP
+Inherits \fBBlock\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGreenBlock\fP ()"
+.br
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget=0)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 91 of file block.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "GreenBlock::GreenBlock ()"
+.PP
+Definition at line 316 of file block.cpp.
+.PP
+.nf
+317 {
+318     //Set color to green
+319     setColor1(1);
+320     setColor2(3);
+321 
+322     QGraphicsItem *oneBlock = new SingleBlock(this);
+323 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF GreenBlock::boundingRect () const"
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 325 of file block.cpp.
+.PP
+.nf
+326 {
+327     return QRectF();
+328 }
+.fi
+.SS "void GreenBlock::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = \fC0\fP)"
+.PP
+Reimplemented from \fBBlock\fP.
+.PP
+Definition at line 330 of file block.cpp.
+.PP
+.nf
+331 {
+332     Q_UNUSED(painter);
+333     Q_UNUSED(option);
+334     Q_UNUSED(widget);
+335 }
+.fi
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

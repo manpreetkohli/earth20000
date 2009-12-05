@@ -1,0 +1,147 @@
+.TH "LoadGame" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LoadGame \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <loadGame.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLoadGame\fP (QGraphicsScene *theScene, QGraphicsView *view)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBxPos\fP"
+.br
+.ti -1c
+.RI "int \fByPos\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Manpreet Kohli CS 340, Fall 2009
+.PP
+\fBloadGame.cpp\fP: creates the design for the saved game. Reads in the saved file, and based on the input, creates the blocks for the board. Also reads in the background (if any) that got saved when saving the level configuration 
+.PP
+Definition at line 15 of file loadGame.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "LoadGame::LoadGame (QGraphicsScene * theScene, QGraphicsView * view)"
+.PP
+Definition at line 6 of file loadGame.cpp.
+.PP
+.nf
+7 {
+8     xPos = -375;
+9     yPos = -590;
+10 
+11     QFile file('levels.txt');
+12     QFile bgFile('bgs.txt');
+13 
+14     if (!file.open(QIODevice::ReadOnly))
+15     {
+16         qDebug() << 'Cannot open file for reading ';
+17     }
+18     
+19      if (!bgFile.open(QIODevice::ReadOnly))
+20     {
+21         qDebug() << 'Cannot open file for reading ';
+22     }
+23 
+24     QTextStream in(&file);
+25     QTextStream in2(&bgFile);
+26     QChar c;
+27     QString bg;
+28     
+29     in2 >> bg;              // read in the background saved into the string bg
+30     view->setBackgroundBrush(QPixmap(bg));
+31 
+32     // draw all the transparent blocks for the level editor window
+33     for (int i = 0; i < 20; i++)
+34     {
+35         for (int j = 0; j < 27; j++)
+36         {
+37             in >> c;
+38             if (c == 'w')
+39                 Constants::blocks[i][j] = new MonoBlock();
+40             else if (c == 'r')
+41                 Constants::blocks[i][j] = new RedBlock();
+42             else if (c == 'g')
+43                 Constants::blocks[i][j] = new GreenBlock();
+44             else if (c == 'b')
+45                 Constants::blocks[i][j] = new BlueBlock();
+46             else if (c == 'm')
+47                 Constants::blocks[i][j] = new MagentaBlock();
+48             else if (c == 'y')
+49                 Constants::blocks[i][j] = new YellowBlock();
+50             else
+51             {
+52                 xPos+=OUTLINEW;
+53                 continue;
+54             }
+55             theScene->addItem(Constants::blocks[i][j]);
+56             Constants::blocks[i][j]->setXPos(xPos);
+57             Constants::blocks[i][j]->setYPos(yPos);
+58             Constants::blocks[i][j]->setPos(xPos, yPos);
+59             Constants::blocks[i][j]->show();
+60             xPos+=OUTLINEW;
+61         }
+62         in >> c;
+63         in >> c;
+64         yPos += OUTLINEH;
+65         xPos = -375;
+66     }
+67 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF LoadGame::boundingRect () const\fC [private]\fP"
+.PP
+Definition at line 69 of file loadGame.cpp.
+.PP
+.nf
+70 {
+71     return QRectF(0, 0, 27 * OUTLINEW, 20 * OUTLINEH);
+72 }
+.fi
+.SS "void LoadGame::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)\fC [private]\fP"
+.PP
+Definition at line 74 of file loadGame.cpp.
+.PP
+.nf
+75 {
+76     Q_UNUSED(painter);
+77     Q_UNUSED(option);
+78     Q_UNUSED(widget);
+79 }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "int \fBLoadGame::xPos\fP\fC [private]\fP"
+.PP
+Definition at line 18 of file loadGame.h.
+.SS "int \fBLoadGame::yPos\fP\fC [private]\fP"
+.PP
+Definition at line 18 of file loadGame.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

@@ -1,0 +1,279 @@
+.TH "SpaceShip" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SpaceShip \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <spaceship.h>\fP
+.PP
+Inherits \fBShip\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSpaceShip\fP ()"
+.br
+.ti -1c
+.RI "virtual \fB~SpaceShip\fP ()"
+.br
+.ti -1c
+.RI "virtual int \fBtype\fP () const "
+.br
+.ti -1c
+.RI "void \fBfireBullets\fP ()"
+.br
+.ti -1c
+.RI "void \fBfireMissiles\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "QRectF \fBboundingRect\fP () const "
+.br
+.ti -1c
+.RI "void \fBpaint\fP (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QPixmap \fBshipsImage\fP"
+.br
+.ti -1c
+.RI "qreal \fBxPosition\fP"
+.br
+.ti -1c
+.RI "qreal \fByPosition\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipWidth\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipHeight\fP"
+.br
+.ti -1c
+.RI "qreal \fBshipHit\fP"
+.br
+.ti -1c
+.RI "\fBSleeperThread\fP * \fBt\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+This class creates players spaceship for earth:20000 
+.PP
+Definition at line 19 of file spaceship.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SpaceShip::SpaceShip ()"Author: Ivan Collazo File: \fBspaceship.cpp\fP Date: 10/05/2009 This is .cpp file for spaceships in earth20000
+.PP
+constructor 
+.PP
+Definition at line 17 of file spaceship.cpp.
+.PP
+.nf
+18 {
+19     shipsImage.load(':X-Wing-icon-1.png');
+20     xPosition = 0;
+21     yPosition = 0;
+22     shipWidth = 0;
+23     shipHeight = 0;
+24     shipHit = 4;
+25 }
+.fi
+.SS "SpaceShip::~SpaceShip ()\fC [virtual]\fP"destructor 
+.PP
+Definition at line 30 of file spaceship.cpp.
+.PP
+.nf
+31 {
+32 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "QRectF SpaceShip::boundingRect () const\fC [private, virtual]\fP"this method does the bounding rectangle of the object for collision detection 
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 136 of file spaceship.cpp.
+.PP
+.nf
+137 {
+138     return QRectF(335, 640, 90, 40);
+139 }
+.fi
+.SS "void SpaceShip::fireBullets ()"this method make the sound for ships bullets 
+.PP
+Definition at line 144 of file spaceship.cpp.
+.PP
+.nf
+145  {
+146     QSound *gunFireFX = new QSound('44magnum.wav', 0);
+147     gunFireFX->setLoops(1);
+148     gunFireFX->play();
+149 }
+.fi
+.SS "void SpaceShip::fireMissiles ()"this method make the sound for ships missiles 
+.PP
+Definition at line 154 of file spaceship.cpp.
+.PP
+.nf
+155 {
+156     QSound *missileFireFX = new QSound('missile.wav', 0);
+157     missileFireFX->setLoops(1);
+158     missileFireFX->play();
+159 }
+.fi
+.SS "void SpaceShip::paint (QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)\fC [private, virtual]\fP"this method is called whenever the spaceShip needs to be drawn 
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 37 of file spaceship.cpp.
+.PP
+.nf
+38 {
+39     // can later traverse to examine what collided with the character.
+40     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
+41 
+42     // checks to see if collisions occurs
+43     if (!listOfCollidingItems.isEmpty())
+44     {
+45         // if collision occurs with mothershipbullet or alienshipbullet decrements shipHit
+46         if ((listOfCollidingItems.first()->type() == ID_MOTHERSHIPBULLET) || (listOfCollidingItems.first()->type() == ID_ALIENSHIPBULLET))
+47         {
+48             shipHit--;
+49 
+50             // added by Manpreet Kohli
+51             if (Constants::count == 3)
+52             {
+53                 this->scene()->removeItem(Constants::life3);        // remove a spawn from the HUD
+54                 Constants::count--;                                 // decrement no. of lives remaining
+55 
+56                 // play respawn music
+57                 QSound *spawnSound = new QSound('start.wav', 0);
+58                 spawnSound->setLoops(1);
+59                 spawnSound->play();
+60 
+61                 t->msleep(3000);
+62             }           
+63             else if (Constants::count == 2)
+64             {
+65                 this->scene()->removeItem(Constants::life2);        // remove a spawn from the HUD
+66                 Constants::count--;                                 // decrement no. of lives remaining
+67 
+68                 // play respawn music
+69                 QSound *spawnSound = new QSound('start.wav', 0);
+70                 spawnSound->setLoops(1);
+71                 spawnSound->play();
+72 
+73                 t->msleep(3000);
+74             }            
+75             else if (Constants::count == 1)
+76             {
+77                 this->scene()->removeItem(Constants::life1);        // remove a spawn from the HUD
+78                 Constants::count--;                                 // decrement no. of lives remaining
+79 
+80                 // play respawn music
+81                 QSound *spawnSound = new QSound('start.wav', 0);
+82                 spawnSound->setLoops(1);
+83                 spawnSound->play();
+84 
+85                 t->msleep(3000);
+86             }      
+87             else if (Constants::count == 0)
+88             {
+89                 // add game over logic
+90                 QGraphicsView *temp  = this->scene()->views().at(0);
+91 
+92                 this->scene()->deleteLater();
+93 
+94                 QGraphicsScene *gameOverScene = new QGraphicsScene;
+95 
+96                 temp->setScene(gameOverScene);
+97 
+98                 gameOverScene->setSceneRect(0, 0, temp->geometry().width() - 5, temp->geometry().height() - 5);       // set dimensions of the scene
+99 
+100                 QFont *font = new QFont();
+101                 font->setBold(true);
+102                 font->setPointSize(60);
+103 
+104                 // play game over music
+105                 QSound *gameover = new QSound('gameover.wav', 0);
+106                 gameover->setLoops(1);
+107                 gameover->play();
+108 
+109                 // display game over message
+110                 QGraphicsTextItem *gameOver = gameOverScene->addText(QString('GAME OVER'), *font);
+111                 gameOver->setDefaultTextColor(Qt::cyan);
+112                 gameOver->setOpacity(0.8);
+113                 gameOver->setPos(150, 200);
+114 
+115                 font->setPointSize(13);
+116                 font->setWeight(75);
+117 
+118                 QPushButton *exit = new QPushButton(temp->parentWidget());
+119                 exit->setText('EXIT');
+120                 exit->setGeometry(300, 600, 150, 40);
+121                 exit->setFont(*font);
+122                 exit->show();
+123                 exit->setStyleSheet('background-color: rgba(255, 255, 255, 100);');
+124 
+125                 QObject::connect(exit, SIGNAL(clicked()), temp->parentWidget(), SLOT(close()));
+126             }
+127         }
+128     }
+129     painter->drawPixmap(335, 640, 90, 40, shipsImage); // paints the space shipImage
+130 }
+.fi
+.SS "virtual int SpaceShip::type () const\fC [inline, virtual]\fP"
+.PP
+Definition at line 49 of file spaceship.h.
+.PP
+.nf
+49 {return ID_SPACESHIP; }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "qreal \fBSpaceShip::shipHeight\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 29 of file spaceship.h.
+.SS "qreal \fBSpaceShip::shipHit\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 30 of file spaceship.h.
+.SS "QPixmap \fBSpaceShip::shipsImage\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 23 of file spaceship.h.
+.SS "qreal \fBSpaceShip::shipWidth\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 28 of file spaceship.h.
+.SS "\fBSleeperThread\fP* \fBSpaceShip::t\fP\fC [private]\fP"
+.PP
+Definition at line 33 of file spaceship.h.
+.SS "qreal \fBSpaceShip::xPosition\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 26 of file spaceship.h.
+.SS "qreal \fBSpaceShip::yPosition\fP\fC [private]\fP"
+.PP
+Reimplemented from \fBShip\fP.
+.PP
+Definition at line 27 of file spaceship.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

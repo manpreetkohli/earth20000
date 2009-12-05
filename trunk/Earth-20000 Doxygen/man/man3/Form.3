@@ -1,0 +1,1305 @@
+.TH "Form" 3 "4 Dec 2009" "Earth: 20000" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Form \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <form.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBForm\fP (QWidget *parent=0)"
+.br
+.ti -1c
+.RI "\fB~Form\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBchangeEvent\fP (QEvent *e)"
+.br
+.ti -1c
+.RI "void \fBkeyPressEvent\fP (QKeyEvent *)"
+.br
+.in -1c
+.SS "Private Slots"
+
+.in +1c
+.ti -1c
+.RI "void \fBon_controls_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBon_load_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBon_levelEditor_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBon_newGame_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBon_exit_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadLevel1\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadLevel2\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadLevel3\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadLevel4\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadStoryScreen9\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadStoryScreen8\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadStoryScreen7\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadStoryScreen6\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadStoryScreen5\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadStoryScreen4\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadStoryScreen3\fP ()"
+.br
+.ti -1c
+.RI "void \fBloadStoryScreen2\fP ()"
+.br
+.ti -1c
+.RI "void \fBsave_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBdone_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBreset_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBbackgroundOne_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBbackgroundTwo_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBbackgroundThree_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBbackgroundFour_clicked\fP ()"
+.br
+.ti -1c
+.RI "void \fBalienFire\fP ()"
+.br
+.ti -1c
+.RI "void \fBmotherFire\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBhideElements\fP (\fBUi::Form\fP *\fBm_ui\fP)"
+.br
+.ti -1c
+.RI "void \fBsetupLevel\fP (int levelNumber)"
+.br
+.ti -1c
+.RI "void \fBsaveBackground\fP (QString bg)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBbgNo\fP"
+.br
+.ti -1c
+.RI "\fBUi::Form\fP * \fBm_ui\fP"
+.br
+.ti -1c
+.RI "\fBBoard\fP * \fBboard\fP"
+.br
+.ti -1c
+.RI "QSound * \fBintro\fP"
+.br
+.ti -1c
+.RI "\fBSleeperThread\fP * \fBt\fP"
+.br
+.ti -1c
+.RI "\fBSpaceShip\fP * \fBplayersShip\fP"
+.br
+.ti -1c
+.RI "QGraphicsView * \fBitemsWindow\fP"
+.br
+.ti -1c
+.RI "QGraphicsScene * \fBitemsWindowScene\fP"
+.br
+.ti -1c
+.RI "QLabel * \fBbackgrounds\fP"
+.br
+.ti -1c
+.RI "QPushButton * \fBbackgroundOneButton\fP"
+.br
+.ti -1c
+.RI "QPushButton * \fBbackgroundTwoButton\fP"
+.br
+.ti -1c
+.RI "QPushButton * \fBbackgroundThreeButton\fP"
+.br
+.ti -1c
+.RI "QPushButton * \fBbackgroundFourButton\fP"
+.br
+.ti -1c
+.RI "QLabel * \fBselectBlock\fP"
+.br
+.ti -1c
+.RI "\fBBlock\fP * \fBemptyBlock\fP"
+.br
+.ti -1c
+.RI "\fBBlock\fP * \fBmonoBlock\fP"
+.br
+.ti -1c
+.RI "\fBBlock\fP * \fBredBlock\fP"
+.br
+.ti -1c
+.RI "\fBBlock\fP * \fBgreenBlock\fP"
+.br
+.ti -1c
+.RI "\fBBlock\fP * \fBblueBlock\fP"
+.br
+.ti -1c
+.RI "\fBBlock\fP * \fBmagentaBlock\fP"
+.br
+.ti -1c
+.RI "\fBBlock\fP * \fByellowBlock\fP"
+.br
+.ti -1c
+.RI "QLabel * \fBcurrentBlockLabel\fP"
+.br
+.ti -1c
+.RI "QPushButton * \fBsave\fP"
+.br
+.ti -1c
+.RI "QPushButton * \fBdone\fP"
+.br
+.ti -1c
+.RI "QPushButton * \fBreset\fP"
+.br
+.ti -1c
+.RI "int \fBwindowWidth\fP"
+.br
+.ti -1c
+.RI "int \fBwindowHeight\fP"
+.br
+.ti -1c
+.RI "int \fBmainViewWidth\fP"
+.br
+.ti -1c
+.RI "\fBAlienMotherShip\fP * \fBmotherShip\fP"
+.br
+.ti -1c
+.RI "\fBAlienSpaceShip\fP * \fBalienShip\fP"
+.br
+.ti -1c
+.RI "\fBMotherShipBullet\fP * \fBmotherShipBullet\fP"
+.br
+.ti -1c
+.RI "\fBAlienShipBullet\fP * \fBalienBullet\fP"
+.br
+.ti -1c
+.RI "QFont * \fBfont\fP"
+.br
+.ti -1c
+.RI "QLabel * \fBstoryText\fP"
+.br
+.ti -1c
+.RI "\fBBall\fP * \fBball\fP"
+.br
+.ti -1c
+.RI "\fBShipBullet\fP * \fBbullets\fP"
+.br
+.ti -1c
+.RI "\fBShipsMissiles\fP * \fBmissiles\fP"
+.br
+.ti -1c
+.RI "QTimer * \fBtimer\fP"
+.br
+.ti -1c
+.RI "QTimer * \fBtimer3\fP"
+.br
+.ti -1c
+.RI "QPushButton * \fBskipIntro\fP"
+.br
+.ti -1c
+.RI "QTimer * \fBtimer4\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Definition at line 32 of file form.h.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Form::Form (QWidget * parent = \fC0\fP)"added by Manpreet Kohli constructor sets up the graphics item 
+.PP
+Definition at line 27 of file form.cpp.
+.PP
+.nf
+27                           :  QWidget(parent), m_ui(new Ui::Form)
+28 {
+29     m_ui->setupUi(this);
+30     windowWidth = 1000;
+31     windowHeight = 725;
+32     mainViewWidth = 762;
+33     font = new QFont();
+34     storyText = new QLabel(this);
+35     t = new SleeperThread();
+36     timer3 = new QTimer();
+37     timer4 = new QTimer();
+38     bgNo = 0;
+39 }
+.fi
+.SS "Form::~Form ()"destructor to delete the instance 
+.PP
+Definition at line 44 of file form.cpp.
+.PP
+.nf
+45 {
+46     delete m_ui;
+47 }
+.fi
+.SH "Member Function Documentation"
+.PP 
+.SS "void Form::alienFire ()\fC [private, slot]\fP"this method creates and stop alien ship firing added by Ivan Collazo 
+.PP
+Definition at line 857 of file form.cpp.
+.PP
+.nf
+858 {
+859     // stops alien ship firing when player loses game
+860     if (Constants::count == 0 )
+861     {
+862             timer3->disconnect(board->scene, SLOT(alienFire()));
+863             timer3->stop();
+864     }
+865 
+866     // stops alien ship firing when level is won
+867     else if (Constants::levelNumber == 4)
+868     {
+869         timer3->disconnect(board->scene, SLOT(alienFire()));
+870         timer3->stop();
+871     }
+872 
+873     // stops alien ship firing when alien ship is destoryed
+874     else if (alienShip->getShipHit() == 0)
+875     {
+876         timer3->disconnect(board->scene, SLOT(alienFire()));
+877         timer3->stop();
+878     }
+879 
+880     // keeps firing alien bullets
+881     else
+882     {
+883         alienShip->fire();
+884     }
+885 }
+.fi
+.SS "void Form::backgroundFour_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli slot to load background 4 for the level editor 
+.PP
+Definition at line 533 of file form.cpp.
+.PP
+.nf
+534 {
+535     m_ui->view->setBackgroundBrush(QPixmap(':bg4.jpg'));
+536     bgNo = 4;
+537     saveBackground(':bg4.jpg');
+538 }
+.fi
+.SS "void Form::backgroundOne_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli slot to load background 1 for the level editor 
+.PP
+Definition at line 503 of file form.cpp.
+.PP
+.nf
+504 {
+505     m_ui->view->setBackgroundBrush(QPixmap(':universe4.jpg'));
+506     bgNo = 1;
+507     }
+.fi
+.SS "void Form::backgroundThree_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli slot to load background 3 for the level editor 
+.PP
+Definition at line 523 of file form.cpp.
+.PP
+.nf
+524 {
+525     m_ui->view->setBackgroundBrush(QPixmap(':bg3.jpg'));
+526     bgNo = 3;
+527 }
+.fi
+.SS "void Form::backgroundTwo_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli slot to load background 2 for the level editor 
+.PP
+Definition at line 513 of file form.cpp.
+.PP
+.nf
+514 {
+515     m_ui->view->setBackgroundBrush(QPixmap(':bg2.jpg'));
+516     bgNo = 2;
+517     }
+.fi
+.SS "void Form::changeEvent (QEvent * e)\fC [protected]\fP"
+.PP
+Definition at line 49 of file form.cpp.
+.PP
+.nf
+50 {
+51     QWidget::changeEvent(e);
+52     switch (e->type())
+53     {
+54         case QEvent::LanguageChange:
+55             m_ui->retranslateUi(this);
+56             break;
+57         default:
+58             break;
+59     }
+60 }
+.fi
+.SS "void Form::done_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli if the done button is clicked in the level editor 
+.PP
+Definition at line 544 of file form.cpp.
+.PP
+.nf
+545 {
+546     // play the level start music
+547     QSound *intro = new QSound('intro.wav', 0);
+548     intro->setLoops(1);
+549     intro->play();
+550 
+551     // sleep for 5 secs so that the intro music can finish playing
+552     t->msleep(5000);
+553 
+554     // remove the transparent 'unselected' blocks from the level editor and double
+555     // the transparency for the selected blocks
+556     for (int i = 0; i < 20; i++)
+557     {
+558         for (int j = 0; j < 27; j++)
+559         {
+560             if (!Constants::positions.contains(Constants::blocks[i][j]->pos()))
+561             {
+562                 m_ui->view->scene()->removeItem(Constants::blocks[i][j]);
+563                 delete Constants::blocks[i][j];
+564             }
+565             else
+566             {
+567                 Constants::blocks[i][j]->setOpacity(2.0);
+568             }
+569         }
+570     }
+571 
+572     itemsWindow->deleteLater();
+573 
+574     resize(mainViewWidth, windowHeight);      // expand the window size
+575     setMinimumSize(QSize(mainViewWidth, windowHeight));   // change the minimum size of the window
+576     setMaximumSize(QSize(mainViewWidth, windowHeight));   // change the maximum size of the window
+577     move(250, 10);                            // relocate the window after it's dimensions change
+578 
+579     m_ui->view->scene()->setSceneRect(0, 0, mainViewWidth - 5, windowHeight - 5);       // set dimensions of the scene
+580 
+581     playersShip = new SpaceShip();            // create spaceship in the level editor
+582     m_ui->view->scene()->addItem(playersShip);
+583 
+584     ball = new Ball(playersShip);             // create ball in the level editor
+585     m_ui->view->scene()->addItem(ball);
+586 }
+.fi
+.SS "void Form::hideElements (\fBUi::Form\fP * m_ui)\fC [private]\fP"added by Manpreet Kohli hide and deletes all the elements (QButtons and QLabels) of the splash screen 
+.PP
+Definition at line 75 of file form.cpp.
+.PP
+.nf
+76 {
+77     m_ui->title->hide();
+78     m_ui->newGame->hide();
+79     m_ui->levelEditor->hide();
+80     m_ui->load->hide();
+81     m_ui->controls->hide();
+82     m_ui->exit->hide();
+83 
+84     delete m_ui->title;
+85     delete m_ui->newGame;
+86     delete m_ui->levelEditor;
+87     delete m_ui->load;
+88     delete m_ui->controls;
+89     delete m_ui->exit;
+90 }
+.fi
+.SS "void Form::keyPressEvent (QKeyEvent * event)\fC [protected]\fP"added by Ivan Collazo, modified by Manpreet Kohli function that gets called when a key is pressed during the game 
+.PP
+Definition at line 717 of file form.cpp.
+.PP
+.nf
+718 {
+719     switch(event->key())
+720     {
+721         case Qt::Key_A: // move space ship to the left
+722             if (!Constants::timer->isActive())
+723             {
+724                 if (playersShip->getShipPosX() <= -330)
+725                 {
+726                     playersShip->moveBy(0, 0);
+727                     ball->moveBy(0, 0);
+728                 }
+729                 else
+730                 {
+731                     playersShip->moveBy(-30, 0);
+732                     playersShip->setShipPosX(-30);
+733                     ball->moveBy(-30, 0);
+734                     ball->setPositionX(-30);
+735                     ball->setShipPositon(playersShip->getShipPosX());
+736                 }
+737             }
+738             else
+739             {
+740                 if (playersShip->getShipPosX() <= -330)
+741                     playersShip->moveBy(0, 0);
+742                 else
+743                 {
+744                     playersShip->moveBy(-30,0);
+745                     playersShip->setShipPosX(-30);
+746                     ball->setShipPositon(playersShip->getShipPosX());
+747                 }
+748             }
+749             break;
+750 
+751         case Qt::Key_D: // move space ship to the right
+752             if (!Constants::timer->isActive())
+753             {
+754                 if (playersShip->getShipPosX() >= 330)
+755                     playersShip->moveBy(0, 0);
+756 
+757                 else
+758                 {
+759                     playersShip->moveBy(30,0);
+760                     playersShip->setShipPosX(30);
+761                     ball->moveBy(30, 0);
+762                     ball->setPositionX(30);
+763                     ball->setShipPositon(playersShip->getShipPosX());
+764                 }
+765             }
+766 
+767             else
+768             {
+769                 if (playersShip->getShipPosX() >= 330)
+770                     playersShip->moveBy(0, 0);
+771                 else
+772                 {
+773                     playersShip->moveBy(30,0);
+774                     playersShip->setShipPosX(30);
+775                     ball->setShipPositon(playersShip->getShipPosX());
+776                 }
+777             }
+778             break;
+779 
+780         // Ivan Collazo
+781         // Case statement when space bar is pressed to fire weapons
+782         case Qt::Key_Space:
+783              if ((Constants::levelNumber == 1) || (Constants::levelNumber == 2)) // Levels with no weapons fired
+784              {
+785 
+786              }
+787              else if (Constants::levelNumber == 4) // Level with Missiles Fired
+788              {  
+789                  missiles = new ShipsMissiles(); // Ivan Collazo
+790                  missiles->setShipMissilesXPosition(playersShip->getShipPosX()); // Ivan Collazo
+791                  board->scene->addItem(missiles); // Ivan Collazo
+792                  playersShip->fireMissiles()    ; // Ivan Collazo
+793              }
+794              else // Level with Bullets Fired
+795              {
+796                  bullets = new ShipBullet(); // Ivan Collazo
+797                  bullets->setShipBulletXPosition(playersShip->getShipPosX()); // Ivan Collazo
+798                  board->scene->addItem(bullets); // Ivan Collazo
+799                  playersShip->fireBullets(); // Ivan Collazo
+800              }
+801              break;
+802 
+803          case Qt::Key_Return:
+804              // added by Natraj Subramanian
+805              if(!Constants::timer->isActive())
+806              {
+807                  board->connectTimerToBall();         // connect the timer to the ball
+808                  break;
+809              }
+810 
+811          case Qt::Key_Period:
+812              // added by Manpreet Kohli
+813              // if period key is pressed, set cheat mode to on
+814              ball->setSkip(true);
+815              break;
+816     }
+817 }
+.fi
+.SS "void Form::loadLevel1 ()\fC [private, slot]\fP"added by Manpreet Kohli function to start the first level of the game after the story screens 
+.PP
+Definition at line 300 of file form.cpp.
+.PP
+.nf
+301 {
+302     setupLevel(1);
+303 }
+.fi
+.SS "void Form::loadLevel2 ()\fC [private, slot]\fP"added by Manpreet Kohli function to start the second level of the game after the story screens 
+.PP
+Definition at line 309 of file form.cpp.
+.PP
+.nf
+310 {
+311     setupLevel(2);
+312 }
+.fi
+.SS "void Form::loadLevel3 ()\fC [private, slot]\fP"added by Manpreet Kohli function to start the third level of the game after the story screens 
+.PP
+Definition at line 318 of file form.cpp.
+.PP
+.nf
+319 {
+320    setupLevel(3);
+321 }
+.fi
+.SS "void Form::loadLevel4 ()\fC [private, slot]\fP"added by Manpreet Kohli function to start the final level of the game after the story screens 
+.PP
+Definition at line 327 of file form.cpp.
+.PP
+.nf
+328 {
+329     setupLevel(4);
+330 }
+.fi
+.SS "void Form::loadStoryScreen2 ()\fC [private, slot]\fP"added by Manpreet Kohli function to display the second screen of the story line hides first screen of the story line and loads the second screen Storyline slides added by Natraj Subramanian 
+.PP
+Definition at line 135 of file form.cpp.
+.PP
+.nf
+136 {
+137     // disconnect previous connection for the continue button
+138     Constants::cont->disconnect(this, SLOT(loadStoryScreen2()));
+139     m_ui->view->setStyleSheet('background-image: url(:/Storyline/slide2.jpg)');
+140     // if the continue button is clicked on the screen, load the third screen of the story line
+141     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen3()));
+142 }
+.fi
+.SS "void Form::loadStoryScreen3 ()\fC [private, slot]\fP"
+.PP
+Definition at line 144 of file form.cpp.
+.PP
+.nf
+145 {
+146     // disconnect previous connection for the continue button
+147     Constants::cont->disconnect(this, SLOT(loadStoryScreen3()));
+148     m_ui->view->setStyleSheet('background-image: url(:/Storyline/slide3.jpg)');
+149     // if the continue button is clicked on the screen, load the fourth screen of the story line
+150     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen4()));
+151 }
+.fi
+.SS "void Form::loadStoryScreen4 ()\fC [private, slot]\fP"
+.PP
+Definition at line 153 of file form.cpp.
+.PP
+.nf
+154 {
+155     // disconnect previous connection for the continue button
+156     Constants::cont->disconnect(this, SLOT(loadStoryScreen4()));
+157     m_ui->view->setStyleSheet('background-image: url(:/Storyline/slide4.jpg)');
+158     // if the continue button is clicked on the screen, load the fifth screen of the story line
+159     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen5()));
+160 }
+.fi
+.SS "void Form::loadStoryScreen5 ()\fC [private, slot]\fP"
+.PP
+Definition at line 162 of file form.cpp.
+.PP
+.nf
+163 {
+164     // disconnect previous connection for the continue button
+165     Constants::cont->disconnect(this, SLOT(loadStoryScreen5()));
+166     m_ui->view->setStyleSheet('background-image: url(:/Storyline/slide5.jpg)');
+167     // if the continue button is clicked on the screen, load the sixth screen of the story line
+168     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen6()));
+169 }
+.fi
+.SS "void Form::loadStoryScreen6 ()\fC [private, slot]\fP"
+.PP
+Definition at line 171 of file form.cpp.
+.PP
+.nf
+172 {
+173     // disconnect previous connection for the continue button
+174     Constants::cont->disconnect(this, SLOT(loadStoryScreen6()));
+175     m_ui->view->setStyleSheet('background-image: url(:/Storyline/slide6.jpg)');
+176     // if the continue button is clicked on the screen, load the seventh screen of the story line
+177     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen7()));
+178 }
+.fi
+.SS "void Form::loadStoryScreen7 ()\fC [private, slot]\fP"
+.PP
+Definition at line 180 of file form.cpp.
+.PP
+.nf
+181 {
+182     // disconnect previous connection for the continue button
+183     Constants::cont->disconnect(this, SLOT(loadStoryScreen7()));
+184     m_ui->view->setStyleSheet('background-image: url(:/Storyline/slide7.jpg)');
+185     // if the continue button is clicked on the screen, load the eighth screen of the story line
+186     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen8()));
+187 }
+.fi
+.SS "void Form::loadStoryScreen8 ()\fC [private, slot]\fP"
+.PP
+Definition at line 189 of file form.cpp.
+.PP
+.nf
+190 {
+191     // disconnect previous connection for the continue button
+192     Constants::cont->disconnect(this, SLOT(loadStoryScreen8()));
+193     m_ui->view->setStyleSheet('background-image: url(:/Storyline/slide8.jpg)');
+194     // if the continue button is clicked on the screen, load the ninth screen of the story line
+195     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen9()));
+196 }
+.fi
+.SS "void Form::loadStoryScreen9 ()\fC [private, slot]\fP"
+.PP
+Definition at line 198 of file form.cpp.
+.PP
+.nf
+199 {
+200     Constants::cont->setGeometry(300, 600, 150, 40);
+201 
+202     // disconnect previous connection for the continue button
+203     Constants::cont->disconnect(this, SLOT(loadStoryScreen9()));
+204 
+205     skipIntro->hide();
+206     delete skipIntro;
+207     
+208     // play the start level music
+209     QSound *intro = new QSound('intro.wav', 0);
+210     intro->setLoops(1);
+211     intro->play();
+212 
+213     m_ui->view->setStyleSheet('background-image: url(:/Storyline/level1.jpg)');
+214     // if the continue button is clicked on the screen, load level one
+215     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadLevel1()));
+216 }
+.fi
+.SS "void Form::motherFire ()\fC [private, slot]\fP"this method creates and stop mothership firing added by Ivan Collazo 
+.PP
+Definition at line 823 of file form.cpp.
+.PP
+.nf
+824 {
+825     // stops mother ship firing when player loses game
+826     if (Constants::count == 0)
+827     {
+828         timer4->disconnect(board->scene, SLOT(motherFire()));
+829         timer4->stop();
+830     }
+831 
+832     // stops mothership firing when game is won
+833     if (Constants::levelNumber == 5)
+834     {
+835         timer4->disconnect(board->scene, SLOT(motherFire()));
+836         timer4->stop();
+837     }
+838 
+839     // stops mother ship firing when mother ship is destoryed
+840     else if (motherShip->getShipHit() == 5)
+841     {
+842         timer4->disconnect(board->scene, SLOT(motherFire()));
+843         timer4->stop();
+844     }
+845 
+846     // keeps firing mother ship bullets
+847     else
+848     {
+849         motherShip->fire();;
+850     }
+851 }
+.fi
+.SS "void Form::on_controls_clicked ()\fC [private, slot]\fP"
+.PP
+Definition at line 888 of file form.cpp.
+.PP
+.nf
+889 {
+890     hideElements(m_ui);
+891     m_ui->view->setStyleSheet('background-image: url(:/controls.jpg)');
+892 
+893     QFont font;
+894     font.setBold(true);
+895     font.setWeight(75);
+896     font.setPointSize(13);
+897 
+898     QPushButton *back = new QPushButton(this);
+899     back->setText('BACK');
+900     back->setGeometry(340, 550, 100, 50);
+901     back->setFont(font);
+902     back->show();
+903     back->setStyleSheet('background-color: rgba(255, 255, 255, 100);');
+904 
+905 }
+.fi
+.SS "void Form::on_exit_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli exit the program if the exit button is clicked 
+.PP
+Definition at line 66 of file form.cpp.
+.PP
+.nf
+67 {
+68     exit(1);
+69 }
+.fi
+.SS "void Form::on_levelEditor_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli function called when the 'Level Editor' button is clicked on the splash screen 
+.PP
+Definition at line 336 of file form.cpp.
+.PP
+.nf
+337 {
+338     // call function to hide all the elements (QButtons and QLabels) of the splash screen
+339     hideElements(m_ui);
+340 
+341     resize(windowWidth, windowHeight);          // expand the window size
+342     setMinimumSize(QSize(windowWidth, windowHeight));
+343     setMaximumSize(QSize(windowWidth, windowHeight));
+344     move(120, 10);                              // relocate the window after it's dimensions change
+345 
+346     m_ui->view->setGeometry(0, 0, mainViewWidth, windowHeight);    // change the geometry of the current view
+347 
+348     itemsWindow = new QGraphicsView(this);      // create a new view to place all the user option buttons in
+349     itemsWindow->setGeometry(763, 0, Constants::itemsWindowViewWidth, windowHeight);     // set the geometry of the new view
+350 
+351     itemsWindowScene = new QGraphicsScene();    // create a new scene for the new view
+352     itemsWindowScene->setSceneRect(0, 0, Constants::itemsWindowViewWidth - 2, windowHeight - 2);
+353 
+354     Constants::levelNumber = 0;
+355     board = new Board(m_ui->view);
+356 
+357     font->setBold(true);
+358     font->setPointSize(15);
+359 
+360     backgrounds = new QLabel(itemsWindow);
+361     backgrounds->setText('<font color = RED> Select background: <font color/>');
+362     backgrounds->setFont(*font);
+363     backgrounds->show();
+364 
+365     font->setPointSize(10);
+366 
+367     backgroundOneButton = new QPushButton(itemsWindow);
+368     backgroundOneButton->setText('Background one');
+369     backgroundOneButton->setGeometry(5, 45, 225, 40);
+370     backgroundOneButton->setFont(*font);
+371 
+372     backgroundTwoButton  = new QPushButton(itemsWindow);
+373     backgroundTwoButton->setText('Background two');
+374     backgroundTwoButton->setGeometry(5, 85, 225, 40);
+375     backgroundTwoButton->setFont(*font);
+376 
+377     backgroundThreeButton  = new QPushButton(itemsWindow);
+378     backgroundThreeButton->setText('Background three');
+379     backgroundThreeButton->setGeometry(5, 125, 225, 40);
+380     backgroundThreeButton->setFont(*font);
+381 
+382     backgroundFourButton  = new QPushButton(itemsWindow);
+383     backgroundFourButton->setText('Background four');
+384     backgroundFourButton->setGeometry(5, 165, 225, 40);
+385     backgroundFourButton->setFont(*font);
+386 
+387     backgroundOneButton->show();
+388     backgroundTwoButton->show();
+389     backgroundThreeButton->show();
+390     backgroundFourButton->show();
+391 
+392     font->setPointSize(15);
+393 
+394     selectBlock = new QLabel(itemsWindow);
+395     selectBlock->setText('<font color = RED> Select block: <font color/>');
+396     selectBlock->setFont(*font);
+397     selectBlock->show();
+398     selectBlock->setGeometry(0, 235, selectBlock->width(), selectBlock->height());
+399 
+400     emptyBlock = new EmptyBlock();
+401     itemsWindowScene->addItem(emptyBlock);
+402     emptyBlock->setPos(-370, -340);
+403 
+404     monoBlock = new MonoBlock();
+405     itemsWindowScene->addItem(monoBlock);
+406     monoBlock->setPos(-338, -340);
+407 
+408     redBlock = new RedBlock();
+409     itemsWindowScene->addItem(redBlock);
+410     redBlock->setPos(-306, -340);
+411 
+412     greenBlock = new GreenBlock();
+413     itemsWindowScene->addItem(greenBlock);
+414     greenBlock->setPos(-274, -340);
+415 
+416     blueBlock = new BlueBlock();
+417     itemsWindowScene->addItem(blueBlock);
+418     blueBlock->setPos(-242, -340);
+419 
+420     magentaBlock = new MagentaBlock();
+421     itemsWindowScene->addItem(magentaBlock);
+422     magentaBlock->setPos(-210, -340);
+423 
+424     yellowBlock = new YellowBlock();
+425     itemsWindowScene->addItem(yellowBlock);
+426     yellowBlock->setPos(-178, -340);
+427 
+428     currentBlockLabel = new QLabel(itemsWindow);
+429     currentBlockLabel->setText('<font color = RED> Current selection: <font color/>');
+430     currentBlockLabel->setFont(*font);
+431     currentBlockLabel->show();
+432     currentBlockLabel->setGeometry(0, 360, currentBlockLabel->width(), currentBlockLabel->height());
+433 
+434     Constants::currentBlock = new EmptyBlock();
+435     itemsWindowScene->addItem(Constants::currentBlock);
+436     Constants::currentBlock->setPos(-274, -225);
+437 
+438     // connect the various background buttons to actual background loading
+439     connect(backgroundOneButton, SIGNAL(clicked()), this, SLOT(backgroundOne_clicked()));
+440     connect(backgroundTwoButton, SIGNAL(clicked()), this, SLOT(backgroundTwo_clicked()));
+441     connect(backgroundThreeButton, SIGNAL(clicked()), this, SLOT(backgroundThree_clicked()));
+442     connect(backgroundFourButton, SIGNAL(clicked()), this, SLOT(backgroundFour_clicked()));
+443 
+444     font->setPointSize(10);
+445 
+446     save = new QPushButton(itemsWindow);
+447     save->setText('Save');
+448     save->setGeometry(65, 500, 100, 25);
+449     save->setFont(*font);
+450     connect(save, SIGNAL(clicked()), this, SLOT(save_clicked()));
+451 
+452     done = new QPushButton(itemsWindow);
+453     done->setText('Done');
+454     done->setGeometry(10, 550, 100, 25);
+455     done->setFont(*font);
+456     connect(done, SIGNAL(clicked()), this, SLOT(done_clicked()));
+457 
+458     reset = new QPushButton(itemsWindow);
+459     reset->setText('Reset');
+460     reset->setGeometry(120, 550, 100, 25);
+461     reset->setFont(*font);
+462     connect(reset, SIGNAL(clicked()), this, SLOT(reset_clicked()));
+463 
+464     save->show();
+465     done->show();
+466     reset->show();
+467 
+468     m_ui->view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+469     itemsWindow->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+470     itemsWindow->setScene(itemsWindowScene);
+471     itemsWindow->show();            // display the new view
+472 }
+.fi
+.SS "void Form::on_load_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli if load game is clicked on the splash screen 
+.PP
+Definition at line 679 of file form.cpp.
+.PP
+.nf
+680 {
+681     // open the file for reading
+682     QFile file('levels.txt');
+683     if (!file.open(QIODevice::ReadOnly))
+684     {
+685         qDebug() << 'Cannot open file for writing ';
+686         QErrorMessage *err = new QErrorMessage();
+687         err->showMessage('<font size= \'15\'> ERROR!!! File not found! </font>');
+688         err->show();
+689 
+690         QObject::connect(err, SIGNAL(accepted()), err, SLOT(close()));
+691     }
+692 
+693     else
+694     {
+695         hideElements(m_ui);     // hide all the elements on the splash screen
+696 
+697         resize(mainViewWidth, windowHeight);      // expand the window size
+698         setMinimumSize(QSize(mainViewWidth, windowHeight));   // change the minimum size of the window
+699         setMaximumSize(QSize(mainViewWidth, windowHeight));   // change the maximum size of the window
+700         m_ui->view->setGeometry(0, 0, mainViewWidth, windowHeight);
+701 
+702         Constants::levelNumber = 6;
+703         board = new Board(m_ui->view);
+704 
+705         playersShip = new SpaceShip();
+706         m_ui->view->scene()->addItem(playersShip);
+707 
+708         ball = new Ball(playersShip);
+709         m_ui->view->scene()->addItem(ball);
+710     }
+711 }
+.fi
+.SS "void Form::on_newGame_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli function called when the 'New Game' button is clicked on the splash screen hides all the elements of the splash screen and displays the first page of the story line Storyline slides added by Natraj Subramanian 
+.PP
+Definition at line 98 of file form.cpp.
+.PP
+.nf
+99 {
+100     // call function to hide all the elements (QButtons and QLabels) of the splash screen
+101     hideElements(m_ui);
+102     m_ui->view->setStyleSheet('background-image: url(:/Storyline/slide1.jpg)');
+103 
+104     font->setPointSize(13);
+105     font->setWeight(75);
+106 
+107     Constants::cont = new QPushButton(this);
+108     Constants::cont->setText('CONTINUE');
+109     Constants::cont->setGeometry(200, 600, 150, 40);
+110     Constants::cont->setFont(*font);
+111     Constants::cont->show();
+112     Constants::cont->setStyleSheet('background-color: rgba(255, 255, 255, 100);');
+113 
+114     // Added by Natraj Subramanian
+115     // Skip the intro and head to the starting level straightaway
+116     skipIntro = new QPushButton(this);
+117     skipIntro->setText('SKIP INTRO');
+118     skipIntro->setGeometry(400, 600, 150, 40);
+119     skipIntro->setFont(*font);
+120     skipIntro->show();
+121     skipIntro->setStyleSheet('background-color: rgba(255, 255, 255, 100);');
+122 
+123     // if the continue button is clicked on the screen, load the second screen of the story line
+124     QObject::connect(Constants::cont, SIGNAL(clicked()), this, SLOT(loadStoryScreen2()));
+125     // if the skip intro button is clicked, load the ninth screen of the story line
+126     QObject::connect(skipIntro, SIGNAL(clicked()), this, SLOT(loadStoryScreen9()));
+127 }
+.fi
+.SS "void Form::reset_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli if the reset button gets clicked 
+.PP
+Definition at line 592 of file form.cpp.
+.PP
+.nf
+593 {
+594     // clear the positions and colors vectors so that the previously clicked blocks don't get drawn
+595     Constants::positions.clear();
+596     Constants::colors.clear();
+597 
+598     // delete the board pointer and create a fresh instance of the board
+599     delete board;
+600     board = new Board(m_ui->view);
+601 }
+.fi
+.SS "void Form::save_clicked ()\fC [private, slot]\fP"added by Manpreet Kohli if the save button gets clicked 
+.PP
+Definition at line 607 of file form.cpp.
+.PP
+.nf
+608 {
+609     if (bgNo == 0)
+610         saveBackground('');         // to make sure a new file always gets created
+611     else if (bgNo == 1)
+612         saveBackground(':universe4.jpg');
+613     else if (bgNo == 2)
+614         saveBackground(':bg2.jpg');
+615     else if (bgNo == 3)
+616         saveBackground(':bg3.jpg');
+617     else if (bgNo == 4)
+618         m_ui->view->setBackgroundBrush(QPixmap(':bg4.jpg'));
+619 
+620     // open file for writing
+621     QFile file('levels.txt');
+622     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+623     {
+624         qDebug() << 'Cannot open file for writing ';
+625         exit(-1);
+626     }
+627 
+628     QTextStream out(&file);
+629 
+630     // write each block to the file (the color's initial gets written)
+631     for (int i = 0; i < 20; i++)
+632     {
+633         for (int j = 0; j < 27; j++)
+634         {
+635             bool temp = false;
+636             for (int k = 0; k < Constants::positions.size(); k++)
+637             {
+638                 if (Constants::positions.at(k) == Constants::blocks[i][j]->pos())
+639                 {
+640                     switch(Constants::colors.at(k))
+641                     {
+642                         case 0:
+643                             out << 'w';
+644                             break;
+645                         case 2:
+646                             out << 'r';
+647                             break;
+648                         case 3:
+649                             out << 'g';
+650                             break;
+651                         case 4:
+652                             out << 'b';
+653                             break;
+654                         case 5:
+655                             out << 'm';
+656                             break;
+657                         case 6:
+658                             out << 'y';
+659                             break;
+660                         case 7:
+661                             out << 't';
+662                             break;
+663                     }
+664                     temp = true;
+665                     break;
+666                 }
+667             }
+668             if (temp == false)
+669                 out << 't';
+670         }
+671         out << endl;
+672     }
+673 }
+.fi
+.SS "void Form::saveBackground (QString bg)\fC [private]\fP"added by Manpreet Kohli saves the background selected by the user to a file 
+.PP
+Definition at line 478 of file form.cpp.
+.PP
+.nf
+479 {
+480     // open file for writing
+481     QFile file('bgs.txt');
+482     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+483     {
+484         qDebug() << 'Cannot open file for writing ';
+485         exit(-1);
+486     }
+487 
+488     if (!file.exists())
+489     {
+490         QErrorMessage *err = new QErrorMessage();
+491         err->showMessage('<font size= \'15\'> ERROR!!! File not found! No saved games exist!</font>');
+492         err->show();
+493     }
+494 
+495     QTextStream out(&file);
+496     out << bg;
+497 }
+.fi
+.SS "void Form::setupLevel (int levelNumber)\fC [private]\fP"added by Manpreet Kohli, modified by Ivan Collazo sets up the level including board, ship, and ball 
+.PP
+Definition at line 222 of file form.cpp.
+.PP
+.nf
+223 {
+224     if (levelNumber == 1)
+225     {
+226         storyText->hide();
+227         Constants::cont->hide();
+228         delete Constants::cont;
+229         Constants::levelNumber = 1;
+230         m_ui->view->setBackgroundBrush(QPixmap(':universe4.jpg'));
+231     }
+232     if (levelNumber == 2)
+233     {
+234         Constants::cont->disconnect(this, SLOT(loadLevel2()));
+235         Constants::levelNumber = 2;
+236     }
+237     if (levelNumber == 3)
+238     {
+239         Constants::cont->disconnect(this, SLOT(loadLevel3()));
+240         Constants::levelNumber = 3;
+241     }
+242     if (levelNumber == 4)
+243     {
+244         Constants::cont->disconnect(this, SLOT(loadLevel4()));
+245         Constants::levelNumber = 4;
+246     }
+247 
+248     if (levelNumber == 2 || levelNumber == 3 || levelNumber == 4)
+249     {
+250         Constants::cont->hide();
+251         if (Constants::life1 != NULL)
+252             Constants::life1->show();
+253         if (Constants::life2 != NULL)
+254             Constants::life2->show();
+255         if (Constants::life3 != NULL)
+256             Constants::life3->show();
+257         m_ui->view->setBackgroundBrush(QPixmap(':level3.jpg'));
+258     }
+259 
+260     // sleep for 3 secs so that the intro music can finish playing
+261     t->msleep(3000);
+262 
+263     m_ui->view->setRenderHint(QPainter::Antialiasing);
+264     board = new Board(m_ui->view);                      // add the board to the view
+265 
+266     // create an instance of the player's spaceship
+267     playersShip = new SpaceShip();          // Ivan Collazo
+268 
+269     // add the player's spaceship to the board
+270     board->scene->addItem(playersShip);     // Ivan Collazo
+271 
+272     // Ivan Collazo
+273     if (levelNumber == 3)
+274     {
+275         alienShip = new AlienSpaceShip ();  // Ivan Collazo
+276         board->scene->addItem(alienShip);   // Ivan Collazo     
+277         QObject::connect(timer3, SIGNAL(timeout()), this, SLOT(alienFire()));   // connect to start alien firing
+278         timer3->start(2000);
+279     }
+280 
+281     // Ivan Collazo
+282     if (levelNumber == 4)
+283     {
+284         timer3->disconnect(board->scene, SLOT(alienFire()));
+285         timer3->stop();
+286         motherShip = new AlienMotherShip ();    // Ivan Collazo
+287         board->scene->addItem(motherShip);      // Ivan Collazo
+288         QObject::connect(timer4, SIGNAL(timeout()), this, SLOT(motherFire()));  // connect to start mother ship firing
+289         timer4->start(3000);
+290     }
+291 
+292     ball = new Ball(playersShip);                  // create an instance of the ball
+293     board->scene->addItem(ball);                   // add the ball to the board
+294 }
+.fi
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBAlienShipBullet\fP* \fBForm::alienBullet\fP\fC [private]\fP"
+.PP
+Definition at line 65 of file form.h.
+.SS "\fBAlienSpaceShip\fP* \fBForm::alienShip\fP\fC [private]\fP"
+.PP
+Definition at line 63 of file form.h.
+.SS "QPushButton * \fBForm::backgroundFourButton\fP\fC [private]\fP"
+.PP
+Definition at line 46 of file form.h.
+.SS "QPushButton* \fBForm::backgroundOneButton\fP\fC [private]\fP"
+.PP
+Definition at line 46 of file form.h.
+.SS "QLabel* \fBForm::backgrounds\fP\fC [private]\fP"
+.PP
+Definition at line 45 of file form.h.
+.SS "QPushButton * \fBForm::backgroundThreeButton\fP\fC [private]\fP"
+.PP
+Definition at line 46 of file form.h.
+.SS "QPushButton * \fBForm::backgroundTwoButton\fP\fC [private]\fP"
+.PP
+Definition at line 46 of file form.h.
+.SS "\fBBall\fP* \fBForm::ball\fP\fC [private]\fP"
+.PP
+Definition at line 68 of file form.h.
+.SS "int \fBForm::bgNo\fP\fC [private]\fP"
+.PP
+Definition at line 37 of file form.h.
+.SS "\fBBlock\fP* \fBForm::blueBlock\fP\fC [private]\fP"
+.PP
+Definition at line 52 of file form.h.
+.SS "\fBBoard\fP* \fBForm::board\fP\fC [private]\fP"
+.PP
+Definition at line 39 of file form.h.
+.SS "\fBShipBullet\fP* \fBForm::bullets\fP\fC [private]\fP"
+.PP
+Definition at line 69 of file form.h.
+.SS "QLabel* \fBForm::currentBlockLabel\fP\fC [private]\fP"
+.PP
+Definition at line 55 of file form.h.
+.SS "QPushButton* \fBForm::done\fP\fC [private]\fP"
+.PP
+Definition at line 57 of file form.h.
+.SS "\fBBlock\fP* \fBForm::emptyBlock\fP\fC [private]\fP"
+.PP
+Definition at line 48 of file form.h.
+.SS "QFont* \fBForm::font\fP\fC [private]\fP"
+.PP
+Definition at line 66 of file form.h.
+.SS "\fBBlock\fP* \fBForm::greenBlock\fP\fC [private]\fP"
+.PP
+Definition at line 51 of file form.h.
+.SS "QSound* \fBForm::intro\fP\fC [private]\fP"
+.PP
+Definition at line 40 of file form.h.
+.SS "QGraphicsView* \fBForm::itemsWindow\fP\fC [private]\fP"
+.PP
+Definition at line 43 of file form.h.
+.SS "QGraphicsScene* \fBForm::itemsWindowScene\fP\fC [private]\fP"
+.PP
+Definition at line 44 of file form.h.
+.SS "\fBUi::Form\fP* \fBForm::m_ui\fP\fC [private]\fP"
+.PP
+Definition at line 38 of file form.h.
+.SS "\fBBlock\fP* \fBForm::magentaBlock\fP\fC [private]\fP"
+.PP
+Definition at line 53 of file form.h.
+.SS "int \fBForm::mainViewWidth\fP\fC [private]\fP"
+.PP
+Definition at line 61 of file form.h.
+.SS "\fBShipsMissiles\fP* \fBForm::missiles\fP\fC [private]\fP"
+.PP
+Definition at line 70 of file form.h.
+.SS "\fBBlock\fP* \fBForm::monoBlock\fP\fC [private]\fP"
+.PP
+Definition at line 49 of file form.h.
+.SS "\fBAlienMotherShip\fP* \fBForm::motherShip\fP\fC [private]\fP"
+.PP
+Definition at line 62 of file form.h.
+.SS "\fBMotherShipBullet\fP* \fBForm::motherShipBullet\fP\fC [private]\fP"
+.PP
+Definition at line 64 of file form.h.
+.SS "\fBSpaceShip\fP* \fBForm::playersShip\fP\fC [private]\fP"
+.PP
+Definition at line 42 of file form.h.
+.SS "\fBBlock\fP* \fBForm::redBlock\fP\fC [private]\fP"
+.PP
+Definition at line 50 of file form.h.
+.SS "QPushButton* \fBForm::reset\fP\fC [private]\fP"
+.PP
+Definition at line 58 of file form.h.
+.SS "QPushButton* \fBForm::save\fP\fC [private]\fP"
+.PP
+Definition at line 56 of file form.h.
+.SS "QLabel* \fBForm::selectBlock\fP\fC [private]\fP"
+.PP
+Definition at line 47 of file form.h.
+.SS "QPushButton* \fBForm::skipIntro\fP\fC [private]\fP"
+.PP
+Definition at line 73 of file form.h.
+.SS "QLabel* \fBForm::storyText\fP\fC [private]\fP"
+.PP
+Definition at line 67 of file form.h.
+.SS "\fBSleeperThread\fP* \fBForm::t\fP\fC [private]\fP"
+.PP
+Definition at line 41 of file form.h.
+.SS "QTimer* \fBForm::timer\fP\fC [private]\fP"
+.PP
+Definition at line 71 of file form.h.
+.SS "QTimer* \fBForm::timer3\fP\fC [private]\fP"
+.PP
+Definition at line 72 of file form.h.
+.SS "QTimer* \fBForm::timer4\fP\fC [private]\fP"
+.PP
+Definition at line 74 of file form.h.
+.SS "int \fBForm::windowHeight\fP\fC [private]\fP"
+.PP
+Definition at line 60 of file form.h.
+.SS "int \fBForm::windowWidth\fP\fC [private]\fP"
+.PP
+Definition at line 59 of file form.h.
+.SS "\fBBlock\fP* \fBForm::yellowBlock\fP\fC [private]\fP"
+.PP
+Definition at line 54 of file form.h.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Earth: 20000 from the source code.

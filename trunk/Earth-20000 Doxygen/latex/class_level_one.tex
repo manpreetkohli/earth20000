@@ -1,0 +1,201 @@
+\hypertarget{class_level_one}{
+\section{LevelOne Class Reference}
+\label{class_level_one}\index{LevelOne@{LevelOne}}
+}
+
+
+{\ttfamily \#include $<$levelOne.h$>$}\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_level_one_a659fc1089dee490f34ebb490bd3db699}{LevelOne} (QGraphicsScene $\ast$theScene)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+QRectF \hyperlink{class_level_one_a3a02de10455bcfbbd8994807dd23bf05}{boundingRect} () const 
+\item 
+void \hyperlink{class_level_one_a20ac2bcc6833dde6e650f953434a84e2}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget=0)
+\item 
+int \hyperlink{class_level_one_ad130fe4bb9582fdaaef1e14a3e00d381}{generateRandomNumber} (int min, int max)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_level_one_a5648c256a2bfb5c8f6519227dc14a92a}{xPos}
+\item 
+int \hyperlink{class_level_one_a6d4af1a9d37892b01d2b193963432325}{yPos}
+\item 
+\hyperlink{class_block}{Block} $\ast$ \hyperlink{class_level_one_aaca223888bdff2ad013abbd0bc4f672e}{block} \mbox{[}6\mbox{]}\mbox{[}16\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{level_one_8cpp}{levelOne.cpp}
+
+Creates the design for the first level. Uses the polymorphism feature of the \hyperlink{block_8cpp}{block.cpp} class and randomly generates blocks of different colors and places them in a pre-\/defined layout.
+
+Author: Natraj Subramanian 
+
+Definition at line 17 of file levelOne.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_level_one_a659fc1089dee490f34ebb490bd3db699}{
+\index{LevelOne@{LevelOne}!LevelOne@{LevelOne}}
+\index{LevelOne@{LevelOne}!LevelOne@{LevelOne}}
+\subsubsection[{LevelOne}]{\setlength{\rightskip}{0pt plus 5cm}LevelOne::LevelOne (QGraphicsScene $\ast$ {\em theScene})}}
+\label{class_level_one_a659fc1089dee490f34ebb490bd3db699}
+
+
+Definition at line 4 of file levelOne.cpp.
+
+
+\begin{DoxyCode}
+5 {
+6     xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;
+7     yPos = -630 + (BOUNDHEIGHT)/4;
+8 
+9     // Declare variable to hold seconds in clock
+10     time_t seconds;
+11 
+12     // Get value from system clock and place in seconds variable
+13     time(&seconds);
+14 
+15     // Convert seconds to a unsigned integer
+16     srand((unsigned int) seconds);
+17 
+18     int detColor;
+19 
+20     for(int i = 0; i < 6; i++)
+21     {
+22        for(int j = 0; j < 16; j++)
+23         {
+24             if( (i == 0 || i == 5) && ( j < 3 || j > 12))
+25             {
+26                  xPos += BLOCKW + SPACE;
+27              }
+28             else
+29             {
+30                 detColor = generateRandomNumber(0,5);
+31                 if(detColor == 0)
+32                 {
+33                     block[i][j] = new MonoBlock;
+34                 }
+35                 if(detColor == 1)
+36                 {
+37                     block[i][j] = new RedBlock;
+38                 }
+39                 if(detColor == 2)
+40                 {
+41                     block[i][j] = new GreenBlock;
+42                 }
+43                 if(detColor == 3)
+44                 {
+45                     block[i][j] = new BlueBlock;
+46                 }
+47                 if(detColor == 4)
+48                 {
+49                     block[i][j] = new MagentaBlock;
+50                 }
+51                 if(detColor == 5)
+52                 {
+53                     block[i][j] = new YellowBlock;
+54                 }
+55 
+56                 // setXPos and setYPos are used to assist the ball with its block
+      
+57                 // collision detection
+58                 block[i][j]->setXPos(xPos);
+59                 block[i][j]->setYPos(yPos);
+60                 block[i][j]->scale(1.0, 1.0);
+61                 block[i][j]->setPos(xPos, yPos);
+62                 block[i][j]->setPowerup(0);
+63                 xPos += BLOCKW + SPACE;
+64                 theScene->addItem(block[i][j]);
+65             }
+66         }
+67 
+68         yPos += BLOCKH + SPACE;
+69         xPos = -380 + (BOUNDWIDTH - 16 * OUTLINEW)/2;;
+70     }
+71 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_level_one_a3a02de10455bcfbbd8994807dd23bf05}{
+\index{LevelOne@{LevelOne}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!LevelOne@{LevelOne}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF LevelOne::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_one_a3a02de10455bcfbbd8994807dd23bf05}
+
+
+Definition at line 73 of file levelOne.cpp.
+
+
+\begin{DoxyCode}
+74 {
+75     return QRectF(375, 625, BOUNDWIDTH, BOUNDHEIGHT);
+76 }
+\end{DoxyCode}
+\hypertarget{class_level_one_ad130fe4bb9582fdaaef1e14a3e00d381}{
+\index{LevelOne@{LevelOne}!generateRandomNumber@{generateRandomNumber}}
+\index{generateRandomNumber@{generateRandomNumber}!LevelOne@{LevelOne}}
+\subsubsection[{generateRandomNumber}]{\setlength{\rightskip}{0pt plus 5cm}int LevelOne::generateRandomNumber (int {\em min}, \/  int {\em max})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_one_ad130fe4bb9582fdaaef1e14a3e00d381}
+Given a min and a max, generate a random number between this range 
+
+Definition at line 89 of file levelOne.cpp.
+
+
+\begin{DoxyCode}
+90 {
+91     return rand() % (max - min + 1) + min;
+92 }
+\end{DoxyCode}
+\hypertarget{class_level_one_a20ac2bcc6833dde6e650f953434a84e2}{
+\index{LevelOne@{LevelOne}!paint@{paint}}
+\index{paint@{paint}!LevelOne@{LevelOne}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void LevelOne::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget} = {\ttfamily 0})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_one_a20ac2bcc6833dde6e650f953434a84e2}
+
+
+Definition at line 78 of file levelOne.cpp.
+
+
+\begin{DoxyCode}
+79 {
+80     Q_UNUSED(painter);
+81     Q_UNUSED(option);
+82     Q_UNUSED(widget);
+83 }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_level_one_aaca223888bdff2ad013abbd0bc4f672e}{
+\index{LevelOne@{LevelOne}!block@{block}}
+\index{block@{block}!LevelOne@{LevelOne}}
+\subsubsection[{block}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Block}$\ast$ {\bf LevelOne::block}\mbox{[}6\mbox{]}\mbox{[}16\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_one_aaca223888bdff2ad013abbd0bc4f672e}
+
+
+Definition at line 21 of file levelOne.h.\hypertarget{class_level_one_a5648c256a2bfb5c8f6519227dc14a92a}{
+\index{LevelOne@{LevelOne}!xPos@{xPos}}
+\index{xPos@{xPos}!LevelOne@{LevelOne}}
+\subsubsection[{xPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LevelOne::xPos}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_one_a5648c256a2bfb5c8f6519227dc14a92a}
+
+
+Definition at line 20 of file levelOne.h.\hypertarget{class_level_one_a6d4af1a9d37892b01d2b193963432325}{
+\index{LevelOne@{LevelOne}!yPos@{yPos}}
+\index{yPos@{yPos}!LevelOne@{LevelOne}}
+\subsubsection[{yPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf LevelOne::yPos}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_level_one_a6d4af1a9d37892b01d2b193963432325}
+
+
+Definition at line 20 of file levelOne.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{level_one_8h}{levelOne.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{level_one_8cpp}{levelOne.cpp}\end{DoxyCompactItemize}

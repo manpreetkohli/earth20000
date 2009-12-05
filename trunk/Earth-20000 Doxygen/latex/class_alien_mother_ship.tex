@@ -1,0 +1,269 @@
+\hypertarget{class_alien_mother_ship}{
+\section{AlienMotherShip Class Reference}
+\label{class_alien_mother_ship}\index{AlienMotherShip@{AlienMotherShip}}
+}
+
+
+{\ttfamily \#include $<$alienmothership.h$>$}Inheritance diagram for AlienMotherShip::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_alien_mother_ship}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_alien_mother_ship_a981230852a6b57a58767302cc06dfc66}{AlienMotherShip} ()
+\item 
+virtual \hyperlink{class_alien_mother_ship_aadc7f7009cd3243f28589e35157ab5fc}{$\sim$AlienMotherShip} ()
+\item 
+virtual int \hyperlink{class_alien_mother_ship_a9146bdc7fbad43aa8b7dd8c6b94775ff}{type} () const 
+\item 
+void \hyperlink{class_alien_mother_ship_ae95a8f7d76ccb8ed76f6ce1851c76b5a}{fire} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+QRectF \hyperlink{class_alien_mother_ship_a19b3012b5de609d1b3aeb853bc45489f}{boundingRect} () const 
+\item 
+void \hyperlink{class_alien_mother_ship_a9d504befceb130b6c833550f6f6a0b53}{paint} (QPainter $\ast$painter, const QStyleOptionGraphicsItem $\ast$option, QWidget $\ast$widget)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QPixmap \hyperlink{class_alien_mother_ship_a61fef30fd35cb950ff5c23463da32adf}{shipsImage}
+\item 
+qreal \hyperlink{class_alien_mother_ship_a7c7c0ac12f0eb3add61f5d7a47fe93ee}{xPosition}
+\item 
+qreal \hyperlink{class_alien_mother_ship_af3b24eae146d655107298345d577d96d}{yPosition}
+\item 
+qreal \hyperlink{class_alien_mother_ship_af38d6c7fb520033527b5012f0ae60654}{shipWidth}
+\item 
+qreal \hyperlink{class_alien_mother_ship_acbf3b27133d490435d13650da53da1b0}{shipHeight}
+\item 
+qreal \hyperlink{class_alien_mother_ship_a06db4da9779e6346e7f05d3b39a8af0c}{shipHit}
+\item 
+\hyperlink{class_mother_ship_bullet}{MotherShipBullet} $\ast$ \hyperlink{class_alien_mother_ship_a102d1a84a81c500cbc435479d505af3b}{shipBullet}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class creates alienmothership for earth:20000 
+
+Definition at line 19 of file alienmothership.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_alien_mother_ship_a981230852a6b57a58767302cc06dfc66}{
+\index{AlienMotherShip@{AlienMotherShip}!AlienMotherShip@{AlienMotherShip}}
+\index{AlienMotherShip@{AlienMotherShip}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{AlienMotherShip}]{\setlength{\rightskip}{0pt plus 5cm}AlienMotherShip::AlienMotherShip ()}}
+\label{class_alien_mother_ship_a981230852a6b57a58767302cc06dfc66}
+Author: Ivan Collazo File: \hyperlink{alienmothership_8cpp}{alienmothership.cpp} Date: 10/05/2009 This is .cpp file for alienmothership in earth20000
+
+constructor 
+
+Definition at line 19 of file alienmothership.cpp.
+
+
+\begin{DoxyCode}
+20 {
+21     shipsImage.load(":alienSpaceship.png");
+22 //    width = 390;
+23 //    height = 240;
+24 //    left = 170;
+25 //    top = 200;
+26 //    alienMotherShipHit = 20;
+27 
+28     shipWidth = 390;
+29     shipHeight = 240;
+30     xPosition = 170;
+31     yPosition = 200;
+32     shipHit = 5;
+33 }
+\end{DoxyCode}
+\hypertarget{class_alien_mother_ship_aadc7f7009cd3243f28589e35157ab5fc}{
+\index{AlienMotherShip@{AlienMotherShip}!$\sim$AlienMotherShip@{$\sim$AlienMotherShip}}
+\index{$\sim$AlienMotherShip@{$\sim$AlienMotherShip}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{$\sim$AlienMotherShip}]{\setlength{\rightskip}{0pt plus 5cm}AlienMotherShip::$\sim$AlienMotherShip ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_alien_mother_ship_aadc7f7009cd3243f28589e35157ab5fc}
+destructor 
+
+Definition at line 39 of file alienmothership.cpp.
+
+
+\begin{DoxyCode}
+40 {
+41 }
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_alien_mother_ship_a19b3012b5de609d1b3aeb853bc45489f}{
+\index{AlienMotherShip@{AlienMotherShip}!boundingRect@{boundingRect}}
+\index{boundingRect@{boundingRect}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{boundingRect}]{\setlength{\rightskip}{0pt plus 5cm}QRectF AlienMotherShip::boundingRect () const\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_alien_mother_ship_a19b3012b5de609d1b3aeb853bc45489f}
+this method does the bounding rectangle of the object for collision detection 
+
+Reimplemented from \hyperlink{class_ship_a40856df827844b4045eb97345f401995}{Ship}.
+
+Definition at line 81 of file alienmothership.cpp.
+
+
+\begin{DoxyCode}
+82 {
+83     return QRectF(178, 260, 378, 96);
+84 }
+\end{DoxyCode}
+\hypertarget{class_alien_mother_ship_ae95a8f7d76ccb8ed76f6ce1851c76b5a}{
+\index{AlienMotherShip@{AlienMotherShip}!fire@{fire}}
+\index{fire@{fire}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{fire}]{\setlength{\rightskip}{0pt plus 5cm}void AlienMotherShip::fire ()}}
+\label{class_alien_mother_ship_ae95a8f7d76ccb8ed76f6ce1851c76b5a}
+this method fires the alienmothership bullets 
+
+Definition at line 89 of file alienmothership.cpp.
+
+
+\begin{DoxyCode}
+90 {
+91     shipBullet = new MotherShipBullet ();
+92     shipBullet->setBulletPosition(xPosition - 145, yPosition + 280);
+93     this->scene()->addItem(shipBullet);
+94 
+95     QSound *alienShipFireFX = new QSound("laser_1.wav", 0);
+96     alienShipFireFX->setLoops(1);
+97     alienShipFireFX->play();
+98 }
+\end{DoxyCode}
+\hypertarget{class_alien_mother_ship_a9d504befceb130b6c833550f6f6a0b53}{
+\index{AlienMotherShip@{AlienMotherShip}!paint@{paint}}
+\index{paint@{paint}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{paint}]{\setlength{\rightskip}{0pt plus 5cm}void AlienMotherShip::paint (QPainter $\ast$ {\em painter}, \/  const QStyleOptionGraphicsItem $\ast$ {\em option}, \/  QWidget $\ast$ {\em widget})\hspace{0.3cm}{\ttfamily  \mbox{[}private, virtual\mbox{]}}}}
+\label{class_alien_mother_ship_a9d504befceb130b6c833550f6f6a0b53}
+this method is called whenever the alienmothership needs to be drawn 
+
+Reimplemented from \hyperlink{class_ship_a1dad980a3b84bb77c63da853ec13477d}{Ship}.
+
+Definition at line 46 of file alienmothership.cpp.
+
+
+\begin{DoxyCode}
+47 {
+48     // can traverse to examine what collided with alienmothership
+49     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
+50 
+51     // paints the alienmothership image
+52     painter->drawPixmap(xPosition, yPosition, shipWidth, shipHeight, shipsImage);
+      
+53 
+54     // checks to see if collisions occurs
+55     if (!listOfCollidingItems.isEmpty())
+56     {
+57         // if collision occurs with spaceshipmissile then decrements aliemMotherS
+      hipHit
+58         if(listOfCollidingItems.first()->type() == ID_SPACESHIPMISSILE)
+59         {
+60             shipHit--;
+61         }
+62     }
+63 
+64     // if alienMotherShipHit is 0 ship destoryed then changes alien motherships i
+      mage and has ship explosion FX
+65     if (shipHit == 0)
+66     {
+67         shipsImage.load(":fire.png");
+68         painter->drawPixmap(xPosition, yPosition, shipWidth, shipHeight, 
+      shipsImage);
+69 
+70         QSound *shipExplosionFX = new QSound("explosion_2.wav", 0);
+71         shipExplosionFX->setLoops(1);
+72         shipExplosionFX->play();
+73 
+74         update();
+75     }
+76 }
+\end{DoxyCode}
+\hypertarget{class_alien_mother_ship_a9146bdc7fbad43aa8b7dd8c6b94775ff}{
+\index{AlienMotherShip@{AlienMotherShip}!type@{type}}
+\index{type@{type}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}virtual int AlienMotherShip::type () const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_alien_mother_ship_a9146bdc7fbad43aa8b7dd8c6b94775ff}
+
+
+Definition at line 49 of file alienmothership.h.
+
+
+\begin{DoxyCode}
+49 {return ID_MOTHERSHIP; }
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_alien_mother_ship_a102d1a84a81c500cbc435479d505af3b}{
+\index{AlienMotherShip@{AlienMotherShip}!shipBullet@{shipBullet}}
+\index{shipBullet@{shipBullet}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{shipBullet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MotherShipBullet}$\ast$ {\bf AlienMotherShip::shipBullet}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_mother_ship_a102d1a84a81c500cbc435479d505af3b}
+
+
+Definition at line 33 of file alienmothership.h.\hypertarget{class_alien_mother_ship_acbf3b27133d490435d13650da53da1b0}{
+\index{AlienMotherShip@{AlienMotherShip}!shipHeight@{shipHeight}}
+\index{shipHeight@{shipHeight}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{shipHeight}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienMotherShip::shipHeight}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_mother_ship_acbf3b27133d490435d13650da53da1b0}
+
+
+Reimplemented from \hyperlink{class_ship_a16205aae21b89c3fb57960a70be931a2}{Ship}.
+
+Definition at line 29 of file alienmothership.h.\hypertarget{class_alien_mother_ship_a06db4da9779e6346e7f05d3b39a8af0c}{
+\index{AlienMotherShip@{AlienMotherShip}!shipHit@{shipHit}}
+\index{shipHit@{shipHit}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{shipHit}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienMotherShip::shipHit}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_mother_ship_a06db4da9779e6346e7f05d3b39a8af0c}
+
+
+Reimplemented from \hyperlink{class_ship_a1fd726a67e6b11d5ce19f4657db40237}{Ship}.
+
+Definition at line 30 of file alienmothership.h.\hypertarget{class_alien_mother_ship_a61fef30fd35cb950ff5c23463da32adf}{
+\index{AlienMotherShip@{AlienMotherShip}!shipsImage@{shipsImage}}
+\index{shipsImage@{shipsImage}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{shipsImage}]{\setlength{\rightskip}{0pt plus 5cm}QPixmap {\bf AlienMotherShip::shipsImage}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_mother_ship_a61fef30fd35cb950ff5c23463da32adf}
+
+
+Reimplemented from \hyperlink{class_ship_a3e61137191ddd959a57e0cd8928b4873}{Ship}.
+
+Definition at line 23 of file alienmothership.h.\hypertarget{class_alien_mother_ship_af38d6c7fb520033527b5012f0ae60654}{
+\index{AlienMotherShip@{AlienMotherShip}!shipWidth@{shipWidth}}
+\index{shipWidth@{shipWidth}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{shipWidth}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienMotherShip::shipWidth}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_mother_ship_af38d6c7fb520033527b5012f0ae60654}
+
+
+Reimplemented from \hyperlink{class_ship_ae57e882cf6611414d239b241f6711ba6}{Ship}.
+
+Definition at line 28 of file alienmothership.h.\hypertarget{class_alien_mother_ship_a7c7c0ac12f0eb3add61f5d7a47fe93ee}{
+\index{AlienMotherShip@{AlienMotherShip}!xPosition@{xPosition}}
+\index{xPosition@{xPosition}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{xPosition}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienMotherShip::xPosition}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_mother_ship_a7c7c0ac12f0eb3add61f5d7a47fe93ee}
+
+
+Reimplemented from \hyperlink{class_ship_a6ccec9a60696c66ede61af7397c73b3c}{Ship}.
+
+Definition at line 26 of file alienmothership.h.\hypertarget{class_alien_mother_ship_af3b24eae146d655107298345d577d96d}{
+\index{AlienMotherShip@{AlienMotherShip}!yPosition@{yPosition}}
+\index{yPosition@{yPosition}!AlienMotherShip@{AlienMotherShip}}
+\subsubsection[{yPosition}]{\setlength{\rightskip}{0pt plus 5cm}qreal {\bf AlienMotherShip::yPosition}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{class_alien_mother_ship_af3b24eae146d655107298345d577d96d}
+
+
+Reimplemented from \hyperlink{class_ship_a5964ed05737d3b6722c7af5e0f173475}{Ship}.
+
+Definition at line 27 of file alienmothership.h.
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{alienmothership_8h}{alienmothership.h}\item 
+C:/Users/Kohli/Desktop/Earth-\/20000/\hyperlink{alienmothership_8cpp}{alienmothership.cpp}\end{DoxyCompactItemize}
