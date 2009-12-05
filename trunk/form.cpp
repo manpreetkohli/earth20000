@@ -888,43 +888,11 @@ void Form::alienFire()
 void Form::on_controls_clicked()
 {
     hideElements(m_ui);
-
-    QLabel *a = new QLabel(this);
-    a->setText("<font color = RED> A: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Move Left </font>");
-    a->setGeometry(QRect(200, 30, 700, 70));
-    a->show();
-
-    QLabel *d = new QLabel(this);
-    d->setText("<font color = RED> D: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Move Right </font>");
-    d->show();
-    d->setGeometry(QRect(200, 80, 1000, 70));
-
-    QLabel *enter = new QLabel(this);
-    enter->setText("<font color = RED> Enter: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Release ball </font>");
-    enter->show();
-    enter->setGeometry(QRect(75, 130, 1000, 70));
-
-    QLabel *space = new QLabel(this);
-    space->setText("<font color = RED> SPACE BAR: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fire bullets or missiles (only activated in level 3 and 4) </font>");
-    space->show();
-    space->setGeometry(QRect(40, 180, 1000, 70));
-
-    QLabel *period = new QLabel(this);
-    period->setText("<font color = RED> Period (.): &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Activate cheat mode (skip to next level) </font>");
-    period->show();
-    period->setGeometry(QRect(40, 230, 1000, 70));
+    m_ui->view->setStyleSheet("background-image: url(:/controls.jpg)");
 
     QFont font;
-    font.setPointSize(20);
     font.setBold(true);
     font.setWeight(75);
-
-    a->setFont(font);
-    d->setFont(font);
-    enter->setFont(font);
-    space->setFont(font);
-    period->setFont(font);
-
     font.setPointSize(13);
 
     QPushButton *back = new QPushButton(this);

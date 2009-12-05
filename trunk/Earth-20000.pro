@@ -18,7 +18,9 @@ HEADERS += board.h \
     alienmothership.h \
     mothershipbullet.h \
     alienspaceship.h \
-    alienshipbullet.h
+    alienshipbullet.h \
+    ammo.h \
+    ship.h
 SOURCES += board.cpp \
     ball.cpp \
     Main.cpp \
@@ -39,7 +41,9 @@ SOURCES += board.cpp \
     alienmothership.cpp \
     mothershipbullet.cpp \
     alienspaceship.cpp \
-    alienshipbullet.cpp
+    alienshipbullet.cpp \
+    ammo.cpp \
+    ship.cpp
 FORMS += form.ui
 RESOURCES += Images.qrc
 OTHER_FILES += 
