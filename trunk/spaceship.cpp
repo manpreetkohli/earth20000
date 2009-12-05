@@ -1,14 +1,15 @@
+/*!
+*   Author: Ivan Collazo
+*   File: spaceship.cpp
+*   Date: 10/05/2009
+*   This is .cpp file for spaceships in earth20000
+*/
+
 #include "spaceship.h"
-#include <QPainter>
-#include <QStyleOption>
-#include <QDebug>
-#include <QKeyEvent>
 #include "mothershipbullet.h"
 #include "alienshipbullet.h"
 #include "constants.h"
-
-int static leftDirection = 1;
-int static rightDirection = 2;
+#include <QSound>
 
 /*!
   constructor
@@ -16,14 +17,11 @@ int static rightDirection = 2;
 SpaceShip::SpaceShip()
 {
     shipsImage.load(":X-Wing-icon-1.png");
-    width = 0; //100
-    height = 0; //60
-    left = 0;  //325
-    top = 0;   //620
+    xPosition = 0;
+    yPosition = 0;
+    shipWidth = 0;
+    shipHeight = 0;
     shipHit = 4;
-   // color = (Qt::red);
-    qDebug() << "Space Ship Constructor" ;
-    setPos(0, 0);
 }
 
 /*!
@@ -31,24 +29,25 @@ SpaceShip::SpaceShip()
  */
 SpaceShip::~SpaceShip()
 {
-   // qDebug() << "Space Ship Destructor" ;
 }
 
 /*!
-  called whenever the spaceShip needs to be drawn
-  */
+   this method is called whenever the spaceShip needs to be drawn
+*/
 void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     // can later traverse to examine what collided with the character.
     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
 
+    // checks to see if collisions occurs
     if (!listOfCollidingItems.isEmpty())
     {
+        // if collision occurs with mothershipbullet or alienshipbullet decrements shipHit
         if ((listOfCollidingItems.first()->type() == ID_MOTHERSHIPBULLET) || (listOfCollidingItems.first()->type() == ID_ALIENSHIPBULLET))
         {
             shipHit--;
-            qDebug() << shipHit;
 
+            // added by Manpreet Kohli
             if (Constants::count == 3)
             {
                 this->scene()->removeItem(Constants::life3);        // remove a spawn from the HUD
@@ -60,7 +59,7 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
                 spawnSound->play();
 
                 t->msleep(3000);
-            }
+            }           
             else if (Constants::count == 2)
             {
                 this->scene()->removeItem(Constants::life2);        // remove a spawn from the HUD
@@ -72,7 +71,7 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
                 spawnSound->play();
 
                 t->msleep(3000);
-            }
+            }            
             else if (Constants::count == 1)
             {
                 this->scene()->removeItem(Constants::life1);        // remove a spawn from the HUD
@@ -84,7 +83,7 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
                 spawnSound->play();
 
                 t->msleep(3000);
-            }
+            }      
             else if (Constants::count == 0)
             {
                 // add game over logic
@@ -123,83 +122,38 @@ void SpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option
                 exit->show();
                 exit->setStyleSheet("background-color: rgba(255, 255, 255, 100);");
 
-               // Constants::timer->disconnect(this->scene(), SLOT(advance()));
-               // Constants::timer->stop();
-
                 QObject::connect(exit, SIGNAL(clicked()), temp->parentWidget(), SLOT(close()));
             }
         }
     }
-
-    painter->drawPixmap(335, 640, 90, 40, shipsImage);
+    painter->drawPixmap(335, 640, 90, 40, shipsImage); // paints the space shipImage
 }
 
+
 /*!
-  the bounding rectangle of the object for collision detection
-  */
+   this method does the bounding rectangle of the object for collision detection
+*/
 QRectF SpaceShip::boundingRect() const
 {
     return QRectF(335, 640, 90, 40);
 }
 
 /*!
-  gets ship's horizontal position
-  */
-int SpaceShip::getShipPosX()
-{
-    return left;
+    this method make the sound for ships bullets
+*/
+void SpaceShip::fireBullets()
+ {
+    QSound *gunFireFX = new QSound("44magnum.wav", 0);
+    gunFireFX->setLoops(1);
+    gunFireFX->play();
 }
 
 /*!
-  gets ship's vertical position
-  */
-int SpaceShip::getShipPosY()
+    this method make the sound for ships missiles
+*/
+void SpaceShip::fireMissiles()
 {
-    return top;
-}
-
-/*!
-  sets Ships horizontal position
-  */
-void SpaceShip::setShipPosX (int xPos)
-{
-    left += xPos;
-}
-
-/*!
-  sets Ships vertical position
-  */
-void SpaceShip::setShipPosY (int yPos)
-{
-    top += yPos;
-}
-
-/*!
-  gets the Ship directions
-  */
-int SpaceShip::getShipDirection()
-{
-    return shipDirection;
-}
-
-/*!
-  sets Ship Direction
-  */
-void SpaceShip::setShipDirection(int direction)
-{
-    // moving left = 1
-    if (direction == leftDirection)
-    {
-        shipDirection = leftDirection;
-    }
-
-    else if (direction == rightDirection)
-    {
-        shipDirection = rightDirection;
-    }
-}
-
-int SpaceShip::getShipHit()
-{  
-       return shipHit;
+    QSound *missileFireFX = new QSound("missile.wav", 0);
+    missileFireFX->setLoops(1);
+    missileFireFX->play();
 }

@@ -1,111 +1,101 @@
+/*!
+*   Author: Ivan Collazo
+*   File: alienspaceship.cpp
+*   Date: 10/05/2009
+*   This is .cpp file for alienspaceship in earth20000
+*/
+
 #include "alienspaceship.h"
-#include <QPainter>
-#include <QStyleOption>
-#include <QDebug>
-#include <QGraphicsView>
-#include <QTimer>
-#include <QtGui>
-#include "alienshipbullet.h"
 #include "shipbullet.h"
+#include <QPainter>
+#include <QSound>
+#include <QGraphicsView>
 
-AlienShipBullet *alienBullet;
-
+/*!
+    constructor
+*/
 AlienSpaceShip::AlienSpaceShip()
 {
     shipsImage.load(":TieFighter-icon.png");
-    width = 0; //100
-    height = 0; //60
-    left = 0;  //325
-    top = 0;   //620
-    alienShipHit = 5;
-    qDebug() << "Alien Ship Constructor" ;
+    xPosition = 0;
+    yPosition = 0;
+    shipWidth = 80;
+    shipHeight = 40;
+    shipHit = 5;
 }
 
 /*!
-  destructor
-  */
+    destructor
+*/
 AlienSpaceShip::~AlienSpaceShip()
 {
-    qDebug() << "Alien Space Ship Destructor" ;
 }
 
 /*!
-  called whenever the spaceShip needs to be drawn
-  */
+    this method is called whenever the alienspaceship needs to be drawn
+*/
 void AlienSpaceShip::paint (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    // can later traverse to examine what collided with the character.
+    // can traverse to examine what collided with alienspaceship
     QList<QGraphicsItem*> listOfCollidingItems = collidingItems();
 
-   // painter->setBrush(color);
-   // painter->drawRect(315, 100, 80, 30);
-    painter->drawPixmap(355, 100, 80, 40, shipsImage);
+    // paints the alienspaceship image
+    painter->drawPixmap(355, 100, shipWidth, shipHeight, shipsImage);
 
+    // checks to see if collisions occurs
     if (!listOfCollidingItems.isEmpty())
     {
+        // if collision occurs with spaceshipbullet then decrements alienShipHit
         if(listOfCollidingItems.first()->type() == ID_SPACESHIPBULLET)
         {
-            if (alienShipHit <= 0)
+            if (shipHit > 0)
             {
-               // qDebug() << "ALIEN SHIP IS ALREADY BLOWED";
-            }
-            else
-            {
-                --alienShipHit;
+               --shipHit;
             }
         }
     }
 
-    if (alienShipHit == 0)
+    // if alienShipHit is 0 ship destoryed then changes alien motherships image and has ship explosion FX
+    if (shipHit == 0)
     {
        shipsImage.load(":fire.png");
-       painter->drawPixmap(355, 100, 80, 40, shipsImage);
+       painter->drawPixmap(355, 100, shipWidth, shipHeight, shipsImage);
 
        QSound *shipExplosionFX = new QSound("explosion_2.wav", 0);
        shipExplosionFX->setLoops(1);
        shipExplosionFX->play();
-       update();
+
+       update(); 
     }
 }
 
 /*!
-  the bounding rectangle of the object for collision detection
-  */
+    this method does the bounding rectangle of the object for collision detection
+*/
 QRectF AlienSpaceShip::boundingRect() const
 {
     return QRectF(355, 100, 80, 40);
 }
 
 /*!
-  gets Ships horizontal position
-  */
-qreal AlienSpaceShip::getShipPosX()
+    this method gets the amount of times alien ship has been hit
+*/
+int AlienSpaceShip::getShipHit()
 {
-    return left;
+    return shipHit;
 }
 
 /*!
-  gets Ships horizontal position
-  */
-qreal AlienSpaceShip::getShipPosY()
-{
-    return top;
-}
-
+    this method fires the alien space ship bullets
+*/
 void AlienSpaceShip::fire()
 {
     alienBullet = new AlienShipBullet ();
     alienBullet->setBulletPosition(25, 480);
     this->scene()->addItem(alienBullet);
 
-    qDebug() << " Alien SHIP FIRING ";
-
     QSound *alienShipFireFX = new QSound("bomb.wav", 0);
     alienShipFireFX->setLoops(1);
     alienShipFireFX->play();
 }
 
-qreal AlienSpaceShip::getAlienShipHit()
-{
-    return alienShipHit;
-}
